@@ -1,0 +1,6 @@
+#ignore all .txt files and .pdf files
+*.txt
+
+*.pdf
+
+*.pptx
