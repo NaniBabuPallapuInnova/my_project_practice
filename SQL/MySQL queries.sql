@@ -192,7 +192,7 @@ If any interruption occurs between the constraint and data action, the action is
 insert into product_info(id, expiry_date, product_name, product_price )  select id, expiry_date, product_name, product_price from product where id =1
 
 
-MySQL Clauses 
+MySQL CLAUSES 
 =================
 
 1. WHERE - is used to filter the results. It specifies a specific position where you have to do the operation.
@@ -279,7 +279,7 @@ END AS result from employee
 
 
 
-MySQL conditions:
+MySQL CONDITIONS:
 =================
 
 1. AND :  select * from employee where emp_name ='Nani' AND emp_salary = 55000.2;
