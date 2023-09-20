@@ -329,8 +329,8 @@ MySQL CONDITIONS:
 	
 	
 	
-JOINS :
-=======
+MySQL JOINS :
+=============
 
 MySQL JOINS are used with SELECT statement. It is used to retrieve data from multiple tables. It is performed whenever you need to fetch records from two or more tables.
 
