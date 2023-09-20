@@ -1,0 +1,4 @@
+{{title}}
+
+<app-directives-demo [childData]="parentData" (myEvent)="handlingEvent($event)"></app-directives-demo>
+<p [ngStyle] = "{'color':'green', 'margin-bottom':'200px'}">{{childDataOutput}}</p>

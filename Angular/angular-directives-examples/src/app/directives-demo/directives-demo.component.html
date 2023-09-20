@@ -1,0 +1,82 @@
+<p>directives-demo works!</p>
+
+<div>
+    <h3 [ngStyle] = "{'color':'red'}">1. Structural Directives</h3>
+    <h4>i. *ngIf Demo</h4>
+    <p *ngIf="check">Welcome to my computer world!</p>
+
+
+    <h4>ii. *ngIf - Else Demo</h4>
+    <div>
+        <p *ngIf="check; else logOut">You are logged into Computer!</p>
+        <ng-template #logOut>You are logged out!</ng-template>
+    </div>
+
+    <h4>iii. *ngFor Demo </h4>
+    <div>
+        <h4> Student List </h4>
+        <div *ngFor="let student of studentList">
+            <ul style="list-style-type:none;">
+                <h5>Student {{student.id}} Details</h5>
+                <div>
+                    <li>Student Id:{{student.id}}</li>
+                    <li>Student Name : {{student.name}}</li>
+                    <li>Student Branch : {{student.branch}}</li>
+                    <li>Student Pass/Failed :<div *ngIf="student.pass; else failed"> Passed</div>
+                    </li>
+                    <ng-template #failed>
+                        <p>Failed</p>
+                    </ng-template>
+                </div>
+            </ul>
+        </div>
+    </div>
+
+    <h4>iv. *ngSwitchCase-Demo</h4>
+    <div>
+        <ul style="list-style-type:none;" [ngSwitch]="loggedAs">
+            <li *ngSwitchCase="'admin'"> You logged-in as Admin</li>
+            <li *ngSwitchCase="'user'">You logged-in as a User</li>
+            <li *ngSwitchCase="'sna'">You logged-in as SNA-team member</li>
+            <li *ngSwitchDefault>Unknown user logged-in</li>
+        </ul>
+    </div>
+</div>
+
+<div>
+    <h3 [ngStyle] = "{'color':'red'}">2. Built-in Attribute directives</h3>
+    <div>
+        <div> <h4>i.ngStyle-directive</h4>
+            <p [ngStyle]="{'color': 'green', 'font-size': '14px'}">
+                paragraph style is applied using ngStyle
+            </p>
+        </div>
+
+        <div class="container"> <h4>ii. ngClass-directive</h4>
+            <br />
+            <div *ngFor="let student of studentList" [ngClass]="{'highlight':student.name === 'divya'}">
+                {{ student.name }}
+            </div>
+        </div>
+
+        <div> <h4>iii.ngModel-directive</h4>
+            <input type="text" [(ngModel)] = "fullName" placeholder="enter your name" id="name">
+            <p [ngStyle]="{'color':'dark blue','border':'2px solid blue','margin':'50px','padding':'20px','font-size':'20px'}">{{fullName}}</p>
+        </div>
+
+        <div><h4>iv.Custom-attribute-directive</h4>
+            <p appCustomDirectiveExample >Nani Pallapu</p> <!-- 'appCustomDirectiveExample' is custom directive and it should not be enclosed with brackets-->
+        </div>
+    </div>
+</div>
+
+<div>
+    <h3 [ngStyle] = "{'color':'red'}">3. component directives</h3>
+
+    <h4>i. Using @input decorator </h4>
+    <p [ngStyle]="{'color':'green'}">{{childData}}</p>
+
+
+    <h4>ii. Using @Output decorator </h4>
+    <button (click)="callingEvent()">Click Here</button>
+</div>
