@@ -1,0 +1,41 @@
+
+<!--- String Interpolation-->
+<h3>
+    {{value1}}
+</h3>
+
+<!--- Event Binding -->
+
+<button (click) = "showData($event)">Click</button> <!-- <button on-click = "showData()">Click here</button>   Another way-->
+
+<br><br>
+<!-- Property Binding -->
+
+<input type="text" [value]="userName">
+<input type="submit">
+
+
+<!--- Attribute Binding -->
+<br><br>
+
+<img [src] = "imageUrl" alt="No image found">
+
+<br><br>
+
+<input [disabled] = "valueDisabled" type="text" placeholder="Enter text">
+
+<!-- Class Binding -->
+<p [class] = "MyClass"> Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+    Delectus ipsa fugiat sunt quis hic, explicabo nesciunt facilis aperiam ex quia voluptate voluptatibus doloribus possimus. 
+    Earum nisi voluptatibus vitae dolorum commodi.
+</p>
+
+<p [class.blue]="MyStyles">Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+    Nemo at praesentium dolor deleniti, neque ducimus, ipsa consectetur molestiae assumenda possimus omnis eum iste culpa modi similique porro quae unde delectus?
+</p>
+
+
+<!-- two-way binding -->
+
+<input type="text"  [class]="MyClass"  [(ngModel)] = "fullName" /> <!--we need to import FormsModule to use ngModel -->
+<h3 [class.blue] = "MyClass" > Hi I am {{fullName}}. Welcome to my home !</h3>
