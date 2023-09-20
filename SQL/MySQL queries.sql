@@ -386,7 +386,7 @@ select   ew.day_id , e.emp_name, e.emp_id, e.emp_salary , ew.working_date from e
 
 
 
-3. RIGHT JOIN
+3. RIGHT-JOIN
 ================
 The Right Join is used to joins two or more tables and returns all rows from the right-hand table, and only those results from the other table that fulfilled the join condition. 
 If it finds unmatched records from the left side table, it returns Null value. 
@@ -409,7 +409,7 @@ Example : 	SELECT  emp_name,c.id, customer_name,state from customer c
 
 
 
-CROSS JOIN
+4. CROSS-JOIN
 ================
 MySQL CROSS JOIN is used to combine all possibilities of the two or more tables and returns the result that contains every row from all contributing tables. 
 The CROSS JOIN is also known as CARTESIAN JOIN, which provides the Cartesian product of all associated tables. 
@@ -427,7 +427,7 @@ Example : SELECT * FROM employee CROSS JOIN emp_work_hours
 
 
 
-SELF JOIN
+5. SELF-JOIN
 ==================
 A SELF JOIN is a join that is used to join a table with itself. 
 In the previous sections, we have learned about the joining of the table with the other tables using different JOINS, such as INNER, LEFT, RIGHT, and CROSS JOIN. 
@@ -460,7 +460,7 @@ example : 	SELECT  s1.student_id, s1.name
 			
 
 SELF JOIN using INNER JOIN clause
----------------------------------
+-------------------------------------
 			SELECT  s1.student_id, s1.name  
 			FROM student s1  
 			INNER JOIN student s2  
@@ -468,8 +468,8 @@ SELF JOIN using INNER JOIN clause
 			AND s1.course_id<>s2.course_id  
 			GROUP BY student_id;  
 			
-SELF JOIN using LEFT JOIN clause
----------------------------------
+SELF-JOIN using LEFT JOIN clause
+-----------------------------------
 
 			SELECT (CONCAT(s1.stud_lname, ' ', s2.stud_fname)) AS 'Monitor', s1.city  
 			FROM students s1  
