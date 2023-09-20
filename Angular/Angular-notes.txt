@@ -1,0 +1,609 @@
+Anngular 
+===========
+Anugular is a TypeScript based full-stack web framework for building web and mobile 
+applications. One of the major advantage is that the Angular 8 support for web application 
+that can fit in any screen resolution. Angular application is fully compatible for mobiles, 
+tablets, laptops or desktops. Angular 8 has an excellent user interface library for web 
+developers which contains reusable UI components. 
+
+
+This functionality helps us to create Single Page Applications (SPA). SPA is reactive and 
+fast application. For example, if you have a button in single page and click on the button 
+then the action performs dynamically in the current page without loading the new page 
+from the server. Angular 8 is Typescript based object oriented programming and support 
+features for server side programming as well.
+
+
+Angular framework is based on four core concepts and they are as follows:
+
+ Components.
+ Templates with Data binding and Directives.
+ Modules.
+ Services and dependency injection
+
+
+
+Component
+=========
+The core of the Angular framework architecture is Angular Component. Angular Component is the building block of every Angular application. 
+Every angular application is made up of one more Angular Component. 
+It is basically a plain JavaScript / Typescript class along with a HTML template and an associated name. 
+
+
+The HTML template can access the data from its corresponding JavaScript / Typescript class. 
+Component’s HTML template may include other component using its selector’s value (name). 
+The Angular Component may have an optional CSS Styles associated it and the 
+HTML template may access the CSS Styles as well.
+
+
+
+
+Template
+========
+
+Template is basically a super set of HTML. Template includes all the features of HTML and 
+provides additional functionality to bind the component data into the HTML and to dynamically generate HTML DOM elements. 
+The core concept of the template can be categorised into two items and they are as follows:
+
+Data binding
+-------------
+Used to bind the data from the component to the template.
+{{ title }}
+Here, title is a property in AppComponent and it is bind to template using 
+Interpolation.
+
+Directives
+----------
+Used to include logic as well as enable creation of complex HTML DOM elements.
+<p *ngIf="canShow">
+
+
+
+Modules
+===========
+Angular Module is basically a collection of related features / functionality. Angular 
+Module groups multiple components and services under a single context. 
+For example, animations related functionality can be grouped into single module and 
+Angular already provides a module for the animation related functionality, 
+BrowserAnimationModule module. 
+
+
+An Angular application can have any number of modules but only one module can be set 
+as root module, which will bootstrap the application and then call other modules as and 
+when necessary. A module can be configured to access functionality from other module as 
+well. In short, compon
+
+
+ declarations: option is used to include components into the AppModule module.
+ imports: option is used to import other modules into the AppModule module.
+ providers: option is used to include the services for the AppModule module.
+ bootstrap: option is used to set the root component of the AppModule module.
+
+
+
+
+
+
+
+Services
+============
+Services are plain Typescript / JavaScript class providing a very specific functionality. 
+Services will do a single task and do it best. The main purpose of the service is reusability. 
+Instead of writing a functionality inside a component, separating it into a service will make 
+it useable in other component as well. 
+
+
+Also, Services enables the developer to organise the business logic of the application. 
+Basically, component uses services to do its own job. Dependency Injection is used to 
+properly initialise the service in the component so that the component can access the 
+services as and when necessary without any setup.
+
+1.BINDING 
+==============
+
+
+
+One-way data binding
+======================
+One-way data binding is a one-way interaction between component and its template. If 
+you perform any changes in your component, then it will reflect the HTML elements. It 
+supports the following types:
+
+
+String interpolation
+-----------------------
+In general, String interpolation is the process of formatting or manipulating strings. In 
+Angular, Interpolation is used to display data from component to view (DOM). It is 
+denoted by the expression of {{ }} and also known as mustache syntax.
+
+
+Let’s create a simple string property in component and bind the data to view.
+Add the below code in test.component.ts file as follows:
+
+export class TestComponent implements OnInit {
+ appName = "My first app in Angular 8";
+}
+
+<h1>{{appName}}</h1>
+
+
+
+Event binding
+-----------------
+
+Events are actions like mouse click, double click, hover or any keyboard and mouse 
+actions. If a user interacts with an application and performs some actions, then event will 
+be raised. It is denoted by either parenthesis () or on-. We have different ways to bind 
+an event to DOM element. Let’s understand one by one in brief.
+
+
+export class TestComponent {
+showData($event: any){ 
+ console.log("button is clicked!");
+ if($event) {
+ console.log($event.target); 
+ console.log($event.target.value);
+ }
+ } 
+}
+
+
+<h2>Event Binding</h2>
+<button (click)="showData($event)">Click here</button> 
+
+alternatively :
+<h2>Event Binding</h2>
+<button on-click = "showData()">Click here</button>
+
+
+Property Binding
+-----------------
+
+Property binding is used to bind the data from property of a component to DOM 
+elements. It is denoted by [].
+
+<input [disabled] = "valueDisabled" type="text" placeholder="Enter text">
+ 
+ valueDisabled = true;
+
+
+Attribute Binding
+-----------------
+Attribute binding in Angular allows you to bind values to standard HTML attributes and custom attributes that don't have corresponding DOM properties. 
+While Angular usually prefers property binding for interacting with DOM properties, attribute binding can be useful when you need to work with attributes directly. 
+To perform attribute binding in Angular, you use square brackets [...] in your template, just like with property binding. Here's how to use attribute binding:
+
+
+<a [href]="url">Visit our website</a>
+
+<button [attr.disabled]="isDisabled">Click me</button>
+
+url = "www.javatpoint.com";
+isDisabled = true;
+
+
+Class binding
+
+--------------
+
+Class binding is used to bind the data from component to HTML class property. The 
+syntax is as follows:
+
+
+  MyClass = "red";
+
+  MyStyles  = true; // if value is true, blue color will be added to text, if it is false , blur color will not be added to text.
+
+
+	.red{
+		color: red;
+	}
+
+	.blue{
+		color: blue;
+	}
+	
+	
+		<!-- Class Binding -->
+	<p [class] = "MyClass"> Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+		Delectus ipsa fugiat sunt quis hic, explicabo nesciunt facilis aperiam ex quia voluptate voluptatibus doloribus possimus. 
+		Earum nisi voluptatibus vitae dolorum commodi.
+	</p>
+
+	<p [class.blue]="MyStyles">Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+		Nemo at praesentium dolor deleniti, neque ducimus, ipsa consectetur molestiae assumenda possimus omnis eum iste culpa modi similique porro quae unde delectus?
+	</p>
+	
+	
+	
+	
+
+
+Two-way data binding
+=====================
+Two-way data binding is a two-way interaction, data flows in both ways (from 
+component to views and views to component). Simple example is ngModel. If you do any 
+changes in your property (or model) then, it reflects in your view and vice versa. It is the 
+combination of property and event binding.
+
+
+  fullName : string | undefined = "Nani Babu Pallapu";
+
+
+<input type="text"  [class]="MyClass"  [(ngModel)] = "fullName" /> <!--we need to import FormsModule to use ngModel -->
+<h3 [class.blue] = "MyClass" > Hi I am {{fullName}}. Welcome to my home !</h3>
+
+
+
+
+2. Angular-Directives
+==================
+The Angular 8 directives are used to manipulate the DOM. 
+By using Angular directives, you can change the appearance, behavior or a layout of a DOM element. It also helps you to extend HTML.
+
+
+Angular 8 directives can be classified in 3 categories based on how they behave:
+
+
+Component Directives
+Structural Directives
+Attribute Directives
+
+1)	Component Directives: Component can be used as directives. Every component has Input and Output option to pass between component and its parent HTML elements.
+2)	Structural Directives: Structural directives start with a * sign. These directives are used to manipulate and change the structure of the DOM elements.
+		For example, *ngIf directive, *ngSwitch directive, and *ngFor directive.
+
+		*ngIf Directive: gIf directive is used to display or hide data in your application based on the condition becomes true or false. We can add this to any tag in your template.
+		*ngSwitch Directive: The *ngSwitch allows us to Add/Remove DOM Element. It is similar to switch statement of C#.
+		*ngFor Directive: The *ngFor directive is used to repeat a portion of HTML template once per each item from an iterable list (Collection).
+		
+	
+3)	Attribute Directives: Attribute directives are used to change the look and behavior of the DOM elements. For example: ngClass directive, and ngStyle directive etc.
+
+ngClass Directive: The ngClass directive is used to add or remove CSS classes to an HTML element.
+ngStyle Directive: The ngStyle directive facilitates you to modify the style of an HTML element using the expression. You can also use ngStyle directive to dynamically change the style of your HTML element.
+
+
+
+Structural Directives example:
+=============================
+
+	check : boolean = true;
+
+	loggedAs : string  = "user";
+
+
+<div>
+    <h2>Structural Directives</h2>
+    <h3>*ngIf Demo</h3>
+    <p *ngIf="check">Welcome to my computer world!</p>
+
+
+    <h3>*ngIf - Else Demo</h3>
+    <div>
+        <p *ngIf="check; else logOut">You are logged into Computer!</p>
+        <ng-template #logOut>You are logged out!</ng-template>
+    </div>
+
+    <h3>*ngFor Demo </h3>
+    <div>
+        <h4> Student List </h4>
+        <div *ngFor="let student of studentList">
+            <ul style="list-style-type:none;">
+                <h5>Student {{student.id}} Details</h5>
+                <div>
+                    <li>Student Id:{{student.id}}</li>
+                    <li>Student Name : {{student.name}}</li>
+                    <li>Student Branch : {{student.branch}}</li>
+                    <li>Student Pass/Failed :<div *ngIf="student.pass; else failed"> Passed</div>
+                    </li>
+                    <ng-template #failed>
+                        <p>Failed</p>
+                    </ng-template>
+                </div>
+            </ul>
+        </div>
+    </div>
+
+    <h3>*ngSwitchCase-Demo</h3>
+    <div>
+        <ul style="list-style-type:none;" [ngSwitch]="loggedAs">
+            <li *ngSwitchCase="'admin'"> You logged-in as Admin</li>
+            <li *ngSwitchCase="'user'">You logged-in as a User</li>
+            <li *ngSwitchCase="'sna'">You logged-in as SNA-team member</li>
+            <li *ngSwitchDefault>Unknown user logged-in</li>
+        </ul>
+    </div>
+</div>
+
+
+Attribute Directives example:
+==============================
+
+in css :
+
+.highlight
+{
+ color: red;
+}
+
+in html : 
+<div>
+    <h3 [ngStyle] = "{'color':'red'}">2. Built-in Attribute directives</h3>
+    <div>
+        <div> <h4>i.ngStyle-directive</h4>
+            <p [ngStyle]="{'color': 'green', 'font-size': '14px'}">
+                paragraph style is applied using ngStyle
+            </p>
+        </div>
+
+        <div class="container"> <h4>ii. ngClass-directive</h4>
+            <br />
+            <div *ngFor="let student of studentList" [ngClass]="{'highlight':student.name === 'divya'}">
+                {{ student.name }}
+            </div>
+        </div>
+
+        <div> <h4>iii.ngModel-directive</h4>
+            <input type="text" [(ngModel)] = "fullName" placeholder="enter your name" id="name">
+            <p [ngStyle]="{'color':'dark blue','border':'2px solid blue','margin':'50px','padding':'20px','font-size':'20px'}">{{fullName}}</p>
+        </div>
+
+        <div><h4>iv.Custom-attribute-directive</h4>
+            <p appCustomDirectiveExample >Nani Pallapu</p> <!-- 'appCustomDirectiveExample' is custom directive and it should not be enclosed with brackets-->
+        </div>
+    </div>
+</div>
+
+
+
+
+
+Component Directives
+====================
+
+In Angular, you can use the @Input and @Output decorators to pass data into and emit events from components. These decorators are essential for building parent-child communication between components. 
+Here's how you can use @Input and @Output decorators in Angular components:
+
+
+
+Using @Input Decorator:
+----------------------
+
+1. @Input Decorator Definition: @Input is used to pass data into a component from its parent component.
+Parent Component:
+
+2. In the parent component template or TypeScript file, you can bind data to a child component's input property using property binding.
+
+Example (Parent Component HTML):
+<app-child [inputData]="parentData"></app-child>
+
+
+Example (Parent Component TypeScript):
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-parent',
+  template: `
+    <app-child [inputData]="parentData"></app-child>
+  `,
+})
+export class ParentComponent {
+  parentData = 'Data from parent';
+}
+
+In this example, the inputData property in the ChildComponent is decorated with @Input(), allowing it to receive data from the parent component.
+
+
+
+
+Using @Output Decorator:
+------------------------
+1. @Output Decorator Definition: @Output is used to emit events from a child component to its parent component.
+
+
+2. Child Component: In the child component TypeScript file, you define an output property using the @Output decorator. You also create an EventEmitter to emit events.
+
+Example (Child Component TypeScript):
+
+import { Component, Output, EventEmitter } from '@angular/core';
+
+@Component({
+  selector: 'app-child',
+  template: '<button (click)="emitEvent()">Emit Event</button>',
+})
+export class ChildComponent {
+  @Output() myEvent = new EventEmitter<string>();
+
+  emitEvent() {
+    this.myEvent.emit('Event data from child');
+  }
+}
+
+
+
+In this example, we've created an EventEmitter named myEvent and emit an event with data when the button is clicked.
+
+3.Parent Component: In the parent component HTML template, you can listen for the event emitted by the child component and handle it using an event binding.
+
+Example (Parent Component HTML):
+<app-child (myEvent)="handleEvent($event)"></app-child>
+
+
+Example (Parent Component TypeScript):
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-parent',
+  template: `
+    <app-child (myEvent)="handleEvent($event)"></app-child>
+    <p>{{ eventData }}</p>
+  `,
+})
+export class ParentComponent {
+  eventData: string;
+
+  handleEvent(data: string) {
+    this.eventData = data;
+  }
+}
+
+
+In this example, the parent component listens for the myEvent event emitted by the child component and handles it in the handleEvent method.
+
+These are the basic concepts of using @Input and @Output decorators in Angular components to facilitate communication between parent and child components
+
+
+
+
+3. Angular Pipes
+===============
+
+Pipes are referred as filters. It helps to transform data and manage data within 
+interpolation, denoted by {{ | }}. It accepts data, arrays, integers and strings as inputs 
+which are separated by ‘|’ symbol.
+
+	Built-in Pipes
+	--------------
+	Lowercasepipe
+	Uppercasepipe
+	Datepipe
+	Currencypipe
+	Jsonpipe
+	Percentpipe
+	Decimalpipe
+	Slicepipe
+	
+	
+app.component.ts
+------------------
+  title = 'angular-pipes-examples';
+
+  fullName : string = 'Nani Babu';
+
+  todayDate  = new Date();
+
+  sampleJsonData = {
+    name : 'Nani Babu',
+    age : '25',
+    job : 'Software Engineer',
+    address : {
+      village : 'uppaluru',
+      city : 'Vijayawada',
+      district : 'Krishna District',
+      state : 'Andhra Pradesh',
+      pincode : '521151'
+    }
+  }
+
+  days = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+  
+  
+ squareroot.pipe.ts
+------------------
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+  name: 'squareroot' // it should be used in template file
+})
+export class SquarerootPipe implements PipeTransform {
+
+  transform(value: number): number {
+    return Math.sqrt(value);
+  }
+
+}
+
+digitscount.pipe.ts
+---------------------
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+  name: 'digitscount'
+})
+export class DigitscountPipe implements PipeTransform {
+
+  transform(value: number): number {
+    return value.toString().length;
+  }
+
+}
+	
+app.component.html
+------------------
+
+<div [ngStyle]="{'text-align':'center'}">
+  <h2>{{title}}</h2>
+
+  <h3>1.Uppercase Pipe</h3>
+  <p>{{fullName | uppercase}}</p><br>
+
+  <h3>2.Lowercase Pipe</h3>  
+  <p>{{fullName | lowercase}}</p><br>
+
+  <h3>3.Currency Pipe</h3>  
+  <p>{{256.66 | currency:"USD"}}</p> <!-- $256.66 -->
+  <p>{{256.66 | currency:"INR" }}</p> <!-- ₹256.66 --> <br>
+
+  <h3>4.Date pipe</h3>  
+  <p>{{todayDate}}</p> <!-- Mon Sep 18 2023 23:04:28 GMT+0530 (India Standard Time)  -->
+  <p>{{todayDate | date }}</p> <!-- Sep 18, 2023  -->
+  <p>{{todayDate | date:'d/M/y' }}</p> <!-- 18/9/2023 -->
+  <p>{{todayDate | date:'shortDate' }}</p> <!-- 9/18/23  -->
+  <p>{{todayDate | date:'fullDate' }}</p> <!-- Monday, September 18, 2023  -->
+  <p>{{todayDate | date:'h:mm' }}</p> <br><!-- 11:05  -->
+
+  <h3>5.Decimal Pipe</h3> 
+  <p>{{ 454.78787814 | number: '3.4-6' }}</p> <br>
+
+  <h3>6.Json Pipe</h3>  
+  <p>{{sampleJsonData | json}}</p><br>
+
+  <h3>7.Percent Pipe</h3>  
+  <p>{{00.54565 | percent }}</p><br>
+
+  <h3>8.Slice Pipe</h3> 
+  <p>{{days | slice:2:4 }}</p><br> <!-- Wednesday,Thursday , it's printing based on index position in Array  -->
+
+  <h3>9.Custom Pipes</h3>
+  <p>{{625 | squareroot }}</p> <!-- 25 -->
+  <p>{{625 | digitscount }}</p> <!-- 3 digts -->
+</div>
+
+
+
+
+
+
+
+
+
+
+ 
+4. Angular 8 — Reactive Programming
+===================================
+
+Reactive programming is a programming paradigm dealing with data streams and the 
+propagation of changes. Data streams may be static or dynamic. An example of static data 
+stream is an array or collection of data. It will have an initial quantity and it will not change. 
+An example for dynamic data stream is event emitters. Event emitters emit the data 
+whenever the event happens. Initially, there may be no events but as the time moves on, 
+events happens and it will gets emitted.
+
+
+Reactive programming enables the data stream to be emitted from one source called 
+Observable and the emitted data stream to be caught by other sources called Observer 
+through a process called subscription. This Observable / Observer pattern or simple 
+Observer pattern greatly simplifies complex change detection and necessary updating in 
+the context of the programming.
+JavaScript does not have the built-in support for Reactive Programming. RxJs is a 
+JavaScript Library which enables reactive programming in JavaScript. Angular uses Rxjs 
+library extensively to do below mentioned advanced concepts:
+ Data transfer between components.
+ HTTP client.
+ Router.
+ Reactive forms.
+
+Let us learn reactive programming using RxJs library in this chapter.
+
