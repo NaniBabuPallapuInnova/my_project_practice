@@ -8,7 +8,8 @@ emp_id, emp_company_name, 		emp_name, emp_salary
 6, 		'TCS', 					'Pavan', '65000.2'
 
 
-/* CREATE A TABLE */
+CREATING TABLE 
+================
 CREATE TABLE user (
 id int NOT NULL AUTO_INCREMENT,
 name varchar(60) not null,
@@ -440,7 +441,6 @@ The table aliases enable us to use the temporary name of the table that we are g
 Let us understand the table aliases with the following explanation.
 
 Suppose we have a table named "student" that is going to use twice in the single query. To aliases the student table, we can write it as:
-
 
 Select … FROM student AS S1   
 INNER JOIN student AS S2;  
