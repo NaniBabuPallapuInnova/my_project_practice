@@ -581,29 +581,36 @@ app.component.html
 
 
  
-4. Angular 8 — Reactive Programming
-===================================
+4. SERVICES AND DEPENDENCY INJECTION
+=====================================
 
-Reactive programming is a programming paradigm dealing with data streams and the 
-propagation of changes. Data streams may be static or dynamic. An example of static data 
-stream is an array or collection of data. It will have an initial quantity and it will not change. 
-An example for dynamic data stream is event emitters. Event emitters emit the data 
-whenever the event happens. Initially, there may be no events but as the time moves on, 
-events happens and it will gets emitted.
+Services : 
+----------
+
+Services provides specific functionality in an Angular application. In a 
+given Angular application, there may be one or more services can be used. Similarly, an 
+Angular component may depend on one or more services. 
 
 
-Reactive programming enables the data stream to be emitted from one source called 
-Observable and the emitted data stream to be caught by other sources called Observer 
-through a process called subscription. This Observable / Observer pattern or simple 
-Observer pattern greatly simplifies complex change detection and necessary updating in 
-the context of the programming.
-JavaScript does not have the built-in support for Reactive Programming. RxJs is a 
-JavaScript Library which enables reactive programming in JavaScript. Angular uses Rxjs 
-library extensively to do below mentioned advanced concepts:
- Data transfer between components.
- HTTP client.
- Router.
- Reactive forms.
+Dependency Injection :
+----------------------
 
-Let us learn reactive programming using RxJs library in this chapter.
+Angular services may depend on another services to work properly. Dependency 
+resolution is one of the complex and time consuming activity in developing any application. 
+To reduce the complexity, Angular provides Dependency Injection pattern as one of the 
+core concept. 
 
+
+
+An Angular service is plain Typescript class having one or more methods (functionality) 
+along with @Injectable decorator. It enables the normal Typescript class to be used as 
+service in Angular application.
+
+
+import { Injectable } from '@angular/core';
+@Injectable()
+export class DebugService {
+ constructor() { }
+}
+
+Here, @Injectable decorator converts a plain Typescript class into Angular service.

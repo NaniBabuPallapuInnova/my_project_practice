@@ -1,0 +1,15 @@
+<div>
+    <button [ngStyle] ="{'color':'red', 'background-color':'white'}" *ngIf="show; else checking" type="button" (click)="showDetails()">Hide Student Details</button>
+    <ng-template #checking>
+        <button type="button" (click)="showDetails()">Show Student Details</button>
+    </ng-template>
+</div>
+<div *ngIf = show>
+    <h4> Student-Details</h4>
+    <ul style="list-style-type:none;" *ngFor="let student of studentDetails">
+        <li>Id : {{student.id}}</li>
+        <li>Name : {{student.name}}</li>
+        <li>Branch : {{student.branch}}</li>
+        <li>Pass/Fail : {{student.pass == true ? 'Passed' : 'Failed'}}</li>
+    </ul>
+</div>

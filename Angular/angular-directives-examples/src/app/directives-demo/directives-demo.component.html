@@ -22,11 +22,7 @@
                     <li>Student Id:{{student.id}}</li>
                     <li>Student Name : {{student.name}}</li>
                     <li>Student Branch : {{student.branch}}</li>
-                    <li>Student Pass/Failed :<div *ngIf="student.pass; else failed"> Passed</div>
-                    </li>
-                    <ng-template #failed>
-                        <p>Failed</p>
-                    </ng-template>
+                    <li>Student Pass/Failed : {{student.pass == true ? 'Passed' : 'Failed'}}</li>
                 </div>
             </ul>
         </div>
