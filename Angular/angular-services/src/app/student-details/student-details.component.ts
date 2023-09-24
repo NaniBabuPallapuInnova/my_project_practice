@@ -12,12 +12,16 @@ export class StudentDetailsComponent implements OnInit {
   public studentDetails! : Student[];
 
   show : boolean = true;
+  public errorMsg : any;
 
   constructor(private studentService : StudentService) {
 
   }
   ngOnInit() {
-      this.studentDetails = this.studentService.getEmployees();
+    this.studentService.getEmployees().subscribe(data => this.studentDetails = data,
+      error => this.errorMsg = error
+      
+      );
   }
 
   showDetails(){

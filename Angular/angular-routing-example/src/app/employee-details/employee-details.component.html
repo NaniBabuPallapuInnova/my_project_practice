@@ -1,0 +1,16 @@
+<h3>Employee-Details</h3>
+<div>
+    <router-outlet></router-outlet>
+
+    <ul style="list-style-type: none;"  *ngFor="let employee of employees" >
+        <li *ngIf="employee.id == employeeId">{{employee.id}} {{employee.name}}  {{employee.department}} {{employee.package}}</li>
+    </ul> 
+    <br>
+    <a (click)="showOverview()">Employee-Overview</a>
+    <a (click)="showContact()">Employee-Contact</a>
+    <br><br><br>
+    <a (click)="goPrevious()">Previous Employee</a>
+    <a (click)="goNext()">Next Employee</a><br><br><br>
+    <a (click)="goBack()">Back</a> <!-- optional router parameters , it will take back to employee list and highlight selected employee -->
+    <br><br><br><br>
+</div>

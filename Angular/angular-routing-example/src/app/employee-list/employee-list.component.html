@@ -1,0 +1,6 @@
+<p>employee-list works!</p>
+<div>
+    <ul  style="list-style-type: none;" (click) = "onSelect(employee)" [class.selected]="isSelected(employee)" *ngFor="let employee of employees">
+        <li>{{employee.id}}.{{employee.name}}</li>
+    </ul>
+</div>

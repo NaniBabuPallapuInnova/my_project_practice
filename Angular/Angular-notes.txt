@@ -614,3 +614,266 @@ export class DebugService {
 }
 
 Here, @Injectable decorator converts a plain Typescript class into Angular service.
+
+
+
+Observables
+===========
+
+	In Angular, observables are a core part of the RxJS (Reactive Extensions for JavaScript) library, which is used to manage asynchronous operations and handle data streams. 
+	Observables are a powerful way to work with data and events in a reactive, non-blocking manner.
+
+	Here are some key concepts related to observables in Angular:
+
+	Observable: 
+	-----------
+	An observable is a representation of a stream of data or events that can be observed over time. It can emit multiple values over time, including asynchronous events like HTTP requests, user inputs, and more.
+
+	Observer:
+	---------
+	An observer is an object that listens to the emitted values from an observable. It defines methods like next, error, and complete to handle the data emitted by the observable.
+
+	Subscription: 
+	-------------
+	A subscription is the mechanism used to connect an observer to an observable.
+	It represents the ongoing execution of an observable and can be used to cancel or unsubscribe from the observable when it's no longer needed. This helps prevent memory leaks.
+	
+	
+HTTP , Observables and RxJS
+---------------------------
+1. HTTP Get request from EmployeeService.
+2. Receive the observables and cast it into an Employee Array.
+3. Subscribe to the observables from EmployeeList and EmployeeDetails.
+4. Assign the Employee Array to the local variables.
+
+RxJs : Reactive Extension for JavaScript and External Library to work with Observables.
+
+
+
+export class StudentService implements OnInit {
+
+  // data location or you can use website url.
+  private _url : string = "/assets/data/student.json";
+
+
+  constructor(private http : HttpClient) {
+
+   }
+  ngOnInit() {
+ 
+  }
+
+ //1. we are making request using 'this.http.get()' by passing 'this._url' argument to fetch data from website(or file).
+ //2. Receive the observables and cast it into an Student Array.
+ getEmployees() : Observable<Student[]>{
+    return this.http.get<Student[]>(this._url);
+  }
+}
+
+
+
+export class StudentListComponent implements OnInit {
+
+  studentList!: Student[];
+  show : boolean = true
+  isDisable : boolean = false;
+
+  constructor(private studentService : StudentService) {
+
+  }
+
+// 3. Subscribe to the observables from EmployeeList.
+// 4. Assign the Employee Array data(data) to the local variables(this.studentList).
+  ngOnInit() {
+    this.studentService.getEmployees().subscribe(data => this.studentList = data)
+  }
+
+  showStudents(){
+    this.show = !this.show;
+  }
+}
+
+
+
+
+ANGULAR ROUTING
+================
+
+1. Generate  a project with routing option.
+2. Generate a departmentList and employeeList components.
+3. Configure the routes.
+4. Add buttons and use directives to navigate.
+
+
+app.routing.module.ts file
+-----------------------
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { EmployeeListComponent } from './employee-list/employee-list.component';
+import { DepartmentsComponent } from './departments/departments.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
+const routes: Routes = [
+  {path : '', redirectTo : '/departments', pathMatch:'full'}, // renders if given path is empty
+  {path : 'employees', component : EmployeeListComponent}, // renders employee component
+  {path : 'departments', component : DepartmentsComponent}, // renders departments component
+  {path : "**", component : PageNotFoundComponent} // // renders page-not-found component if given url does not match above paths
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule {
+
+ }
+
+ export const routingComponents = [EmployeeListComponent, DepartmentsComponent, PageNotFoundComponent];
+
+app.component.html file
+------------------------
+
+<router-outlet></router-outlet>
+<!-- routers will be staarted here-->
+
+<nav>
+  <a routerLink = "/employees" routerLinkActive = "activating">Employee-List</a>
+  <a routerLink = "/departments" routerLinkActive = "activating" >Department-List</a>
+</nav>
+
+
+
+
+
+RouterParameters
+================
+
+employee-list component files
+-----------------------------
+  public employees!: any[];
+  constructor(private router : Router) {
+
+  }
+  ngOnInit() {
+    this.employees = [{ "id": 1, "name": "Nani", "department": "JAVA", "package": "10LPA" },
+    { "id": 2, "name": "Pinky", "department": "PYTHON", "package": "12LPA" },
+    { "id": 3, "name": "divya", "department": "DEVOPS", "package": "14LPA" },
+    { "id": 4, "name": "rajesh", "department": ".NET", "package": "18LPA"}
+    ];
+  }
+
+  onSelect(employee : any){
+    this.router.navigate(['/employees',employee.id])   // passing the parameter id
+  }
+  
+  <div>
+    <ul  style="list-style-type: none;" (click) = "onSelect(employee)" *ngFor="let employee of employees">
+        <li>{{employee.id}}.{{employee.name}}</li>
+    </ul>
+</div>
+
+
+employee-details component files
+---------------------------------
+
+  public employees! : any[];
+  public employeeId! : number;
+  constructor(private route : ActivatedRoute){
+
+  }
+
+  ngOnInit() {
+
+    this.employees = [{ "id": 1, "name": "Nani", "department": "JAVA", "package": "10LPA" },
+    { "id": 2, "name": "Pinky", "department": "PYTHON", "package": "12LPA" },
+    { "id": 3, "name": "divya", "department": "DEVOPS", "package": "14LPA" },
+    { "id": 4, "name": "rajesh", "department": ".NET", "package": "18LPA"}
+    ];
+
+    let id = parseInt(this.route.snapshot.paramMap.get('id')!);
+    this.employeeId = id;
+  }
+
+
+
+<h3>Employee-Details</h3>
+<div>
+    <ul style="list-style-type: none;"  *ngFor="let employee of employees" >
+        <li *ngIf="employee.id == employeeId">{{employee.id}} {{employee.name}}  {{employee.department}} {{employee.package}}</li>
+    </ul>
+</div>
+
+
+
+
+ParamMap Observables
+----------------------
+
+
+<h3>Employee-Details</h3>
+<div>
+    <ul style="list-style-type: none;"  *ngFor="let employee of employees" >
+        <li *ngIf="employee.id == employeeId">{{employee.id}} {{employee.name}}  {{employee.department}} {{employee.package}}</li>
+    </ul>
+    <a (click)="goPrevious()">Previous</a>
+    <a (click)="goNext()">Next</a>
+    <br><br>
+</div>
+
+
+
+
+
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+
+@Component({
+  selector: 'app-employee-details',
+  templateUrl: './employee-details.component.html',
+  styleUrls: ['./employee-details.component.scss']
+})
+export class EmployeeDetailsComponent implements OnInit{
+
+  public employees! : any[];
+  public employeeId! : number;
+  constructor(private activatedRoute : ActivatedRoute, private router : Router){
+
+  }
+
+  ngOnInit() {
+
+    this.employees = [{ "id": 1, "name": "Nani", "department": "JAVA", "package": "10LPA" },
+    { "id": 2, "name": "Pinky", "department": "PYTHON", "package": "12LPA" },
+    { "id": 3, "name": "divya", "department": "DEVOPS", "package": "14LPA" },
+    { "id": 4, "name": "rajesh", "department": ".NET", "package": "18LPA"}
+    ];
+
+    /*
+
+    //When we navigate back to the same component , Angular simply reuses the component. At that time angular does not call ngOnit() method.
+    // that is why we use paramMap observables instead of snapshot.
+
+    let id = parseInt(this.activatedRoute.snapshot.paramMap.get('id')!);
+    this.employeeId = id;
+
+    */
+
+    this.activatedRoute.paramMap.subscribe((params: ParamMap) =>{
+      let id = parseInt(params.get('id')!);
+      this.employeeId = id;
+    });
+
+
+  }
+
+  goPrevious(){
+    let previousId = this.employeeId-1;
+    this.router.navigate(['/employees',previousId]);
+  }
+
+  goNext(){
+    let nextId = this.employeeId+1;
+    this.router.navigate(['/employees', nextId]);
+  }
+
+}

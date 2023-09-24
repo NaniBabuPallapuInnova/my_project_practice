@@ -12,13 +12,17 @@ export class StudentListComponent implements OnInit {
   studentList!: Student[];
   show : boolean = true
   isDisable : boolean = false;
-
+  public errorMsg : any;
   constructor(private studentService : StudentService) {
 
   }
 
+// 3. Subscribe to the observables from EmployeeList and EmployeeDetails.
+// 4. Assign the Employee Array to the local variables.
   ngOnInit() {
-    this.studentList = this.studentService.getEmployees();
+    this.studentService.getEmployees().subscribe(data => this.studentList = data,
+        error => this.errorMsg = error
+      )
   }
 
   showStudents(){

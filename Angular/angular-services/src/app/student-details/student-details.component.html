@@ -6,6 +6,7 @@
 </div>
 <div *ngIf = show>
     <h4> Student-Details</h4>
+    <h4>{{errorMsg}}</h4>
     <ul style="list-style-type:none;" *ngFor="let student of studentDetails">
         <li>Id : {{student.id}}</li>
         <li>Name : {{student.name}}</li>
