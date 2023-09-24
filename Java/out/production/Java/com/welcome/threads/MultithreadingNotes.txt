@@ -1,0 +1,33 @@
+Thread : A thread is a lightweight subprocess, the smallest unit of processing. It is a separate path of execution.
+         Threads are independent. If there occurs exception in one thread, it doesn't affect other threads. It uses a shared memory area.
+
+Multithreading : Multithreading in java is process of executing multiple threads simultaneously.
+                 Multiprocessing and multithreading, both are used to achieve multitasking.
+                 However, we use multithreading than multiprocessing because threads use a shared memory area.
+                 They don't allocate separate memory area so saves memory, and context-switching between the threads takes less time than process.
+                 Java Multithreading is mostly used in games, animation, etc.
+
+1) Process-based Multitasking (Multiprocessing) :
+    Each process has an address in memory. In other words, each process allocates a separate memory area.
+    A process is heavyweight.
+    Cost of communication between the process is high.
+    Switching from one process to another requires some time for saving and loading registers, memory maps, updating lists, etc.
+
+2) Thread-based Multitasking (Multithreading) :
+    Threads share the same address space.
+    A thread is lightweight.
+    Cost of communication between the thread is low.
+
+
+Java Thread class : Java provides Thread class to achieve thread programming.
+                    Thread class provides constructors and methods to create and perform operations on a thread.
+                    Thread class extends Object class and implements Runnable interface.
+
+
+Life cycle of a Thread (Thread States)
+In Java, a thread always exists in any one of the following states. These states are:
+i.   New
+ii.  Active
+iii. Blocked / Waiting
+iv.  Timed Waiting
+v.   Terminated
