@@ -877,3 +877,219 @@ export class EmployeeDetailsComponent implements OnInit{
   }
 
 }
+
+
+
+
+
+Child Routes
+=============
+app-routing.module.ts
+----------------------
+
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { EmployeeListComponent } from './employee-list/employee-list.component';
+import { DepartmentsComponent } from './departments/departments.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
+import { EmployeeOverviewComponent } from './employee-overview/employee-overview.component';
+import { EmployeeContactComponent } from './employee-contact/employee-contact.component';
+
+const routes: Routes = [
+  { path: '', redirectTo: '/departments', pathMatch: 'full' }, // renders if given path is empty
+
+  { path: 'employees', component: EmployeeListComponent }, // renders employee component
+
+  // renders employee-details component
+  { 
+    
+    path: 'employees/:id',
+    component: EmployeeDetailsComponent,
+    // child routes
+    children :[
+      {path : 'employee-overview', component : EmployeeOverviewComponent},
+      {path : 'employee-contact', component : EmployeeContactComponent}
+    ]
+  
+  }, 
+  { path: 'departments', component: DepartmentsComponent }, // renders departments component
+  { path: "**", component: PageNotFoundComponent } // // renders page-not-found component if given url does not match above paths
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule {
+
+}
+
+export const routingComponents = [EmployeeListComponent, DepartmentsComponent, PageNotFoundComponent, EmployeeOverviewComponent, EmployeeContactComponent];
+
+
+
+
+
+employee.details.component.ts
+------------------------------
+
+
+  // optional route parameters, it will fetch the employeeId and navigate back to employees
+  goBack(){
+    let selectedId = this.employeeId ? this.employeeId : null;
+    this.router.navigate(['/employees',{id:selectedId}]);
+  }
+
+ // child routings
+  showOverview(){
+    this.router.navigate(['employee-overview'],{relativeTo: this.activatedRoute});
+  }
+
+  showContact(){
+    this.router.navigate(['employee-contact'],{relativeTo : this.activatedRoute});
+  }
+
+
+employee.list.component.ts
+--------------------------
+
+  ngOnInit() {
+    this.employees = [{ "id": 1, "name": "Nani", "department": "JAVA", "package": "10LPA" },
+    { "id": 2, "name": "Pinky", "department": "PYTHON", "package": "12LPA" },
+    { "id": 3, "name": "divya", "department": "DEVOPS", "package": "14LPA" },
+    { "id": 4, "name": "rajesh", "department": ".NET", "package": "18LPA"}
+    ];
+
+    // optional route parameters
+    this.activatedRoute.paramMap.subscribe((params : ParamMap)=>{
+      let id = parseInt(params.get('id')!);
+      this.selectedId = id;
+
+    });
+  }
+
+  onSelect(employee : any){
+    this.router.navigate(['/employees',employee.id])   // passing the parameter id
+  }
+
+  // optional route parameters
+  isSelected(employee : any){
+    return employee.id == this.selectedId;
+  }
+  
+  
+
+employee.list.component.html
+--------------------------
+  <p>employee-list works!</p>
+<div>
+    <ul  style="list-style-type: none;" (click) = "onSelect(employee)" [class.selected]="isSelected(employee)" *ngFor="let employee of employees">
+        <li>{{employee.id}}.{{employee.name}}</li>
+    </ul>
+</div>
+
+
+	employee-details.component.html
+	-------------------------------
+	
+	<router-outlet></router-outlet> <!-- Manditory for child routes template -->
+
+	
+	<a (click)="showOverview()">Employee-Overview</a>
+    <a (click)="showContact()">Employee-Contact</a>
+	
+    <a (click)="goBack()">Back</a> <!-- optional router parameters , it will take back to employee list and highlight selected employee -->
+    <br><br><br><br>
+	
+
+
+
+ANGULAR-FORMS
+==============
+
+Forms are used to handle user input data. Angular 8 supports two types of forms. They 
+are Template driven forms and Reactive forms. This section explains about Angular 8 
+forms in detail.
+
+
+How does it work?
+-----------------
+
+1. The component template contains html to collect user data
+2. The component Class handles data-binding.
+3. Collected data is sent to the server through Services.
+
+
+Template --------> 	Class	-------->	Service 	--------> Server
+Collect Data 		Bind Data			Send data			  Receive data.
+
+
+
+
+
+Template driven forms(TDF)
+==========================
+Template driven forms is created using directives in the template. It is mainly used for 
+creating a simple form application. Let’s understand how to create template driven forms 
+in brief.
+
+	--> We heavily rely on two-way data binding. We don't have to keep tract of input field values and react to change the input values.Angular takes care of that with ngModel directive.
+	--> Two Data-Binding with ngModel.
+	--> Bulky Html code and minimal component code.
+	--> Angular also provides the ngForm directive which along with ngModel directive automatically tracks the forms and forms elements state and validity.
+	--> Drawback of TDF approach is Unit-Testing is a challange that means forms validation logic can not be unit-tested. Only way to test the logic is to run into test with a browser.
+	--> Another drawback is Readablity decreases with complex forms and validations.
+	--> Suitable for only simple applications. For complex forms and validations where unit-testing is necessary we should go with Reactive Forms.
+	
+	
+	
+Data-Binding in Template Driven Forms There are 3 directives
+i. 	ngForm - export the form data
+ii.	ngModel - track of each element data
+iii.ngModelGroup - In Angular, ngModelGroup is a directive used to group together multiple <input> elements that use the ngModel directive for two-way data binding. 
+					This grouping can be helpful when you have a form with nested structures or when you want to manage related form controls in a structured manner.
+					
+					
+Syntax: 
+
+[(ngModel)]="person.name" --> it will fetch predefined values from object and update them with user defined values(modified values)
+name="age" -->  it will give name to json object for that particular value.
+
+<form #myForm="ngForm">
+  <div ngModelGroup="person">
+    <input name="name" [(ngModel)]="person.name" placeholder="Name">
+    <input name="age" [(ngModel)]="person.age" placeholder="Age">
+  </div>
+</form>
+
+
+
+	Validation and displaying Error messages
+	----------------------------------------
+
+
+	//required #name="ngModel" [class.is-invalid]="name.invalid && name.touched" --> it will give validation that means name should not be empty once it is touched
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" required #name="ngModel" [class.is-invalid]="name.invalid && name.touched" class="form-control" name="userName" placeholder="enter name" [(ngModel)]="student.name">
+      <small [ngStyle]="{'color':'red'}" [class.d-none]="name.valid || name.untouched">Name is required</small><!-- it means : don't show this error message if it is valid or touched -->
+    </div>
+	
+	//#phone="ngModel" pattern="^\d{10}$" [class.is-invalid]="phone.invalid && phone.touched" --> it will give pattern matching validation numbers should not empty or exceed 10 numbers.
+    <div class="form-group">
+      <label>Phone Number</label>
+      <input type="number"  #phone="ngModel" pattern="^\d{10}$" [class.is-invalid]="phone.invalid && phone.touched" class="form-control"  name="phone" placeholder="enter phone number" [(ngModel)]="student.phone">
+      <small [ngStyle]="{'color':'red'}" [class.d-none]="phone.valid || phone.untouched">Invalid Phone Number</small> <!-- it means : don't show this error message if it is valid or touched -->
+
+    </div><br>
+	
+	<div class="form-group">
+      <label>Phone Number</label>
+      <input type="number" required  #phone="ngModel" pattern="^\d{10}$" [class.is-invalid]="phone.invalid && phone.touched" class="form-control"  name="phone" placeholder="enter phone number" [(ngModel)]="student.phone">
+      <!-- <small [ngStyle]="{'color':'red'}" [class.d-none]="phone.valid || phone.untouched">Invalid phone number</small> it means : don't show this error message if it is valid or touched -->
+      <div *ngIf="phone.errors && (phone.invalid || phone.untouched)"> <!-- displayed invidual errors based on error type -->
+        <small class="text-danger" *ngIf="phone.errors?.['required']">phone number is required</small>
+        <small class="text-danger" *ngIf="phone.errors?.['pattern']">phone number must be 10 digits</small>
+      </div>
+    </div><br>
