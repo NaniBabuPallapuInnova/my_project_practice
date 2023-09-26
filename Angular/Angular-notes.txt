@@ -1093,3 +1093,344 @@ name="age" -->  it will give name to json object for that particular value.
         <small class="text-danger" *ngIf="phone.errors?.['pattern']">phone number must be 10 digits</small>
       </div>
     </div><br>
+	
+	
+	
+	validation and displaying for select tags:
+	------------------------------------------
+	
+	-->We added custom-validation for selectors, #topic reference variable has been passed to validateTopic(topic.value) and if topicError=true and topic is touched, then we apply class.is-invalid and display error message.
+	-->If topicHasError is false and topic is untouched, we are applying validation through class.d-none class.
+	
+	<div class="form-group">
+      <select (blur)="validateTopic(topic.value)" (change)="validateTopic(topic.value)" #topic="ngModel" [class.is-invalid]="topicHasError && topic.touched" class="custom-select"  name="course" [(ngModel)]="student.topic">
+        <option  value="default">I am interested in </option>
+        <option *ngFor="let topic of topics" >{{topic}}</option>
+      </select>
+      <div>
+        <small class="text-danger" [class.d-none]="!topicHasError || topic.untouched">please choose a topic</small>
+      </div>
+    </div><br>
+	
+	
+	export class AppComponent {
+	  title = 'Template Driven Forms';
+
+	  topicHasError: boolean = true;
+
+	  public topics = ['Python', 'Java', 'Devops'];
+
+	  public student = new Student('NaniBabu', 'nanipallapu369@gmail.com', 9392590089, 'default', 'morning', true);
+
+	  validateTopic(value: string) {
+		if (value == 'default') {
+		  this.topicHasError = true;
+		} else {
+		  this.topicHasError = false;
+		}
+	  }
+	}
+	
+	
+	form validation 
+	-----------------
+	
+	--> studentForm.form.valid will be set as true, if form has an error or invalid then Disable the submit the button.
+	--> studentForm.form.valid will be set as false, if form don't have an error or is not invalid then Enable the submit the button.
+	
+	  <form #studentForm="ngForm" studentForm.form.valid>
+	  
+	  
+		<div class="form-group">
+		  <label>Name</label>
+		  <input type="text" required #name="ngModel" [class.is-invalid]="name.invalid && name.touched" class="form-control" name="userName" placeholder="enter name" [(ngModel)]="student.name">
+		  <small [ngStyle]="{'color':'red'}" [class.d-none]="name.valid || name.untouched">Name is required</small><!-- it means : don't show this error message if it is valid or touched -->
+		</div>
+	  
+		<div class="form-group">
+		  <select (blur)="validateTopic(topic.value)" (change)="validateTopic(topic.value)" #topic="ngModel" [class.is-invalid]="topicHasError && topic.touched" class="custom-select"  name="course" [(ngModel)]="student.topic">
+			<option  value="default">I am interested in </option>
+			<option *ngFor="let topic of topics" >{{topic}}</option>
+		  </select>
+		<div>
+        <small class="text-danger" [class.d-none]="!topicHasError || topic.untouched">please choose a topic</small>
+		
+		
+      </div>
+	    <div>
+		  <!-- disable the Submit button if studentForm has an error or topic has error -->
+		  <button [disabled]="studentForm.form.invalid || topicHasError" class="btn btn-primary" type="submit">Submit</button>
+		</div>
+	  </form>
+	  
+	  
+	Submitting form
+	----------------
+	1. novalidate - this will prevent browser validation for kicking in when we click on submit button
+	
+	2. Bind to (ngSubmit) event which gets which gets emmitted when Submit button is clicked.
+	
+	3. create a service class and go to the service class and import HttpClient and inject it in the constructor.
+	
+	4. In Service class , crate a property called blank _url and create a  enroll(student : Student) method with argument Student to make the post request.
+	
+	5. With in the body of enroll() method, we make our post request this.http.post<any>(this._url, student).
+	
+	6. The post request will return response as observable from service class and we need to subscribe to the observable in app.component.ts
+	
+	7. create a server_dummy_folder folder and initialize the package.json file(npm init --yes --> this command will create package.json file)
+	
+	8. install dependencies(throgh this command --> npm install --save express body-parser cors)
+			express --> webserver
+			body-parser --> middle ware to handle form data 
+			cors --> is package to make a request across different ports.
+	9. With in server_dummy_folder create a file called server.js  and add below configurations.
+	
+			var express = require("express")
+			var cors = require('cors')
+			var app = express()
+
+			app.use(cors());
+
+			var bodyParser = require("body-parser");
+
+			app.use(bodyParser.urlencoded({ extended: false }));
+
+			app.use(bodyParser.json());
+			var HTTP_PORT = 8008
+
+			app.listen(HTTP_PORT, () => {
+				console.log("Server running on port %PORT%".replace("%PORT%", HTTP_PORT))
+			});
+
+			app.get("/", (req, res, next) => {
+				res.json({ "message": "Ok" })
+			});
+
+
+			app.post("/enroll", function(req, res) {
+				
+				console.log(req.body);
+				res.status(200).send({"Message":"Data received"});
+			});
+
+
+	10. run this command --> node server 
+		it will show servering is running
+	
+	11. paste this   public url : string = 'http://localhost:8008/enroll'; in service component file.
+	
+	12. Fill the form and submit it. open the console check it and open the server terminal , you will be able to see response data(student data).
+		
+		Note: you can disable through the form *ngIf  once you submit the form.
+	
+
+	
+
+
+
+		TEMPLATE-DRIVEN-FORMS EXAMPLE :
+		================================
+
+		index.html file for bootstrap:
+		------------------------------
+		<!doctype html>
+		<html lang="en">
+
+		<head>
+		  <meta charset="utf-8">
+		  <title>FormsATemplateDrivenForms</title>
+		  <base href="/">
+		  <meta name="viewport" content="width=device-width, initial-scale=1">
+		  <link rel="icon" type="image/x-icon" href="favicon.ico">
+		  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+			integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+		</head>
+
+		<body>
+
+		  <app-root></app-root>
+		  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+			integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+			crossorigin="anonymous"></script>
+
+		</body>
+
+		</html>
+
+
+		app.component.html:
+		------------------
+
+		<div [ngStyle]="{'text-align':'center'}">
+		  <h3>{{title}}</h3>
+		</div>
+
+		<!-- template reference variable and assing 'ngForm' string, so that ngForm directive exports itself as the string ngForm -->
+		<!-- 'name' attribute should be used if we want to display with in json format-->
+		<div class="container-fluid">
+		  <h4>Student Enrollment Form</h4>
+
+		  <form #studentForm="ngForm" *ngIf ="!submitted; else displayMsg" (ngSubmit)="onSubmitt()" studentForm.form.valid novalidate>
+
+
+			<!-- user defined values in json format -->
+			{{studentForm.value | json}} 
+
+			<hr /> <!-- horizantal line for separation-->
+
+			<!-- it will show predefined values in json format because in .ts file user has already assingned predefined values through constructor -->
+			{{student | json}} 
+
+			<hr /> <!-- horizantal line for separation-->
+
+			<!-- checking the form is valid or invalid -->
+			<!-- {{studentForm.form.valid}} -->
+
+
+			<div class="form-group">
+			  <label>Name</label>
+			  <input type="text" required #name="ngModel" [class.is-invalid]="name.invalid && name.touched" class="form-control" name="userName" placeholder="enter name" [(ngModel)]="student.name">
+			  <small [ngStyle]="{'color':'red'}" [class.d-none]="name.valid || name.untouched">Name is required</small><!-- it means : don't show this error message if it is valid or touched -->
+			</div>
+
+			<div class="form-group">
+			  <label>Email</label>
+			  <input type="email" class="form-control" name="userEmail" placeholder="enter email" [(ngModel)]="student.mail">
+			</div><br>
+
+			<div class="form-group">
+			  <label>Phone Number</label>
+			  <input type="number" required  #phone="ngModel" pattern="^\d{10}$" [class.is-invalid]="phone.invalid && phone.touched" class="form-control"  name="phone" placeholder="enter phone number" [(ngModel)]="student.phone">
+			  <!-- <small [ngStyle]="{'color':'red'}" [class.d-none]="phone.valid || phone.untouched">Invalid phone number</small> it means : don't show this error message if it is valid or touched -->
+			  <div *ngIf="phone.errors && (phone.invalid || phone.untouched)">
+				<small class="text-danger" *ngIf="phone.errors?.['required']">phone number is required</small>
+				<small class="text-danger" *ngIf="phone.errors?.['pattern']">phone number must be 10 digits</small>
+			  </div>
+			</div><br>
+
+			<div class="form-group">
+			  <select (blur)="validateTopic(topic.value)" (change)="validateTopic(topic.value)" #topic="ngModel" [class.is-invalid]="topicHasError && topic.touched" class="custom-select"  name="course" [(ngModel)]="student.topic">
+				<option  value="default">I am interested in </option>
+				<option *ngFor="let topic of topics" >{{topic}}</option>
+			  </select>
+			  <div>
+				<small class="text-danger" [class.d-none]="!topicHasError || topic.untouched">please choose a topic</small>
+			  </div>
+			</div><br>
+
+			<div class="form-group">
+			  <div class="form-check">
+				<input class="form-check-input" type="radio" name="timePreference" value="morning" [(ngModel)]="student.time">
+				<label class="form-check-label">Morning(9AM-12PM)</label>
+			  </div>
+			</div>
+			<div class="form-check">
+			  <input class="form-check-input" type="radio" name="timePreference" value="evening" [(ngModel)]="student.time">
+			  <label class="form-check-label">Evening(6PM-9PM)</label>
+			</div>
+
+			<div class="forom-check-mb3">
+			  <input class="form-check-input" type="checkbox" name="subscribe" [(ngModel)]="student.subscribe">
+			  <label class="form-check-label">Subscribe Promotional Offers</label>
+			</div><br>
+
+			<div>
+			  <!-- disable the button if studentForm has an error or topic has error -->
+			  <button [disabled]="studentForm.form.invalid || topicHasError" class="btn btn-primary" type="submit">Submit</button>
+			</div>
+		  </form>
+
+		  <ng-template #displayMsg><h3 [ngStyle]="{'color':'darkgreen'}">Form has been submitted successfully!</h3>.</ng-template>
+
+
+		</div>
+
+
+
+
+
+		app.component.ts:
+		-----------------
+		import { Component } from '@angular/core';
+		import { Student } from './student';
+		import { StudentService } from './student.service';
+
+		@Component({
+		  selector: 'app-root',
+		  templateUrl: './app.component.html',
+		  styleUrls: ['./app.component.scss']
+		})
+		export class AppComponent {
+		  title = 'Template Driven Forms';
+
+		  topicHasError: boolean = true;
+
+		  public submitted : boolean = false;
+
+		  public topics = ['Python', 'Java', 'Devops'];
+
+		  public student = new Student('NaniBabu', 'nanipallapu369@gmail.com', 9392590089, 'default', 'morning', true);
+
+		  constructor(private studentService : StudentService){
+
+		  }
+
+		  validateTopic(value: string) {
+			if (value == 'default') {
+			  this.topicHasError = true;
+			} else {
+			  this.topicHasError = false;
+			}
+		  }
+
+		  onSubmitt(){
+			console.log(this.student);
+			this.submitted = true;
+			this.studentService.enroll(this.student).subscribe(
+			  data => console.log('Printed Successfully', data),
+			  error => console.log('error occured!', error)
+			);
+
+		  }
+		}
+
+		student.ts class file :
+		------------------------
+
+		export class Student {
+
+			constructor(
+				public name : string,
+				public mail : string,
+				public phone : number,
+				public topic : string,
+				public time  : string,
+				public subscribe : boolean
+
+			){
+
+			}
+		}
+
+
+		student.service.ts:
+		--------------------
+		import { Injectable } from '@angular/core';
+		import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
+		import { Student } from './student';
+
+		@Injectable({
+		  providedIn: 'root'
+		})
+		export class StudentService {
+
+		  public url : string = 'http://localhost:8008/enroll';
+		  constructor(private httpClient : HttpClient) {
+
+		   }
+
+		   enroll(student : Student){
+			return this.httpClient.post<any>(this.url, student);
+		   }
+		}

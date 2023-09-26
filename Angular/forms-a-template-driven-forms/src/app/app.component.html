@@ -7,17 +7,21 @@
 <div class="container-fluid">
   <h4>Student Enrollment Form</h4>
 
-  <form #studentForm="ngForm">
+  <form #studentForm="ngForm" *ngIf ="!submitted; else displayMsg" (ngSubmit)="onSubmitt()" studentForm.form.valid novalidate>
 
-    <!-- user defined values -->
+
+    <!-- user defined values in json format -->
     {{studentForm.value | json}} 
 
     <hr /> <!-- horizantal line for separation-->
 
-    <!-- it will show predefined values because in .ts file user has already assingned predefined values through constructor -->
+    <!-- it will show predefined values in json format because in .ts file user has already assingned predefined values through constructor -->
     {{student | json}} 
 
     <hr /> <!-- horizantal line for separation-->
+
+    <!-- checking the form is valid or invalid -->
+    <!-- {{studentForm.form.valid}} -->
 
 
     <div class="form-group">
@@ -42,10 +46,13 @@
     </div><br>
 
     <div class="form-group">
-      <select class="custom-select" name="course" [(ngModel)]="student.topic">
-        <option  value="">I am interested in </option>
+      <select (blur)="validateTopic(topic.value)" (change)="validateTopic(topic.value)" #topic="ngModel" [class.is-invalid]="topicHasError && topic.touched" class="custom-select"  name="course" [(ngModel)]="student.topic">
+        <option  value="default">I am interested in </option>
         <option *ngFor="let topic of topics" >{{topic}}</option>
       </select>
+      <div>
+        <small class="text-danger" [class.d-none]="!topicHasError || topic.untouched">please choose a topic</small>
+      </div>
     </div><br>
 
     <div class="form-group">
@@ -65,8 +72,12 @@
     </div><br>
 
     <div>
-      <button class="btn btn-primary" type="submit">Submit</button>
+      <!-- disable the button if studentForm has an error or topic has error -->
+      <button [disabled]="studentForm.form.invalid || topicHasError" class="btn btn-primary" type="submit">Submit</button>
     </div>
   </form>
+
+  <ng-template #displayMsg><h3 [ngStyle]="{'color':'darkgreen'}">Form has been submitted successfully!</h3>.</ng-template>
+
 
 </div>
