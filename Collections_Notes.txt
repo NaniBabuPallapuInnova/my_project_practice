@@ -1,0 +1,259 @@
+Collections in Java:
+====================
+The Collection in Java is a framework that provides an architecture to store and manipulate the group of objects.
+Java Collections can achieve all the operations that you perform on a data such as searching, sorting, insertion, manipulation, and deletion.
+Java Collection means a single unit of objects.
+Java Collection framework provides many interfaces (Set, List, Queue, Deque) and classes (ArrayList, Vector, LinkedList, PriorityQueue, HashSet, LinkedHashSet, TreeSet).
+
+Collection :  is used to represent a single unit with a group of individual objects.
+
+Collections : is used to operate on collection with several utility methods.
+
+Iterable Interface
+==================
+The Iterable interface is the root interface for all the collection classes. The Collection interface extends the Iterable interface and therefore all the subclasses of Collection interface also implement the Iterable interface.
+It contains only one abstract method. i.e.,
+
+Iterator interface
+==================
+Iterator interface provides the facility of iterating the elements in a forward direction only.
+1	public boolean hasNext()	It returns true if the iterator has more elements otherwise it returns false.
+2	public Object next()	    It returns the element and moves the cursor pointer to the next element.
+3	public void remove()        It removes the last elements returned by the iterator. It is less used.
+
+There are various ways to traverse the collection elements:
+
+-> By Iterator interface.
+-> By for-each loop.
+-> By ListIterator interface.
+-> By for loop.
+-> By forEach() method.
+-> By forEachRemaining() method.
+
+1. List Interface
+===============
+List interface is the child interface of Collection interface. It inhibits a list type data structure in which we can store the ordered collection of objects. It can have duplicate values.
+
+List interface is implemented by the classes ArrayList, LinkedList, Vector, and Stack.
+
+To instantiate the List interface, we must use :
+
+List <data-type> list1= new ArrayList();
+List <data-type> list2 = new LinkedList();
+List <data-type> list3 = new Vector();
+List <data-type> list4 = new Stack();
+
+
+    i. ArrayList:
+    =============
+    1) ArrayList internally uses a dynamic array to store the elements.
+    2) Manipulation with ArrayList is slow because it internally uses an array.     I
+    3) An ArrayList class can act as a list only because it implements List only.
+    4) ArrayList is better for storing and accessing data.
+    5) The memory location for the elements of an ArrayList is contiguous.
+    6) Generally, when an ArrayList is initialized, a default capacity of 10 is assigned to the ArrayList.
+    7) To be precise, an ArrayList is a resizable array.
+
+    --> ArrayList and LinkedList both implement the List interface and maintain insertion order. Both are non-synchronized classes.
+
+    ii. LinkedList
+    ==============
+    1) LinkedList internally uses a doubly linked list to store the elements.
+    2) If any element is removed from the array, all the other elements are shifted in memory.	Manipulation with LinkedList is faster than ArrayList because it uses a doubly linked list, so no bit shifting is required in memory.
+    3) LinkedList class can act as a list and queue both because it implements List and Deque interfaces.
+    4) LinkedList is better for manipulating data.
+    5) The location for the elements of a linked list is not contagious.
+    6) There is no case of default capacity in a LinkedList. In LinkedList, an empty list is created when a LinkedList is initialized.
+    7) LinkedList implements the doubly linked list of the list interface.
+
+    iii.Vector
+    ==========
+
+    1) Vector is like the dynamic array which can grow or shrink its size.
+    2) Unlike array, we can store n-number of elements in it as there is no size limit.
+    3) It is a part of Java Collection framework since Java 1.2. It is found in the java.util package and implements the List interface, so we can use all the methods of List interface here.
+    4) It is recommended to use the Vector class in the thread-safe implementation only.
+    5) If you don't need to use the thread-safe implementation, you should use the ArrayList, the ArrayList will perform better in such case.
+    6) The Iterators returned by the Vector class are fail-fast.
+    7) In case of concurrent modification, it fails and throws the ConcurrentModificationException.
+
+        It is similar to the ArrayList, but with two differences-
+        a. Vector is synchronized.
+        b. Java Vector contains many legacy methods that are not the part of a collections' framework.
+
+
+    iv. Stack
+    =============
+    1) The stack is a linear data structure that is used to store the collection of objects.
+    2) It is based on Last-In-First-Out (LIFO). Java collection framework provides many interfaces and classes to store the collection of objects.
+    3) One of them is the Stack class that provides different operations such as push, pop, search, etc.
+    4) In this section, we will discuss the Java Stack class, its methods, and implement the stack data structure in a Java program.
+    5) The stack data structure has the two most important operations that are push and pop.
+    6) The push operation inserts an element into the stack and pop operation removes an element from the top of the stack.
+
+
+2. Queue Interface
+====================
+
+Queue interface maintains the first-in-first-out order. It can be defined as an ordered list that is used to hold the elements which are about to be processed.
+There are various classes like PriorityQueue, Deque, and ArrayDeque which implements the Queue interface.
+Queue interface can be instantiated.
+
+Queue<String> q1 = new PriorityQueue();
+Queue<String> q2 = new ArrayDeque();
+
+    i. PriorityQueue
+    ==============
+    1) PriorityQueue is also class that is defined in the collection framework that gives us a way for processing the objects on the basis of priority.
+    2) It is already described that the insertion and deletion of objects follows FIFO pattern in the Java queue.
+    3) However, sometimes the elements of the queue are needed to be processed according to the priority, that's where a PriorityQueue comes into action.
+
+
+
+3. Deque Interface
+====================
+The interface called Deque is present in java.util package.
+It is the subtype of the interface queue. The Deque supports the addition as well as the removal of elements from both ends of the data structure.
+Therefore, a deque can be used as a stack or a queue.
+We know that the stack supports the Last In First Out (LIFO) operation, and the operation First In First Out is supported by a queue.
+As a deque supports both, either of the mentioned operations can be performed on it. Deque is an acronym for "double ended queue".
+
+    i. ArrayDeque class
+    =================
+    1) We know that it is not possible to create an object of an interface in Java.
+    2) Therefore, for instantiation, we need a class that implements the Deque interface, and that class is ArrayDeque.
+    3) It grows and shrinks as per usage. It also inherits the AbstractCollection class.
+    4) The important points about ArrayDeque class are:
+        a) Unlike Queue, we can add or remove elements from both sides.
+        b) Null elements are not allowed in the ArrayDeque.
+        c) ArrayDeque is not thread safe, in the absence of external synchronization.
+        d) ArrayDeque has no capacity restrictions.
+        e) ArrayDeque is faster than LinkedList and Stack.
+
+
+4. Set Interface
+=================
+
+Set Interface in Java is present in java.util package.
+It extends the Collection interface.
+It represents the unordered set of elements which doesn't allow us to store the duplicate items.
+We can store at most one null value in Set. Set is implemented by HashSet, LinkedHashSet, and TreeSet.
+
+Set can be instantiated as:
+
+Set<data-type> s1 = new HashSet<data-type>();
+Set<data-type> s2 = new LinkedHashSet<data-type>();
+Set<data-type> s3 = new TreeSet<data-type>();
+
+    i. HashSet Class
+    ================
+    1) Java HashSet class is used to create a collection that uses a hash table for storage.
+    2) It inherits the AbstractSet class and implements Set interface.
+    3) The important points about Java HashSet class are:
+        a) HashSet stores the elements by using a mechanism called hashing.
+        b) HashSet contains unique elements only.
+        c) HashSet allows null value.
+        d) HashSet class is non synchronized.
+        e) HashSet doesn't maintain the insertion order. Here, elements are inserted on the basis of their hashcode.
+        f) HashSet is the best approach for search operations.
+        g) The initial default capacity of HashSet is 16, and the load factor is 0.75.
+
+
+    ii. LinkedHashSet Class
+    ==========================
+    1) Java LinkedHashSet class is a Hashtable and Linked list implementation of the Set interface.
+    2) It inherits the HashSet class and implements the Set interface.
+    3) The important points about the Java LinkedHashSet class are:
+        a) Java LinkedHashSet class contains unique elements only like HashSet.
+        b) Java LinkedHashSet class provides all optional set operations and permits null elements.
+        c) Java LinkedHashSet class is non-synchronized.
+        d) Java LinkedHashSet class maintains insertion order.
+
+    iii. TreeSet Class
+    ====================
+    1) Java TreeSet class implements the Set interface that uses a tree for storage.
+    2) It inherits AbstractSet class and implements the NavigableSet interface.
+    3) The objects of the TreeSet class are stored in ascending order.
+    4) The important points about the Java TreeSet class are:
+        a) Java TreeSet class contains unique elements only like HashSet.
+        b) Java TreeSet class access and retrieval times are quiet fast.
+        c) Java TreeSet class doesn't allow null element.
+        d) Java TreeSet class is non synchronized.
+        e) Java TreeSet class maintains ascending order.
+        f) Java TreeSet class contains unique elements only like HashSet.
+        g) Java TreeSet class access and retrieval times are quite fast.
+        h) Java TreeSet class doesn't allow null elements.
+        i) Java TreeSet class is non-synchronized.
+        j) Java TreeSet class maintains ascending order.
+        k) The TreeSet can only allow those generic types that are comparable. For example The Comparable interface is being implemented by the StringBuffer class.
+
+
+
+
+
+
+
+
+5 Map Interface
+================
+A map contains values on the basis of key, i.e. key and value pair. Each key and value pair is known as an entry.
+A Map contains unique keys.
+A Map is useful if you have to search, update or delete elements on the basis of a key.
+There are two interfaces for implementing Map in java: Map and SortedMap, and three classes: HashMap, LinkedHashMap, and TreeMap.
+
+A Map can't be traversed, so you need to convert it into Set using keySet() or entrySet() method.
+
+Class	        Description
+HashMap         is the implementation of Map, but it doesn't maintain any order.
+LinkedHashMap   is the implementation of Map. It inherits HashMap class. It maintains insertion order.
+TreeMap         is the implementation of Map and SortedMap. It maintains ascending order.
+
+
+
+i. HashMap
+==========
+1) Java HashMap class hierarchy
+2) Java HashMap class implements the Map interface which allows us to store key and value pair, where keys should be unique.
+3) If you try to insert the duplicate key, it will replace the element of the corresponding key.
+4) It is easy to perform operations using the key index like updation, deletion, etc.
+5) HashMap class is found in the java.util package.
+6) HashMap in Java is like the legacy Hashtable class, but it is not synchronized.
+7) It allows us to store the null elements as well, but there should be only one null key.
+8) Since Java 5, it is denoted as HashMap<K,V>, where K stands for key and V for value.
+9) It inherits the AbstractMap class and implements the Map interface.
+    a) Java HashMap contains values based on the key.
+    b) Java HashMap contains only unique keys.
+    c) Java HashMap may have one null key and multiple null values.
+    d) Java HashMap is non synchronized.
+    e) Java HashMap maintains no order.
+    f) The initial default capacity of Java HashMap class is 16 with a load factor of 0.75.
+
+
+
+ii. LinkedHashMap class
+========================
+
+1) Java LinkedHashMap class hierarchy
+2) Java LinkedHashMap class is Hashtable and Linked list implementation of the Map interface, with predictable iteration order. It inherits HashMap class and implements the Map interface.
+3) Points to remember:
+    a) Java LinkedHashMap contains values based on the key.
+    b) Java LinkedHashMap contains unique elements.
+    c) Java LinkedHashMap may have one null key and multiple null values.
+    d) Java LinkedHashMap is non synchronized.
+    e) Java LinkedHashMap maintains insertion order.
+    f) The initial default capacity of Java HashMap class is 16 with a load factor of 0.75.
+
+    public class LinkedHashMap<K,V> extends HashMap<K,V> implements Map<K,V>
+
+
+6) TreeMap class
+=================
+Java TreeMap class hierarchy: TreeMap class implements SortedMap interface and SortedMap interface extends Map interface.
+Java TreeMap class is a red-black tree based implementation.
+It provides an efficient means of storing key-value pairs in sorted order.
+The important points about Java TreeMap class are:
+Java TreeMap contains values based on the key. It implements the NavigableMap interface and extends AbstractMap class.
+Java TreeMap contains only unique elements.
+Java TreeMap cannot have a null key but can have multiple null values.
+Java TreeMap is non synchronized.
+Java TreeMap maintains ascending order.
