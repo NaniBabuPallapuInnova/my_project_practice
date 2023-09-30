@@ -1626,3 +1626,485 @@ app.component.html
 	--> Creating multiple Form Controls instance manually can become very repeatative.
 	--> To overcome this, Angular provides FormBuilder Service which intend provides methods to handle generating form controls.
 	--> We will still create Form Control instances , but with lesser code.
+	
+	
+	
+	
+	Reactive FORM Example
+	========================================================
+	
+		app.component.scss
+		------------------------------------------------------------------------------------------------------------
+		
+		input[type=text] {
+		width:300px;
+	  }
+	  input[type=email] {
+		width:300px;
+	  }
+
+	  input[type=password] {
+		width:300px;
+	  }
+
+	  .form-group {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	  }
+
+	label{
+		float: left;
+		width: 150px;
+		text-align: right;
+		margin-right: 0.5em;
+
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		-o-text-overflow: ellipsis;}
+	 
+	  input{
+		margin: 20px;
+		margin-right: 50px;
+		margin-left: 100px;
+		margin-bottom: 10px;
+		margin-top: 10px;
+		border: 0.5px solid lightgray;
+
+	  }
+
+	  .btn-primary{
+		width: fit-content;
+		text-align: center;
+		padding-left: 250px;
+		padding-right: 250px;
+	  }
+
+	  .btn-secondary{
+		margin: 20px;
+	  }
+
+	  .addStyles{
+		margin-left: 260px;
+		padding-left: 20px;
+		margin-right: 10px;
+	  }
+
+	  .addMails{
+		border: none;
+		background-color: transparent;
+		font-size: 250%;
+		font-weight: bold;
+		color: grey;
+		margin-left: -50px;
+		margin-bottom: 10px;
+		
+	  }
+
+	  .hide{
+		display: none;
+	  }
+	  .addMails:hover + .hide{
+		display: block;
+		color: gray;
+		font-weight: 500;    
+	  }
+
+	  #changeStyle{
+		margin-top: -10px;
+		margin-left: 260px;
+		padding-left: 20px;
+		margin-right: 10px;
+		margin-bottom: 20px;
+	  }
+
+
+
+
+
+	
+	
+			app.component.html
+		------------------------------------------------------------------------------------------------------------
+	
+			
+			<h2 [ngStyle]="{'text-align':'center'}">{{title}}</h2>
+
+		<div class="container-fluid">
+		  <form [formGroup]="registerationUserForm" (ngSubmit)="onSubmit()" > <!-- Binding the registerationUserForm to formGroup directive -->
+
+			<!-- formControlName="userName" userName is what we have declared in ts file for FormControl  -->
+			<!-- registerationUserForm.get('userName')? is replaced by username in ts file by assing this long value to variable.-->
+			<div class="form-group">
+			  <label>Username : </label>
+			  <input [class.is-invalid]="userName?.invalid && userName?.touched" formControlName="userName" type="text"
+				placeholder="enter username" class="form-control">
+			  <small [class.d-none]="userName?.valid || userName?.untouched" class="text-danger">username is required*</small>
+			  <!-- don't show this if username is valid and untouched-->
+			</div>
+
+
+			<div class="form-group">
+			  <label>Email : </label>
+			  <input [class.is-invalid]="eMail?.invalid && eMail?.touched" type="email"  formControlName="mail" class="form-control" placeholder="enter email address">
+			  <button type="button" class="addMails" (click)="addAlternativeEmails()">+</button>
+			  <small class="hide">Add Alternative Emails</small>
+
+			  <small [class.d-none]="eMail?.valid || eMail?.untouched" class="text-danger">Email is required</small>
+			</div>
+
+			
+			  <!-- formArrayName is a directive, it will help us to keep track of FormArray values -->
+			  <!-- index is used to iterate and insert each input tag into the array based on array -->
+			  <div formArrayName="alternativeMails" *ngFor="let alterMail of alterEmails.controls; let i=index">
+				<input type="email" id="changeStyle" placeholder="enter alternative email {{i+1}}" class="form-control" [formControlName]="i">
+			  </div>
+
+
+			  <div class="form-group">
+				<input  class="addStyles" formControlName="subscribing" type="checkbox">
+				<small>subscribe for promotional offers</small>
+			  </div>
+			  
+
+			<div class="form-group">
+			  <label>Password : </label>
+			  <input [class.is-invalid]="password?.invalid && password?.touched" formControlName="password" type="password"
+				placeholder="enter passwrod" class="form-control">
+
+			  <div *ngIf="password?.invalid && password?.touched">
+				<div>
+				  <small *ngIf="password?.errors?.['required']" class="text-danger">Password is required</small>
+				</div>
+				<div>
+				  <small *ngIf="confirmPass?.errors?.['PasswordValidator'] || password?.errors?.['maxlength']"
+					class="text-danger">Password must be between 4 to 15 characters </small>
+				</div>
+			  </div>
+
+			</div>
+
+			<!-- registerationUserForm.errors?.['misMatch'] -> it will check, password, confirmPassword both are matchied or misMatched based on validators. -->
+			<div class="form-group">
+			  <label>Confirm Password : </label>
+			  <input
+				[class.is-invalid]="(confirmPass?.invalid && confirmPass?.touched) || registerationUserForm.errors?.['misMatch']"
+				formControlName="confirmPassword" type="password" placeholder="confirm passwrod" class="form-control">
+
+			  <div *ngIf="(confirmPass?.invalid && confirmPass?.touched) || registerationUserForm.errors?.['misMatch']">
+				<div>
+				  <small *ngIf="confirmPass?.errors?.['required']" class="text-danger">confirmPass is required</small>
+				</div>
+
+				<div>
+				  <!-- PasswordValidator custom validation from password-validators.ts -->
+				  <small *ngIf="confirmPass?.errors?.['PasswordValidator']" class="text-danger">Password must be between 4 to 15
+					characters </small>
+
+				</div>
+				<div>
+				  <small *ngIf="registerationUserForm.errors?.['misMatch']" class="text-danger">confirmPassword did not match
+					password</small>
+
+				</div>
+			  </div>
+			</div>
+
+			<div formGroupName="address">
+			  <div class="form-group">
+				<label>City : </label>
+				<input formControlName="city" type="text" placeholder="enter city" class="form-control">
+			  </div>
+
+			  <div class="form-group">
+				<label>State : </label>
+				<input formControlName="state" type="text" placeholder="enter state" class="form-control">
+			  </div>
+
+			  <div class="form-group">
+				<label>Postal Code : </label>
+				<input formControlName="postalCode" type="password" placeholder="enter postal code" class="form-control">
+			  </div>
+			</div>
+
+			<div>
+			  <button class="btn btn-primary" [disabled]="submitted"
+				type="submit">Register</button>
+
+			  <!--  this button is used to pre-fill registerationUserForm gettting Data from API -->
+			  <button class="btn btn-secondary" (click)="loadData()" type="button">Load API Data</button>
+			</div>
+
+
+		  </form>
+
+		  <hr /> <!-- horizantal line -->
+		  <div>
+			{{registerationUserForm.value | json }}
+		  </div>
+		</div>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+
+
+
+				app.component.ts
+			------------------------------------------------------------------------------------------------------------
+				
+				import { Component, OnInit } from '@angular/core';
+		import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms'
+		import { FormControl, } from '@angular/forms'
+		import { PasswordValidator } from './password-validator';
+		import { PasswordMatchingValidator } from './password-matching-validator';
+		import { RegistrationService } from './registration.service';
+
+
+		@Component({
+		  selector: 'app-root',
+		  templateUrl: './app.component.html',
+		  styleUrls: ['./app.component.scss']
+		})
+		export class AppComponent implements OnInit {
+		  title = 'Reactive Form Example';
+		  submitted : boolean = false;
+
+		  registerationUserForm! : FormGroup;
+		  
+
+
+		//   this.registerationUserForm.get('userName'); is replaced by username
+		// it will be set to class binding in html form.
+		get userName(){
+		  return this.registerationUserForm.get('userName');
+		}
+
+		get eMail(){
+		  return this.registerationUserForm.get('mail');
+		}
+
+		get alterEmails(){
+		  return this.registerationUserForm.get('alternativeMails') as FormArray;
+		}
+
+
+		// addAlternativeEmails() a method that can be called dinamyically to insert FormControl into the FormArray
+		addAlternativeEmails(){
+		  this.alterEmails.push(this.formBuilder.control(''));
+		}
+
+		// it will be set to class binding in html form.
+		get password(){
+		  return this.registerationUserForm.get('password');
+		}
+
+		// it will be set to class binding in html form.
+		get confirmPass(){
+		  return this.registerationUserForm.get('confirmPassword');
+		}
+
+
+
+
+
+		  constructor(private formBuilder : FormBuilder, private registerationService : RegistrationService){
+
+		  }
+
+		  //   this.registerationUserForm.get('userName'); is replaced by username
+
+		  ngOnInit() {
+			this.registerationUserForm = this.formBuilder.group ( {
+			  userName : ['nani pallapu', Validators.required], // adding simple validation
+			  mail : [''],
+			  subscribing : [false],
+			  password : ['', [Validators.required,Validators.maxLength(15), PasswordValidator]], // adding multiple validations in array
+			  confirmPassword : ['',[Validators.required, PasswordValidator]], // custom validation for confirmPassword. It will make sure length should be between 4 to 8
+			  address : this.formBuilder.group({
+				city : [''],
+				state : [''],
+				postalCode : ['']
+			  }),
+		 
+			  // Dynamic Form Control - for this we use FormArray
+			  alternativeMails : this.formBuilder.array([])
+			},
+
+			// Cross Field Validation.
+			{ validator : PasswordMatchingValidator}
+
+			);
+
+
+			//Conditional Validation.
+			this.registerationUserForm.get('subscribing')?.valueChanges
+			.subscribe(checkedValue  =>{
+			  const email = this.registerationUserForm.get('mail');
+
+			  // if subscribing is clicked, we are setting validators for email , otherwise clearing the validators.
+			  if(checkedValue){
+				email?.setValidators(Validators.required);
+			  } else{
+				email?.clearValidators;
+			  }
+
+			  email?.updateValueAndValidity(); // finally , we are updating it to ensure correct status is reflected. 
+			});
+
+		  }
+		/*
+		  registerationUserForm = this.formBuilder.group ( {
+			userName : ['nani pallapu', Validators.required], // adding simple validation
+			email : [''],
+			password : ['', [Validators.required,Validators.maxLength(15), PasswordValidator]], // adding multiple validations in array
+			confirmPassword : ['',[Validators.required, PasswordValidator]], // custom validation for confirmPassword. It will make sure length should be between 4 to 8
+			address : this.formBuilder.group({
+			  city : [''],
+			  state : [''],
+			  postalCode : ['']
+			})
+		  }, { validator : PasswordMatchingValidator}
+		  
+		  );
+
+		*/
+
+
+
+
+
+
+		/*
+		  // creating form module
+
+		  registerationUserForm  = new FormGroup({
+			userName : new FormControl('nani pallapu'), //'nani pallapu' is default value.
+			password : new FormControl(''),
+			confirmPassword : new FormControl(''),
+
+			//Nesting FormGroups
+			address : new FormGroup({
+			  city : new FormControl(''),
+			  state : new FormControl(''),
+			  postalCode : new FormControl('')
+			})
+
+		  });
+
+		*/
+
+		  // this method is used to disable the submit button and recieving registerationUserForm and print it on console.
+		  onSubmit(){
+			this.submitted = !this.submitted;
+			alert('form has been submitted!');
+			console.log(this.registerationUserForm);
+
+			this.registerationService.register(this.registerationUserForm.value).subscribe(
+			  response => console.log("Success!"),
+			  error => console.log("Error Occured")
+			);
+		  }
+
+		  // this method is used to pre-fill registerationUserForm gettting Data from API
+		  // data has to maintain structure of form group if we use setValue
+
+		  loadData(){
+
+			this.registerationUserForm.setValue({
+			  userName : 'Nani Babu Pallapu',
+			  password : 'Hyderabad@369',
+			  confirmPassword : 'Hyderabad@369',
+			  address : {
+				city : 'Eluru',
+				state : 'Andhra Pradesh',
+				postalCode : '543001'
+			  }
+			});
+		  }
+
+		 /* 
+		  // this method is used to pre-fill registerationUserForm gettting Data from API 
+		  // data don't have to maintain structure of form group if we use patchValue
+
+		  loadData(){
+			this.registerationUserForm.patchValue({
+			  userName : 'Nani Babu Pallapu',
+			  password : 'Hyderabad@369',
+			  confirmPassword : 'Hyderabad@369',
+			});
+		  }
+
+		*/
+
+		}
+
+
+		register.service.ts
+		-------------------
+
+
+
+		import { HttpClient } from '@angular/common/http';
+		import { Injectable } from '@angular/core';
+
+		@Injectable({
+		  providedIn: 'root'
+		})
+		export class RegistrationService{
+
+		  public url : string = 'http://localhost:8008/enroll';
+
+		  constructor( private httpClient : HttpClient) { 
+
+		  }
+		  
+		  register(userData : any){
+			return this.httpClient.post<any>(this.url, userData)
+		  }
+		  
+		}
+
+				password-matching-validator.ts
+			------------------------------------------------------------------------------------------------------------
+
+
+		import { AbstractControl, Validators } from "@angular/forms";
+
+		// this funcation is used to validate password and confirmPassword both are same or not.
+		// instead of passing single FormControl , We are passing FormGroup because we need to validate password and confirmPassword.
+		export function PasswordMatchingValidator(control : AbstractControl): { [key : string]: boolean } | null { 
+
+			const password = control.get('password'); // fetching from password FormControl password
+			const confirmedPassword = control.get('confirmPassword')//fetching from confirmPassword FormControl password
+
+			// it is used to make sure password is entered or not. and touched the confirmedPasswod or not.
+			if(password?.pristine || confirmedPassword?.pristine){
+				return null;
+			}
+			// if password and confirmedPassword don't matchi, we are setting misMatch value as true using ternary operator, otherwise it will be set to null.
+			return password && confirmedPassword && password.value != confirmedPassword.value ?  { 'misMatch':true} : null 
+		}
+
+
+
+
+				password-validator.ts
+		------------------------------------------------------------------------------------------------------------
+
+		import { AbstractControl } from "@angular/forms";
+
+		export function PasswordValidator(control : AbstractControl){
+
+			// custom validation for confirmPassword. It will make sure length should be between 4 to 8
+				if(control && control.value && (control.value === null || control.value ==='' || (control.value.length >=4 && control.value.length <=15))){
+					return null;
+				}
+				return {
+					PasswordValidator : true
+				};
+		}
+

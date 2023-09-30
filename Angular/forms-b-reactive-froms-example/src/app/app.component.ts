@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms'
 import { FormControl, } from '@angular/forms'
 import { PasswordValidator } from './password-validator';
+import { PasswordMatchingValidator } from './password-matching-validator';
+import { RegistrationService } from './registration.service';
 
 
 @Component({
@@ -13,18 +15,36 @@ export class AppComponent implements OnInit {
   title = 'Reactive Form Example';
   submitted : boolean = false;
 
+  registerationUserForm! : FormGroup;
+  
 
 
 //   this.registerationUserForm.get('userName'); is replaced by username
-
+// it will be set to class binding in html form.
 get userName(){
   return this.registerationUserForm.get('userName');
 }
 
+get eMail(){
+  return this.registerationUserForm.get('mail');
+}
+
+get alterEmails(){
+  return this.registerationUserForm.get('alternativeMails') as FormArray;
+}
+
+
+// addAlternativeEmails() a method that can be called dinamyically to insert FormControl into the FormArray
+addAlternativeEmails(){
+  this.alterEmails.push(this.formBuilder.control(''));
+}
+
+// it will be set to class binding in html form.
 get password(){
   return this.registerationUserForm.get('password');
 }
 
+// it will be set to class binding in html form.
 get confirmPass(){
   return this.registerationUserForm.get('confirmPassword');
 }
@@ -33,27 +53,67 @@ get confirmPass(){
 
 
 
-  constructor(private formBuilder : FormBuilder){
+  constructor(private formBuilder : FormBuilder, private registerationService : RegistrationService){
 
   }
 
   //   this.registerationUserForm.get('userName'); is replaced by username
 
   ngOnInit() {
-  
+    this.registerationUserForm = this.formBuilder.group ( {
+      userName : ['nani pallapu', Validators.required], // adding simple validation
+      mail : [''],
+      subscribing : [false],
+      password : ['', [Validators.required,Validators.maxLength(15), PasswordValidator]], // adding multiple validations in array
+      confirmPassword : ['',[Validators.required, PasswordValidator]], // custom validation for confirmPassword. It will make sure length should be between 4 to 8
+      address : this.formBuilder.group({
+        city : [''],
+        state : [''],
+        postalCode : ['']
+      }),
+ 
+      // Dynamic Form Control - for this we use FormArray
+      alternativeMails : this.formBuilder.array([])
+    },
+
+    // Cross Field Validation.
+    { validator : PasswordMatchingValidator}
+
+    );
+
+
+    //Conditional Validation.
+    this.registerationUserForm.get('subscribing')?.valueChanges
+    .subscribe(checkedValue  =>{
+      const email = this.registerationUserForm.get('mail');
+
+      // if subscribing is clicked, we are setting validators for email , otherwise clearing the validators.
+      if(checkedValue){
+        email?.setValidators(Validators.required);
+      } else{
+        email?.clearValidators;
+      }
+
+      email?.updateValueAndValidity(); // finally , we are updating it to ensure correct status is reflected. 
+    });
 
   }
-
-  registerationUserForm = this.formBuilder.group({
+/*
+  registerationUserForm = this.formBuilder.group ( {
     userName : ['nani pallapu', Validators.required], // adding simple validation
-    password : ['', [Validators.required,Validators.maxLength(8)]], // adding multiple validations in array
+    email : [''],
+    password : ['', [Validators.required,Validators.maxLength(15), PasswordValidator]], // adding multiple validations in array
     confirmPassword : ['',[Validators.required, PasswordValidator]], // custom validation for confirmPassword. It will make sure length should be between 4 to 8
     address : this.formBuilder.group({
       city : [''],
       state : [''],
       postalCode : ['']
     })
-  });
+  }, { validator : PasswordMatchingValidator}
+  
+  );
+
+*/
 
 
 
@@ -80,10 +140,15 @@ get confirmPass(){
 */
 
   // this method is used to disable the submit button and recieving registerationUserForm and print it on console.
-  onSubmitt(registerationUserForm : FormGroup){
+  onSubmit(){
     this.submitted = !this.submitted;
     alert('form has been submitted!');
-    console.log(registerationUserForm);
+    console.log(this.registerationUserForm);
+
+    this.registerationService.register(this.registerationUserForm.value).subscribe(
+      response => console.log("Success!"),
+      error => console.log("Error Occured")
+    );
   }
 
   // this method is used to pre-fill registerationUserForm gettting Data from API
