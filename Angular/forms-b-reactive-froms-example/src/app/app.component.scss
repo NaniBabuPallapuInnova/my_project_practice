@@ -1,7 +1,9 @@
 input[type=text] {
     width:300px;
   }
-
+  input[type=email] {
+    width:300px;
+  }
 
   input[type=password] {
     width:300px;
@@ -44,3 +46,41 @@ label{
   .btn-secondary{
     margin: 20px;
   }
+
+  .addStyles{
+    margin-left: 260px;
+    padding-left: 20px;
+    margin-right: 10px;
+  }
+
+  .addMails{
+    border: none;
+    background-color: transparent;
+    font-size: 250%;
+    font-weight: bold;
+    color: grey;
+    margin-left: -50px;
+    margin-bottom: 10px;
+    
+  }
+
+  .hide{
+    display: none;
+  }
+  .addMails:hover + .hide{
+    display: block;
+    color: gray;
+    font-weight: 500;    
+  }
+
+  #changeStyle{
+    margin-top: -10px;
+    margin-left: 260px;
+    padding-left: 20px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+  }
+
+
+
+

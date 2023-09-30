@@ -1,36 +1,84 @@
 <h2 [ngStyle]="{'text-align':'center'}">{{title}}</h2>
 
 <div class="container-fluid">
-  <form [formGroup]="registerationUserForm"> <!-- Binding the registerationUserForm to formGroup directive -->
+  <form [formGroup]="registerationUserForm" (ngSubmit)="onSubmit()" > <!-- Binding the registerationUserForm to formGroup directive -->
 
     <!-- formControlName="userName" userName is what we have declared in ts file for FormControl  -->
     <!-- registerationUserForm.get('userName')? is replaced by username in ts file by assing this long value to variable.-->
     <div class="form-group">
       <label>Username : </label>
-      <input [class.is-invalid]="userName?.invalid && userName?.touched" formControlName="userName" type="text" placeholder="enter username" class="form-control">
-      <small [class.d-none]="userName?.valid || userName?.untouched" class="text-danger">username is required*</small> <!-- don't show this if username is valid and untouched-->
+      <input [class.is-invalid]="userName?.invalid && userName?.touched" formControlName="userName" type="text"
+        placeholder="enter username" class="form-control">
+      <small [class.d-none]="userName?.valid || userName?.untouched" class="text-danger">username is required*</small>
+      <!-- don't show this if username is valid and untouched-->
     </div>
+
+
+    <div class="form-group">
+      <label>Email : </label>
+      <input [class.is-invalid]="eMail?.invalid && eMail?.touched" type="email"  formControlName="mail" class="form-control" placeholder="enter email address">
+      <button type="button" class="addMails" (click)="addAlternativeEmails()">+</button>
+      <small class="hide">Add Alternative Emails</small>
+
+      <small [class.d-none]="eMail?.valid || eMail?.untouched" class="text-danger">Email is required</small>
+    </div>
+
+    
+      <!-- formArrayName is a directive, it will help us to keep track of FormArray values -->
+      <!-- index is used to iterate and insert each input tag into the array based on array -->
+      <div formArrayName="alternativeMails" *ngFor="let alterMail of alterEmails.controls; let i=index">
+        <input type="email" id="changeStyle" placeholder="enter alternative email {{i+1}}" class="form-control" [formControlName]="i">
+      </div>
+
+
+      <div class="form-group">
+        <input  class="addStyles" formControlName="subscribing" type="checkbox">
+        <small>subscribe for promotional offers</small>
+      </div>
+      
 
     <div class="form-group">
       <label>Password : </label>
-      <input [class.is-invalid]="password?.invalid && password?.touched" formControlName="password" type="password" placeholder="enter passwrod" class="form-control">
-     
-      <div  *ngIf="password?.invalid && password?.touched" >
-        <small *ngIf ="password?.errors?.['required']" class="text-danger">Password is required</small>
-        <small *ngIf ="password?.errors?.['maxlength']" class="text-danger">Password should not exceed 8 characters </small>
+      <input [class.is-invalid]="password?.invalid && password?.touched" formControlName="password" type="password"
+        placeholder="enter passwrod" class="form-control">
+
+      <div *ngIf="password?.invalid && password?.touched">
+        <div>
+          <small *ngIf="password?.errors?.['required']" class="text-danger">Password is required</small>
+        </div>
+        <div>
+          <small *ngIf="confirmPass?.errors?.['PasswordValidator'] || password?.errors?.['maxlength']"
+            class="text-danger">Password must be between 4 to 15 characters </small>
+        </div>
       </div>
 
     </div>
 
+    <!-- registerationUserForm.errors?.['misMatch'] -> it will check, password, confirmPassword both are matchied or misMatched based on validators. -->
     <div class="form-group">
       <label>Confirm Password : </label>
-      <input [class.is-invalid]="confirmPass?.invalid && confirmPass?.touched" formControlName="confirmPassword" type="password" placeholder="confirm passwrod" class="form-control">
-     
-      <div  *ngIf="confirmPass?.invalid && confirmPass?.touched" >
-        <small *ngIf ="confirmPass?.errors?.['required']" class="text-danger">confirmPass is required</small>
-        <!-- PasswordValidator custom validation from password-validators.ts -->
-        <small *ngIf ="confirmPass?.errors?.['PasswordValidator']" class="text-danger">Password must be between 4 to 8 characters </small>
-      </div>    </div>
+      <input
+        [class.is-invalid]="(confirmPass?.invalid && confirmPass?.touched) || registerationUserForm.errors?.['misMatch']"
+        formControlName="confirmPassword" type="password" placeholder="confirm passwrod" class="form-control">
+
+      <div *ngIf="(confirmPass?.invalid && confirmPass?.touched) || registerationUserForm.errors?.['misMatch']">
+        <div>
+          <small *ngIf="confirmPass?.errors?.['required']" class="text-danger">confirmPass is required</small>
+        </div>
+
+        <div>
+          <!-- PasswordValidator custom validation from password-validators.ts -->
+          <small *ngIf="confirmPass?.errors?.['PasswordValidator']" class="text-danger">Password must be between 4 to 15
+            characters </small>
+
+        </div>
+        <div>
+          <small *ngIf="registerationUserForm.errors?.['misMatch']" class="text-danger">confirmPassword did not match
+            password</small>
+
+        </div>
+      </div>
+    </div>
 
     <div formGroupName="address">
       <div class="form-group">
@@ -50,8 +98,9 @@
     </div>
 
     <div>
-      <button class="btn btn-primary" (click)="onSubmitt(registerationUserForm)" [disabled]="submitted" type="submit">Register</button>
-    
+      <button class="btn btn-primary" [disabled]="submitted"
+        type="submit">Register</button>
+
       <!--  this button is used to pre-fill registerationUserForm gettting Data from API -->
       <button class="btn btn-secondary" (click)="loadData()" type="button">Load API Data</button>
     </div>
@@ -64,3 +113,9 @@
     {{registerationUserForm.value | json }}
   </div>
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
