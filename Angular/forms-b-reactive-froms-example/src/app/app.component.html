@@ -1,0 +1,66 @@
+<h2 [ngStyle]="{'text-align':'center'}">{{title}}</h2>
+
+<div class="container-fluid">
+  <form [formGroup]="registerationUserForm"> <!-- Binding the registerationUserForm to formGroup directive -->
+
+    <!-- formControlName="userName" userName is what we have declared in ts file for FormControl  -->
+    <!-- registerationUserForm.get('userName')? is replaced by username in ts file by assing this long value to variable.-->
+    <div class="form-group">
+      <label>Username : </label>
+      <input [class.is-invalid]="userName?.invalid && userName?.touched" formControlName="userName" type="text" placeholder="enter username" class="form-control">
+      <small [class.d-none]="userName?.valid || userName?.untouched" class="text-danger">username is required*</small> <!-- don't show this if username is valid and untouched-->
+    </div>
+
+    <div class="form-group">
+      <label>Password : </label>
+      <input [class.is-invalid]="password?.invalid && password?.touched" formControlName="password" type="password" placeholder="enter passwrod" class="form-control">
+     
+      <div  *ngIf="password?.invalid && password?.touched" >
+        <small *ngIf ="password?.errors?.['required']" class="text-danger">Password is required</small>
+        <small *ngIf ="password?.errors?.['maxlength']" class="text-danger">Password should not exceed 8 characters </small>
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <label>Confirm Password : </label>
+      <input [class.is-invalid]="confirmPass?.invalid && confirmPass?.touched" formControlName="confirmPassword" type="password" placeholder="confirm passwrod" class="form-control">
+     
+      <div  *ngIf="confirmPass?.invalid && confirmPass?.touched" >
+        <small *ngIf ="confirmPass?.errors?.['required']" class="text-danger">confirmPass is required</small>
+        <!-- PasswordValidator custom validation from password-validators.ts -->
+        <small *ngIf ="confirmPass?.errors?.['PasswordValidator']" class="text-danger">Password must be between 4 to 8 characters </small>
+      </div>    </div>
+
+    <div formGroupName="address">
+      <div class="form-group">
+        <label>City : </label>
+        <input formControlName="city" type="text" placeholder="enter city" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label>State : </label>
+        <input formControlName="state" type="text" placeholder="enter state" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label>Postal Code : </label>
+        <input formControlName="postalCode" type="password" placeholder="enter postal code" class="form-control">
+      </div>
+    </div>
+
+    <div>
+      <button class="btn btn-primary" (click)="onSubmitt(registerationUserForm)" [disabled]="submitted" type="submit">Register</button>
+    
+      <!--  this button is used to pre-fill registerationUserForm gettting Data from API -->
+      <button class="btn btn-secondary" (click)="loadData()" type="button">Load API Data</button>
+    </div>
+
+
+  </form>
+
+  <hr /> <!-- horizantal line -->
+  <div>
+    {{registerationUserForm.value | json }}
+  </div>
+</div>

@@ -186,3 +186,74 @@ Set<data-type> s3 = new TreeSet<data-type>();
         i) Java TreeSet class is non-synchronized.
         j) Java TreeSet class maintains ascending order.
         k) The TreeSet can only allow those generic types that are comparable. For example The Comparable interface is being implemented by the StringBuffer class.
+
+
+
+
+
+
+
+
+5 Map Interface
+================
+A map contains values on the basis of key, i.e. key and value pair. Each key and value pair is known as an entry.
+A Map contains unique keys.
+A Map is useful if you have to search, update or delete elements on the basis of a key.
+There are two interfaces for implementing Map in java: Map and SortedMap, and three classes: HashMap, LinkedHashMap, and TreeMap.
+
+A Map can't be traversed, so you need to convert it into Set using keySet() or entrySet() method.
+
+Class	        Description
+HashMap         is the implementation of Map, but it doesn't maintain any order.
+LinkedHashMap   is the implementation of Map. It inherits HashMap class. It maintains insertion order.
+TreeMap         is the implementation of Map and SortedMap. It maintains ascending order.
+
+
+
+i. HashMap
+==========
+1) Java HashMap class hierarchy
+2) Java HashMap class implements the Map interface which allows us to store key and value pair, where keys should be unique.
+3) If you try to insert the duplicate key, it will replace the element of the corresponding key.
+4) It is easy to perform operations using the key index like updation, deletion, etc.
+5) HashMap class is found in the java.util package.
+6) HashMap in Java is like the legacy Hashtable class, but it is not synchronized.
+7) It allows us to store the null elements as well, but there should be only one null key.
+8) Since Java 5, it is denoted as HashMap<K,V>, where K stands for key and V for value.
+9) It inherits the AbstractMap class and implements the Map interface.
+    a) Java HashMap contains values based on the key.
+    b) Java HashMap contains only unique keys.
+    c) Java HashMap may have one null key and multiple null values.
+    d) Java HashMap is non synchronized.
+    e) Java HashMap maintains no order.
+    f) The initial default capacity of Java HashMap class is 16 with a load factor of 0.75.
+
+
+
+ii. LinkedHashMap class
+========================
+
+1) Java LinkedHashMap class hierarchy
+2) Java LinkedHashMap class is Hashtable and Linked list implementation of the Map interface, with predictable iteration order. It inherits HashMap class and implements the Map interface.
+3) Points to remember:
+    a) Java LinkedHashMap contains values based on the key.
+    b) Java LinkedHashMap contains unique elements.
+    c) Java LinkedHashMap may have one null key and multiple null values.
+    d) Java LinkedHashMap is non synchronized.
+    e) Java LinkedHashMap maintains insertion order.
+    f) The initial default capacity of Java HashMap class is 16 with a load factor of 0.75.
+
+    public class LinkedHashMap<K,V> extends HashMap<K,V> implements Map<K,V>
+
+
+6) TreeMap class
+=================
+Java TreeMap class hierarchy: TreeMap class implements SortedMap interface and SortedMap interface extends Map interface.
+Java TreeMap class is a red-black tree based implementation.
+It provides an efficient means of storing key-value pairs in sorted order.
+The important points about Java TreeMap class are:
+Java TreeMap contains values based on the key. It implements the NavigableMap interface and extends AbstractMap class.
+Java TreeMap contains only unique elements.
+Java TreeMap cannot have a null key but can have multiple null values.
+Java TreeMap is non synchronized.
+Java TreeMap maintains ascending order.
