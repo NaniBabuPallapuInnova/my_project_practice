@@ -1662,7 +1662,8 @@ app.component.html
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
-		-o-text-overflow: ellipsis;}
+		-o-text-overflow: ellipsis;
+	}
 	 
 	  input{
 		margin: 20px;
@@ -2107,4 +2108,17 @@ app.component.html
 					PasswordValidator : true
 				};
 		}
+
+
+
+
+
+
+
+
+
+
+
+
+
 

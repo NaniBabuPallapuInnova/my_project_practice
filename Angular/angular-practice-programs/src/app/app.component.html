@@ -1,0 +1,13 @@
+<h2>{{title}}</h2>
+
+<div class="container-fluid">
+
+  <form #submittedData="ngForm">
+      <div class="form-group">
+        <input  type="number" class="form-control" name="data" [(ngModel)]="data">
+        <button type="button" class="btn btn-primary" (click)="findPrimeOrNot(data)">Submit</button>
+      </div>
+  </form>
+</div>
+
+<router-outlet></router-outlet>
