@@ -151,6 +151,7 @@ get confirmPass(){
     );
   }
 
+  /*
   // this method is used to pre-fill registerationUserForm gettting Data from API
   // data has to maintain structure of form group if we use setValue
 
@@ -168,18 +169,22 @@ get confirmPass(){
     });
   }
 
- /* 
+*/
+
+ 
   // this method is used to pre-fill registerationUserForm gettting Data from API 
   // data don't have to maintain structure of form group if we use patchValue
 
   loadData(){
     this.registerationUserForm.patchValue({
       userName : 'Nani Babu Pallapu',
-      password : 'Hyderabad@369',
-      confirmPassword : 'Hyderabad@369',
+      address : {
+        city : 'Eluru',
+        state : 'Andhra Pradesh',
+        postalCode : '543001'
+      }
     });
   }
 
-*/
 
 }
