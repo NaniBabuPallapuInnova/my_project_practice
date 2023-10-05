@@ -121,67 +121,67 @@ Object-Oriented Programming (OOP) is a programming paradigm that is heavily used
 
 
 
-`			`\*\*Abstract Class:\*\*
+`	`\*\*Abstract Class:\*\*
 
-`			`1. \*\*Definition\*\*:
+`	`i. \*\*Definition\*\*:
 
-`			   `- An abstract class is a class that can have both abstract (i.e., method without a body) and concrete (i.e., method with a body) methods.
+`	   `- An abstract class is a class that can have both abstract (i.e., method without a body) and concrete (i.e., method with a body) methods.
 
-`			   `- You can define fields (variables) and constructors in an abstract class.
+`	   `- You can define fields (variables) and constructors in an abstract class.
 
-`			`2. \*\*Usage\*\*:
+`	`ii. \*\*Usage\*\*:
 
-`			   `- Abstract classes are used to provide a common base for multiple related classes.
+`	   `- Abstract classes are used to provide a common base for multiple related classes.
 
-`			   `- They can serve as a blueprint for subclasses, allowing code reuse.
+`	   `- They can serve as a blueprint for subclasses, allowing code reuse.
 
-`			`3. \*\*Inheritance\*\*:
+`	`iii. \*\*Inheritance\*\*:
 
-`			   `- An abstract class can be extended (i.e., a subclass can inherit from it).
+`	   `- An abstract class can be extended (i.e., a subclass can inherit from it).
 
-`			   `- A subclass must implement (override) all the abstract methods of its abstract superclass unless the subclass itself is declared as abstract.
+`	   `- A subclass must implement (override) all the abstract methods of its abstract superclass unless the subclass itself is declared as abstract.
 
-`			`4. \*\*Access Modifiers\*\*:
+`	`iv. \*\*Access Modifiers\*\*:
 
-`			   `- Abstract classes can have access modifiers for their fields and methods.
+`	   `- Abstract classes can have access modifiers for their fields and methods.
 
-`			`5. \*\*Multiple Inheritance\*\*:
+`	`v. \*\*Multiple Inheritance\*\*:
 
-`			   `- A Java class can extend only one abstract class, so Java supports single inheritance with abstract classes.
+`	   `- A Java class can extend only one abstract class, so Java supports single inheritance with abstract classes.
 
-`			`6. \*\*Constructor\*\*:
+`	`vi. \*\*Constructor\*\*:
 
-`			   `- Abstract classes can have constructors, and these constructors can be called by the constructors of their subclasses.
+`	   `- Abstract classes can have constructors, and these constructors can be called by the constructors of their subclasses.
 
-`			`\*\*Interface:\*\*
+`	`\*\*Interface:\*\*
 
-`			`1. \*\*Definition\*\*:
+`	`i. \*\*Definition\*\*:
 
-`			   `- An interface is a completely abstract class, which means it can only contain abstract methods and constants (public static final fields).
+`	   `- An interface is a completely abstract class, which means it can only contain abstract methods and constants (public static final fields).
 
-`			   `- All methods declared in an interface are implicitly public and abstract, and all fields are implicitly public, static, and final.
+`	   `- All methods declared in an interface are implicitly public and abstract, and all fields are implicitly public, static, and final.
 
-`			`2. \*\*Usage\*\*:
+`	`ii. \*\*Usage\*\*:
 
-`			   `- Interfaces are used to define contracts that classes must adhere to.
+`	   `- Interfaces are used to define contracts that classes must adhere to.
 
-`			   `- They allow multiple unrelated classes to implement the same set of methods, promoting code interoperability.
+`	   `- They allow multiple unrelated classes to implement the same set of methods, promoting code interoperability.
 
-`			`3. \*\*Inheritance\*\*:
+`	`iii. \*\*Inheritance\*\*:
 
-`			   `- A class can implement multiple interfaces (i.e., a single class can adhere to multiple contracts), enabling multiple inheritance of types.
+`	   `- A class can implement multiple interfaces (i.e., a single class can adhere to multiple contracts), enabling multiple inheritance of types.
 
-`			`4. \*\*Access Modifiers\*\*:
+`	`iv. \*\*Access Modifiers\*\*:
 
-`			   `- All members (methods and constants) of an interface are implicitly public.
+`	   `- All members (methods and constants) of an interface are implicitly public.
 
-`			`5. \*\*Multiple Inheritance\*\*:
+`	`v. \*\*Multiple Inheritance\*\*:
 
-`			   `- Java allows multiple inheritance through interfaces because a single class can implement multiple interfaces.
+`	   `- Java allows multiple inheritance through interfaces because a single class can implement multiple interfaces.
 
-`			`6. \*\*Constructor\*\*:
+`	`vi. \*\*Constructor\*\*:
 
-`			   `- Interfaces do not have constructors. You cannot create an instance of an interface.
+`		`- Interfaces do not have constructors. You cannot create an instance of an interface.
 
 
 METHOD OVERLOADING AND METHOD OVERRIING IN JAVA
@@ -1306,3 +1306,6 @@ Java TreeMap cannot have a null key but can have multiple null values.
 Java TreeMap is non synchronized.
 
 Java TreeMap maintains ascending order.
+
+
+
