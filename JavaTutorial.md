@@ -151,7 +151,7 @@ vi\. \*\*Constructor\*\*:
 
 - Abstract classes can have constructors, and these constructors can be called by the constructors of their subclasses.
 
-\*\*Interface:\*\*:
+  \*\*Interface:\*\*
 
 \-----------------
 
