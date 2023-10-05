@@ -10,7 +10,7 @@ developers which contains reusable UI components.
 This functionality helps us to create Single Page Applications (SPA). SPA is reactive and 
 fast application. For example, if you have a button in single page and click on the button 
 then the action performs dynamically in the current page without loading the new page 
-from the server. Angular 8 is Typescript based object oriented programming and support 
+from the server. Angular is Typescript based object oriented programming and support 
 features for server side programming as well.
 
 

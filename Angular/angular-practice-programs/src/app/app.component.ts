@@ -1,24 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'Angular Practice Programs';
 
-   data : number =0;
+   data! : number;
 
-    count : number =0;
+   count : number=0;
+
+   show : boolean = true;
 
     constructor(){
 
     }
+  ngOnInit(){
+    this.data = 0; // Initial value
+  }
+
+ 
 
   findPrimeOrNot(value : number){
     
-    alert("given number =  "+value);
+    this.show=!this.show;
 
 
     for(let i=2;i<=value/2;i++){

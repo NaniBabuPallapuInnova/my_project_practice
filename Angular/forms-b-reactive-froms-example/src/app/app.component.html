@@ -73,9 +73,8 @@
 
         </div>
         <div>
-          <small *ngIf="registerationUserForm.errors?.['misMatch']" class="text-danger">confirmPassword did not match
-            password</small>
-
+          <small *ngIf="registerationUserForm.errors?.['misMatch']" class="text-danger">confirmPassword does not match
+            password! Please check and enter again.</small>
         </div>
       </div>
     </div>

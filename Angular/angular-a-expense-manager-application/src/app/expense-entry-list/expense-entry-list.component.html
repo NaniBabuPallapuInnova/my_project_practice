@@ -1,0 +1,47 @@
+<!-- Page Content -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 text-center" style="padding-top: 20px;">
+        <div class="container" style="padding-left: 0px; padding-right: 0px;">
+            <div class="row">
+                <div class="col-sm" style="text-align: left;">
+                    {{title}}
+                </div>
+                <div class="col-sm" style="text-align: right;">
+                    <button type="button" class="btn btn-primary">Edit</button>
+                </div>  
+            </div>
+        </div>
+
+        <div class="container box" style="margin-top: 10px; ">
+            <table class="table table-striped">
+                <thead style="border: 1px solid lightblue;">
+                    <tr>
+                        <th>Id</th>
+                        <th>Item</th>
+                        <th>Amout</th>
+                        <th>Category</th>
+                        <th>Place</th>
+                        <th>SpentOn</th>
+                        <th>View</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let entryData of expenseEntryListArray">
+                        <td>{{entryData.id}}</td>
+                        <td>{{entryData.item}}</td>
+                        <td>{{entryData.amount}}</td>
+                        <td>{{entryData.category}}</td>
+                        <td>{{entryData.place}}</td>
+                        <td>{{entryData.spendOn | date : 'medium'}}</td>
+                        <td><a routerLink="../expense/detail/{{entryData.id}}" routerLinkActive="activating">View</a></td> <!-- passing id and view the particular details of entry-->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        </div>
+    </div>
+</div>
+

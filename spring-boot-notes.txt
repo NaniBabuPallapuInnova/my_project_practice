@@ -41,7 +41,72 @@
 
 	i. In Spring’s approach to building RESTful web services, HTTP requests are handled by a controller. 
 	ii. These components are identified by the @RestController annotation
+	iii. For RESTful web services, we need to use bean class(plain java class) and controller.
+		 ex: Student(bean class) and StudentController.
 
 --> @RestController : it is used to make the class as Controller.
 
 
+
+3. SpringBoot Data JPA
+=======================
+
+Spring Data JPA is a part of the larger Spring Data project. 
+It is a framework that simplifies data access in Java applications that use the Java Persistence API (JPA) to interact with relational databases. 
+JPA is a Java specification for working with databases in an object-oriented way, allowing developers to work with databases using Java classes and objects instead of SQL queries.
+
+1. Automatic Repository Creation: Spring Boot Data JPA can automatically create repository interfaces for your domain models, which significantly reduces the amount of boilerplate code you need to write for basic CRUD operations.
+
+2. Query Methods: It allows you to create custom query methods by simply defining method names following a specific naming convention. Spring Data JPA translates these method names into SQL queries automatically.
+
+3. Pagination and Sorting: Built-in support for paging and sorting of query results.
+
+4. Transactional Support: It simplifies transaction management, ensuring that database operations are executed within a single transaction context.
+
+5. Custom Queries: You can write native SQL queries, JPQL (Java Persistence Query Language) queries, or use the Criteria API to create complex queries.
+
+
+
+RequestBod for List<User>
+==========================
+[
+    {
+        "firstName":"NaniBabu",
+        "lastName":"Pallapu",
+        "loginName":"NPallapu",
+        "password":"Hyderabad@369",
+        "email":"nanipallapu369@mail.com",
+        "phone":"9392590089"
+    },
+    
+	{
+        "firstName":"Priyanka",
+        "lastName":"Bandi",
+        "loginName":"PBandi",
+        "password":"Priya@369",
+        "email":"pryanka369@mail.com",
+        "phone":"8008142536"
+    },
+	
+	{
+        "firstName":"Divya",
+        "lastName":"Kommirisetti",
+        "loginName":"DKommirisetti",
+        "password":"Divya@2002",
+        "email":"divya2002@mail.com",
+        "phone":"9567892345"
+    }
+]
+
+
+@RequestBody for Single User Object
+====================================
+
+	{
+        "firstName":"Divya",
+        "lastName":"Kommirisetti",
+        "loginName":"DKommirisetti",
+        "password":"Divya@2002",
+        "email":"divya2002@mail.com",
+        "phone":"9567892345"
+    }

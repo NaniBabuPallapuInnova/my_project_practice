@@ -2,12 +2,16 @@
 
 <div class="container-fluid">
 
-  <form #submittedData="ngForm">
+  <form #submittedData="ngForm" *ngIf="show; else close" >
+    {{submittedData.value | json}}
       <div class="form-group">
-        <input  type="number" class="form-control" name="data" [(ngModel)]="data">
+        <input  type="number" class="form-control" name="given number" [(ngModel)]="data">
         <button type="button" class="btn btn-primary" (click)="findPrimeOrNot(data)">Submit</button>
       </div>
   </form>
+  <ng-template #close>
+    <p [ngStyle]="{'color':'green'}">Submitted</p>
+  </ng-template>
 </div>
 
 <router-outlet></router-outlet>
