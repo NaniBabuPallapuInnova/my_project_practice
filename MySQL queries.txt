@@ -23,8 +23,6 @@ A Database Management System (DBMS) is software that provides tools and services
 
 
 
-
-
 Common DBMS features:
 
 - **Data Storage**: DBMS systems store data on disk or in memory, managing how data is organized and accessed.
@@ -43,6 +41,9 @@ Common DBMS features:
 
 - **Transactions**: DBMS systems support transactions, allowing a series of operations to be executed atomically.
 
+
+
+
 Types of DBMS:
 
 1. **Relational DBMS (RDBMS)**: Data is organized in tables with rows and columns, and relationships between data are established. Examples include MySQL, Oracle Database, and Microsoft SQL Server.
@@ -52,6 +53,7 @@ Types of DBMS:
 3. **Object-Oriented DBMS (OODBMS)**: Designed to work with object-oriented programming languages and data models.
 
 4. **Graph DBMS**: Specialized for managing graph-like data structures.
+
 
 
 
