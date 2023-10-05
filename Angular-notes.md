@@ -1,4 +1,6 @@
-Anngular =========== Anugular is a TypeScript based full-stack web
+Angular
+===========
+Anugular is a TypeScript based full-stack web
 framework for building web and mobile applications. One of the major
 advantage is that the Angular 8 support for web application that can fit
 in any screen resolution. Angular application is fully compatible for
@@ -16,10 +18,14 @@ support features for server side programming as well.
 Angular framework is based on four core concepts and they are as
 follows:
 
- Components.  Templates with Data binding and Directives.  Modules. 
-Services and dependency injection
+* Components.<br />
+* Templates with Data binding and Directives.<br />
+* Modules.<br /> 
+* Services and dependency injection.<br />
 
-Component ========= The core of the Angular framework architecture is
+Component 
+========= 
+The core of the Angular framework architecture is
 Angular Component. Angular Component is the building block of every
 Angular application. Every angular application is made up of one more
 Angular Component. It is basically a plain JavaScript / Typescript class
@@ -31,7 +37,8 @@ component using its selector's value (name). The Angular Component may
 have an optional CSS Styles associated it and the HTML template may
 access the CSS Styles as well.
 
-Template ========
+Template 
+========= 
 
 Template is basically a super set of HTML. Template includes all the
 features of HTML and provides additional functionality to bind the
@@ -39,14 +46,20 @@ component data into the HTML and to dynamically generate HTML DOM
 elements. The core concept of the template can be categorised into two
 items and they are as follows:
 
-Data binding \-\-\-\-\-\-\-\-\-\-\-\-- Used to bind the data from the
+Data binding \
+\-\-\-\-\-\-\-\-\-\-\-\--  
+Used to bind the data from the
 component to the template. {{ title }} Here, title is a property in
 AppComponent and it is bind to template using Interpolation.
 
-Directives \-\-\-\-\-\-\-\-\-- Used to include logic as well as enable
+Directives \
+\-\-\-\-\-\-\-\-\-\-\-\--  
+Used to include logic as well as enable
 creation of complex HTML DOM elements. \<p \*ngIf=\"canShow\"\>
 
-Modules =========== Angular Module is basically a collection of related
+Modules 
+========= 
+Angular Module is basically a collection of related
 features / functionality. Angular Module groups multiple components and
 services under a single context. For example, animations related
 functionality can be grouped into single module and Angular already
@@ -59,13 +72,19 @@ and then call other modules as and when necessary. A module can be
 configured to access functionality from other module as well. In short,
 compon
 
- declarations: option is used to include components into the AppModule
-module.  imports: option is used to import other modules into the
-AppModule module.  providers: option is used to include the services
-for the AppModule module.  bootstrap: option is used to set the root
-component of the AppModule module.
+* declarations: option is used to include components into the AppModule
+module. <br />
+* imports: option is used to import other modules into the
+AppModule module. <br />
+* providers: option is used to include the services
+for the AppModule module. <br />
+* bootstrap: option is used to set the root
+component of the AppModule module. <br />
 
-Services ============ Services are plain Typescript / JavaScript class
+Services \
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-- 
+
+Services are plain Typescript / JavaScript class
 providing a very specific functionality. Services will do a single task
 and do it best. The main purpose of the service is reusability. Instead
 of writing a functionality inside a component, separating it into a
@@ -77,15 +96,21 @@ Dependency Injection is used to properly initialise the service in the
 component so that the component can access the services as and when
 necessary without any setup.
 
-1.BINDING ==============
+1.BINDING 
+==============
 
-One-way data binding ====================== One-way data binding is a
+One-way data binding \
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--
+
+One-way data binding is a
 one-way interaction between component and its template. If you perform
 any changes in your component, then it will reflect the HTML elements.
 It supports the following types:
 
-String interpolation \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-- In
-general, String interpolation is the process of formatting or
+String interpolation \
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-- 
+
+In general, String interpolation is the process of formatting or
 manipulating strings. In Angular, Interpolation is used to display data
 from component to view (DOM). It is denoted by the expression of {{ }}
 and also known as mustache syntax.
@@ -98,7 +123,8 @@ in Angular 8\"; }
 
 \<h1\>{{appName}}\</h1\>
 
-Event binding \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--
+Event binding \
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--
 
 Events are actions like mouse click, double click, hover or any keyboard
 and mouse actions. If a user interacts with an application and performs
@@ -116,7 +142,8 @@ here\</button\>
 alternatively : \<h2\>Event Binding\</h2\> \<button on-click =
 \"showData()\"\>Click here\</button\>
 
-Property Binding \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--
+Property Binding \
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--
 
 Property binding is used to bind the data from property of a component
 to DOM elements. It is denoted by \[\].
@@ -126,7 +153,10 @@ placeholder=\"Enter text\"\>
 
 valueDisabled = true;
 
-Attribute Binding \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-- Attribute binding in
+Attribute Binding \
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-- 
+
+Attribute binding in
 Angular allows you to bind values to standard HTML attributes and custom
 attributes that don\'t have corresponding DOM properties. While Angular
 usually prefers property binding for interacting with DOM properties,
@@ -168,7 +198,10 @@ adipisicing elit. Nemo at praesentium dolor deleniti, neque ducimus,
 ipsa consectetur molestiae assumenda possimus omnis eum iste culpa modi
 similique porro quae unde delectus? \</p\>
 
-Two-way data binding ===================== Two-way data binding is a
+Two-way data binding \
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-- 
+
+Two-way data binding is a
 two-way interaction, data flows in both ways (from component to views
 and views to component). Simple example is ngModel. If you do any
 changes in your property (or model) then, it reflects in your view and
@@ -181,7 +214,10 @@ fullName : string \| undefined = \"Nani Babu Pallapu\";
 \[class.blue\] = \"MyClass\" \> Hi I am {{fullName}}. Welcome to my home
 !\</h3\>
 
-2\. Angular-Directives ================== The Angular 8 directives are
+2\. Angular-Directives \
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-- 
+
+The Angular 8 directives are
 used to manipulate the DOM. By using Angular directives, you can change
 the appearance, behavior or a layout of a DOM element. It also helps you
 to extend HTML.
@@ -193,7 +229,9 @@ Component Directives Structural Directives Attribute Directives
 
 1\) Component Directives: Component can be used as directives. Every
 component has Input and Output option to pass between component and its
-parent HTML elements. 2) Structural Directives: Structural directives
+parent HTML elements.
+
+2\) Structural Directives: Structural directives
 start with a \* sign. These directives are used to manipulate and change
 the structure of the DOM elements. For example, \*ngIf directive,
 \*ngSwitch directive, and \*ngFor directive.
@@ -216,7 +254,8 @@ facilitates you to modify the style of an HTML element using the
 expression. You can also use ngStyle directive to dynamically change the
 style of your HTML element.
 
-Structural Directives example: =============================
+Structural Directives example: \
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--
 
 check : boolean = true;
 
@@ -247,7 +286,9 @@ style=\"list-style-type:none;\" \[ngSwitch\]=\"loggedAs\"\> \<li
 \*ngSwitchDefault\>Unknown user logged-in\</li\> \</ul\> \</div\>
 \</div\>
 
-Attribute Directives example: ==============================
+Attribute Directives example: \
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--
+
 
 in css :
 
@@ -276,14 +317,17 @@ appCustomDirectiveExample \>Nani Pallapu\</p\> \<!\--
 \'appCustomDirectiveExample\' is custom directive and it should not be
 enclosed with brackets\--\> \</div\> \</div\> \</div\>
 
-Component Directives ====================
+Component Directives \
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--
+
 
 In Angular, you can use the \@Input and \@Output decorators to pass data
 into and emit events from components. These decorators are essential for
 building parent-child communication between components. Here\'s how you
 can use \@Input and \@Output decorators in Angular components:
 
-Using \@Input Decorator: \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--
+Using \@Input Decorator: \
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--
 
 1\. \@Input Decorator Definition: \@Input is used to pass data into a
 component from its parent component. Parent Component:
@@ -306,8 +350,10 @@ In this example, the inputData property in the ChildComponent is
 decorated with \@Input(), allowing it to receive data from the parent
 component.
 
-Using \@Output Decorator:
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-- 1. \@Output Decorator
+Using \@Output Decorator: \
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-- 
+
+1\. \@Output Decorator
 Definition: \@Output is used to emit events from a child component to
 its parent component.
 
@@ -360,8 +406,10 @@ integers and strings as inputs which are separated by '\|' symbol.
 Built-in Pipes \-\-\-\-\-\-\-\-\-\-\-\-\-- Lowercasepipe Uppercasepipe
 Datepipe Currencypipe Jsonpipe Percentpipe Decimalpipe Slicepipe
 
-app.component.ts \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-- title =
-\'angular-pipes-examples\';
+app.component.ts \
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-- 
+
+title = \'angular-pipes-examples\';
 
 fullName : string = \'Nani Babu\';
 
