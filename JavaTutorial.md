@@ -153,8 +153,8 @@ vi\. \*\*Constructor\*\*:
 
   \*\*Interface:\*\*
 
-\-----------------
-
+  \----------------------
+  
 i\. \*\*Definition\*\*:
 
 - An interface is a completely abstract class, which means it can only contain abstract methods and constants (public static final fields).
