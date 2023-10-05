@@ -119,7 +119,9 @@ Object-Oriented Programming (OOP) is a programming paradigm that is heavily used
 
 - ii.Interface (100%)
 
-- \*\*Abstract Class:\*\*
+  \*\*Abstract Class:\*\*
+  
+  \----------------------
 
 i\. \*\*Definition\*\*:
 - An abstract class is a class that can have both abstract (i.e., method without a body) and concrete (i.e., method with a body) methods.
@@ -149,7 +151,9 @@ vi\. \*\*Constructor\*\*:
 
 - Abstract classes can have constructors, and these constructors can be called by the constructors of their subclasses.
 
-\*\*Interface:\*\*
+\*\*Interface:\*\*:
+
+\-----------------
 
 i\. \*\*Definition\*\*:
 
