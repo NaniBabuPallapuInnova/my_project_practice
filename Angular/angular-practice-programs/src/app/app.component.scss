@@ -1,0 +1,22 @@
+input{
+
+    width: 200px;
+    margin: 20px;
+    border: 0.5px solid lightgray;
+
+}
+button{
+    float:inherit;
+    text-align: right;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
+    justify-content: space-between;
+}
+
+
+div {
+    display: flex;
+    justify-content: space-between;
+  }
+

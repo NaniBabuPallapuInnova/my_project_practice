@@ -1,0 +1,84 @@
+Here's a list of common Git commands with explanations to help you work with version control in Git. Git is a powerful and widely used distributed version control system.
+
+1. **git init**:
+   - Initializes a new Git repository in the current directory.
+
+2. **git clone [repository URL]**:
+   - Creates a copy of a remote Git repository on your local machine.
+
+3. **git add [file(s)]**:
+   - Stages changes for commit. Use `.` to stage all changes or specify specific files.
+
+4. **git commit -m "[commit message]"**:
+   - Records staged changes with a descriptive commit message.
+
+5. **git status**:
+   - Shows the status of your working directory and the files that have changed.
+
+6. **git log**:
+   - Displays a history of commits in the current branch.
+
+7. **git branch**:
+   - Lists all branches in the repository and indicates the currently active branch.
+
+8. **git branch [branch name]**:
+   - Creates a new branch with the specified name.
+
+9. **git checkout [branch name]**:
+   - Switches to the specified branch.
+
+10. **git merge [branch name]**:
+    - Merges changes from the specified branch into the current branch.
+
+11. **git pull**:
+    - Fetches changes from the remote repository and merges them into the current branch.
+
+12. **git push**:
+    - Pushes your local changes to the remote repository.
+
+13. **git fetch**:
+    - Fetches changes from the remote repository without merging.
+
+14. **git remote -v**:
+    - Lists remote repositories associated with your local repository.
+
+15. **git diff**:
+    - Shows the differences between the working directory and the last commit.
+
+16. **git reset [file]**:
+    - Unstages changes for the specified file.
+
+17. **git reset [commit]**:
+    - Resets the branch to the specified commit, discarding subsequent commits.
+
+18. **git stash**:
+    - Temporarily saves changes that aren't ready to commit.
+
+19. **git tag [tag name]**:
+    - Creates a tag to mark a specific commit, often used for version releases.
+
+20. **git rm [file]**:
+    - Removes a file from the working directory and stages the change for commit.
+
+21. **git checkout -- [file]**:
+    - Discards local changes for a file and restores it to the last committed version.
+
+22. **git remote add [name] [URL]**:
+    - Adds a remote repository with the specified name and URL.
+
+23. **git push -u origin [branch]**:
+    - Sets the remote repository and branch as the default for future pushes and pulls.
+
+24. **git branch -d [branch name]**:
+    - Deletes a branch locally.
+
+25. **git push origin --delete [branch name]**:
+    - Deletes a branch on the remote repository.
+
+26. **git rebase [branch name]**:
+    - Reapplies your changes on top of another branch.
+
+27. **git cherry-pick [commit hash]**:
+    - Applies a specific commit from another branch.
+
+These are some of the most commonly used Git commands. Git is a versatile tool with many additional commands and options for managing version control in your projects. Be sure to consult the Git documentation for more details on each command and its options.
