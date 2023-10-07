@@ -435,12 +435,12 @@ MySQL CONDITIONS:
 	
 	
 MySQL JOINS :
-=============
+====================
 
 MySQL JOINS are used with SELECT statement. It is used to retrieve data from multiple tables. It is performed whenever you need to fetch records from two or more tables.
 
 1. INNER JOIN :
-=================
+========================
 The MySQL Inner Join is used to returns only those results from the tables that match the specified condition and hides other rows and columns. 
 MySQL assumes it as a default Join, so it is optional to use the Inner Join keyword with the query.
 
@@ -469,7 +469,7 @@ MySQL assumes it as a default Join, so it is optional to use the Inner Join keyw
 
 
 2. LEFT JOIN 
-===============
+=======================
 
 The Left Join in MySQL is used to query records from multiple tables. 
 This clause is similar to the Inner Join clause that can be used with a SELECT statement immediately after the FROM keyword. 
@@ -492,7 +492,7 @@ select   ew.day_id , e.emp_name, e.emp_id, e.emp_salary , ew.working_date from e
 
 
 3. RIGHT-JOIN
-================
+===========================
 The Right Join is used to joins two or more tables and returns all rows from the right-hand table, and only those results from the other table that fulfilled the join condition. 
 If it finds unmatched records from the left side table, it returns Null value. 
 It is similar to the Left Join, except it gives the reverse result of the join tables. 
@@ -515,7 +515,7 @@ Example : 	SELECT  emp_name,c.id, customer_name,state from customer c
 
 
 4. CROSS-JOIN
-================
+=========================
 MySQL CROSS JOIN is used to combine all possibilities of the two or more tables and returns the result that contains every row from all contributing tables. 
 The CROSS JOIN is also known as CARTESIAN JOIN, which provides the Cartesian product of all associated tables. 
 The Cartesian product can be explained as all rows present in the first table multiplied by all rows present in the second table. 
@@ -533,7 +533,7 @@ Example : SELECT * FROM employee CROSS JOIN emp_work_hours
 
 
 5. SELF-JOIN
-==================
+=========================
 A SELF JOIN is a join that is used to join a table with itself. 
 In the previous sections, we have learned about the joining of the table with the other tables using different JOINS, such as INNER, LEFT, RIGHT, and CROSS JOIN. 
 However, there is a need to combine data with other data in the same table itself. In that case, we use Self Join.
@@ -564,7 +564,7 @@ example : 	SELECT  s1.student_id, s1.name
 			
 
 	i. SELF JOIN using INNER JOIN clause
-	-------------------------------------
+	-----------------------------------------------
 				SELECT  s1.student_id, s1.name  
 				FROM student s1  
 				INNER JOIN student s2  
@@ -573,7 +573,7 @@ example : 	SELECT  s1.student_id, s1.name
 				GROUP BY student_id;  
 				
 	ii. SELF-JOIN using LEFT JOIN clause
-	-----------------------------------
+	----------------------------------------------
 
 				SELECT (CONCAT(s1.stud_lname, ' ', s2.stud_fname)) AS 'Monitor', s1.city  
 				FROM students s1  
