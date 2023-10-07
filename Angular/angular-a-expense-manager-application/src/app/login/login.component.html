@@ -1,0 +1,33 @@
+<!-- page content -->
+<!--
+
+    -> Used reactive forms.
+    -> Imported AuthService and Router and configured it in constructor.
+    -> Created an instance of FormGroup and included two instance of FormControl,
+    one for user name and another for password.
+    -> Created a onClickSubmit to validate the user using authService and if successful, 
+    navigate to expense list
+-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 text-center" style="padding-top: 20px;">
+            <div class="container-box" style="margin-top: 10px; padding-left: 0px; padding-right: 0px;">
+                <div class="row">
+                    <div class="col-12" style="text-align: center;">
+                        <form [formGroup]="formData" class="form-signin" (ngSubmit)="onClickSubmit(formData.value)">
+                            <h3 class="form-signin-heading">Please Sign In</h3>
+                            <label for="inputEmail" class="sr-only">Email Address</label>
+                            <input type="text" id="inputEmail"class="form-control" formControlName="username_"
+                                placeholder="enter username" required autofocus autocomplete="username_">
+                            <label for="inputPassword" class="sr-only">Password</label>
+                            <input type="text" id="inputPassword" class="form-control" formControlName="password_"
+                                placeholder="enter password" required autocomplete="username_">
+                            <button class="btn btn-primary btn-block" [ngStyle]="{'width' :'300px'}" type="submit">Sing In</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
