@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="be31cfe6-abaa-4746-be3e-c56280585886" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../Angular/angular-a-expense-manager-application/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Angular/angular-a-expense-manager-application/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Angular/angular-a-expense-manager-application/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Angular/angular-a-expense-manager-application/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Angular/angular-a-expense-manager-application/src/app/app.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../../Angular/angular-a-expense-manager-application/src/app/app.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Angular/angular-a-expense-manager-application/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Angular/angular-a-expense-manager-application/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Angular/angular-a-expense-manager-application/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Angular/angular-a-expense-manager-application/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Angular/server_dummy_folder/expensedb.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/../../Angular/server_dummy_folder/expensedb.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Angular/server_dummy_folder/sqlitedb.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../Angular/server_dummy_folder/sqlitedb.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoot_FullStack_Project/Practice_App/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoot_FullStack_Project/Practice_App/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoot_FullStack_Project/Practice_App/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoot_FullStack_Project/Practice_App/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoot_FullStack_Project/Practice_App/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoot_FullStack_Project/Practice_App/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoot_FullStack_Project/Practice_App/src/main/java/com/example/Practice_App/PracticeAppApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoot_FullStack_Project/Practice_App/src/main/java/com/example/Practice_App/controller/CustomerController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoot_FullStack_Project/Practice_App/src/main/java/com/example/Practice_App/controller/EmployeeController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoot_FullStack_Project/Practice_App/src/main/java/com/example/Practice_App/controller/ProductController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoot_FullStack_Project/Practice_App/src/main/java/com/example/Practice_App/domain/Customer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoot_FullStack_Project/Practice_App/src/main/java/com/example/Practice_App/domain/Employee.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoot_FullStack_Project/Practice_App/src/main/java/com/example/Practice_App/domain/Product.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoot_FullStack_Project/Practice_App/src/main/java/com/example/Practice_App/dto/CustomerDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoot_FullStack_Project/Practice_App/src/main/java/com/example/Practice_App/dto/EmployeeDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoot_FullStack_Project/Practice_App/src/main/java/com/example/Practice_App/dto/LocationDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoot_FullStack_Project/Practice_App/src/main/java/com/example/Practice_App/dto/ProductDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoot_FullStack_Project/Practice_App/src/main/java/com/example/Practice_App/mappings/CustomerMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoot_FullStack_Project/Practice_App/src/main/java/com/example/Practice_App/mappings/EmployeeMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoot_FullStack_Project/Practice_App/src/main/java/com/example/Practice_App/mappings/ProductMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoot_FullStack_Project/Practice_App/src/main/java/com/example/Practice_App/mappings/mappingImpl/CustomerMapperImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoot_FullStack_Project/Practice_App/src/main/java/com/example/Practice_App/mappings/mappingImpl/EmployeeMapperImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoot_FullStack_Project/Practice_App/src/main/java/com/example/Practice_App/mappings/mappingImpl/ProductMapperImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoot_FullStack_Project/Practice_App/src/main/java/com/example/Practice_App/repository/CustomerRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoot_FullStack_Project/Practice_App/src/main/java/com/example/Practice_App/repository/EmployeeRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoot_FullStack_Project/Practice_App/src/main/java/com/example/Practice_App/repository/ProductRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoot_FullStack_Project/Practice_App/src/main/java/com/example/Practice_App/schedulers/ProjectTimeSchedulers.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoot_FullStack_Project/Practice_App/src/main/java/com/example/Practice_App/service/CustomerService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoot_FullStack_Project/Practice_App/src/main/java/com/example/Practice_App/service/EmployeeService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoot_FullStack_Project/Practice_App/src/main/java/com/example/Practice_App/service/ProductService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoot_FullStack_Project/Practice_App/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoot_FullStack_Project/Practice_App/src/test/java/com/example/Practice_App/PracticeAppApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../angular-yummy-tummy/.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../angular-yummy-tummy/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../angular-yummy-tummy/.vscode/extensions.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../angular-yummy-tummy/.vscode/launch.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../angular-yummy-tummy/.vscode/tasks.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../angular-yummy-tummy/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../angular-yummy-tummy/angular.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../angular-yummy-tummy/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../angular-yummy-tummy/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../angular-yummy-tummy/src/app/app-routing.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../angular-yummy-tummy/src/app/app.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../angular-yummy-tummy/src/app/app.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../angular-yummy-tummy/src/app/app.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../angular-yummy-tummy/src/app/app.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../angular-yummy-tummy/src/app/app.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../angular-yummy-tummy/src/app/user/create-user/create-user.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../angular-yummy-tummy/src/app/user/create-user/create-user.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../angular-yummy-tummy/src/app/user/create-user/create-user.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../angular-yummy-tummy/src/app/user/create-user/create-user.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../angular-yummy-tummy/src/app/user/display-user/display-user.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../angular-yummy-tummy/src/app/user/display-user/display-user.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../angular-yummy-tummy/src/app/user/display-user/display-user.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../angular-yummy-tummy/src/app/user/display-user/display-user.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../angular-yummy-tummy/src/assets/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../angular-yummy-tummy/src/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../angular-yummy-tummy/src/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../angular-yummy-tummy/src/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../angular-yummy-tummy/src/styles.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../angular-yummy-tummy/tsconfig.app.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../angular-yummy-tummy/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../angular-yummy-tummy/tsconfig.spec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/food/app/YummyTummyAppApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/food/app/controler/UserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/food/app/domain/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/food/app/repository/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/food/app/service/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/food/app/YummyTummyAppApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../spring_boot_tutorial/demo/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../spring_boot_tutorial/demo/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../spring_boot_tutorial/demo/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../spring_boot_tutorial/demo/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../spring_boot_tutorial/demo/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../spring_boot_tutorial/demo/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../spring_boot_tutorial/demo/src/main/java/com/example/demo/DemoApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../spring_boot_tutorial/demo/src/main/java/com/example/demo/Student.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../spring_boot_tutorial/demo/src/main/java/com/example/demo/WelcomeController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../spring_boot_tutorial/demo/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../spring_boot_tutorial/demo/src/test/java/com/example/demo/DemoApplicationTests.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="workspaceImportEnabled" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2WGpGfsdmv90TNuKrmwfy7vUGeb" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/SELF-LEARNING/full-stack-yummy-tummy-app/yummy_tummy_app&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="Yummy-Tummy" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.food.app.YummyTummyAppApplication" />
+      <module name="yummy_tummy_app" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="be31cfe6-abaa-4746-be3e-c56280585886" name="Changes" comment="" />
+      <created>1696368678190</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1696368678190</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>

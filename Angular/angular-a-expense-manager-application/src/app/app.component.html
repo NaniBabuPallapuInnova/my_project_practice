@@ -7,31 +7,31 @@
             aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
+        <div  class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#"  routerLink="/home" routerLinkActive="activating">Home</a>
+                    <a class="nav-link" href="#" routerLink="/expenses" >Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#" routerLink="/expenses" routerLinkActive="activating">Report</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" routerLink="/employee" routerLinkActive="activating">Add Expense</a>
+                    <a class="nav-link" href="#" routerLink="/expenses/add" routerLinkActive="activating">Add Expense</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" routerLink="/customer" routerLinkActive="activating">About</a>
+                    <a class="nav-link" href="#" routerLink="/about" routerLinkActive="activating">About</a>
+                </li>
+                <li class="nav-item">
+                    <div *ngIf="isUserLoggedIn; else isLogOut">
+                        <a class="nav-link" href="#" routerLink="/logout" routerLinkActive="activating">Logout</a>
+                    </div>
+                    <ng-template #isLogOut>
+                        <a class="nav-link" href="#" routerLink="/login" routerLinkActive="activating">Login</a>
+                    </ng-template>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
-
-<!-- <app-expense-entry></app-expense-entry> -->
-
-
-<!--navigation code-->
-<!-- 
-<app-expense-entry-list>
-</app-expense-entry-list> -->
 
 <router-outlet></router-outlet>

@@ -7,7 +7,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
     } else {
         console.log('Connected to the SQLite database.')
 
-        // if table already exist, use this if condition and run it. then stop the server and comment if condition and run the server.
+        // // if table already exist, use this if condition and run it. then stop the server and comment if condition and run the server.
         // if('expense'){
         //     db.run('DROP TABLE expense')
         // } else{
