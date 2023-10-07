@@ -564,7 +564,7 @@ example : 	SELECT  s1.student_id, s1.name
 			
 
 	i. SELF JOIN using INNER JOIN clause
-	-------------------------------------
+	-----------------------------------------------------------
 				SELECT  s1.student_id, s1.name  
 				FROM student s1  
 				INNER JOIN student s2  
@@ -573,7 +573,7 @@ example : 	SELECT  s1.student_id, s1.name
 				GROUP BY student_id;  
 				
 	ii. SELF-JOIN using LEFT JOIN clause
-	-----------------------------------
+	---------------------------------------------------------
 
 				SELECT (CONCAT(s1.stud_lname, ' ', s2.stud_fname)) AS 'Monitor', s1.city  
 				FROM students s1  
