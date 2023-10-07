@@ -23,7 +23,7 @@ export class AppComponent {
   }
 
   validateTopic(value: string) {
-    if (value == 'default') {
+    if (value === 'default') {
       this.topicHasError = true;
     } else {
       this.topicHasError = false;

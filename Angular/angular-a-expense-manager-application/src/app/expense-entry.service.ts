@@ -113,7 +113,7 @@ export class ExpenseEntryService {
 
   deleteExpenseEntry(deleteEntry : ExpenseEntry | number):Observable<ExpenseEntry>{
 
-    const id = typeof deleteEntry == 'number'? deleteEntry : deleteEntry.id;
+    const id = typeof deleteEntry === 'number'? deleteEntry : deleteEntry.id;
     const deleteUrl = `${this.expenseRestUrl}/${id}`;
     return this.httpClient.delete<ExpenseEntry>(deleteUrl, this.httpOptions)
     .pipe(

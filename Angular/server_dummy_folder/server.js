@@ -65,12 +65,12 @@ app.post("/api/expense/", (req, res, next) => {
         item: req.body.item,
         amount: req.body.amount,
         category: req.body.category,
-        location: req.body.location,
+        place: req.body.place,
         spendOn: req.body.spendOn,
         createdOn: req.body.createdOn,
     }
-    var sql = 'INSERT INTO expense (item, amount, category, location, spendOn, createdOn) VALUES (?,?,?,?,?,?)'
-    var params = [data.item, data.amount, data.category, data.location,
+    var sql = 'INSERT INTO expense (item, amount, category, place, spendOn, createdOn) VALUES (?,?,?,?,?,?)'
+    var params = [data.item, data.amount, data.category, data.place,
     data.spendOn, data.createdOn]
     db.run(sql, params, function (err, result) {
         if (err) {
@@ -88,7 +88,7 @@ app.put("/api/expense/:id", (req, res, next) => {
         item: req.body.item,
         amount: req.body.amount,
         category: req.body.category,
-        location: req.body.location,
+        place: req.body.place,
         spendOn: req.body.spendOn
     }
     db.run(
@@ -96,10 +96,10 @@ app.put("/api/expense/:id", (req, res, next) => {
     item = ?, 
     amount = ?,
     category = ?, 
-    location = ?, 
+    place = ?, 
     spendOn = ? 
     WHERE id = ?`,
-        [data.item, data.amount, data.category, data.location,
+        [data.item, data.amount, data.category, data.place,
         data.spendOn, req.params.id],
         function (err, result) {
             if (err) {
