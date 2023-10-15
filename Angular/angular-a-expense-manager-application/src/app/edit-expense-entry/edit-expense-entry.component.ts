@@ -63,7 +63,7 @@ export class EditExpenseEntryComponent implements OnInit {
   }
 
   get categoryValue() {
-    return this.formData.get('category_');
+    return this.formData.get('category_'); // only for required validations.
   }
 
 

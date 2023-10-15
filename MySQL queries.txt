@@ -97,7 +97,10 @@ SQL commands allow users and applications to interact with relational databases,
 
 
 
+				
 
+MYSQL QUERIES
+=====================================================
 
 
 
@@ -435,12 +438,12 @@ MySQL CONDITIONS:
 	
 	
 MySQL JOINS :
-=============
+====================
 
 MySQL JOINS are used with SELECT statement. It is used to retrieve data from multiple tables. It is performed whenever you need to fetch records from two or more tables.
 
 1. INNER JOIN :
-=================
+========================
 The MySQL Inner Join is used to returns only those results from the tables that match the specified condition and hides other rows and columns. 
 MySQL assumes it as a default Join, so it is optional to use the Inner Join keyword with the query.
 
@@ -469,7 +472,7 @@ MySQL assumes it as a default Join, so it is optional to use the Inner Join keyw
 
 
 2. LEFT JOIN 
-===============
+=======================
 
 The Left Join in MySQL is used to query records from multiple tables. 
 This clause is similar to the Inner Join clause that can be used with a SELECT statement immediately after the FROM keyword. 
@@ -492,7 +495,7 @@ select   ew.day_id , e.emp_name, e.emp_id, e.emp_salary , ew.working_date from e
 
 
 3. RIGHT-JOIN
-================
+===========================
 The Right Join is used to joins two or more tables and returns all rows from the right-hand table, and only those results from the other table that fulfilled the join condition. 
 If it finds unmatched records from the left side table, it returns Null value. 
 It is similar to the Left Join, except it gives the reverse result of the join tables. 
@@ -515,7 +518,7 @@ Example : 	SELECT  emp_name,c.id, customer_name,state from customer c
 
 
 4. CROSS-JOIN
-================
+=========================
 MySQL CROSS JOIN is used to combine all possibilities of the two or more tables and returns the result that contains every row from all contributing tables. 
 The CROSS JOIN is also known as CARTESIAN JOIN, which provides the Cartesian product of all associated tables. 
 The Cartesian product can be explained as all rows present in the first table multiplied by all rows present in the second table. 
@@ -533,7 +536,7 @@ Example : SELECT * FROM employee CROSS JOIN emp_work_hours
 
 
 5. SELF-JOIN
-==================
+=========================
 A SELF JOIN is a join that is used to join a table with itself. 
 In the previous sections, we have learned about the joining of the table with the other tables using different JOINS, such as INNER, LEFT, RIGHT, and CROSS JOIN. 
 However, there is a need to combine data with other data in the same table itself. In that case, we use Self Join.
@@ -564,7 +567,7 @@ example : 	SELECT  s1.student_id, s1.name
 			
 
 	i. SELF JOIN using INNER JOIN clause
-	-----------------------------------------------------------
+	-----------------------------------------------
 				SELECT  s1.student_id, s1.name  
 				FROM student s1  
 				INNER JOIN student s2  
@@ -573,9 +576,120 @@ example : 	SELECT  s1.student_id, s1.name
 				GROUP BY student_id;  
 				
 	ii. SELF-JOIN using LEFT JOIN clause
-	---------------------------------------------------------
+	----------------------------------------------
 
 				SELECT (CONCAT(s1.stud_lname, ' ', s2.stud_fname)) AS 'Monitor', s1.city  
 				FROM students s1  
 				LEFT JOIN students s2 ON s1.student_id=s2.student_id  
 				ORDER BY s1.city DESC;  
+				
+				
+				
+				
+				
+				
+MySQL STORED PROCEDURES
+=========================
+
+Certainly! Here's a tutorial on MySQL stored procedures with explanations for each step:
+
+**MySQL Stored Procedures Tutorial**
+
+A stored procedure is a collection of SQL statements that can be executed as a single unit. It allows for code reusability, improved performance, and enhanced security. This tutorial will guide you through creating a MySQL stored procedure, using input and output parameters, executing the procedure, and implementing error handling.
+
+
+MySQL stored procedures offer several features that make them valuable for database development and management:
+
+1. **Code Reusability**: Stored procedures allow you to encapsulate a sequence of SQL statements into a single, reusable unit. This promotes code reusability, reducing the need to duplicate code in multiple parts of your application.
+
+2. **Performance Optimization**: Stored Procedure increases the performance of the applications. Once stored procedures are created, they are compiled and stored in the database.
+
+3. **Reduced Network Traffic**: Stored procedure reduces the traffic between application and database server. Because the application has to send only the stored procedure's name and parameters instead of sending multiple SQL statements.
+
+4. **Improved Security**: A procedure is always secure. The database administrator can grant permissions to applications that access stored procedures in the database without giving any permissions on the database tables.
+
+5. **Error Handling**: Stored procedures enable you to implement robust error handling with DECLARE...HANDLER statements, so you can gracefully handle exceptions and errors that might occur during execution.
+
+
+Overall, MySQL stored procedures are a powerful tool for enhancing database development, ensuring data integrity, improving performance, and centralizing business logic within the database server. They can be particularly valuable in enterprise applications with complex data manipulation and security requirements.
+
+
+1 Creating a MySQL stored procedure.
+2. Using input and output parameters.
+3. Executing the stored procedure.
+4. Error handling.
+
+
+
+
+**Step 1: Creating a MySQL Stored Procedure**
+
+1. **Definition**: To create a MySQL stored procedure, use the `CREATE PROCEDURE` statement, followed by the procedure name, input parameters (if any), and the SQL statements enclosed within a `BEGIN...END` block.
+
+2. **Example**:
+   ```sql
+   DELIMITER //
+   CREATE PROCEDURE InsertProduct(IN product_name VARCHAR(255), IN price DECIMAL(10, 2))
+   BEGIN
+       INSERT INTO products (product_name, price) VALUES (product_name, price);
+   END //
+   DELIMITER ;
+   ```
+
+   - Explanation: In this example, we create a stored procedure named `InsertProduct`. It takes two input parameters, `product_name` and `price`, and inserts a new product record into the "products" table.
+
+**Step 2: Using Input and Output Parameters**
+
+1. **Definition**: Stored procedures can have input and output parameters. Input parameters are values passed into the procedure, while output parameters return results.
+
+2. **Example**:
+   ```sql
+   DELIMITER //
+   CREATE PROCEDURE AddTwoNumbers(IN num1 INT, IN num2 INT, OUT result INT)
+   BEGIN
+       SET result = num1 + num2;
+   END //
+   DELIMITER ;
+   ```
+
+   - Explanation: In this example, `num1` and `num2` are input parameters, and `result` is an output parameter. The procedure calculates the sum of the input parameters and stores it in the output parameter.
+
+**Step 3: Executing the Stored Procedure**
+
+1. **Definition**: To execute a stored procedure, use the `CALL` statement. Provide the procedure name and input parameter values.
+
+2. **Example**:
+   ```sql
+   CALL InsertProduct('Sample Product', 29.99);
+   ```
+
+   - Explanation: This `CALL` statement executes the `InsertProduct` procedure with specific values for the `product_name` and `price` input parameters. It inserts a new product into the "products" table.
+
+3. **Example (with output parameter)**:
+   ```sql
+   CALL AddTwoNumbers(5, 7, @sum);
+   SELECT @sum;
+   ```
+
+   - Explanation: This example calls the `AddTwoNumbers` procedure with input parameters 5 and 7. It also stores the result in an output parameter `@sum` and then selects and displays the sum.
+
+**Step 4: Error Handling**
+
+1. **Definition**: MySQL stored procedures allow you to handle errors using `DECLARE...HANDLER` statements. These handlers specify how to react to specific errors that might occur during procedure execution.
+
+2. **Example**:
+   ```sql
+   DELIMITER //
+   CREATE PROCEDURE DivideNumbers(IN dividend INT, IN divisor INT, OUT quotient DECIMAL(10, 2))
+   BEGIN
+       DECLARE CONTINUE HANDLER FOR 1365
+       SET quotient = NULL;  -- Handle division by zero error (error code 1365)
+       
+       SET quotient = dividend / divisor;
+   END //
+   DELIMITER ;
+   ```
+
+   - Explanation: In this example, a handler is declared to catch the division by zero error (error code 1365). If the error occurs, the output parameter `quotient` is set to NULL.
+
+This tutorial provides a comprehensive introduction to MySQL stored procedures. As you become more proficient, you can explore advanced scenarios involving conditionals, loops, and transactions within your stored procedures.

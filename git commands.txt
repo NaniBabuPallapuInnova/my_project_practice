@@ -1,3 +1,45 @@
+
+Create a new repository
+==================
+
+git clone <url>
+cd "repositoryName"
+touch README.md
+git add README.md
+git commit -m "add README"
+git push -u origin master
+
+
+Existing folder
+===============
+
+cd existing_folder
+git init
+git remote add origin <url>
+git add .
+git commit -m "Initial commit"
+git push -u origin master
+
+
+
+
+Existing Git repository
+================
+
+cd existing_repo
+git remote rename origin old-origin
+git remote add origin <url>
+git push -u origin --all
+git push -u origin --tags
+
+
+
+
+
+
+
+
+
 Here's a list of common Git commands with explanations to help you work with version control in Git. Git is a powerful and widely used distributed version control system.
 
 1. **git init**:
