@@ -1,0 +1,156 @@
+Certainly, here are 50 practice questions with a focus on SQL joins and various aspects of SQL querying.
+I've used the table names you mentioned earlier. Feel free to adapt these questions to your specific table names or schema:
+
+**Basic Joins:**
+
+1. Retrieve a list of customers and their orders.
+2. List all employees and their departments.
+3. Display the first and last names of employees who have placed orders.
+4. Show the customers who haven't placed any orders.
+5. List the departments and their respective employees.
+
+**Inner Joins:**
+
+6. Get a list of employees and their corresponding department names.
+7. Show the customers and their order details.
+8. List employees who have placed orders, along with the order details.
+9. Display departments and the number of employees in each.
+10. Show the orders and their corresponding customer details.
+
+**Left Joins:**
+
+11. Retrieve a list of all departments and their employees, including those without employees.
+12. List all employees and their orders, including employees without orders.
+13. Show all orders and their corresponding customer details, including orders without customers.
+14. Display customers and the number of orders they've placed, including customers with no orders.
+15. List all employees who have placed orders, and show their department names, including employees without orders.
+
+**Right Joins:**
+
+16. Get a list of all departments and their employees, excluding departments without employees.
+17. List all employees and their orders, excluding employees without orders.
+18. Show all orders and their corresponding customer details, excluding orders without customers.
+19. Display customers and the number of orders they've placed, excluding customers with no orders.
+20. List all employees who have placed orders, and show their department names, excluding employees without orders.
+
+**Full Outer Joins:**
+
+21. Retrieve a list of all departments and their employees, including departments without employees.
+22. List all employees and their orders, including employees without orders.
+23. Show all orders and their corresponding customer details, including orders without customers.
+24. Display customers and the number of orders they've placed, including customers with no orders.
+25. List all employees who have placed orders, and show their department names, including employees without orders.
+
+**Self Joins:**
+
+26. List employees and their respective managers (if applicable).
+27. Retrieve a list of customers who have the same first name.
+28. Find employees who share the same department.
+29. Display customers who have placed orders with the same total amount.
+30. List employees who have the same last name.
+
+**Aggregation with Joins:**
+
+31. Find the total number of orders placed by each customer.
+32. Calculate the average salary of employees in each department.
+33. Get the department with the most employees.
+34. Find the customer who placed the largest order.
+35. Calculate the total salary expense for each department.
+
+**Sub-queries with Joins:**
+
+36. Find employees who have placed orders with a total amount above the average order total.
+37. List customers who have not placed orders with a specific product.
+38. Show employees who have placed orders with a total amount greater than any order placed by a specific customer.
+39. Retrieve the department with the highest average employee salary.
+40. List employees who have placed orders with a product that has the highest price.
+
+**Filtering and Sorting:**
+
+41. Get the first and last names of employees in the 'HR' department.
+42. List customers who have placed orders in 2023 and sort them by the order date.
+43. Show employees who have placed orders with a total amount over $500, ordered by the total amount in descending order.
+44. List the orders placed in March 2023 and sort them by the order date.
+45. Retrieve the top 5 orders with the highest total amounts.
+
+**Updates and Deletions with Joins:**
+
+46. Increase the salary of employees in the 'IT' department by 10%.
+47. Delete all orders placed by a specific customer.
+48. Update the department of employee 'John Doe' to 'Finance.'
+49. Remove all employees in the 'Physics' department.
+50. Delete orders placed in April 2023.
+
+Feel free to modify these questions based on your specific table names or schema. These questions cover a wide range of SQL join scenarios and should help you practice your SQL skills.
+
+
+
+
+Certainly, here are 50 advanced SQL practice questions, including a focus on SQL joins and covering various advanced querying scenarios. These questions will challenge your SQL skills and help you explore more complex aspects of SQL:
+
+**Joins and Subqueries:**
+
+1. Retrieve a list of customers who have placed orders with a total amount exceeding the average order total.
+2. Find employees who have placed orders with a product that has the highest price.
+3. List customers who have placed orders with products from multiple categories.
+4. Get a list of departments with the number of employees who have placed orders.
+5. Show orders and their corresponding customer details for the largest order placed in each category.
+6. Retrieve a list of employees who have placed orders with products from their department's category.
+7. List orders and their corresponding customer details for customers who have placed orders in multiple years.
+8. Find employees who have placed more orders than their managers.
+9. Show customers who have placed the same product in multiple orders.
+10. List employees who have placed orders with products from multiple categories.
+
+**Advanced Subqueries:**
+
+11. Retrieve the customer who placed the first order in the database.
+12. Find employees who have not placed any orders.
+13. List customers who have placed orders with products that have the highest price in their category.
+14. Show employees who have placed orders with products that have not been ordered by any other employee.
+15. Get the department with the most employees who have placed orders.
+16. Retrieve the largest order for each product.
+17. Calculate the average order total for customers who have placed orders in multiple years.
+18. Find the most recent order for each customer.
+19. Show the oldest employee in each department.
+20. List orders and their corresponding customer details for customers who have placed orders both before and after a specific date.
+
+**Complex Joins:**
+
+21. Retrieve a list of customers and their orders, showing the average order total for each customer.
+22. Find employees who have placed orders with products that have not been ordered by any other employee in their department.
+23. List customers who have placed orders in the same month and year as the first order in the database.
+24. Show the top 5 orders with the highest total amounts, including the products in those orders.
+25. Get a list of employees who have placed orders with the largest total amounts in their department.
+26. Find customers who have placed the same product in multiple orders, along with the total quantity of that product ordered.
+27. Retrieve the top 3 customers who have placed orders with the most different products.
+28. Show employees who have placed orders with products that have been ordered by more than half of the employees in their department.
+29. List customers who have placed orders with a product from each category.
+30. Calculate the average order total for customers who have placed orders with products in all categories.
+
+**Aggregation and Window Functions:**
+
+31. Calculate the cumulative sum of salaries for employees within their respective departments.
+32. Find the top 3 employees with the highest total order amounts.
+33. Retrieve the employee with the highest total order amount in each department.
+34. Show the orders and their corresponding customer details for the top 5 customers who have placed the most orders.
+35. Calculate the average order total for customers who have placed orders with products that have not been ordered by any other customer.
+36. Get the product with the highest total order amount.
+37. List employees who have placed orders with the largest total order amounts in each year.
+38. Retrieve the top 3 employees with the highest total order counts.
+39. Show the largest order placed for each product.
+40. Calculate the running total of salaries for employees within their respective departments, ordered by salary.
+
+**Advanced Subqueries and Pivoting:**
+
+41. Find the customer who placed the first order in each year.
+42. Retrieve the top 3 products with the highest total order amounts.
+43. List customers who have placed orders with products from multiple categories, along with the categories and total order amounts.
+44. Show employees who have placed orders with products that have the highest price in their category.
+45. Calculate the average salary for employees who have placed orders with products in all categories.
+46. Get the top 3 customers with the highest total order amounts in each year.
+47. List employees who have not placed any orders, along with their departments.
+48. Show the oldest employee in each department, along with the departments' average employee ages.
+49. Retrieve a list of customers and their orders, showing the average order total for each customer, and the percentage of the customer's orders that exceed the average order total.
+50. Find the customer who placed the first order in each year, along with the total order count for each year.
+
+These advanced SQL practice questions cover a wide range of complex SQL scenarios, including joins, subqueries, aggregations, window functions, and advanced data manipulations. Use these questions to further enhance your SQL skills and explore advanced SQL techniques.
