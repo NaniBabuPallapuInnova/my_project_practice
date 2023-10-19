@@ -1,4 +1,4 @@
-package com.microservices.project.productservice.mappings.mappingImpl;
+package com.microservices.project.productservice.mappings;
 
 import com.microservices.project.productservice.dto.ProductDto;
 import com.microservices.project.productservice.mappings.ProductMapping;
