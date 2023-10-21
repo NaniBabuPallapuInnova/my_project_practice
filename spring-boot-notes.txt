@@ -114,11 +114,128 @@ public class HibernateDemo {
 In the Hibernate example, you define an `Employee` entity, and Hibernate takes care of the database interaction for you. This code is more abstract and portable compared to the low-level JDBC code.
 
 
+
+Dependency Injection in Spring
+-------------------------------
+
+Dependency Injection (DI) is a design pattern that removes the dependency from the programming code so that it can be easy to manage and test the application. 
+
+Dependency Injection makes our programming code loosely coupled.
+
+Two ways to perform Dependency Injection in Spring framework
+
+Spring framework provides two ways to inject dependency
+
+1. By Constructor
+2. By Setter method
+
+Dependency Injection (DI) is a software design pattern that promotes the separation of concerns in an application by allowing components to request their dependencies rather than creating them directly. In DI, a component's dependencies are "injected" into it from the outside, typically via constructor parameters or setter methods. This approach decouples components, making them more modular, reusable, and easier to test.
+
+The key concepts of Dependency Injection are as follows:
+
+Dependency: A dependency is an external component or service that a class or function relies on to perform its tasks. These can include database connections, configuration settings, logging services, and more.
+
+Injection: Injection refers to the process of providing a component's dependencies from the outside, typically through constructor arguments or setter methods. Dependencies are "injected" into the component rather than being created or managed by the component itself.
+
+Without Dependency Injection:
+
+In this example, the Car class creates its own Engine:
+
+class Engine {
+    public void start() {
+        System.out.println("Engine started");
+    }
+}
+
+class Car {
+    private Engine engine;
+
+    public Car() {
+        engine = new Engine(); // Creating the engine internally
+    }
+
+    public void start() {
+        engine.start();
+        System.out.println("Car started");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Car car = new Car(); // Car creates its own Engine
+        car.start();
+    }
+}
+
+
+With Dependency Injection:
+--------------------------
+
+With Dependency Injection, you can provide the Engine to the Car from the outside:
+
+class Engine {
+    public void start() {
+        System.out.println("Engine started");
+    }
+}
+
+class Car {
+    private Engine engine;
+
+    public Car(Engine engine) {
+        this.engine = engine; // Injecting the engine from the outside
+    }
+
+    public void start() {
+        engine.start();
+        System.out.println("Car started");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Engine carEngine = new Engine(); // Engine created externally
+        Car car = new Car(carEngine); // Car receives the Engine through injection
+        car.start();
+    }
+}
+
+
+
 SPRING
 ======================
 Spring is a widely used framework for building enterprise-level Java applications. It provides comprehensive infrastructure support for developing Java-based applications, making it easier to create robust, maintainable, and scalable software. Spring offers various modules for different purposes, such as dependency injection, aspect-oriented programming, data access, messaging, and more. In a Spring application, you can develop components as POJOs (Plain Old Java Objects) and use Spring to manage these components, their dependencies, and other aspects of the application.
 
 Here's a simplified example of a traditional Spring application (non-Spring Boot) to help you understand the fundamental concepts. We'll create a simple Spring application that manages a list of users.
+
+Advantages of Spring Framework
+-------------------------------
+There are many advantages of Spring Framework. They are as follows:
+
+1) Predefined Templates
+Spring framework provides templates for JDBC, Hibernate, JPA etc. technologies. So there is no need to write too much code. It hides the basic steps of these technologies.
+
+
+Let's take the example of JdbcTemplate, you don't need to write the code for exception handling, creating connection, creating statement, committing transaction, closing connection etc. You need to write the code of executing query only. Thus, it save a lot of JDBC code.
+
+2) Loose Coupling
+The Spring applications are loosely coupled because of dependency injection.
+
+3) Easy to test
+The Dependency Injection makes easier to test the application. The EJB or Struts application require server to run the application but Spring framework doesn't require server.
+
+4) Lightweight
+Spring framework is lightweight because of its POJO implementation. The Spring Framework doesn't force the programmer to inherit any class or implement any interface. That is why it is said non-invasive.
+
+5) Fast Development
+The Dependency Injection feature of Spring Framework and it support to various frameworks makes the easy development of JavaEE application.
+
+6) Powerful abstraction
+It provides powerful abstraction to JavaEE specifications such as JMS, JDBC, JPA and JTA.
+
+7) Declarative support
+
+It provides declarative support for caching, validation, transactions and formatting.
 
 **Step 1: Set Up the Project**
 
@@ -284,177 +401,6 @@ SPRING AND SPRINGBOOT
 4. **Default Settings:** Spring Boot provides default settings and opinions to get started quickly, while Spring leaves many configuration decisions to the developers.
 
 In summary, Spring is a comprehensive framework that offers fine-grained control and flexibility, while Spring Boot is an opinionated framework that simplifies Spring application development by providing defaults and conventions. The choice between Spring and Spring Boot depends on the specific project requirements and the development team's preferences. Spring Boot is often preferred for new projects, prototypes, and microservices.
-
-
-
-
-
-
-
-**Microservice Architecture with Spring Boot:**
-===================================================
-
-**Microservices** is an architectural approach where a software application is divided into a collection of small, independent, and loosely coupled services, each responsible for specific functionality. Spring Boot, a popular Java framework, is often used to build microservices due to its ease of development and the tools it provides.
-
-**Microservice in Spring Boot:**
-
-A **microservice in Spring Boot** is a standalone, independently deployable application that performs a specific function within a larger software system. Each microservice typically has its own database and communicates with other microservices through well-defined APIs (often using HTTP/REST).
-
-**Uses of Microservices with Spring Boot:**
-
-- **Scalability:** Microservices can be independently scaled, allowing you to allocate more resources to specific services that need it, while leaving others unaffected.
-
-- **Maintainability:** Smaller codebases are easier to manage and update. Changes in one service don't affect others, making maintenance more manageable.
-
-- **Faster Development:** Smaller teams can develop and deploy microservices independently, accelerating development cycles.
-
-- **Resilience:** Isolating services reduces the impact of failures. If one service fails, it doesn't bring down the entire system.
-
-- **Technology Diversity:** Different microservices can use different technologies and databases to choose the right tools for each task.
-
-**Example of a Microservice in Spring Boot:**
-
-Consider an e-commerce platform. You might have separate microservices for user authentication, product catalog, order processing, and payment handling.
-
-Here's a simplified example of a product catalog microservice using Spring Boot:
-
-**ProductService.java:**
-```java
-@RestController
-@RequestMapping("/products")
-public class ProductService {
-    
-    @GetMapping("/{productId}")
-    public Product getProductById(@PathVariable Long productId) {
-        // Retrieve product information from the database and return it
-    }
-
-    @PostMapping
-    public Product addProduct(@RequestBody Product product) {
-        // Save the new product to the database and return it
-    }
-
-    // Other product-related endpoints
-}
-```
-
-In this example:
-
-- `ProductService` is a Spring Boot application serving as a microservice for product-related operations.
-
-- It defines endpoints to retrieve a product by ID and add a new product.
-
-- Each operation is independent, and the service can be deployed and scaled on its own.
-
-**Differences Between a Normal Spring Boot Application and a Microservices Application:**
-
-1. **Monolith vs. Distributed:** A normal Spring Boot application is often a monolith, where all functionalities are tightly integrated into a single codebase. In contrast, a microservices application is distributed, with functionalities divided into separate services.
-
-2. **Size:** Normal Spring Boot applications tend to be larger, with all functionalities in one place. Microservices are smaller, focused on specific tasks.
-
-3. **Complexity:** Microservices applications can be more complex to manage due to the need for service coordination, inter-service communication, and distributed data.
-
-4. **Scalability:** Microservices allow for fine-grained scalability, while a monolith typically scales as a single unit.
-
-5. **Independent Deployment:** Microservices can be deployed independently. In a monolith, changes may require redeploying the entire application.
-
-6. **Technology Stack:** In a monolith, the entire application uses the same technology stack. In microservices, different services can use different stacks.
-
-7. **Maintenance:** Microservices can be easier to maintain as changes in one service don't affect others. In a monolith, changes can be riskier.
-
-The choice between a normal Spring Boot application and a microservices architecture depends on the specific project requirements, scalability needs, development team size, and other factors. Microservices offer advantages in terms of scalability and maintainability but introduce complexity in managing the interactions between services.
-
-
-
-
-**Normal Spring Boot Monolithic Application:**
--------------------------------------------------
-
-In a monolithic Spring Boot application, all functionalities are bundled together in a single application. Here's an example of a simplified monolithic application for a basic e-commerce platform:
-
-**MonolithicEcommerceApplication.java:**
-
-```java
-@SpringBootApplication
-public class MonolithicEcommerceApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(MonolithicEcommerceApplication.class, args);
-    }
-}
-```
-
-**ProductController.java:**
-
-```java
-@RestController
-@RequestMapping("/products")
-public class ProductController {
-    @GetMapping("/{productId}")
-    public Product getProduct(@PathVariable Long productId) {
-        // Retrieve and return the product from the database
-    }
-    
-    @PostMapping
-    public Product addProduct(@RequestBody Product product) {
-        // Save the new product to the database and return it
-    }
-    
-    // Other product-related endpoints
-}
-```
-
-In this monolithic example:
-
-- There's a single Spring Boot application that handles all aspects of the e-commerce platform, including product management.
-
-- The `ProductController` defines endpoints for retrieving and adding products.
-
-**Microservices Architecture:**
----------------------------------
-
-Now, let's look at a simplified microservices architecture for the same e-commerce platform. We'll split the product management into a separate microservice.
-
-**ProductService.java:**
-
-```java
-@SpringBootApplication
-@EnableEurekaClient
-public class ProductServiceApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(ProductServiceApplication.class, args);
-    }
-}
-```
-
-**ProductController.java (Microservice):**
-
-```java
-@RestController
-@RequestMapping("/products")
-public class ProductController {
-    @GetMapping("/{productId}")
-    public Product getProduct(@PathVariable Long productId) {
-        // Retrieve and return the product from the microservice's database
-    }
-    
-    @PostMapping
-    public Product addProduct(@RequestBody Product product) {
-        // Save the new product to the microservice's database and return it
-    }
-    
-    // Other product-related endpoints
-}
-```
-
-In this microservices example:
-
-- There are two separate Spring Boot applications: the **ProductService** microservice and the **E-commerceGateway** application (not shown here) that routes requests to various microservices.
-
-- The **ProductService** microservice handles product-related operations, just as in the monolithic example. It runs independently and can be scaled separately.
-
-- Other microservices can handle different parts of the e-commerce platform, and they can use various technologies and databases as needed.
-
-The key difference is that in the microservices architecture, the functionalities are divided into smaller, independently deployable services, whereas the monolithic application handles everything in a single codebase. Microservices offer advantages in terms of scalability, maintainability, and technology stack diversity but introduce complexities in terms of service coordination and inter-service communication.
 
 
 
@@ -638,8 +584,8 @@ In your Spring Boot application, you can configure and define beans in various w
 
 
 
-	Spring Boot MVC (Model-View-Controller)
- ============================================
+Spring Boot MVC (Model-View-Controller)
+============================================
  Spring Boot MVC is an architectural pattern and framework for building web applications in Spring Boot. It provides a structured approach to handling web requests and responses, separating an application into three interconnected components:
 
 1. Model: Represents the application's data and business logic. It contains the information that the application operates on.

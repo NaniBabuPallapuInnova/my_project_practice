@@ -5,7 +5,8 @@
             <div class="container" style="padding-left: 0px; padding-right: 0px;">
             </div>
             <div class="container box" style="margin-top: 10px;">
-
+                <!-- novalidate : novalidate is applied to the <form> element. It disables the browser's default form validation and 
+                    relies on Angular's reactive form validation defined in the userFormData FormGroup -->
                 <form [formGroup]="formData" (ngSubmit)="onSubmitData(formData.value)" class="form" novalidate>
 
                     <div class="form-group">
