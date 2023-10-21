@@ -35,6 +35,8 @@ export class EditExpenseEntryComponent implements OnInit {
 
     });
 
+    // if selectedId is not null or not zero, it will fetch expenseEntry details based on Id.
+    // then fetched expenseEntry details will be updated by new entered data by user in formData.
     this.selectedId = Number(this.activatedRoute.snapshot.paramMap.get('id'));
 
     if (this.selectedId !== null && this.selectedId !== 0) {
