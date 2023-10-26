@@ -21,16 +21,27 @@ public class ProductService {
 
     @Autowired
     ProductMapping productMapping;
+
+    /**
+     * this method is used to fetch all the products from Product table  as convert them into ProductDtos
+     * @return finally this method returns List of ProductDtos
+     */
+    public List<ProductDto> getProducts(){
+        log.info("fetching all products");
+        List<Product> products =  productRepository.findAll();
+        log.info("fetched all products");
+        return productMapping.toDtoList(products);
+    }
+
+    /**
+     * @param productDto This method is used to take Single ProductDto as Parameters and convert them into Single Product Entity.
+     * Save the Single Product Entity in Database.
+     */
     public void createProduct(ProductDto productDto){
         Product product = productMapping.toEntity(productDto);
         productRepository.save(product);
         log.info("product is saved. Product Id : {} ", product.getId());
     }
 
-    public List<ProductDto> getProducts(){
-        log.info("fetching all products");
-       List<Product> products =  productRepository.findAll();
-       log.info("fetched all products");
-        return productMapping.toDtoList(products);
-    }
+
 }

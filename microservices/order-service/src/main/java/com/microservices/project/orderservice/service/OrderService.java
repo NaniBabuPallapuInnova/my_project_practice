@@ -17,7 +17,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,9 +25,10 @@ import java.util.stream.Collectors;
 public class OrderService {
 
     private static final Logger log = LoggerFactory.getLogger(OrderService.class);
+    public static final String ORDER_NUMBER_START = "H123";
 
 
-    public final static String orderNumberStart = "H12345";
+
     @Autowired
     public OrderRepository orderRepository;
 
@@ -42,7 +42,7 @@ public class OrderService {
      */
     public void placeOrder(OrderDto orderDto) {
         Order order = new Order();
-        order.setOrderNumber("H123" + String.format("%03d", new Random().nextInt(1000)));
+        order.setOrderNumber(ORDER_NUMBER_START + String.format("%03d", new Random().nextInt(1000)));
 
         List<OrderLineItems> orderLineItemsList = orderDto.getOrderLineItemsListDto().stream()
 //               .map(orderLineItemsDto -> mapTo(orderLineItemsDto)) // .map(this::mapTo) both are same.
@@ -63,10 +63,10 @@ public class OrderService {
 
         InventoryDto[] inventoryDtoArray = webClient.get().uri("http://localhost:8087/api/inventory/items-list-stock", uriBuilder -> uriBuilder.queryParam("itemName", listOfItemNames).build())
                 .retrieve()
-                .bodyToMono(InventoryDto[].class) // This is from inventory-service response class(isInStock() it returns InventoryDto Array as response)
+                .bodyToMono(InventoryDto[].class) // This is from inventory-service response class(areItemsInStock() it returns InventoryDto Array as response)
                 .block(); // to make synchronous request.
 
-        boolean allItemsAreInStock = Arrays.stream(inventoryDtoArray).allMatch(InventoryDto::isInStock); // it will create a stream, so that we can easily call the allMatch method and store the response as boolean in local variable as result.
+        boolean allItemsAreInStock = Arrays.stream(inventoryDtoArray).allMatch(InventoryDto::isItemInStock); // it will create a stream, so that we can easily call the allMatch method and store the response as boolean in local variable as allItemsAreInStock.
         if (allItemsAreInStock) {
             orderRepository.save(order);
             log.info("order has been saved successfully order {}:", order);

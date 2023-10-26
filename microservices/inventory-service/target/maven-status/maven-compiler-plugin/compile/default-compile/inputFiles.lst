@@ -1,5 +1,8 @@
-D:\SELF-LEARNING\microservices_springboot\microservices\inventory-service\src\main\java\com\microservices\project\inventoryservice\controller\InventoryController.java
-D:\SELF-LEARNING\microservices_springboot\microservices\inventory-service\src\main\java\com\microservices\project\inventoryservice\service\InventoryService.java
-D:\SELF-LEARNING\microservices_springboot\microservices\inventory-service\src\main\java\com\microservices\project\inventoryservice\InventoryServiceApplication.java
-D:\SELF-LEARNING\microservices_springboot\microservices\inventory-service\src\main\java\com\microservices\project\inventoryservice\model\Inventory.java
-D:\SELF-LEARNING\microservices_springboot\microservices\inventory-service\src\main\java\com\microservices\project\inventoryservice\repository\InventoryRepository.java
+D:\SELF-LEARNING\microservices\inventory-service\src\main\java\com\microservices\project\inventoryservice\dto\InventoryDto.java
+D:\SELF-LEARNING\microservices\inventory-service\src\main\java\com\microservices\project\inventoryservice\InventoryServiceApplication.java
+D:\SELF-LEARNING\microservices\inventory-service\src\main\java\com\microservices\project\inventoryservice\mappings\InventoryMappingImpl.java
+D:\SELF-LEARNING\microservices\inventory-service\src\main\java\com\microservices\project\inventoryservice\model\Inventory.java
+D:\SELF-LEARNING\microservices\inventory-service\src\main\java\com\microservices\project\inventoryservice\repository\InventoryRepository.java
+D:\SELF-LEARNING\microservices\inventory-service\src\main\java\com\microservices\project\inventoryservice\mappings\InventoryMapping.java
+D:\SELF-LEARNING\microservices\inventory-service\src\main\java\com\microservices\project\inventoryservice\service\InventoryService.java
+D:\SELF-LEARNING\microservices\inventory-service\src\main\java\com\microservices\project\inventoryservice\controller\InventoryController.java

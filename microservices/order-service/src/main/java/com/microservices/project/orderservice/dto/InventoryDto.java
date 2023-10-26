@@ -5,14 +5,14 @@ import lombok.Builder;
 @Builder
 public class InventoryDto {
     private String itemName;
-    private boolean isInStock;
+    private boolean itemInStock;
 
     public InventoryDto() {
     }
 
-    public InventoryDto(String itemName, boolean isInStock) {
+    public InventoryDto(String itemName, boolean itemInStock) {
         this.itemName = itemName;
-        this.isInStock = isInStock;
+        this.itemInStock = itemInStock;
     }
 
     public String getItemName() {
@@ -23,19 +23,19 @@ public class InventoryDto {
         this.itemName = itemName;
     }
 
-    public boolean isInStock() {
-        return isInStock;
+    public boolean isItemInStock() {
+        return itemInStock;
     }
 
-    public void setInStock(boolean inStock) {
-        isInStock = inStock;
+    public void setItemInStock(boolean itemInStock) {
+        this.itemInStock = itemInStock;
     }
 
     @Override
     public String toString() {
         return "InventoryDto{" +
                 "itemName='" + itemName + '\'' +
-                ", isInStock=" + isInStock +
+                ", itemInStock=" + itemInStock +
                 '}';
     }
 }

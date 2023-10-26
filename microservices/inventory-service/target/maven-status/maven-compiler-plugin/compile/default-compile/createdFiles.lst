@@ -1,5 +1,9 @@
+com\microservices\project\inventoryservice\mappings\InventoryMappingImpl.class
+com\microservices\project\inventoryservice\dto\InventoryDto$InventoryDtoBuilder.class
+com\microservices\project\inventoryservice\controller\InventoryController.class
+com\microservices\project\inventoryservice\dto\InventoryDto.class
+com\microservices\project\inventoryservice\mappings\InventoryMapping.class
 com\microservices\project\inventoryservice\repository\InventoryRepository.class
 com\microservices\project\inventoryservice\service\InventoryService.class
 com\microservices\project\inventoryservice\InventoryServiceApplication.class
-com\microservices\project\inventoryservice\controller\InventoryController.class
 com\microservices\project\inventoryservice\model\Inventory.class

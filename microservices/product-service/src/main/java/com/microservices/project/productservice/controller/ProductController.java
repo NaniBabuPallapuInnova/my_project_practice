@@ -16,11 +16,13 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
-
+    /**
+     * This method is used to get All Products and @return response with fetchedProductDtoList and status message.
+     */
     @GetMapping("")
     public ResponseEntity<List<ProductDto>> getAllProduct(){
-        List<ProductDto> productList = productService.getProducts();
-        return new ResponseEntity<>(productList, HttpStatus.OK);
+        List<ProductDto> productDtoList = productService.getProducts();
+        return new ResponseEntity<>(productDtoList, HttpStatus.OK);
     }
     @PostMapping("/create")
     public HttpStatus createProduct(@RequestBody ProductDto productDto){

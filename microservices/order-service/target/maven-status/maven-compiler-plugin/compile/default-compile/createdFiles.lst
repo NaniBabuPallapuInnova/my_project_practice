@@ -1,5 +1,8 @@
+com\microservices\project\orderservice\dto\InventoryDto$InventoryDtoBuilder.class
+com\microservices\project\orderservice\dto\InventoryDto.class
 com\microservices\project\orderservice\service\OrderService.class
 com\microservices\project\orderservice\OrderServiceApplication.class
+com\microservices\project\orderservice\config\WebClientConfig.class
 com\microservices\project\orderservice\model\OrderLineItems.class
 com\microservices\project\orderservice\repository\OrderRepository.class
 com\microservices\project\orderservice\controller\OrderController.class

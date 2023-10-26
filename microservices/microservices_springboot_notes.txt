@@ -1,0 +1,229 @@
+
+
+**Microservice Architecture with Spring Boot:**
+===================================================
+
+**Microservices** is an architectural approach where a software application is divided into a collection of small, independent, and loosely coupled services, each responsible for specific functionality. Spring Boot, a popular Java framework, is often used to build microservices due to its ease of development and the tools it provides.
+
+**Microservice in Spring Boot:**
+
+A **microservice in Spring Boot** is a standalone, independently deployable application that performs a specific function within a larger software system. Each microservice typically has its own database and communicates with other microservices through well-defined APIs (often using HTTP/REST).
+
+**Uses of Microservices with Spring Boot:**
+
+- **Scalability:** Microservices can be independently scaled, allowing you to allocate more resources to specific services that need it, while leaving others unaffected.
+
+- **Maintainability:** Smaller codebases are easier to manage and update. Changes in one service don't affect others, making maintenance more manageable.
+
+- **Faster Development:** Smaller teams can develop and deploy microservices independently, accelerating development cycles.
+
+- **Resilience:** Isolating services reduces the impact of failures. If one service fails, it doesn't bring down the entire system.
+
+- **Technology Diversity:** Different microservices can use different technologies and databases to choose the right tools for each task.
+
+**Example of a Microservice in Spring Boot:**
+
+Consider an e-commerce platform. You might have separate microservices for user authentication, product catalog, order processing, and payment handling.
+
+Here's a simplified example of a product catalog microservice using Spring Boot:
+
+**ProductService.java:**
+```java
+@RestController
+@RequestMapping("/products")
+public class ProductService {
+    
+    @GetMapping("/{productId}")
+    public Product getProductById(@PathVariable Long productId) {
+        // Retrieve product information from the database and return it
+    }
+
+    @PostMapping
+    public Product addProduct(@RequestBody Product product) {
+        // Save the new product to the database and return it
+    }
+
+    // Other product-related endpoints
+}
+```
+
+In this example:
+
+- `ProductService` is a Spring Boot application serving as a microservice for product-related operations.
+
+- It defines endpoints to retrieve a product by ID and add a new product.
+
+- Each operation is independent, and the service can be deployed and scaled on its own.
+
+**Differences Between a Normal Spring Boot Application and a Microservices Application:**
+
+1. **Monolith vs. Distributed:** A normal Spring Boot application is often a monolith, where all functionalities are tightly integrated into a single codebase. In contrast, a microservices application is distributed, with functionalities divided into separate services.
+
+2. **Size:** Normal Spring Boot applications tend to be larger, with all functionalities in one place. Microservices are smaller, focused on specific tasks.
+
+3. **Complexity:** Microservices applications can be more complex to manage due to the need for service coordination, inter-service communication, and distributed data.
+
+4. **Scalability:** Microservices allow for fine-grained scalability, while a monolith typically scales as a single unit.
+
+5. **Independent Deployment:** Microservices can be deployed independently. In a monolith, changes may require redeploying the entire application.
+
+6. **Technology Stack:** In a monolith, the entire application uses the same technology stack. In microservices, different services can use different stacks.
+
+7. **Maintenance:** Microservices can be easier to maintain as changes in one service don't affect others. In a monolith, changes can be riskier.
+
+The choice between a normal Spring Boot application and a microservices architecture depends on the specific project requirements, scalability needs, development team size, and other factors. Microservices offer advantages in terms of scalability and maintainability but introduce complexity in managing the interactions between services.
+
+
+
+
+**Normal Spring Boot Monolithic Application:**
+-------------------------------------------------
+
+In a monolithic Spring Boot application, all functionalities are bundled together in a single application. Here's an example of a simplified monolithic application for a basic e-commerce platform:
+
+**MonolithicEcommerceApplication.java:**
+
+```java
+@SpringBootApplication
+public class MonolithicEcommerceApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(MonolithicEcommerceApplication.class, args);
+    }
+}
+```
+
+**ProductController.java:**
+
+```java
+@RestController
+@RequestMapping("/products")
+public class ProductController {
+    @GetMapping("/{productId}")
+    public Product getProduct(@PathVariable Long productId) {
+        // Retrieve and return the product from the database
+    }
+    
+    @PostMapping
+    public Product addProduct(@RequestBody Product product) {
+        // Save the new product to the database and return it
+    }
+    
+    // Other product-related endpoints
+}
+```
+
+In this monolithic example:
+
+- There's a single Spring Boot application that handles all aspects of the e-commerce platform, including product management.
+
+- The `ProductController` defines endpoints for retrieving and adding products.
+
+**Microservices Architecture:**
+---------------------------------
+
+Now, let's look at a simplified microservices architecture for the same e-commerce platform. We'll split the product management into a separate microservice.
+
+**ProductService.java:**
+
+```java
+@SpringBootApplication
+@EnableEurekaClient
+public class ProductServiceApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(ProductServiceApplication.class, args);
+    }
+}
+```
+
+**ProductController.java (Microservice):**
+
+```java
+@RestController
+@RequestMapping("/products")
+public class ProductController {
+    @GetMapping("/{productId}")
+    public Product getProduct(@PathVariable Long productId) {
+        // Retrieve and return the product from the microservice's database
+    }
+    
+    @PostMapping
+    public Product addProduct(@RequestBody Product product) {
+        // Save the new product to the microservice's database and return it
+    }
+    
+    // Other product-related endpoints
+}
+```
+
+In this microservices example:
+
+- There are two separate Spring Boot applications: the **ProductService** microservice and the **E-commerceGateway** application (not shown here) that routes requests to various microservices.
+
+- The **ProductService** microservice handles product-related operations, just as in the monolithic example. It runs independently and can be scaled separately.
+
+- Other microservices can handle different parts of the e-commerce platform, and they can use various technologies and databases as needed.
+
+The key difference is that in the microservices architecture, the functionalities are divided into smaller, independently deployable services, whereas the monolithic application handles everything in a single codebase. Microservices offer advantages in terms of scalability, maintainability, and technology stack diversity but introduce complexities in terms of service coordination and inter-service communication.
+
+
+
+
+Spring Cloud is a set of tools and frameworks within the broader Spring ecosystem for building and deploying cloud-native applications. It provides a range of capabilities for building microservices-based systems and addressing common challenges that arise in cloud and distributed architectures. Spring Cloud is primarily designed to work with the Spring Framework, which is a popular framework for building Java-based applications.
+
+Key components and features of Spring Cloud include:
+
+1. **Service Discovery**: Spring Cloud provides tools like Eureka and Consul for service discovery. This allows services to register themselves with a registry and discover other services. This is crucial for building resilient and dynamic microservices architectures.
+
+2. **Load Balancing**: Spring Cloud integrates with load balancers like Ribbon, enabling client-side load balancing for services. This ensures that requests are distributed across instances of a service, improving scalability and fault tolerance.
+
+3. **API Gateway**: Spring Cloud offers tools like Zuul and Spring Cloud Gateway for creating API gateways. These components act as a single entry point to your microservices, providing routing, authentication, and other cross-cutting concerns.
+
+4. **Circuit Breakers**: To deal with failures in distributed systems, Spring Cloud incorporates Hystrix, which provides circuit breaker and fault tolerance patterns. It helps prevent cascading failures in the system.
+
+5. **Configuration Management**: Spring Cloud Config allows you to manage and distribute configuration properties for your services. It supports externalized configuration, versioning, and dynamic property updates without service restarts.
+
+6. **Distributed Tracing**: Tools like Spring Cloud Sleuth and Zipkin provide distributed tracing capabilities, helping you track and diagnose issues across microservices.
+
+7. **Security**: Spring Cloud Security provides features for securing your microservices and managing authentication and authorization in a distributed system.
+
+8. **Messaging**: Spring Cloud Stream simplifies event-driven microservices by providing abstractions for message brokers like Apache Kafka and RabbitMQ.
+
+9. **Distributed Data**: Tools like Spring Cloud Data Flow and Spring Cloud Task help manage and process data across distributed systems.
+
+10. **Monitoring and Metrics**: Spring Cloud integrates with monitoring solutions like Prometheus and Grafana to gather metrics and monitor the health of your microservices.
+
+11. **Batch Processing**: Spring Cloud Data Flow and Spring Batch offer batch processing capabilities, making it easier to manage batch jobs in a microservices architecture.
+
+Spring Cloud promotes the development of scalable, resilient, and maintainable microservices applications by providing pre-built solutions for common distributed system challenges. It's particularly well-suited for Java-based applications and is a popular choice for organizations looking to adopt microservices and cloud-native architectures.
+
+
+======================
+BUILDING APPLICATION : 
+======================
+
+1. We will build simple ONLINE SHOPPING APPLICATION.
+
+2. We will cover below topics:
+	i. Service Discovery
+	ii. Centralized Configuration.
+	iii. Distributed Tracing.
+	iv. Event Driven Architecture.
+	v. Centralized Logging.
+	vi. Circuit Breaker.
+	vii.Secure Microservice Using KeyCloak.
+
+
+Services We are going to build : 
+--------------------------------
+1. Product Service : Create and View Products, acts as Product Catalog.
+
+2. Order Service : Can order products.
+
+3. Inventory Service : Can check if product is in stock or not.
+
+4. Notification Service : Can send notifications, after order is placed.
+
+5. Order Service , Inventory Service and Notification Service are going to interact with each other.
+
+6. Synchronous and Asynchronous communication.
+

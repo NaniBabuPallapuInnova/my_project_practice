@@ -11,6 +11,9 @@ import java.util.List;
 @Component
 public class ProductMappingImpl implements ProductMapping {
 
+    /**
+     * This method is used to convert the Single Product Entity into Single ProductDto.
+     */
     @Override
     public ProductDto toDto(Product product) {
         if (product == null) {
@@ -24,6 +27,11 @@ public class ProductMappingImpl implements ProductMapping {
         productDto.setPrice(product.getPrice());
         return productDto;
     }
+
+
+    /**
+     *  method is used to convert Single ProductDto into the Single Product Entity.
+     */
 
     @Override
     public Product toEntity(ProductDto productDto) {
@@ -40,6 +48,9 @@ public class ProductMappingImpl implements ProductMapping {
         return product;
     }
 
+    /**
+     *  This method is used to convert the List Of Product Entities into List Of ProductDtos.
+     */
     @Override
     public List<ProductDto> toDtoList(List<Product> productList) {
         if (productList == null) {
@@ -53,6 +64,9 @@ public class ProductMappingImpl implements ProductMapping {
         return productDtoList;
     }
 
+    /**
+     *  This method is used to convert List Of ProductDtos into the List Of Product Entities.
+     */
     @Override
     public List<Product> toEntityList(List<ProductDto> productDtoList) {
         if (productDtoList == null) {

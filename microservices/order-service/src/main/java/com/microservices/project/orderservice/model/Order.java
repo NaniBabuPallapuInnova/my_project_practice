@@ -15,6 +15,16 @@ public class Order {
     @Column(name = "order_number")
     private String orderNumber;
 
+    /**
+     * @OneToMany(mappedBy = "order", cascade = CascadeType.ALL): This annotation is used to define a one-to-many relationship between the current entity and the OrderLineItems entity.
+     * It signifies that one instance of the current entity can have multiple related instances of OrderLineItems.
+     *
+     * mappedBy = "order": This indicates that the relationship is managed by the "order" field in the OrderLineItems entity.
+     * In other words, the "order" field in the OrderLineItems entity is the owning side of the relationship, and it contains the foreign key reference to the current entity.
+     *
+     * cascade = CascadeType.ALL: This specifies that when an operation (such as persist, merge, remove, etc.) is performed on the current entity,
+     * the same operation should be cascaded (propagated) to the related OrderLineItems. The CascadeType.ALL option means that all cascade operations should be applied.
+     */
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderLineItems> orderLineItemsList;
 
