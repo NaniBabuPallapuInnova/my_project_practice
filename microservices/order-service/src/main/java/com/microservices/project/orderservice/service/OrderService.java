@@ -32,7 +32,7 @@ public class OrderService {
     @Autowired
     public OrderRepository orderRepository;
 
-    private final WebClient webClient;
+    private final WebClient.Builder webClientBuilder;
 
     /**
      * getting the orderDto object and convert the orderDto object into Order object and save it.
@@ -61,7 +61,13 @@ public class OrderService {
         // we are adding inventory-service stock url with port number and GetRequestUrl from InventoryController.
         //uriBuilder ,it will create queryParam like "http://localhost:8087/api/inventory/items-list-stock?itemName=Iphone13&&itemName=Iphone14&&itemName=Iphone15" etc. like this.
 
-        InventoryDto[] inventoryDtoArray = webClient.get().uri("http://localhost:8087/api/inventory/items-list-stock", uriBuilder -> uriBuilder.queryParam("itemName", listOfItemNames).build())
+//        InventoryDto[] inventoryDtoArray = webClient.get().uri("http://localhost:8087/api/inventory/items-list-stock", uriBuilder -> uriBuilder.queryParam("itemName", listOfItemNames).build())
+//                .retrieve()
+//                .bodyToMono(InventoryDto[].class) // This is from inventory-service response class(areItemsInStock() it returns InventoryDto Array as response)
+//                .block(); // to make synchronous request.
+
+        //inventory-service - it's application we have provided in application.properties in inventory-service - localhost:8087 instead of hardcoded value
+        InventoryDto[] inventoryDtoArray = webClientBuilder.build().get().uri("http://inventory-service/api/inventory/items-list-stock", uriBuilder -> uriBuilder.queryParam("itemName", listOfItemNames).build())
                 .retrieve()
                 .bodyToMono(InventoryDto[].class) // This is from inventory-service response class(areItemsInStock() it returns InventoryDto Array as response)
                 .block(); // to make synchronous request.

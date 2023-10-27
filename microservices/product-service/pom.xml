@@ -52,6 +52,13 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!-- Eureka Discovery Client-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+
         <!-- When you run integration tests, you want to ensure that your application interacts correctly with a real MySQL database, and TestContainers helps you create and manage a disposable MySQL container for this purpose.
 The container is automatically started before your tests run and stopped afterward, providing an isolated environment for your tests.
 -->
