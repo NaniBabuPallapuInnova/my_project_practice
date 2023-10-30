@@ -1,22 +1,21 @@
 package mypractice.com.practice;
 
 public class Check {
+    public static void main(String[] args) {
 
-    public static Boolean validateEmail(String email) {
-        Boolean isValidated = Boolean.FALSE;
-        if(!isValidated) {
-            if (email.matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$")) {
-                isValidated = Boolean.TRUE;
-            }
+        boolean checking = false;
+        String path = "D:\\spark-files\\order_177546\\supplier_po_243546\\art_detail_1\\H1177546_Patent Awards 2023 NarrowSlot opt4324-h.eps";
+        String pidOrPath = defaultString(path).trim();
+        if ((pidOrPath) != null) {
+            checking  = true;
         }
-        return isValidated;
+
+        System.out.println(checking);
     }
-
-        public static void main(String[] args) {
-                String mail = "a.mcclelland@hatzelandbuehler.com";
-
-               Boolean checking = validateEmail(mail);
-               System.out.println(checking);
-        }
-
+    public static String defaultString(String str) {
+        return defaultString(str, "");
+    }
+    public static String defaultString(String str, String defaultStr) {
+        return str == null ? defaultStr : str;
+    }
 }

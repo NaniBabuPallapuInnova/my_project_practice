@@ -214,7 +214,7 @@ BUILDING APPLICATION :
 
 
 Services We are going to build : 
---------------------------------
+---------------------------------------------
 1. Product Service : Create and View Products, acts as Product Catalog.
 
 2. Order Service : Can order products.
@@ -226,4 +226,27 @@ Services We are going to build :
 5. Order Service , Inventory Service and Notification Service are going to interact with each other.
 
 6. Synchronous and Asynchronous communication.
+
+
+
+
+1.After creating product-service, order-service and inventory-service, We use WebClient to make Synchronous request from Order-Service to the Inventory-Service, then Inventory-Service will respond with required data and WebClient will take that required data and give it to Order-Service.
+
+2. Discovery-Service is nothing but a server which will store all the information about services(Inventory-Service)) like service-name, IP address.
+
+3. When we are using the Discovery-Service , Our microservices will register in the Discovery-Service by making the request at the starting of the application.
+
+4. Whenever services(Inventory-Service) are making request , Discovery-Service will add the entries of the services into it's local copy. we call it registry, that's why we call it Service Registry.
+
+5. Once all the information about the services(Inventory-Service) is present in Discovery-Service, When our Order-Service wants to call the Inventory-Service, First Order-Service will call Discovery-Service by asking where I can find the Inventory-Service. Then Discovery-Service will respond with particular IP address to call Inventory-Service. Then Order-Service will call to Inventory-Service.
+
+6. In this way, we can avoid the hardcoding URL of the Inventory-Service by making use of Discovery-Service.
+
+7. When we are making initial call to the Discovery-Service, Discovery-Service will sends its registry as the the respnose to the client , the client will store the local copy of the registry in a separate location.
+
+8. In Some reasons, If the Discovery-Service is not available, first Discovery-Service will check the local copy because it already has information about Inventory-Service. It will call Inventory-Service IP address, If the first instance of the Inventory-Service is not available, it will check the next entry of Inventory-Service likewise it goes through all entries of its registry. If all the instances are down, Discovery-Service will fail by saying that Inventory-Service is not available.
+
+
+
+
 

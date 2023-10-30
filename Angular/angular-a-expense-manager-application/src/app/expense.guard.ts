@@ -49,7 +49,7 @@ checkLogin(url: string): true | UrlTree {
   } catch (error) {
     console.error(error);
     // Handle any errors here if needed.
-    return this.router.parseUrl('/login'); // Redirect to '/login' in case of an error.
+    return  this.router.parseUrl('/login'); // Redirect to '/login' in case of an error.
   }
 }
  

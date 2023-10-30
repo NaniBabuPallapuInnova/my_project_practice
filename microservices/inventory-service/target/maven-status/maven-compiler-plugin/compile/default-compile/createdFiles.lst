@@ -1,5 +1,0 @@
-com\microservices\project\inventoryservice\repository\InventoryRepository.class
-com\microservices\project\inventoryservice\service\InventoryService.class
-com\microservices\project\inventoryservice\InventoryServiceApplication.class
-com\microservices\project\inventoryservice\controller\InventoryController.class
-com\microservices\project\inventoryservice\model\Inventory.class

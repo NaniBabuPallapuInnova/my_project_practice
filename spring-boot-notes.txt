@@ -517,13 +517,13 @@ RequestBod for List<User>
 @RequestBody for Single User Object
 ====================================
 
-{
-        "firstName":"Divya",
-        "lastName":"Kommirisetti",
-        "loginName":"DKommirisetti",
-        "password":"Divya@2002",
-        "email":"divya2002@mail.com",
-        "phone":"9567892345"
+	{
+        "firstName":"NaniBabu",
+        "lastName":"Pallapu",
+        "loginName":"NPallapu",
+        "password":"Hyderabad@369",
+        "email":"nanipallapu369@mail.com",
+        "phone":"9392590089"
     }
 	
 	
