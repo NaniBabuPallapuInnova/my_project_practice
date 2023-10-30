@@ -929,6 +929,7 @@ Functional Interface
 	Lambda expressions are a powerful feature that simplifies code, especially when working with collections, event handling, and functional programming constructs. They allow you to define behavior directly where it's needed, reducing the need for writing separate classes or anonymous inner classes.
 
 
+
 Java Streams
 ==================
 

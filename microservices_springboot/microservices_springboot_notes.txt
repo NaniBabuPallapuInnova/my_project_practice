@@ -214,7 +214,7 @@ BUILDING APPLICATION :
 
 
 Services We are going to build : 
---------------------------------
+---------------------------------------------
 1. Product Service : Create and View Products, acts as Product Catalog.
 
 2. Order Service : Can order products.

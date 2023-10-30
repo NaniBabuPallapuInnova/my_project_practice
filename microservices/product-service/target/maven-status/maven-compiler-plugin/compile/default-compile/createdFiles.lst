@@ -1,9 +1,0 @@
-com\microservices\project\productservice\dto\ProductDto$ProductDtoBuilder.class
-com\microservices\project\productservice\repository\ProductRepository.class
-com\microservices\project\productservice\mappings\ProductMapping.class
-com\microservices\project\productservice\ProductServiceApplication.class
-com\microservices\project\productservice\controller\ProductController.class
-com\microservices\project\productservice\dto\ProductDto.class
-com\microservices\project\productservice\service\ProductService.class
-com\microservices\project\productservice\model\Product.class
-com\microservices\project\productservice\mappings\ProductMappingImpl.class
