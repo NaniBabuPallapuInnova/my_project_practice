@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(value = "/api")
 public class CustomerController {
     @Autowired
@@ -18,12 +17,12 @@ public class CustomerController {
 
 
     @PostMapping("/add-customer")
-    public @ResponseBody String saveCustomerType1(@RequestParam(name = "name", defaultValue = "Divya")String name, @RequestParam(name = "salary") double salary, @RequestParam String city,@RequestParam String state, @RequestParam String Phone){
+    public @ResponseBody String saveCustomerType1(){
         Customer customer = new Customer();
-        customer.setName(name);
-        customer.setCity(city);
-        customer.setState(state);
-        customer.setPhone(Phone);
+        customer.setName("Nani");
+        customer.setCity("Vijayawada");
+        customer.setState("Andhra Pradesh");
+        customer.setPhone("9392590089");
         customerService.saveCustomer(customer);
         return "SAVED";
     }

@@ -1,0 +1,18 @@
+<p>display-customer works!</p>
+
+<button type="button" (click)="showTable()">{{showTableFlag==true ? 'Close Table' : 'Show Table'}}</button>
+<table *ngIf="showTableFlag==true">
+    <tr>
+        <th>Name</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Phone Number</th>
+    </tr>
+
+    <tr *ngFor="let customer of fetchedCustomersList">
+        <td>{{customer.name}}</td>
+        <td>{{customer.city}}</td>
+        <td>{{customer.state}}</td>
+        <td>{{customer.phone}}</td>
+    </tr>
+</table>
