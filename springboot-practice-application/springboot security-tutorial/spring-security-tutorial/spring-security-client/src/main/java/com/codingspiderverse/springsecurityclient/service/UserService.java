@@ -125,6 +125,7 @@ public class UserService{
                 userRepository.save(user.get());
                 return true;
         }
+        log.info("Failed to change password for email : {}",email);
         return false;
     }
 }

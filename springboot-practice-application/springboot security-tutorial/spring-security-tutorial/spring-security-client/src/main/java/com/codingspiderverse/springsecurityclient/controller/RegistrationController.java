@@ -159,9 +159,10 @@ public class RegistrationController {
     public ResponseEntity<String> changePasswordForUser(@RequestParam("email") String email, @RequestParam("oldPassword") String oldPassword, @RequestParam("newPassword") String newPassword){
 
             if(!userService.checkOldPasswordMatchedOrNot(email, oldPassword ,newPassword)){
+                log.info("Failed to change password for email : {}",email);
                 return ResponseEntity.ok("Old password did not match");
             }
-
+        log.info(" New Password has been updated successfully  for email : {}",email);
         return ResponseEntity.ok("Password has been changed");
     }
 
