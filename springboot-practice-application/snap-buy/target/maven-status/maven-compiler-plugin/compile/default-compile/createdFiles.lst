@@ -1,0 +1,16 @@
+com\example\shopping\domain\Product.class
+com\example\shopping\controller\ProductController.class
+com\example\shopping\mappings\mappingImpl\CustomerMapperImpl.class
+com\example\shopping\service\ProductService.class
+com\example\shopping\mappings\ProductMapper.class
+com\example\shopping\mappings\mappingImpl\ProductMapperImpl.class
+com\example\shopping\repository\ProductRepository.class
+com\example\shopping\controller\CustomerController.class
+com\example\shopping\dto\ProductDTO.class
+com\example\shopping\repository\CustomerRepository.class
+com\example\shopping\dto\LocationDTO.class
+com\example\shopping\mappings\CustomerMapper.class
+com\example\shopping\dto\CustomerDTO.class
+com\example\shopping\SnapBuyApplication.class
+com\example\shopping\service\CustomerService.class
+com\example\shopping\domain\Customer.class

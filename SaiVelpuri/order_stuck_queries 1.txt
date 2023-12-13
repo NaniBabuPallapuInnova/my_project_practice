@@ -1,0 +1,216 @@
+declare @orderId as int;
+set @orderId=161570 ;
+select workflow_status,order_status,m_3_order_number,* from [order] where order_id=@orderId; 
+select workflow_status,m3_order_number,* from invoice_recipient where order_id=@orderId;
+select workflow_status,supplier_po_number,* from supplier_po where order_id=@orderId;
+select * from po_shipping oc where oc.order_id = @orderId--location_id,supplier_po_id,
+select * from order_workflow_queue where order_id = @orderId
+select cast(message_payload as varchar(max)),* from order_bod_xml where order_id = @orderId
+select * from supplier_po_product where order_id = @orderId
+select * from error_log where order_id =@orderId
+select * from order_Customer where order_id =@orderId
+select * from payment_card_request where order_id = @orderId
+select * from event_log where order_id=@orderid
+--select * from order_category order by 1 desc
+select * from po_product_config where order_id = @orderId
+select * from supplier_po_product where order_id = @orderId 
+select * from event_log where order_id=@orderid
+select * from po_product_extra_charges where order_id=@orderid
+select * from quote_product where quote_id=847
+select * from quote_prod_config where quote_id=847
+select * from po_product_extra_charges where order_id = @orderId
+select * from supplier_po_imprint where order_id =@orderId
+select * from event_log where order_id = 161331
+--select * from payment_card_request where order_id = @orderId
+select * from customer_location where customer_id = 47944
+select * from location where location_id in (50014,1007504)
+select * from [order] where spark_order = 'H1160406'
+
+
+
+
+
+select * from sales_person_info where sales_person_code = '4931A'
+select * from user_communication where sales_person_id = 657
+select * from [user] where user_id = 1392
+
+
+
+
+select * from order_payment where order_id=161478
+
+--delete order_bod_xml where order_bod_xml_id=15825
+--update supplier_po set workflow_status= 'ACCEPTED' where supplier_po_id=219041
+--update order_workflow_queue set status = 'PENDING' where order_workflow_queue_id=45995
+
+--update [order] set workflow_status = 'SALES_ORDER'  where order_id=161570
+--update order_workflow_queue set status = 'PENDING' where order_workflow_queue_id=47140
+
+select cast(message_payload as varchar(max)),
+* from ims_message_inbox where
+cast(message_payload as varchar(max)) like '%H1170939%' and
+created_date > '2023-02-20' 
+
+select * from po_shipping where order_id=161331
+select * from [order_freight] where order_id=161351
+select * from freight_charge_method
+select * from po_shipping where ship_to_type='Supplier' order by 1 desc
+select * from order_customer where order_id=161254
+select * from customer where customer_id=201836
+select * from supplier_po where supplier_po_number like 'H116133104'
+select * from po_product_config where supplier_po_id=219366
+select * from po_product_config where created_by='sync_api'
+select * from po_product_extra_charges where order_id=161331 and supplier_po_id=219366
+
+select * from order_freight where freight_charge_method='3RD'
+select * from po_shipping where order_id=161351
+select * from product where product_number=304556
+select * from quote_product where quote_id=898
+select * from supplier_po_product where product_number='304556'
+select * from [order] where order_id in (160201,161435)
+select * from quote where quote_id in (751,898)
+
+select cast(message_payload as varchar(max)),
+* from ims_message_inbox where
+created_date > '2022-03-02'  and  inbox_id=9329171 like '%1030029%'
+
+select * from [order] where order_id=150442
+select * from supplier_po where order_id=150442
+select * from po_product_config where order_id=150442
+select * from supplier_po_product where order_id=150442
+select * from product_category
+select * from supplier_po_product where product_category_id=2 order by 1 desc
+select * from po_product_config where sup_po_prod_id in (428699,428698,428697,428695,428694,428692)
+select * from po_product_config where order_id=161478
+select * from [order] where order_id=161478
+select * from supplier_po where order_id=161478
+select * from po_product_config where order_id=161478
+select * from supplier_po_product where order_id=161478
+select * from po_shipping where order_id=161478
+
+select top 100 * from supplier_po where is_decorator_po=1 and workflow_status='OPEN' order by 1 desc
+select top 100 * from [order] where order_status='open' order by 1 desc
+select * from order_payment where order_id in (select top 100 order_id from [order] where order_status='open' order by 1 desc
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+declare @orderId as int;
+set @orderId=001014    --161824--161820;--161704;
+select work_flow_status,order_status,m_3_order_number,* from [sample_order] where order_id=@orderId; 
+select workflow_status,m3_order_number,* from so_invoice_recipient where order_id=@orderId;
+select work_flow_status,supplier_po_number,* from sample_order_supplier_po where order_id=@orderId;
+select * from order_freight where order_id=@orderId
+select * from po_shipping where order_id=@orderId
+select * from po_product_config where order_id = @orderId
+select * from order_workflow_queue where order_id = @orderId
+select cast(message_payload as varchar(max)),* from order_bod_xml where order_id = @orderId
+select * from supplier_po_product where order_id = @orderId
+--select * from error_log where order_id =@orderId
+select * from sample_order_Customer where order_id =@orderId
+select * from payment_card_request where order_id = @orderId
+select * from order_holds where order_id=@orderId
+select * from event_log where order_id=@orderid
+--select * from order_category order by 1 desc
+
+select * from po_product_extra_charges where order_id=@orderid
+select * from supplier_po_imprint where order_id =@orderId
+--select * from payment_card_request where order_id = @orderId
+select * from customer where customer_id = 197854
+select * from location where location_id in (50014,1007504)
+select * from customer where customer_code=''
+--delete order_bod_xml where order_bod_xml_id=15825
+--update supplier_po set workflow_status= 'ACCEPTED' where supplier_po_id=219041
+--update order_workflow_queue set status = 'PENDING' where order_workflow_queue_id=45995
+
+--update [order] set workflow_status = 'SALES_ORDER'  where order_id=162053 
+--update order_workflow_queue set status = 'PENDING' where order_workflow_queue_id=50218
+
+select status,cast(message_payload as varchar(max)) ,
+* from ims_message_inbox where inbox_id=9556425 created_date > '2022-03-20'  and 
+cast(message_payload as varchar(max)) like '%S6001014%';
+
+select status,cast(message_payload as varchar(max)),
+* from ims_message_inbox where  created_date > '2022-03-20'  and 
+cast(message_payload as varchar(max)) like '%S6001014%';
+--9556425, 9556432
+select * from order_payment where order_id in (select top 100 order_id from [order] where order_status='open' order by 1 desc)
+
+--update ims_message_inbox set status ='PENDING' where inbox_id = 955642
+--update ims_message_outbox set status ='PENDING' where inbox_id = 9361170
+
+
+select * from mail_tracker where created_date>'2022-03-08' and created_date<'2022-03-09' order by 1 desc
+select * from customer where company_name like '%Texas Vista Medical Center%' order by modified_date desc
+
+select * from ims_message_inbox ;
+select status,count(inbox_id) from ims_message_inbox where created_date>'2022-03-10' and bod_type like '%%' group by status
+
+/*INSERT INTO po_shipping (
+created_by
+,modified_by
+,created_date
+,modified_date
+,request_delivery_date
+,request_ship_date
+,ship_to_type
+,contact_info_id
+,customer_id
+,location_id
+,order_id
+,supplier_po_id
+)
+VALUES (
+'SYSTEM'
+,'SYSTEM'
+,getDate()
+,getDAte()
+,'2022-03-11'
+,'2022-03-09'
+,'Multiple Locations'
+,1388341
+,197782
+,1026265
+,161344
+,219424
+)*/
+--update ims_message_inbox set status ='PENDING' where inbox_id = 9556425 */
+
+--update [order] set workflow_status = 'SALES_ORDER'  where order_id=161898 
+--update order_workflow_queue set status = 'PENDING' where order_workflow_queue_id=49160
+
+--update order_freight set freight_charge_method='PUB' where order_freight_id =160655;
+
+--update ims_message_inbox set message_payload=cast(replace(cast(message_payload as varchar(max)),'<NameValue name="A930">1025984|MULTI</NameValue>',
+--'<NameValue name="A930">|MULTI</NameValue>') as varbinary(max)) where inbox_id=9556425
+
+Rakiyah Ã¢â‚¬Å“RockyÃ¢â‚¬? Talavedra
+
+
+check [order] table copied from if it is converted from quote then check po_product_config. 
+
+<--- Convert quote to order and delelte product number if it has null and stuck po_ack_2 -- suplier Po
+select workflow_status,order_status,m_3_order_number,* from [order] where order_id=@orderId; 
+
+select * from po_product_config where order_id = @orderId --->
+if we 

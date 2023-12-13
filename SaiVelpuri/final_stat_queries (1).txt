@@ -1,0 +1,171 @@
+DECLARE @diff INT = - 1;			--Monday -3
+
+SELECT cast(DATEadd(DAY, @diff, getdate()) AS DATE) AS prev_date
+	,cast(dateadd(day, @diff + 1, getdate()) AS DATE) AS next_date;
+
+SELECT '< ' + convert(VARCHAR(5), elapsed) AS elapsed_in_minutes
+	,orders
+	,sum(orders) OVER (
+		ORDER BY elapsed ROWS BETWEEN UNBOUNDED PRECEDING
+				AND CURRENT ROW
+		) AS cumilative
+	,cast((
+		sum(orders) OVER (
+			ORDER BY elapsed ROWS BETWEEN UNBOUNDED PRECEDING
+					AND CURRENT ROW
+			)
+		) * 100 / total_count as float)/100 AS Percentage
+FROM (
+	SELECT time_taken AS elapsed
+		,count(order_id) AS orders
+		,total_count
+	FROM (
+		SELECT CASE 
+				WHEN (cast({fn TIMESTAMPDIFF(SQL_TSI_second, approved_date, entered_at) } / 30 AS FLOAT) / 2) > 10
+					THEN 11
+				ELSE cast({fn TIMESTAMPDIFF(SQL_TSI_second, approved_date, entered_at) } / 30 AS FLOAT) / 2
+				END AS time_taken
+			,order_id
+			,count(*) OVER (PARTITION BY order_standing) AS total_count
+		FROM [order]
+		WHERE approved_date > cast(DATEadd(DAY, @diff, getdate()) AS DATE)
+			AND approved_date < cast(dateadd(day, @diff + 1, getdate()) AS DATE)
+			AND order_status IN (
+				'ENTERED'
+				,'INVOICED'
+				,'DELIVERED'
+				,'SHIPPED'
+				)
+			AND approved_date IS NOT NULL
+			AND entered_at IS NOT NULL
+		) AS TEMP
+	GROUP BY time_taken
+		,total_count
+	) AS Temp2;
+
+SELECT cast(DATEADD(hour, DATEPART(hour, approved_date), cast(CAST(approved_date AS DATE) AS DATETIME)) AS TIME) AS hour
+	,COUNT(DISTINCT order_id) AS orders
+	,RIGHT('0' + CONVERT(VARCHAR(2), cast(sum(exact_time_taken) / (COUNT(DISTINCT order_id)) AS INT) / 60 / 60), 2) + ':' + RIGHT('0' + CONVERT(VARCHAR(2), cast(sum(exact_time_taken) / (COUNT(DISTINCT order_id)) AS INT) / 60 % 60), 2) + ':' + RIGHT('0' + CONVERT(VARCHAR(2), cast(sum(exact_time_taken) / (COUNT(DISTINCT order_id)) AS INT) % 60), 2) + '' AS average
+	,RIGHT('0' + CONVERT(VARCHAR(2), cast(max(exact_time_taken) AS INT) / 60 / 60), 2) + ':' + RIGHT('0' + CONVERT(VARCHAR(2), cast(max(exact_time_taken) AS INT) / 60 % 60), 2) + ':' + RIGHT('0' + CONVERT(VARCHAR(2), cast(max(exact_time_taken) AS INT) % 60), 2) + '' AS slowest
+	,CONVERT(VARCHAR(3), sum(CASE 
+				WHEN (time_taken < 4)
+					THEN 1
+				ELSE 0
+				END) * 100 / (COUNT(DISTINCT order_id))) + '%' AS pctunder4
+	,CONVERT(VARCHAR(3), sum(CASE 
+				WHEN (time_taken < 3)
+					THEN 1
+				ELSE 0
+				END) * 100 / (COUNT(DISTINCT order_id))) + '%' AS pctunder3
+FROM (
+	SELECT CASE 
+			WHEN (cast({fn TIMESTAMPDIFF(SQL_TSI_second, approved_date, entered_at) } / 30 AS FLOAT) / 2) > 10
+				THEN 11
+			ELSE cast({fn TIMESTAMPDIFF(SQL_TSI_second, approved_date, entered_at) } / 30 AS FLOAT) / 2
+			END AS time_taken
+		,cast({fn TIMESTAMPDIFF(SQL_TSI_second, approved_date, entered_at) } AS FLOAT) AS exact_time_taken
+		,*
+	FROM [order]
+	) AS t
+WHERE approved_date > cast(DATEadd(DAY, @diff, getdate()) AS DATE)
+	AND approved_date < cast(dateadd(day, @diff + 1, getdate()) AS DATE)
+	AND order_status IN (
+		'ENTERED'
+		,'INVOICED'
+		,'DELIVERED'
+		,'SHIPPED'
+		)
+GROUP BY CAST(approved_date AS DATE)
+	,DATEADD(hour, DATEPART(hour, approved_date), cast(CAST(approved_date AS DATE) AS DATETIME))
+ORDER BY 1;
+
+SELECT count(DISTINCT order_id) AS total_orders
+	,RIGHT('0' + CONVERT(VARCHAR(5), cast(sum(exact_time_taken) / (COUNT(DISTINCT order_id)) AS INT) / 60 / 60), 2) + ':' + RIGHT('0' + CONVERT(VARCHAR(5), cast(sum(exact_time_taken) / (COUNT(DISTINCT order_id)) AS INT) / 60 % 60), 2) + ':' + RIGHT('0' + CONVERT(VARCHAR(2), cast(sum(exact_time_taken) / (COUNT(DISTINCT order_id)) AS INT) % 60), 2) + '' AS average
+	,RIGHT('0' + CONVERT(VARCHAR(5), cast(max(exact_time_taken) AS INT) / 60 / 60), 2) + ':' + CONVERT(VARCHAR(5), cast(max(exact_time_taken) AS INT) / 60 % 60) + ':' + CONVERT(VARCHAR(2), cast(max(exact_time_taken) AS INT) % 60) + '' AS slowest
+	,CONVERT(VARCHAR(3), sum(CASE 
+				WHEN (time_taken <= 4)
+					THEN 1
+				ELSE 0
+				END) * 100 / (COUNT(DISTINCT order_id))) + '%' AS pctunder4
+	,CONVERT(VARCHAR(3), sum(CASE 
+				WHEN (time_taken <= 3)
+					THEN 1
+				ELSE 0
+				END) * 100 / (COUNT(DISTINCT order_id))) + '%' AS pctunder3
+FROM (
+	SELECT CASE 
+			WHEN (cast({fn TIMESTAMPDIFF(SQL_TSI_second, approved_date, entered_at) } / 30 AS FLOAT) / 2) > 10
+				THEN 11
+			ELSE cast({fn TIMESTAMPDIFF(SQL_TSI_second, approved_date, entered_at) } / 30 AS FLOAT) / 2
+			END AS time_taken
+		,cast({fn TIMESTAMPDIFF(SQL_TSI_second, approved_date, entered_at) } AS FLOAT) AS exact_time_taken
+		,*
+	FROM [order]
+	) AS t
+WHERE approved_date > cast(DATEadd(DAY, @diff, getdate()) AS DATE)
+	AND approved_date < cast(dateadd(day, @diff + 1, getdate()) AS DATE)
+	AND order_status IN (
+		'ENTERED'
+		,'INVOICED'
+		,'DELIVERED'
+		,'SHIPPED'
+		)
+GROUP BY CAST(approved_date AS DATE);
+
+SELECT sum(td.diff) / Cast(count(td.diff) AS FLOAT) AS average_in_minutes --,sum(td.diff) as total_minutes
+	,count(td.diff) AS orders
+	,max(td.diff) AS slowest
+	,sum(CASE 
+			WHEN td.diff <= 3
+				THEN 1
+			ELSE 0
+			END) AS 'orders<3minutes'
+	,cast(sum(CASE 
+				WHEN td.diff <= 3
+					THEN 1
+				ELSE 0
+				END) AS FLOAT)/ count(td.diff) AS percentile
+FROM (
+	SELECT so.order_id
+		,(
+			SELECT TOP (1) created_date
+			FROM order_bod_xml obx
+			WHERE obx.order_id = so.order_id
+				AND obx.order_type = 'sample'
+			ORDER BY obx.created_Date ASC
+			) AS approved_Date
+		,entered_At
+		,{fn TIMESTAMPDIFF(SQL_TSI_MINUTE, (
+				SELECT TOP (1) created_date
+				FROM order_bod_xml obx
+				WHERE obx.order_id = so.order_id
+					AND obx.order_type = 'sample'
+				ORDER BY obx.created_Date ASC
+				), entered_at) } AS diff
+	FROM sample_order so
+	WHERE so.modified_by <> 'DataMigration'
+		AND (
+			SELECT TOP (1) created_date
+			FROM order_bod_xml obx
+			WHERE obx.order_id = so.order_id
+				AND obx.order_type = 'sample'
+			ORDER BY obx.created_Date ASC
+			) > cast(DATEadd(DAY, @diff, getdate()) AS DATE)
+		AND (
+			SELECT TOP (1) created_date
+			FROM order_bod_xml obx
+			WHERE obx.order_id = so.order_id
+				AND obx.order_type = 'sample'
+			ORDER BY obx.created_Date ASC
+			) < cast(dateadd(day, @diff + 1, getdate()) AS DATE)
+		AND so.order_status IN (
+			'ENTERED'
+			,'INVOICED'
+			,'DELIVERED'
+			,'SHIPPED'
+			)
+		AND so.approved_date IS NOT NULL
+		AND so.entered_at IS NOT NULL
+	) AS td
+WHERE td.diff < 10
+	AND td.diff > 0;
