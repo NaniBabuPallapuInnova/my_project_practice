@@ -1,0 +1,33 @@
+form{
+    // border: 1px solid black;
+    text-align: left;
+    margin-left: 35%;
+    margin-right: 10%;
+    margin-top: 2%;
+    letter-spacing: 1px;
+}
+
+input{
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+
+}
+
+label{
+    font-weight:500;
+}
+
+.form-group{
+    padding-top: 3%;
+}
+
+button{
+    padding: 5px 30px;
+    text-align: center;
+    margin-left: 15%;
+}
+
+h3{
+    margin-left: 25px;
+    text-transform:capitalize;
+    color: green;
+}
