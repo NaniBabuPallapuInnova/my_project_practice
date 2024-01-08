@@ -1,0 +1,41 @@
+
+
+
+.table{
+    
+    margin-left: 4%;
+    height: 90%;
+    width: 90%;
+    border: 2px solid black;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.table tr:hover {
+    background-color: rgb(135, 212, 189);
+    color: black;
+}
+
+.table thead tr{
+    text-align: center;
+}
+
+.table tbody tr{
+    text-align: center;
+}
+
+button{
+    margin: 10px;
+    letter-spacing: 1px;
+}
+
+.btn-primary{
+    padding: 5px 25px;
+    margin-left: 86.8%;
+}
+
+
+button:hover{
+    border: 2px solid rgb(45, 45, 187);
+    border-radius: 4px;
+    box-shadow: 0px 0px 10px rgba(159, 121, 237, 0.2);
+}

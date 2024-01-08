@@ -1,12 +1,17 @@
 package mypractice.com.practice;
 
-import java.util.Calendar;
-import java.util.Date;
+
 
 public class Check {
 
-
     public static void main(String[] args) {
-        Check check = new Check();
+        String s1 = "Nani";
+        String s2 = "Nani";
+
+        if(s1.equals(s2)){
+            System.out.println("True");
+        } else {
+            System.out.println("False");
+        }
     }
 }

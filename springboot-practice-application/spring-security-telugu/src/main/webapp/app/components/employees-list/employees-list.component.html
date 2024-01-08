@@ -1,0 +1,33 @@
+<h3>Employees Management</h3>
+
+
+
+<button class="btn btn-primary" routerLink="/create" routerLinkActive="active" type="button">CREATE</button>
+
+
+<table class="table table-bordered table-hover table-striped ">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">EmployeeId</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Salary</th>
+            <th scope="col">DOJ</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let employee of employeesListData">
+            <th scope="row">{{employee.empId}}</th>
+            <td>{{employee.name}}</td>
+            <td>{{employee.email}}</td>
+            <td>{{employee.phone}}</td>
+            <td>{{employee.salary}}</td>
+            <td>{{employee.dateOfJoining}}</td>
+            <button class="btn btn-success" routerLink="show/{{employee.id}}" type="button">VIEW</button>
+            <button class="btn btn-success" routerLink="update/{{employee.id}}" type="button">UPDATE</button>
+            <button class="btn btn-danger" (click)="deleteEmployeeById(employee.id)"  type="button">DELETE</button>
+        </tr>
+    </tbody>
+</table>
