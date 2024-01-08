@@ -33,5 +33,7 @@ export class EmployeeDetailsComponent implements OnInit {
       this.employeeDetails = data;
       console.log("Employee Detaiols : ", this.employeeDetails);
     });
+
+    window.location.reload();
   }
 }

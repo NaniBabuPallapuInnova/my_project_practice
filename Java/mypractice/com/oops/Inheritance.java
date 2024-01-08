@@ -12,12 +12,13 @@ package mypractice.com.oops;
  * Single Inheritance : When a class inherits another class, it is known as a single inheritance.
  */
 class Animal {
-    public void eat(){
+    public void eat() {
         System.out.println("---- Animal is Eating -----");
     }
 }
+
 class Dog extends Animal {
-    public void bark(){
+    public void bark() {
         System.out.println("--- This dog is barking ----");
     }
 }
@@ -25,27 +26,31 @@ class Dog extends Animal {
 /**
  * Multi-level Inheritance : When there is a chain of inheritance, it is known as multilevel inheritance.
  */
-class Father{
+class Father {
     int fatherPropertyCost = 10000;
     int total = 0;
-    public void fatherPropertyCalculate(){
+
+    public void fatherPropertyCalculate() {
         total = fatherPropertyCost;
-        System.out.println("--- Father has "+total+" property ----");
+        System.out.println("--- Father has " + total + " property ----");
     }
 }
-class Son extends Father{
+
+class Son extends Father {
     int sonPropertyCost = 200000;
-    public void sonPropertyCalculation(){
-         total = total+sonPropertyCost;
-         System.out.println("---- Son has "+total+" Property ----");
+
+    public void sonPropertyCalculation() {
+        total = total + sonPropertyCost;
+        System.out.println("---- Son has " + total + " Property ----");
     }
 }
-class GrandSon extends Son{
+
+class GrandSon extends Son {
     int grandSonPropertyCost = 500000;
 
-    public void grandSonPropertyCalculation(){
-        total = total+grandSonPropertyCost;
-        System.out.println("---- GrandSon has "+total+" property ----");
+    public void grandSonPropertyCalculation() {
+        total = total + grandSonPropertyCost;
+        System.out.println("---- GrandSon has " + total + " property ----");
     }
 }
 
@@ -53,35 +58,44 @@ class GrandSon extends Son{
 /**
  * Hierarchical Inheritance : When two or more classes inherits a single class, it is known as hierarchical inheritance.
  */
-class Vehicle{
-    public void run(){
+class Vehicle {
+    public void run() {
         System.out.println("Vehicle is running");
     }
 }
-class Car extends Vehicle{
-    public void run(){
+
+class Car extends Vehicle {
+    public void run() {
         System.out.println("Car is running");
     }
-    public void carDrive(){
+
+    public void carDrive() {
         System.out.println("Driving the car");
     }
 }
-class Bike extends Vehicle{
-    public void run(){
+
+class Bike extends Vehicle {
+    public void run() {
         System.out.println("Bike is running");
     }
-    public void bikeDrive(){
+
+    public void bikeDrive() {
         System.out.println("Driving the bike");
     }
 }
+
 public class Inheritance {
     public static void main(String[] args) {
         // Single Inheritance
         Dog dog = new Dog();
         dog.eat();
-        dog.bark();
+        try {
+            dog.bark();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
-        System.out.println("\n"+"\n"); // print 2 empty lines
+        System.out.println("\n" + "\n"); // print 2 empty lines
 
         // Multi-Level Inheritance
         GrandSon grandSon = new GrandSon();

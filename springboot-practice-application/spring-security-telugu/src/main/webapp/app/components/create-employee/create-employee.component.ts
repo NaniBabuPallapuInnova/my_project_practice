@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Employee } from '../../interfaces/employee';
 import { EmployeeService } from '../../services/employee.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-create-employee',
@@ -15,9 +16,8 @@ export class CreateEmployeeComponent implements OnInit{
   fetchedId : number = 0;
 
   employeeFormGroup! : FormGroup;
-  location: any;
 
-  constructor(private formBuilder :FormBuilder, private employeeService : EmployeeService, private router : Router, private activatedRoute : ActivatedRoute){
+  constructor(private formBuilder :FormBuilder, private employeeService : EmployeeService, private router : Router, private activatedRoute : ActivatedRoute, private location : Location){
 
   }
   ngOnInit(){
@@ -36,12 +36,15 @@ export class CreateEmployeeComponent implements OnInit{
 
     this.activatedRoute.params.subscribe(param => {
       let id = Number(param['id']);
-      this.fetchedId = id;
-      console.log('print id : '+id)
+      this.fetchedId = Number.isNaN(id) ? 0 : id;
+      console.log('print id : '+this.fetchedId)
 
     })
 
-    this.fetchAndInitializeValuesForUpdating(this.fetchedId);
+    if(this.fetchedId !== null && this.fetchedId !== 0){
+      this.fetchAndInitializeValuesForUpdating(this.fetchedId);
+
+    }
 
   }
 
@@ -61,7 +64,7 @@ export class CreateEmployeeComponent implements OnInit{
     }
 
 
-    this.employeeService.redirectTo('/');
+    this.location.back();
   }
 
 

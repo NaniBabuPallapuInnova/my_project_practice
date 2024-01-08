@@ -1,5 +1,8 @@
 <form [formGroup]="employeeFormGroup">
-    <h3>Create New Employee</h3>
+    <h3  *ngIf="fetchedId === 0; else modify">Create New Employee</h3>
+    <ng-template #modify>
+        <h3>Update Employee Details</h3>
+    </ng-template>
     <div class="form-group row mb-3">
         <label class="col-form-label col-sm-2" for="name">Full Name : </label>
         <input type="text" class="form-control col-sm-3" id="name" placeholder="enter your name" formControlName="name_">
@@ -22,10 +25,10 @@
         <input type="date" id="doj" class="form-control col-sm-3" placeholder="select date of joining" formControlName="doj_">
     </div>
 
-    <button    type="button" class="btn btn-primary" [disabled]="!employeeFormGroup.valid" (click)="registerEmployee()" data-toggle="button" aria-pressed="false" autocomplete="off">REGISTER</button>
-    <!-- <ng-template #updating>
+    <button *ngIf="fetchedId == 0; else updating"   type="button" class="btn btn-primary" [disabled]="!employeeFormGroup.valid" (click)="registerEmployee()" data-toggle="button" aria-pressed="false" autocomplete="off">REGISTER</button>
+    <ng-template #updating>
         <button type="button" class="btn btn-primary" [disabled]="!employeeFormGroup.valid" (click)="registerEmployee()" data-toggle="button" aria-pressed="false" autocomplete="off">UPDATE</button>
-    </ng-template> -->
+    </ng-template>
 
 
 </form>
