@@ -1,10 +1,14 @@
 package mypractice.com.programs_practice.strings_programs;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CheckVowelsAndConsonantsInString {
     public static void main(String[] args) {
         String text = "java t point";
         int countVowels = 0;
         int countConsonants = 0;
+
 
         char[] vowelChars = new char[text.length()];
         char[] consonantChars = new char[text.length()];

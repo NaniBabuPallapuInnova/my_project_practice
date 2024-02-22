@@ -60,6 +60,7 @@ public class DecisionMakingStatements {
             case 'I'|'i':
             case 'O'|'o':
             case 'U'|'u':
+
                 System.out.println(ch+" : "+VOWEL);
                 break;
             default:

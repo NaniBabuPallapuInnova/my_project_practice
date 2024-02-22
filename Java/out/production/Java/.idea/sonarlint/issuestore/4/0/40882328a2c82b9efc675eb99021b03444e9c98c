@@ -1,0 +1,25 @@
+
+G	java:S106"+Replace this use of System.out by a logger.(‚¨Ö§8Ÿ“ÃìÎ1
+Y
+java:S1854"<Remove this useless assignment to local variable "original".(Æú²ç8Ÿ“ÃìÎ1
+J
+java:S1481"-Remove this unused "original" local variable.(Æú²ç8Ÿ“ÃìÎ1
+F	java:S106"+Replace this use of System.out by a logger.(¦ğøR8Ÿ“ÃìÎ1
+L	java:S106"+Replace this use of System.out by a logger.(Å‹ôÜúÿÿÿÿ8Ÿ“ÃìÎ1
+G	java:S106."+Replace this use of System.out by a logger.(Ù©È±8Ÿ“ÃìÎ1
+L	java:S106="+Replace this use of System.out by a logger.(ªÆ´ıÿÿÿÿ8Ÿ“ÃìÎ1
+L	java:S106G"+Replace this use of System.out by a logger.(…»Ã‹üÿÿÿÿ8Ÿ“ÃìÎ1
+L	java:S106I"+Replace this use of System.out by a logger.(È¦ÆÁøÿÿÿÿ8Ÿ“ÃìÎ1
+L	java:S106K"+Replace this use of System.out by a logger.(ä®¾Çùÿÿÿÿ8Ÿ“ÃìÎ1
+O
+java:S1481T"-Remove this unused "reminder" local variable.(ê¡–šøÿÿÿÿ8Ÿ“ÃìÎ1
+G	java:S106U"+Replace this use of System.out by a logger.(ë¢8Ÿ“ÃìÎ1
+L	java:S106Z"+Replace this use of System.out by a logger.(š›­ÿÿÿÿÿ8Ÿ“ÃìÎ1
+L	java:S106k"+Replace this use of System.out by a logger.(€°…üÿÿÿÿ8Ÿ“ÃìÎ1
+L	java:S106m"+Replace this use of System.out by a logger.(ğ©²ôøÿÿÿÿ8Ÿ“ÃìÎ1
+G	java:S106o"+Replace this use of System.out by a logger.(æì‹º8Ÿ“ÃìÎ1
+L	java:S106v"+Replace this use of System.out by a logger.(ƒÇãˆúÿÿÿÿ8Ÿ“ÃìÎ1
+L	java:S106x"+Replace this use of System.out by a logger.(ƒÇãˆúÿÿÿÿ8Ÿ“ÃìÎ1
+L	java:S106z"+Replace this use of System.out by a logger.(ƒÇãˆúÿÿÿÿ8Ÿ“ÃìÎ1
+L	java:S106|"+Replace this use of System.out by a logger.(ƒÇãˆúÿÿÿÿ8Ÿ“ÃìÎ1
+L	java:S106~"+Replace this use of System.out by a logger.(ƒÇãˆúÿÿÿÿ8¦ôÃìÎ1

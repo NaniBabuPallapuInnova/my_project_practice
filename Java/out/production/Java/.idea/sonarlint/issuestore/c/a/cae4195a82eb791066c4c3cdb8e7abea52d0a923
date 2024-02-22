@@ -1,0 +1,9 @@
+
+^
+java:S2094"BRemove this empty class, write its code or make it an "interface".(ıÕ¶T8Òò„¯Ô1
+W
+java:S1854":Remove this useless assignment to local variable "array1".(»ÖÕ€8€Ÿ™¯Ô1
+H
+java:S1481"+Remove this unused "array1" local variable.(»ÖÕ€8€Ÿ™¯Ô1
+C
+java:S1128"&Remove this unused import 'java.util'.(Î€ŒÙ8ñğ¯Ô1

@@ -1,0 +1,12 @@
+<div class="form-group row mb-3">
+    <input type="text" (click)="searchEmployees()" id="search" [(ngModel)]="searchKeyword" class="form-control col-sm-4"
+        placeholder="enter keyword to search employees">
+    <button type="button" (click)="searchEmployees()" class="col-form-label col-sm-1 btn btn-success" for="search">SEARCH</button>
+</div>
+
+
+<div *ngIf="searchedEmployees  && searchedEmployees.length > 0">
+    <div *ngFor="let searchedEmp of searchedEmployees">
+        <app-search-result-employee [inputData]="searchedEmp"></app-search-result-employee>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EmployeeService } from '../../services/employee.service';
 import { Employee } from '../../interfaces/employee';
@@ -12,7 +12,7 @@ export class EmployeeDetailsComponent implements OnInit {
 
   fetchedId :number = 0;
 
-  employeeDetails : Employee = {} as Employee;
+  @Input() employeeDetails : Employee = {} as Employee;
 
   constructor(private activatedRoute : ActivatedRoute, private employeeService : EmployeeService){
 
@@ -33,7 +33,5 @@ export class EmployeeDetailsComponent implements OnInit {
       this.employeeDetails = data;
       console.log("Employee Detaiols : ", this.employeeDetails);
     });
-
-    window.location.reload();
   }
 }

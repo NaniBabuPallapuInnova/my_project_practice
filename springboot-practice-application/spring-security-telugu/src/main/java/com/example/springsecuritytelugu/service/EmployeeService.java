@@ -8,6 +8,9 @@ import com.example.springsecuritytelugu.repository.EmployeeRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -24,14 +27,14 @@ public class EmployeeService {
   @Autowired
   EmployeeMapper employeeMapper;
 
-  public List<EmployeeDTO> getAllEmployees() {
-    List<Employee> employeeList = employeeRepository.findAll();
+  public Page<EmployeeDTO> getAllEmployees(Pageable pageable) {
+    Page<Employee> employeePage = employeeRepository.findAll(pageable);
 
     List<EmployeeDTO> employeeDTOS = new ArrayList<>();
 
-    employeeList.forEach(employee -> employeeDTOS.add(employeeMapper.toDTO(employee)));
+    employeePage.getContent().forEach(employee -> employeeDTOS.add(employeeMapper.toDTO(employee)));
 
-    return employeeDTOS;
+    return new PageImpl<>(employeeDTOS, pageable, employeePage.getTotalElements());
   }
 
   public void saveEmployee(EmployeeDTO employeeDTO) {
@@ -72,5 +75,14 @@ public class EmployeeService {
 
   public void deleteEmployeeById(Long id) {
     employeeRepository.deleteById(id);
+  }
+
+  public List<EmployeeDTO> searchEmployeeByEmployeeIdOrName(String keyword) {
+    List<Employee> employeeList = employeeRepository.findByNameContainingIgnoreCaseOrEmpIdContainingIgnoreCase(keyword, keyword);
+
+    List<EmployeeDTO> employeeDTOS = new ArrayList<>();
+
+    employeeList.forEach(employee -> employeeDTOS.add(employeeMapper.toDTO(employee)));
+    return employeeDTOS;
   }
 }

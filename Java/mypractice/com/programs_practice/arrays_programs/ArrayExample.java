@@ -2,6 +2,8 @@ package mypractice.com.programs_practice.arrays_programs;
 
 public class ArrayExample {
     public static void main(String[] args) {
+
+        // creating an array and initialize with values - way 1
         int[] intArray = new int[5];
         intArray[0] = 3;
         intArray[1] = 4;
@@ -9,7 +11,9 @@ public class ArrayExample {
         intArray[3] = 7;
         intArray[4] = 8;
 
+        // creating an array and initialize with values - way 2
         int[] intArray2 = {14, 15, 16, 17, 18};
+
         for (int i : intArray) {
             System.out.println(i);
         }

@@ -1,0 +1,8 @@
+
+7
+java:S1643"Use a StringBuilder instead.(Óûãùÿÿÿÿÿ
+?	java:S106"+Replace this use of System.out by a logger.(Å³àz
+E	java:S106"+Replace this use of System.out by a logger.(‰”ùÕúÿÿÿÿ
+V	java:S125"<This block of commented-out lines of code should be removed.(åĞãìúÿÿÿÿ
+@	java:S106""+Replace this use of System.out by a logger.(Àíç¯
+@	java:S106$"+Replace this use of System.out by a logger.(óæ²

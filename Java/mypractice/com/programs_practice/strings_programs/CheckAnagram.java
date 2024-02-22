@@ -25,6 +25,7 @@ public class CheckAnagram {
             Arrays.sort(chars1);
             Arrays.sort(chars2);
 
+
             if (Arrays.equals(chars1, chars2)) {
                 System.out.println("Both String Are Anagram");
             } else {

@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { EmployeesListComponent } from './components/employees-list/employees-list.component';
 import { CreateEmployeeComponent } from './components/create-employee/create-employee.component';
 import { EmployeeDetailsComponent } from './components/employee-details/employee-details.component';
+import { SearchResultEmployeeComponent } from './components/search-employees/search-result-employee/search-result-employee.component';
+import { SearchEmployeesComponent } from './components/search-employees/search-employees.component';
 
 const routes: Routes = [
   {
@@ -16,6 +18,10 @@ const routes: Routes = [
   },
   {
     path: 'update/:id', component : CreateEmployeeComponent
+  }
+  ,
+  {
+    path: 'search', component : SearchEmployeesComponent
   }
 ];
 

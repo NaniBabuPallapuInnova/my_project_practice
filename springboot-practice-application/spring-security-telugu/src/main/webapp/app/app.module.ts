@@ -7,20 +7,28 @@ import { EmployeesListComponent } from './components/employees-list/employees-li
 import { EmployeeDetailsComponent } from './components/employee-details/employee-details.component';
 import { CreateEmployeeComponent } from './components/create-employee/create-employee.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule} from '@angular/common/http'
+import { HttpClientModule} from '@angular/common/http';
+import { SearchEmployeesComponent } from './components/search-employees/search-employees.component';
+import { SearchResultEmployeeComponent } from './components/search-employees/search-result-employee/search-result-employee.component'
+import { NgxPaginationModule } from 'ngx-pagination';
+
 @NgModule({
   declarations: [
     AppComponent,
     EmployeesListComponent,
     EmployeeDetailsComponent,
-    CreateEmployeeComponent
+    CreateEmployeeComponent,
+    SearchEmployeesComponent,
+    SearchResultEmployeeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
