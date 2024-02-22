@@ -1,0 +1,13 @@
+
+E
+java:S1066"/Merge this if statement with the enclosing one.(íúÂ
+]
+java:S1854"BRemove this useless assignment to local variable "duplicateCount".(×¾¢Ÿøÿÿÿÿ
+Q	java:S125"<This block of commented-out lines of code should be removed.(Ï
+N
+java:S1481"3Remove this unused "duplicateCount" local variable.(×¾¢Ÿøÿÿÿÿ
+@	java:S106"+Replace this use of System.out by a logger.(‘Ğ½
+E	java:S106"+Replace this use of System.out by a logger.(¦Öç²ûÿÿÿÿ
+Q	java:S125%"<This block of commented-out lines of code should be removed.(ªø«è
+H
+java:S1128"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ

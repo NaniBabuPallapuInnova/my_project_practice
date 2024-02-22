@@ -19,3 +19,5 @@ hspring-security-client/src/main/java/com/codingspiderverse/springsecurityclient
 vspring-security-client/src/main/java/com/codingspiderverse/springsecurityclient/controller/RegistrationController.java,a\7\a7ecc9a629ab5b828027a3d2069787a29138e1d9
 ê
 `spring-security-client/src/main/java/com/codingspiderverse/springsecurityclient/entity/User.java,f\d\fdb7d2259d587f9b2e76131d5534f4db3d19140f
+§
+tspring-security-client/src/main/java/com/codingspiderverse/springsecurityclient/SpringSecurityClientApplication.java,7\e\7e9560ecb3e5aec2d7b9f4f9573a1f4e00e52c48

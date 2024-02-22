@@ -61,8 +61,7 @@ Used to include logic as well as enable creation of complex HTML DOM elements.
 
 Modules
 ===========
-Angular Module is basically a collection of related features / functionality. Angular 
-Module groups multiple components and services under a single context. 
+Angular Module is basically a collection of related features / functionality. Angular Module groups multiple components and services under a single context. 
 For example, animations related functionality can be grouped into single module and 
 Angular already provides a module for the animation related functionality, 
 BrowserAnimationModule module. 
@@ -98,9 +97,11 @@ Basically, component uses services to do its own job. Dependency Injection is us
 properly initialise the service in the component so that the component can access the 
 services as and when necessary without any setup.
 
-1.BINDING 
+1. DATA BINDING 
 ==============
-
+Data binding deals with how to bind your data from component to HTML DOM elements 
+(Templates). We can easily interact with application without worrying about how to insert 
+your data. We can make connections in two different ways one way and two-way binding.
 
 
 One-way data binding

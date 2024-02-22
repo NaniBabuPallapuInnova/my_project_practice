@@ -1,0 +1,21 @@
+
+`
+java:S6208>"CMerge the previous cases into this one using comma-separated label.(Ş¤ªï8²Àç©Ô1
+@	java:S106"+Replace this use of System.out by a logger.(€ı¹ú
+@	java:S106	"+Replace this use of System.out by a logger.(Ä’ñæ
+c	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÛÏ°¡
+@	java:S106"+Replace this use of System.out by a logger.(Ì¢Šç
+?	java:S106"+Replace this use of System.out by a logger.(µİÂ
+@	java:S106"+Replace this use of System.out by a logger.(Óâ€ì
+E	java:S106"+Replace this use of System.out by a logger.(¦÷Â¶ùÿÿÿÿ
+E	java:S106"+Replace this use of System.out by a logger.(«ÑĞ’üÿÿÿÿ
+@	java:S106"+Replace this use of System.out by a logger.(è›ÑÓ
+E	java:S106"+Replace this use of System.out by a logger.(êŸÑüÿÿÿÿ
+@	java:S106%"+Replace this use of System.out by a logger.(“Ğ§À
+@	java:S106("+Replace this use of System.out by a logger.(“Ğ§À
+@	java:S106+"+Replace this use of System.out by a logger.(“Ğ§À
+G	java:S106."+Replace this use of System.out by a logger.(“Ğ§À8ÉÀç©Ô1
+G	java:S1061"+Replace this use of System.out by a logger.(“Ğ§À8ÊÀç©Ô1
+G	java:S1064"+Replace this use of System.out by a logger.(“Ğ§À8Ä›è©Ô1
+G	java:S106@"+Replace this use of System.out by a logger.(“Ğ§À8şè©Ô1
+G	java:S106C"+Replace this use of System.out by a logger.(‰ï¿8şè©Ô1

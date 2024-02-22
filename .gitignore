@@ -1,4 +1,4 @@
 #ignore all .pdf files
 
-
+*.angular/cache
 *.pptx

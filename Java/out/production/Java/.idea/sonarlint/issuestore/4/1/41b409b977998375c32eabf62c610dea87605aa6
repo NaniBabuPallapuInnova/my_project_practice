@@ -1,0 +1,28 @@
+
+J
+java:S3740"/Provide the parametrized type for this generic.(úë¦ øÿÿÿÿ
+E	java:S106"+Replace this use of System.out by a logger.(â³…Üýÿÿÿÿ
+@	java:S106"+Replace this use of System.out by a logger.(å¢Íý
+E	java:S106"+Replace this use of System.out by a logger.(ƒÇãˆúÿÿÿÿ
+E	java:S106"+Replace this use of System.out by a logger.(ßÀ’ˆþÿÿÿÿ
+@	java:S106"+Replace this use of System.out by a logger.(Ù©È±
+E	java:S106"+Replace this use of System.out by a logger.(ƒÇãˆúÿÿÿÿ
+E	java:S106"+Replace this use of System.out by a logger.(ñî®Åúÿÿÿÿ
+E	java:S106#"+Replace this use of System.out by a logger.(ƒäô°ûÿÿÿÿ
+E	java:S106%"+Replace this use of System.out by a logger.(ƒÇãˆúÿÿÿÿ
+E	java:S106'"+Replace this use of System.out by a logger.(œ½ß×ÿÿÿÿÿ
+E	java:S106)"+Replace this use of System.out by a logger.(œí¤ªüÿÿÿÿ
+E	java:S106+"+Replace this use of System.out by a logger.(ƒÇãˆúÿÿÿÿ
+E	java:S106-"+Replace this use of System.out by a logger.(ª¥Ûìûÿÿÿÿ
+G
+java:S1602.",Remove useless curly braces around statement(Æþí³ùÿÿÿÿ
+E	java:S106/"+Replace this use of System.out by a logger.(À»Ø‡úÿÿÿÿ
+E	java:S1061"+Replace this use of System.out by a logger.(ƒÇãˆúÿÿÿÿ
+@	java:S1063"+Replace this use of System.out by a logger.(·™Ñé
+B
+java:S16025",Remove useless curly braces around statement(Ã´¹ò
+E	java:S1066"+Replace this use of System.out by a logger.(À»Ø‡úÿÿÿÿ
+V	java:S125@"<This block of commented-out lines of code should be removed.(Ž ßöÿÿÿÿÿ
+@	java:S106B"+Replace this use of System.out by a logger.(¢øƒì
+V	java:S125I"<This block of commented-out lines of code should be removed.(§ý ¾ùÿÿÿÿ
+E	java:S106L"+Replace this use of System.out by a logger.(“§×²ÿÿÿÿÿ
