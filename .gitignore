@@ -1,4 +1,10 @@
 #ignore all .pdf files
 
+# Ignore untracked files in the root directory
+untracked_file.txt
+
+# Ignore all files and directories under a specific directory
+.angular/
+
 
 *.pptx
