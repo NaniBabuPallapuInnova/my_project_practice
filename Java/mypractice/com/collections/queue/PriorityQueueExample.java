@@ -2,6 +2,12 @@ package mypractice.com.collections.queue;
 
 import java.util.PriorityQueue;
 
+class Student implements Cloneable{
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+}
 public class PriorityQueueExample {
     public static void main(String[] args) {
         PriorityQueue<String> queue=new PriorityQueue<String>();

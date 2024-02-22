@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { Employee } from '../interfaces/employee';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpParams } from '@angular/common/http'
 import { Router } from '@angular/router';
+import { Page } from '../interfaces/page';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +23,10 @@ export class EmployeeService {
       location.reload();
   }
 
-  getEmployeesList(): Observable<Employee[]> {
-    return this.httpClient.get<Employee[]>(this.baseUrl + "/employees").pipe(
+  getEmployeesList(page : number, size : number): Observable<Page<Employee>> {
+
+    const params = new HttpParams().set('page', page.toString()).set('size', size.toString());
+    return this.httpClient.get<Page<Employee>>(this.baseUrl + "/employees", { params }).pipe(
       catchError(error => {
         console.error('can not fetch employees list');
         return throwError('Unable to fetch employees list : ', error);
@@ -68,4 +71,15 @@ export class EmployeeService {
       })
     );
   }
+
+  searchEmployeesBasedOnNameOrEmpId(keyword : string):Observable<Employee[]>{
+    const params = new HttpParams().set('keyword', keyword);
+    console.log('printing params value'+params)
+    return this.httpClient.get<Employee[]>(`${this.baseUrl}/search/employees`, {params}).pipe(
+      catchError(error => {
+        return throwError("unable to fetch search resule "+error);
+      })
+    );
+  }
+  
 }

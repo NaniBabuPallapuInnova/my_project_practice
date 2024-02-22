@@ -1,9 +1,15 @@
 <h3>Employees Management</h3>
 
+<div class="search-emploee">
 
+</div>
 
-<button class="btn btn-primary" routerLink="/create" routerLinkActive="active" type="button">CREATE</button>
+<div class="custom-bootstrap row mb-3">
+    <button class="btn btn-info col-md-1" routerLink="/search" routerLinkActive="active" type="button">SEARCH</button>
 
+    <button class="btn btn-primary col-md-1" routerLink="/create" routerLinkActive="active"
+        type="button">CREATE</button>
+</div>
 
 <table class="table table-bordered table-hover table-striped ">
     <thead class="thead-dark">
@@ -18,7 +24,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let employee of employeesListData">
+        <tr *ngFor="let employee of employeesListPageData?.content">
             <th scope="row">{{employee.empId}}</th>
             <td>{{employee.name}}</td>
             <td>{{employee.email}}</td>
@@ -27,7 +33,16 @@
             <td>{{employee.dateOfJoining}}</td>
             <button class="btn btn-success" routerLink="show/{{employee.id}}" type="button">VIEW</button>
             <button class="btn btn-success" routerLink="update/{{employee.id}}" type="button">UPDATE</button>
-            <button class="btn btn-danger" (click)="deleteEmployeeById(employee.id)"  type="button">DELETE</button>
+            <button class="btn btn-danger" (click)="deleteEmployeeById(employee.id)" type="button">DELETE</button>
         </tr>
     </tbody>
 </table>
+
+<div class="paging">
+    <button class="previous" type="button" [disabled]="currentPage === 1" (click)="previousPage()" >Previouse</button>
+    {{currentPage}}/{{totalPages}}
+    <button class="next" type="button" [disabled]="currentPage === totalPages" (click)="nextPage()">Next</button>
+
+</div>
+
+
