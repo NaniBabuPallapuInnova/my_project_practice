@@ -23,6 +23,12 @@ public class Employee {
   @Column(name = "email")
   private String email;
 
+  @Column(name = "password")
+  private String password;
+
+  @Column(name = "is_account_active", columnDefinition = "BIT DEFAULT 1")
+  private Boolean activeAccount;
+
   @Column(name = "phone")
   @Length(max = 10, message = "phone number must be less than or equal to 10 characters")
   private String phone;
@@ -37,11 +43,13 @@ public class Employee {
   public Employee() {
   }
 
-  public Employee(Long id, String empId, String name, String email, String phone, double salary, String dateOfJoining) {
+  public Employee(Long id, String empId, String name, String email, String password, Boolean activeAccount, String phone, double salary, String dateOfJoining) {
     this.id = id;
     this.empId = empId;
     this.name = name;
     this.email = email;
+    this.password = password;
+    this.activeAccount = activeAccount;
     this.phone = phone;
     this.salary = salary;
     this.dateOfJoining = dateOfJoining;
@@ -79,6 +87,22 @@ public class Employee {
     this.email = email;
   }
 
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  public Boolean getActiveAccount() {
+    return activeAccount;
+  }
+
+  public void setActiveAccount(Boolean activeAccount) {
+    this.activeAccount = activeAccount != null ? activeAccount : true;
+  }
+
   public String getPhone() {
     return phone;
   }
@@ -107,14 +131,14 @@ public class Employee {
   public String toString() {
     return "Employee{" +
       "id=" + id +
-      ", empId=" + empId +
+      ", empId='" + empId + '\'' +
       ", name='" + name + '\'' +
       ", email='" + email + '\'' +
+      ", password='" + password + '\'' +
+      ", activeAccount=" + activeAccount +
       ", phone='" + phone + '\'' +
       ", salary=" + salary +
       ", dateOfJoining='" + dateOfJoining + '\'' +
       '}';
   }
-
-
 }

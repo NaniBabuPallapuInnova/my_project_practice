@@ -17,6 +17,7 @@
             <th scope="col">EmployeeId</th>
             <th scope="col">Name</th>
             <th scope="col">Email</th>
+            <th scope="col">Active Account</th>
             <th scope="col">Phone</th>
             <th scope="col">Salary</th>
             <th scope="col">DOJ</th>
@@ -28,6 +29,7 @@
             <th scope="row">{{employee.empId}}</th>
             <td>{{employee.name}}</td>
             <td>{{employee.email}}</td>
+            <td>{{employee.activeAccount === true ? 'Active' : 'InActive'}}</td>
             <td>{{employee.phone}}</td>
             <td>{{employee.salary}}</td>
             <td>{{employee.dateOfJoining}}</td>

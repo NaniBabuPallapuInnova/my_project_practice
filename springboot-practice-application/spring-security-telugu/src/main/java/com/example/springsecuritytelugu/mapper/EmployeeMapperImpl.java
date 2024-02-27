@@ -17,6 +17,8 @@ public class EmployeeMapperImpl implements EmployeeMapper {
     employeeDTO.setId(employee.getId());
     employeeDTO.setName(employee.getName());
     employeeDTO.setEmail(employee.getEmail());
+    employeeDTO.setPassword(employee.getPassword());
+    employeeDTO.setActiveAccount(employee.getActiveAccount());
     employeeDTO.setPhone(employee.getPhone());
     employeeDTO.setSalary(employee.getSalary());
     employeeDTO.setEmpId(employee.getEmpId());
@@ -33,6 +35,8 @@ public class EmployeeMapperImpl implements EmployeeMapper {
     employee.setId(employeeDTO.getId());
     employee.setName(employeeDTO.getName());
     employee.setEmail(employeeDTO.getEmail());
+    employee.setPassword(employeeDTO.getPassword());
+    employee.setActiveAccount(employeeDTO.getActiveAccount());
     employee.setPhone(employeeDTO.getPhone());
     employee.setSalary(employeeDTO.getSalary());
     employee.setEmpId(employeeDTO.getEmpId());
