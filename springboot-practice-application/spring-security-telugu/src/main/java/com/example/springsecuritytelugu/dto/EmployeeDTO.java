@@ -1,6 +1,8 @@
 package com.example.springsecuritytelugu.dto;
 
 
+import javax.persistence.Column;
+
 public class EmployeeDTO {
 
   private Long id;
@@ -11,6 +13,10 @@ public class EmployeeDTO {
 
   private String email;
 
+  private String password;
+
+  private Boolean activeAccount;
+
   private String phone;
 
   private double salary;
@@ -20,11 +26,13 @@ public class EmployeeDTO {
   public EmployeeDTO() {
   }
 
-  public EmployeeDTO(Long id, String empId, String name, String email, String phone, double salary, String dateOfJoining) {
+  public EmployeeDTO(Long id, String empId, String name, String email, String password, Boolean activeAccount, String phone, double salary, String dateOfJoining) {
     this.id = id;
     this.empId = empId;
     this.name = name;
     this.email = email;
+    this.password = password;
+    this.activeAccount = activeAccount;
     this.phone = phone;
     this.salary = salary;
     this.dateOfJoining = dateOfJoining;
@@ -62,6 +70,22 @@ public class EmployeeDTO {
     this.email = email;
   }
 
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  public Boolean getActiveAccount() {
+    return activeAccount;
+  }
+
+  public void setActiveAccount(Boolean activeAccount) {
+    this.activeAccount = activeAccount;
+  }
+
   public String getPhone() {
     return phone;
   }
@@ -90,9 +114,11 @@ public class EmployeeDTO {
   public String toString() {
     return "EmployeeDTO{" +
       "id=" + id +
-      ", empId=" + empId +
+      ", empId='" + empId + '\'' +
       ", name='" + name + '\'' +
       ", email='" + email + '\'' +
+      ", password='" + password + '\'' +
+      ", activeAccount=" + activeAccount +
       ", phone='" + phone + '\'' +
       ", salary=" + salary +
       ", dateOfJoining='" + dateOfJoining + '\'' +

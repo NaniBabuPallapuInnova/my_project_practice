@@ -29,6 +29,7 @@ export class CreateEmployeeComponent implements OnInit{
 
       name_ : ['', [ Validators.required]],
       email_ : ['', [Validators.email,Validators.required]],
+      password_:['', [Validators.required]],
       phone_ : ['', [Validators.maxLength(10)]],
       salary_ : ['', [ Validators.required]],
       doj_ : ['', [Validators.required]]
@@ -54,6 +55,7 @@ export class CreateEmployeeComponent implements OnInit{
     if(this.newEmployee){
       this.newEmployee.name = this.employeeFormGroup.controls['name_'].value;
       this.newEmployee.email = this.employeeFormGroup.controls['email_'].value;
+      this.newEmployee.password = this.employeeFormGroup.controls['password_'].value;
       this.newEmployee.phone = this.employeeFormGroup.controls['phone_'].value;
       this.newEmployee.salary = this.employeeFormGroup.controls['salary_'].value;
       this.newEmployee.dateOfJoining = this.employeeFormGroup.controls['doj_'].value;
@@ -78,6 +80,7 @@ export class CreateEmployeeComponent implements OnInit{
 
       this.employeeFormGroup.controls['name_'].setValue(data.name);
       this.employeeFormGroup.controls['email_'].setValue(data.email);
+      this.employeeFormGroup.controls['password_'].setValue(data.password);
       this.employeeFormGroup.controls['phone_'].setValue(data.phone);
       this.employeeFormGroup.controls['salary_'].setValue(data.salary);
       this.employeeFormGroup.controls['doj_'].setValue(data.dateOfJoining);

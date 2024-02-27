@@ -5,24 +5,28 @@
     </ng-template>
     <div class="form-group row mb-3">
         <label class="col-form-label col-sm-2" for="name">Full Name : </label>
-        <input type="text" class="form-control col-sm-3" id="name" placeholder="enter your name" formControlName="name_">
+        <input type="text" class="form-control col-sm-4" id="name" placeholder="enter your name" formControlName="name_">
     </div>
     <div class="form-group row mb-3">
         <label class="col-form-label col-sm-2" for="mail">Email : </label>
-        <input type="email" id="mail" class="form-control col-sm-3" placeholder="enter your email" formControlName="email_">
+        <input type="email" id="mail" class="form-control col-sm-4" placeholder="enter your email" formControlName="email_">
+    </div>
+    <div class="form-group row mb-3">
+        <label class="col-form-label col-sm-2" for="mail">Password : </label>
+        <input type="text" id="mail" class="form-control col-sm-4" placeholder="enter your password" formControlName="password_">
     </div>
     <div class="form-group row mb-3">
         <label class="col-form-label col-sm-2" for="phone">Phone : </label>
-        <input type="number" id="phone" class="form-control col-sm-3" placeholder="enter your phone number" formControlName="phone_">
+        <input type="number" id="phone" class="form-control col-sm-4" placeholder="enter your phone number" formControlName="phone_">
     </div>
 
     <div class="form-group row mb-3">
         <label class="col-form-label col-sm-2" for="salary">Salary : </label>
-        <input type="number" id="salary" class="form-control col-sm-3" placeholder="enter your salary" formControlName="salary_">
+        <input type="number" id="salary" class="form-control col-sm-4" placeholder="enter your salary" formControlName="salary_">
     </div>
     <div class="form-group row mb-3">
         <label class="col-form-label col-sm-2" for="doj">DOJ</label>
-        <input type="date" id="doj" class="form-control col-sm-3" placeholder="select date of joining" formControlName="doj_">
+        <input type="date" id="doj" class="form-control col-sm-4" placeholder="select date of joining" formControlName="doj_">
     </div>
 
     <button *ngIf="fetchedId == 0; else updating"   type="button" class="btn btn-primary" [disabled]="!employeeFormGroup.valid" (click)="registerEmployee()" data-toggle="button" aria-pressed="false" autocomplete="off">REGISTER</button>
