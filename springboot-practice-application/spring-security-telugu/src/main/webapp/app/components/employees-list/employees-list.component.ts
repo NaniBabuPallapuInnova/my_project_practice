@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { Page } from '../../interfaces/page';
 import { PaginationInstance, PaginationService } from 'ngx-pagination';
+import { AuthserviceService } from '../../services/authservice.service';
 
 @Component({
   selector: 'app-employees-list',
@@ -20,11 +21,16 @@ export class EmployeesListComponent implements OnInit {
   pageSize = 5;
   totalPages = 0;
 
+  loggedIn  : boolean = false;
 
-  constructor(private employeeService: EmployeeService) {
+
+  constructor(private employeeService: EmployeeService, private authService : AuthserviceService, private router : Router) {
 
   }
   ngOnInit() {
+
+     this.loggedIn = this.authService.isLoggedIn();
+          
 
     this.getEmployeesList();
   }
@@ -77,6 +83,14 @@ export class EmployeesListComponent implements OnInit {
     }
   }
 
+
+  
+  logout(){
+    this.authService.logout();
+    this.router.navigate(['/login']);
+    
+  }
+  
 
 
 

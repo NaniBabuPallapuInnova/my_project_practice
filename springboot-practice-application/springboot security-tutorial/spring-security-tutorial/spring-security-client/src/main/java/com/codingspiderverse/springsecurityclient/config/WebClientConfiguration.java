@@ -1,2 +1,3 @@
-package com.codingspiderverse.springsecurityclient.config;public class WebClientConfiguration {
+package com.codingspiderverse.springsecurityclient.config;
+public class WebClientConfiguration {
 }

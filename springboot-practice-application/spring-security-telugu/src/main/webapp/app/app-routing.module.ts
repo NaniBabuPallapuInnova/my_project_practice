@@ -5,10 +5,15 @@ import { CreateEmployeeComponent } from './components/create-employee/create-emp
 import { EmployeeDetailsComponent } from './components/employee-details/employee-details.component';
 import { SearchResultEmployeeComponent } from './components/search-employees/search-result-employee/search-result-employee.component';
 import { SearchEmployeesComponent } from './components/search-employees/search-employees.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   {
-    path : '', component : EmployeesListComponent,
+    path : 'home', component : EmployeesListComponent, canActivate : [AuthGuard],
+  },
+  {
+    path : 'login', component : LoginComponent
   },
   {
     path: 'create', component : CreateEmployeeComponent,
@@ -22,6 +27,9 @@ const routes: Routes = [
   ,
   {
     path: 'search', component : SearchEmployeesComponent
+  },
+  {
+    path: '', redirectTo : 'login', pathMatch : 'full'
   }
 ];
 

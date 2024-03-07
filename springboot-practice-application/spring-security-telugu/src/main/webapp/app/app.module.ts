@@ -11,6 +11,7 @@ import { HttpClientModule} from '@angular/common/http';
 import { SearchEmployeesComponent } from './components/search-employees/search-employees.component';
 import { SearchResultEmployeeComponent } from './components/search-employees/search-result-employee/search-result-employee.component'
 import { NgxPaginationModule } from 'ngx-pagination';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     EmployeeDetailsComponent,
     CreateEmployeeComponent,
     SearchEmployeesComponent,
-    SearchResultEmployeeComponent
+    SearchResultEmployeeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

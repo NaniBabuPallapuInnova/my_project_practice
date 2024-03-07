@@ -9,6 +9,14 @@
 
     <button class="btn btn-primary col-md-1" routerLink="/create" routerLinkActive="active"
         type="button">CREATE</button>
+
+    <!-- Show this button if loggedIn is false -->
+    <button type="button" class="btn btn-warning col-md-1" [hidden]="loggedIn" routerLink="/login">Log In</button>
+
+    <!-- Show this button if loggedIn is true -->
+    <button type="button" class="btn btn-warning col-md-1" [hidden]="!loggedIn" (click)="logout()">Log Out</button>
+
+
 </div>
 
 <table class="table table-bordered table-hover table-striped ">
@@ -41,10 +49,8 @@
 </table>
 
 <div class="paging">
-    <button class="previous" type="button" [disabled]="currentPage === 1" (click)="previousPage()" >Previouse</button>
+    <button class="previous" type="button" [disabled]="currentPage === 1" (click)="previousPage()">Previouse</button>
     {{currentPage}}/{{totalPages}}
     <button class="next" type="button" [disabled]="currentPage === totalPages" (click)="nextPage()">Next</button>
 
 </div>
-
-

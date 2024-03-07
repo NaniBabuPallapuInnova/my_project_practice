@@ -11,14 +11,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 @Service
-public class EmployeeService {
+public class EmployeeService implements UserDetailsService {
 
   public static final Logger log = LoggerFactory.getLogger(EmployeeService.class);
   @Autowired
@@ -26,6 +31,9 @@ public class EmployeeService {
 
   @Autowired
   EmployeeMapper employeeMapper;
+
+  @Autowired
+  PasswordEncoder passwordEncoder;
 
   public Page<EmployeeDTO> getAllEmployees(Pageable pageable) {
     Page<Employee> employeePage = employeeRepository.findAll(pageable);
@@ -84,5 +92,49 @@ public class EmployeeService {
 
     employeeList.forEach(employee -> employeeDTOS.add(employeeMapper.toDTO(employee)));
     return employeeDTOS;
+  }
+
+  @Override
+  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+    Employee employee = employeeRepository.findByEmpId(username).orElseThrow(() -> new UsernameNotFoundException("USER DOES NOT EXIST WITH THIS EMPLOYEE ID" + username));
+
+    EmployeeDTO employeeDTO = new EmployeeDTO();
+    if (employee != null) {
+      employeeDTO = employeeMapper.toDTO(employee);
+    }
+    return new User(
+      employeeDTO.getEmpId(),
+      passwordEncoder.encode(employeeDTO.getPassword()),
+      employeeDTO.getActiveAccount(),
+      true,
+      true,
+      true,
+      getAuthorities(List.of(employeeDTO.getRole()))
+
+    );
+  }
+
+  /**
+   * Converts a list of roles to a collection of GrantedAuthority objects.
+   *
+   * @param roles The list of roles assigned to the user.
+   * @return Collection of GrantedAuthority objects representing the Employee's roles.
+   */
+  private Collection<? extends GrantedAuthority> getAuthorities(List<String> roles) {
+    List<GrantedAuthority> authorities = new ArrayList<>();
+
+    // Convert each role to a GrantedAuthority and add to the list of authorities.
+    for (String role : roles) {
+      authorities.add(new SimpleGrantedAuthority(role));
+    }
+
+    return authorities;
+  }
+
+  public EmployeeDTO findByEmpId(String empId) {
+    Employee employee =  employeeRepository.findByEmpId(empId)
+      .orElseThrow(() -> new UsernameNotFoundException("EMPLOYEE NOT FOUND"));
+   return employeeMapper.toDTO(employee);
   }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { Employee } from '../interfaces/employee';
-import { HttpClient, HttpParams } from '@angular/common/http'
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { Router } from '@angular/router';
 import { Page } from '../interfaces/page';
 
@@ -26,7 +26,14 @@ export class EmployeeService {
   getEmployeesList(page : number, size : number): Observable<Page<Employee>> {
 
     const params = new HttpParams().set('page', page.toString()).set('size', size.toString());
-    return this.httpClient.get<Page<Employee>>(this.baseUrl + "/employees", { params }).pipe(
+
+    const headers = new HttpHeaders({ 'Authorization': `Bearer ${localStorage.getItem('token')}` });
+
+
+    // console.log('printing my token '+token, JSON.stringify(token));
+
+
+    return this.httpClient.get<Page<Employee>>(this.baseUrl + "/employees",  { params , headers , withCredentials: true}).pipe(
       catchError(error => {
         console.error('can not fetch employees list');
         return throwError('Unable to fetch employees list : ', error);

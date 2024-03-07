@@ -9,9 +9,17 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -21,6 +29,12 @@ public class EmployeeResource {
 
   @Autowired
   EmployeeService employeeService;
+
+
+  @Autowired
+  AuthenticationManager authenticationManager; // Inject AuthenticationManager
+
+
 
   @GetMapping("/employees")
   public ResponseEntity<Page<EmployeeDTO>> getEmployeesList(Pageable pageable){
@@ -63,4 +77,34 @@ public class EmployeeResource {
       List<EmployeeDTO> employeeDTOS = employeeService.searchEmployeeByEmployeeIdOrName(keyword);
     return new ResponseEntity<>(employeeDTOS, HttpStatus.OK);
   }
+
+
+  @GetMapping("/login")
+  public ResponseEntity<Map<String, String>> loginEmployee(
+    @RequestParam(name = "username") String username,
+    @RequestParam(name = "password") String password) {
+
+    Authentication authentication = new UsernamePasswordAuthenticationToken(username, password);
+
+    try {
+      Authentication result = authenticationManager.authenticate(authentication);
+
+      // Authentication successful, handle accordingly (e.g., return a token)
+      UserDetails userDetails = (UserDetails) result.getPrincipal();
+
+      Map<String, String> response = new HashMap<>();
+      response.put("status", "success");
+      response.put("message", "Login Successful");
+      return new ResponseEntity<>(response, HttpStatus.OK);
+    } catch (BadCredentialsException e) {
+      // Authentication failed, handle accordingly (e.g., return an error response)
+      Map<String, String> response = new HashMap<>();
+      response.put("status", "error");
+      response.put("token", String.valueOf(true));  // Include the token in the response
+      response.put("message", "Login Failed");
+      return new ResponseEntity<>(response,HttpStatus.UNAUTHORIZED);
+    }
+  }
+
+
 }

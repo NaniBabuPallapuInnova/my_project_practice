@@ -23,6 +23,7 @@ public class EmployeeMapperImpl implements EmployeeMapper {
     employeeDTO.setSalary(employee.getSalary());
     employeeDTO.setEmpId(employee.getEmpId());
     employeeDTO.setDateOfJoining(employee.getDateOfJoining());
+    employeeDTO.setRole(employee.getRole());
     return employeeDTO;
   }
 
@@ -41,6 +42,7 @@ public class EmployeeMapperImpl implements EmployeeMapper {
     employee.setSalary(employeeDTO.getSalary());
     employee.setEmpId(employeeDTO.getEmpId());
     employee.setDateOfJoining(employeeDTO.getDateOfJoining());
+    employee.setRole(employeeDTO.getRole());
     return employee;
 
   }

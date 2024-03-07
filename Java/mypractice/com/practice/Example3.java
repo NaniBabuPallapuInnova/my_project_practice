@@ -1,32 +1,90 @@
 package mypractice.com.practice;
 
-public class Example3 {
+import java.util.List;
 
-        public static double calculateFinalResult(double[] input1, int input2) {
-            double[] step1Array = new double[input1.length];
+// Step 1: Define an interface for order processing
+interface OrderProcessor {
+    void processOrder(Order order);
+}
 
-            for (int i = 0; i < input1.length; i++) {
-                int position = input2 < i ? input2 : (int) Math.log10(input1[i]);
-                double digit = (int) (input1[i] / Math.pow(10, position)) % 10;
-                step1Array[i] = digit;
-            }
+// Step 2: Implement classes for specific order processing tasks
 
-            double[] step2Array = new double[input1.length];
-            for (int i = 0; i < input1.length; i++) {
-                step2Array[i] = Math.pow(step1Array[i], 2);
-            }
+// Class for validating orders
+class OrderValidator implements OrderProcessor {
+    @Override
+    public void processOrder(Order order) {
+        // Perform order validation logic
+        System.out.println("Validating order: " + order.getOrderNumber());
+    }
+}
 
-            double sum = 0;
-            for (double value : step2Array) {
-                sum += value;
-            }
+// Class for updating inventory
+class InventoryUpdater implements OrderProcessor {
+    @Override
+    public void processOrder(Order order) {
+        // Update inventory based on the order
+        System.out.println("Updating inventory for order: " + order.getOrderNumber());
+    }
+}
 
-            return sum;
-        }
-        public static void main(String[] args) {
-            double[] input1 = { 1,5, 423, 310, 61540 };
-            int input2 = 5;
-            double result = calculateFinalResult(input1, input2);
-            System.out.println("Final Result: " + result);
+// Class for sending order confirmation emails
+class EmailSender implements OrderProcessor {
+    @Override
+    public void processOrder(Order order) {
+        // Send order confirmation email
+        System.out.println("Sending order confirmation email for order: " + order.getOrderNumber());
+    }
+}
+
+// Step 3: Create a class that delegates order processing tasks
+
+class OrderProcessorDelegate implements OrderProcessor {
+    private final List<OrderProcessor> processors;
+
+    public OrderProcessorDelegate(List<OrderProcessor> processors) {
+        this.processors = processors;
+    }
+
+    @Override
+    public void processOrder(Order order) {
+        // Delegate processing to each specific order processor
+        for (OrderProcessor processor : processors) {
+            processor.processOrder(order);
         }
     }
+}
+
+// Step 4: Model the Order class
+class Order {
+    private final String orderNumber;
+
+    public Order(String orderNumber) {
+        this.orderNumber = orderNumber;
+    }
+
+    public String getOrderNumber() {
+        return orderNumber;
+    }
+}
+
+// Step 5: Example usage
+public class Example3 {
+    public static void main(String[] args) {
+        // Create instances of specific order processors
+        OrderProcessor validator = new OrderValidator();
+        OrderProcessor inventoryUpdater = new InventoryUpdater();
+        OrderProcessor emailSender = new EmailSender();
+
+        // Create a delegate with the list of processors
+        OrderProcessorDelegate orderProcessorDelegate = new OrderProcessorDelegate(
+                List.of(validator, inventoryUpdater, emailSender)
+        );
+
+        // Create an example order
+        Order exampleOrder = new Order("123");
+
+        // Process the order using the delegate
+        orderProcessorDelegate.processOrder(exampleOrder);
+    }
+}
+

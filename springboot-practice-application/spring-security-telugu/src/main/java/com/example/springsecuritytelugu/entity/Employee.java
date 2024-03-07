@@ -40,10 +40,13 @@ public class Employee {
   @Column(name = "doj")
   private String dateOfJoining;
 
+  @Column(name="role")
+  private String role;
+
   public Employee() {
   }
 
-  public Employee(Long id, String empId, String name, String email, String password, Boolean activeAccount, String phone, double salary, String dateOfJoining) {
+  public Employee(Long id, String empId, String name, String email, String password, Boolean activeAccount, String phone, double salary, String dateOfJoining, String role) {
     this.id = id;
     this.empId = empId;
     this.name = name;
@@ -53,6 +56,7 @@ public class Employee {
     this.phone = phone;
     this.salary = salary;
     this.dateOfJoining = dateOfJoining;
+    this.role = role;
   }
 
   public Long getId() {
@@ -127,6 +131,14 @@ public class Employee {
     this.dateOfJoining = dateOfJoining;
   }
 
+  public String getRole() {
+    return role;
+  }
+
+  public void setRole(String role) {
+    this.role = role;
+  }
+
   @Override
   public String toString() {
     return "Employee{" +
@@ -139,6 +151,7 @@ public class Employee {
       ", phone='" + phone + '\'' +
       ", salary=" + salary +
       ", dateOfJoining='" + dateOfJoining + '\'' +
+      ", role='" + role + '\'' +
       '}';
   }
 }
