@@ -45,3 +45,13 @@ f
 6mypractice/com/collections/list/ArrayListExample1.java,4\1\41b409b977998375c32eabf62c610dea87605aa6
 p
 @mypractice/com/collections/programs_on_collections/Program2.java,c\a\cae4195a82eb791066c4c3cdb8e7abea52d0a923
+T
+$mypractice/com/practice/Welcome.java,5\c\5c33bfec467e2fda62e5ee5406124e4e59d2e6f5
+S
+#mypractice/com/practice/TwoSum.java,9\e\9e119e98488040c71b7166f22e2b77cd5784343d
+U
+%mypractice/com/practice/Solution.java,e\6\e699226793dba21058e6d9775350d9394a8144e7
+U
+%mypractice/com/practice/Example3.java,f\4\f4c0ef532d2be85df069b9ba5b2bc1cd4c804b76
+R
+"mypractice/com/practice/Dummy.java,1\8\1868855b3bfc28d8d416c31b83c7fc32302f1577
