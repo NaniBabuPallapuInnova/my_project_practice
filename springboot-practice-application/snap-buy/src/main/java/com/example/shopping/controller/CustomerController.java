@@ -5,6 +5,7 @@ import com.example.shopping.dto.CustomerDTO;
 import com.example.shopping.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -95,6 +96,15 @@ public class CustomerController {
     public CustomerDTO displayCustomerWithProducts(@PathVariable Long id){
        CustomerDTO customerDTO =  customerService.displayCustomersWithProducts(id);
         return customerDTO;
+    }
+
+
+    @GetMapping("/getCustomer/{id}")
+  public ResponseEntity<Customer> getCustomerDetails(@PathVariable(name="id") Long id){
+
+      Customer customer = customerService.findCustomerById(id);
+
+      return new ResponseEntity<>(customer, HttpStatus.OK);
     }
 
 }
