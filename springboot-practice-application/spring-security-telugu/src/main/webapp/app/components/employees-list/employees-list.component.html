@@ -1,15 +1,35 @@
 <h3>Employees Management</h3>
 
-<div class="search-emploee">
-
-</div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" routerLink="/home"  routerLinkActive="active" >HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/admin"  routerLinkActive="active" >ADMIN DASHBOARD</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/user"  routerLinkActive="active" >USER DASHBOARD</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
 <div class="custom-bootstrap row mb-3">
     <button class="btn btn-info col-md-1" routerLink="/search" routerLinkActive="active" type="button">SEARCH</button>
 
     <button class="btn btn-primary col-md-1" routerLink="/create" routerLinkActive="active"
         type="button">CREATE</button>
+
+    <button class="btn btn-primary col-md-1"  routerLink="/login" routerLinkActive="active" type="button">LogIn</button>
+    <button class="btn btn-danger col-md-1"  routerLinkActive="active" type="button">LogOut</button>
 </div>
+
+
+
 
 <table class="table table-bordered table-hover table-striped ">
     <thead class="thead-dark">
@@ -41,10 +61,8 @@
 </table>
 
 <div class="paging">
-    <button class="previous" type="button" [disabled]="currentPage === 1" (click)="previousPage()" >Previouse</button>
+    <button class="previous" type="button" [disabled]="currentPage === 1" (click)="previousPage()">Previouse</button>
     {{currentPage}}/{{totalPages}}
     <button class="next" type="button" [disabled]="currentPage === totalPages" (click)="nextPage()">Next</button>
 
 </div>
-
-

@@ -1,0 +1,15 @@
+<div class="container mt-5 col-sm-6">
+    <div class="card" style="padding: 20px;">
+
+        <form #logInForm="ngForm" (ngSubmit)="login(logInForm)">
+            <div class="form-group col-sm-6" style="margin-left: 20%;">
+                <input type="text" name="userName" ngModel id="userName" placeholder="enter username" class="form-control mb-3">
+
+            </div>
+            <div class="form-group col-sm-6" style="margin-left: 20%;">
+                <input type="text" name="userPassword" ngModel id="userPassword" placeholder="enter your password" class="form-control mb-3" >
+            </div>
+            <input type="submit" class="btn btn-outline-primary form-group col-sm-6 rounded-0" style="margin-left: 20%;" value="LogIn">
+        </form>
+    </div>
+</div>
