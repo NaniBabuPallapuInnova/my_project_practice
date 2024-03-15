@@ -10,6 +10,7 @@ import { UserComponent } from './components/user/user.component';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   {
@@ -27,11 +28,12 @@ const routes: Routes = [
   ,
   {
     path: 'search', component : SearchEmployeesComponent
-  },{
-    path:'admin', component : AdminComponent
   },
   {
-    path:'user', component : UserComponent,
+    path:'admin', component : AdminComponent, canActivate : [AuthGuard], data : {roles : ['admin']}
+  },
+  {
+    path:'user', component : UserComponent, canActivate : [AuthGuard], data : {roles : ['user']}
   },
   {
     path:'forbidden', component : ForbiddenComponent

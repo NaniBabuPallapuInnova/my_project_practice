@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { UserAuthService } from './user-auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class UserService {
       }
     );
   
-  constructor(private httpclient: HttpClient) {
+  constructor(private httpclient: HttpClient, private userAuthService : UserAuthService) {
     
   }
 
@@ -24,6 +25,41 @@ export class UserService {
   
     return this.httpclient.post(`${this.PATH_OF_API}/authenticate`, loginData, { headers :this.requestHeader ,});
 
+  }
+
+  public forUser() {
+    return this.httpclient.get(this.PATH_OF_API + '/forUser', {
+      responseType: 'text',
+    });
+  }
+
+
+  public forAdmin() {
+    return this.httpclient.get(this.PATH_OF_API + '/forAdmin', {
+      responseType: 'text',
+    });
+  }
+  
+  public matchRole(allowedRoles : any):boolean{
+    let isMatch = false;
+
+    const userRoles : any[] | null = this.userAuthService.getRoles();
+
+    if(userRoles !== null && userRoles.length > 0){
+      
+      for(let i=0; i<userRoles.length;i++){
+
+        for(let j=0; j<allowedRoles.length;j++){
+          if(userRoles[i].roleName === allowedRoles[j]){
+            isMatch = true;
+            return isMatch;
+          } else{
+            return isMatch;
+          }
+        }
+      }
+    }
+      return isMatch;
   }
 
 }

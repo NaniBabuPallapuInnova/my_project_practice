@@ -7,7 +7,7 @@ import { EmployeesListComponent } from './components/employees-list/employees-li
 import { EmployeeDetailsComponent } from './components/employee-details/employee-details.component';
 import { CreateEmployeeComponent } from './components/create-employee/create-employee.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule} from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { SearchEmployeesComponent } from './components/search-employees/search-employees.component';
 import { SearchResultEmployeeComponent } from './components/search-employees/search-result-employee/search-result-employee.component'
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -16,6 +16,9 @@ import { UserComponent } from './components/user/user.component';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
+import { AuthGuard } from './auth/auth.guard';
+import { AuthInterceptor } from './auth/auth.interceptor';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,15 @@ import { HomeComponent } from './components/home/home.component';
     NgxPaginationModule,
 
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass : AuthInterceptor,
+      multi : true
+    },
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

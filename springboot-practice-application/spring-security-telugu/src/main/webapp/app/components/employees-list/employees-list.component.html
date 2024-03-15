@@ -8,10 +8,10 @@
                     <a class="nav-link active" routerLink="/home"  routerLinkActive="active" >HOME</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/admin"  routerLinkActive="active" >ADMIN DASHBOARD</a>
+                    <a *ngIf="userService.matchRole(['admin'])" class="nav-link" routerLink="/admin"  routerLinkActive="active" >ADMIN DASHBOARD</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/user"  routerLinkActive="active" >USER DASHBOARD</a>
+                    <a *ngIf="userService.matchRole(['user'])"  class="nav-link" routerLink="/user"  routerLinkActive="active" >USER DASHBOARD</a>
                 </li>
             </ul>
         </div>
@@ -24,8 +24,8 @@
     <button class="btn btn-primary col-md-1" routerLink="/create" routerLinkActive="active"
         type="button">CREATE</button>
 
-    <button class="btn btn-primary col-md-1"  routerLink="/login" routerLinkActive="active" type="button">LogIn</button>
-    <button class="btn btn-danger col-md-1"  routerLinkActive="active" type="button">LogOut</button>
+    <button *ngIf="!isLoggedIn" class="btn btn-primary col-md-1"  routerLink="/login" routerLinkActive="active" type="button">LogIn</button>
+    <button *ngIf="isLoggedIn" class="btn btn-danger col-md-1"  routerLinkActive="active" type="button" (click)="logOut()">LogOut</button>
 </div>
 
 
