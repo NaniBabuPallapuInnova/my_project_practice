@@ -352,3 +352,274 @@ VALUES
 200. Retrieve the first name and address country of customers who have placed orders with a total amount greater than the average total amount of all orders.
 
 */
+
+
+
+
+
+/* ANSWERS */
+
+
+**Customers Table:**
+
+1. Retrieve all customers' first names and last names.
+```sql
+SELECT first_name, last_name FROM customers;
+```
+
+2. Get the email addresses of customers whose first name starts with 'R'.
+```sql
+SELECT email FROM customers WHERE first_name LIKE 'R%';
+```
+
+3. Find the phone numbers of customers whose last name ends with 'a'.
+```sql
+SELECT phone_number FROM customers WHERE last_name LIKE '%a';
+```
+
+4. Count the total number of customers.
+```sql
+SELECT COUNT(*) AS total_customers FROM customers;
+```
+
+5. Get the details (first name, last name, email, phone number) of the customer with the highest customer_id.
+```sql
+SELECT first_name, last_name, email, phone_number FROM customers WHERE customer_id = (SELECT MAX(customer_id) FROM customers);
+```
+
+6. Find customers who have email addresses containing 'example'.
+```sql
+SELECT * FROM customers WHERE email LIKE '%example%';
+```
+
+7. Retrieve customers who have phone numbers starting with '98'.
+```sql
+SELECT * FROM customers WHERE phone_number LIKE '98%';
+```
+
+8. Get the number of distinct last names among customers.
+```sql
+SELECT COUNT(DISTINCT last_name) AS distinct_last_names FROM customers;
+```
+
+9. Retrieve customers sorted by last name in ascending order.
+```sql
+SELECT * FROM customers ORDER BY last_name ASC;
+```
+
+10. Find customers who do not have an email address specified.
+```sql
+SELECT * FROM customers WHERE email IS NULL OR email = '';
+```
+
+
+
+**Addresses Table:**
+
+11. Get all addresses in Mumbai.
+```sql
+SELECT * FROM addresses WHERE city = 'Mumbai';
+```
+
+12. Find the postal code of the address with the highest address_id.
+```sql
+SELECT postal_code FROM addresses WHERE address_id = (SELECT MAX(address_id) FROM addresses);
+```
+
+13. Retrieve addresses in Karnataka.
+```sql
+SELECT * FROM addresses WHERE state = 'Karnataka';
+```
+
+14. Count the total number of addresses.
+```sql
+SELECT COUNT(*) AS total_addresses FROM addresses;
+```
+
+15. Get the country of the address with the lowest address_id.
+```sql
+SELECT country FROM addresses WHERE address_id = (SELECT MIN(address_id) FROM addresses);
+```
+
+16. Find addresses in cities starting with 'D'.
+```sql
+SELECT * FROM addresses WHERE city LIKE 'D%';
+```
+
+17. Retrieve addresses with postal codes ending with '001'.
+```sql
+SELECT * FROM addresses WHERE postal_code LIKE '%001';
+```
+
+18. Get distinct states from the addresses table.
+```sql
+SELECT DISTINCT state FROM addresses;
+```
+
+19. Find addresses in India.
+```sql
+SELECT * FROM addresses WHERE country = 'India';
+```
+
+20. Retrieve addresses sorted by city in descending order.
+```sql
+SELECT * FROM addresses ORDER BY city DESC;
+```
+
+
+
+** Order Table **:
+
+21. Retrieve all order IDs.
+```sql
+SELECT order_id FROM orders;
+```
+
+22. Get the total amount of the order with the highest order_id.
+```sql
+SELECT total_amount FROM orders WHERE order_id = (SELECT MAX(order_id) FROM orders);
+```
+
+23. Find orders placed on '2024-03-15'.
+```sql
+SELECT * FROM orders WHERE order_date = '2024-03-15';
+```
+
+24. Count the total number of orders.
+```sql
+SELECT COUNT(*) AS total_orders FROM orders;
+```
+
+25. Get the order date of the order with the lowest order_id.
+```sql
+SELECT order_date FROM orders WHERE order_id = (SELECT MIN(order_id) FROM orders);
+```
+
+26. Find orders with a total amount greater than 1000.00.
+```sql
+SELECT * FROM orders WHERE total_amount > 1000.00;
+```
+
+27. Retrieve orders placed before '2024-03-20'.
+```sql
+SELECT * FROM orders WHERE order_date < '2024-03-20';
+```
+
+28. Get the average total amount of all orders.
+```sql
+SELECT AVG(total_amount) AS average_total_amount FROM orders;
+```
+
+29. Find orders placed by customer_id 3.
+```sql
+SELECT * FROM orders WHERE customer_id = 3;
+```
+
+30. Retrieve orders sorted by total amount in descending order.
+```sql
+SELECT * FROM orders ORDER BY total_amount DESC;
+```
+
+
+Here are the SQL queries for the remaining questions:
+
+31. Retrieve all order item IDs.
+```sql
+SELECT order_item_id FROM order_items;
+```
+
+32. Get the product names of items with a quantity greater than 2.
+```sql
+SELECT product_name FROM order_items WHERE quantity > 2;
+```
+
+33. Find the total price of all items.
+```sql
+SELECT SUM(quantity * unit_price) AS total_price FROM order_items;
+```
+
+34. Count the total number of order items.
+```sql
+SELECT COUNT(*) AS total_order_items FROM order_items;
+```
+
+35. Get the quantity of the item with the highest order_item_id.
+```sql
+SELECT quantity FROM order_items WHERE order_item_id = (SELECT MAX(order_item_id) FROM order_items);
+```
+
+36. Find items with a unit price less than 200.00.
+```sql
+SELECT * FROM order_items WHERE unit_price < 200.00;
+```
+
+37. Retrieve items with a product name containing 'Product G'.
+```sql
+SELECT * FROM order_items WHERE product_name LIKE '%Product G%';
+```
+
+38. Get the sum of the quantities of all items.
+```sql
+SELECT SUM(quantity) AS total_quantity FROM order_items;
+```
+
+39. Find items with a unit price greater than 500.00.
+```sql
+SELECT * FROM order_items WHERE unit_price > 500.00;
+```
+
+40. Retrieve items sorted by unit price in ascending order.
+```sql
+SELECT * FROM order_items ORDER BY unit_price ASC;
+```
+
+41. Retrieve all customers who have placed an order.
+```sql
+SELECT DISTINCT c.* FROM customers c INNER JOIN orders o ON c.customer_id = o.customer_id;
+```
+
+42. Get the total number of orders placed by each customer.
+```sql
+SELECT customer_id, COUNT(*) AS total_orders FROM orders GROUP BY customer_id;
+```
+
+43. Find the customer who has placed the most orders.
+```sql
+SELECT customer_id, COUNT(*) AS total_orders FROM orders GROUP BY customer_id ORDER BY total_orders DESC LIMIT 1;
+```
+
+44. Retrieve the average total amount of orders placed by each customer.
+```sql
+SELECT customer_id, AVG(total_amount) AS avg_total_amount FROM orders GROUP BY customer_id;
+```
+
+45. Get the customer who has spent the most on orders.
+```sql
+SELECT customer_id, SUM(total_amount) AS total_spent FROM orders GROUP BY customer_id ORDER BY total_spent DESC LIMIT 1;
+```
+
+46. Find the number of orders placed in each city.
+```sql
+SELECT a.city, COUNT(*) AS total_orders FROM orders o JOIN addresses a ON o.customer_id = a.customer_id GROUP BY a.city;
+```
+
+47. Retrieve the highest total amount of orders placed in a single order.
+```sql
+SELECT MAX(total_amount) AS highest_total_amount FROM orders;
+```
+
+48. Get the average quantity of items per order.
+```sql
+SELECT AVG(quantity) AS average_quantity_per_order FROM order_items;
+```
+
+49. Find the customer who has purchased the most items.
+```sql
+SELECT oi.customer_id, SUM(oi.quantity) AS total_items_purchased FROM order_items oi JOIN orders o ON oi.order_id = o.order_id GROUP BY oi.customer_id ORDER BY total_items_purchased DESC LIMIT 1;
+```
+
+50. Retrieve orders placed by customers with a specific email domain (e.g., '@example.com').
+```sql
+SELECT o.* FROM orders o JOIN customers c ON o.customer_id = c.customer_id WHERE c.email LIKE '%@example.com%';
+```
+

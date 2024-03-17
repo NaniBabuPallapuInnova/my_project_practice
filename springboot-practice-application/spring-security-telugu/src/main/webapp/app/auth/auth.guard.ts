@@ -22,10 +22,16 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
+
+    //Checks if the user is authenticated by verifying the presence of a token.
     if (this.userAuthService.getToken() !== null) {
-      const role = route.data['roles'] as Array<string>;
+
+      //Extracts the required roles from the route data.
+      const role = route.data['roles'] as Array<string>; 
 
       if (role) {
+
+        // the code checks if the current user has the required role to access a particular route by comparing the user's roles with the allowed roles specified for that route. If a match is found, access is granted; otherwise, the user is redirected to the forbidden page.
         const match = this.userService.matchRole(role);
 
         if (match) {
@@ -36,6 +42,8 @@ export class AuthGuard implements CanActivate {
         }
       }
     }
+
+    //Navigates to the login page if the user is not authenticated if user does not have token
 
     this.router.navigate(['/login']);
     return false;

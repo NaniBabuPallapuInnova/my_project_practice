@@ -19,10 +19,15 @@ public class JwtResource {
   private JwtService jwtService;
 
 
+  /**
+   * Controller method to authenticate a user and generate a JWT token.
+   *
+   * @param jwtRequest The JWT request containing user credentials
+   * @return The JWT response containing the user details and generated token
+   * @throws Exception If an error occurs during token generation
+   */
   @PostMapping("/authenticate")
   public JwtResponse createJwtToken(@RequestBody JwtRequest jwtRequest) throws Exception {
-
     return jwtService.createJwtToken(jwtRequest);
-
   }
 }
