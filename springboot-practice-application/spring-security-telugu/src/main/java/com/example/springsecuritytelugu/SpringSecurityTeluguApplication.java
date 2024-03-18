@@ -15,17 +15,17 @@ public class SpringSecurityTeluguApplication {
 	}
 
 
-  @Bean
-  public CorsFilter corsFilter() {
-    CorsConfiguration corsConfig = new CorsConfiguration();
-    corsConfig.addAllowedOrigin("http://localhost:4200"); // Replace with the actual URL of your Angular app
-    corsConfig.addAllowedMethod("*"); // Allow all HTTP methods
-    corsConfig.addAllowedHeader("*"); // Allow all headers
-    corsConfig.setAllowCredentials(true); // Allow credentials (e.g., cookies)
-
-    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-    source.registerCorsConfiguration("/**", corsConfig);
-
-    return new CorsFilter(source);
-  }
+//  @Bean
+//  public CorsFilter corsFilter() {
+//    CorsConfiguration corsConfig = new CorsConfiguration();
+//    corsConfig.addAllowedOrigin("http://localhost:4200"); // Replace with the actual URL of your Angular app
+//    corsConfig.addAllowedMethod("*"); // Allow all HTTP methods
+//    corsConfig.addAllowedHeader("*"); // Allow all headers
+//    corsConfig.setAllowCredentials(true); // Allow credentials (e.g., cookies)
+//
+//    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//    source.registerCorsConfiguration("/**", corsConfig);
+//
+//    return new CorsFilter(source);
+//  }
 }

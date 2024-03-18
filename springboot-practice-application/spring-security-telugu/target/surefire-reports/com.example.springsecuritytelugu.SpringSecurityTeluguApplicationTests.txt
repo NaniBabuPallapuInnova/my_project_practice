@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.example.springsecuritytelugu.SpringSecurityTeluguApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 42.948 s - in com.example.springsecuritytelugu.SpringSecurityTeluguApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 13.391 s - in com.example.springsecuritytelugu.SpringSecurityTeluguApplicationTests

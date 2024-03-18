@@ -1,4 +1,71 @@
 
+IMP : why are you leaving your current company?
+
+I am currently seeking a career move to broaden my skills and experience after gaining valuable insights in my current role. 
+Exploring new opportunities will allow me to take on fresh challenges and contribute to a different professional landscape.
+
+
+IMP : Expected Salary?
+
+Considering the skills and experience I have acquired, I am expecting a salary range between 10 to 12 LPA.
+
+
+
+Subject: Application for Java Developer Position
+
+Hi,
+
+I hope this message finds you well. I'm reaching out to express my interest in the Java Developer or Java Full Stack Developer role at your company. 
+With 3 years of hands-on experience in Java, Spring Boot, and Angular, I'm keen on contributing my skills to your team. 
+
+I have attached my resume for your consideration. 
+I believe my skills and experience make me a strong candidate for the position, and I am eager to discuss how I can contribute to the success of your team.
+
+
+Thank you for considering my inquiry. I look forward to hearing from you soon.
+
+
+Thanks & Regards,
+Nani Babu Pallapu,
+nanipallapu369@mail,
+93925-90089
+
+
+SELF-INTRODUCTION:
+====================
+
+Good Morning,
+
+
+I'm Nani Babu Pallapu, a Java Full Stack Developer holding a Bachelor's degree in Computer Science from Nova College of Engineering & Technology, graduated in 2020.
+
+
+My professional journey began as a Trainee & Contract-based Java Developer at TechEra IT Consulting, where I completed an intensive 6-month training program before joining Innova Solutions in December 2021. 
+Since then, I've transitioned to a Permanent Employee role, leading the development of web-based applications like the Lync OMS with a focus on enhancements and resolving critical issues.
+
+
+Now I have been working as a Java Full Stack Developer with around 3 years of hands-on experience. 
+My expertise lies in Java, Spring Boot, and Angular frameworks, Hibernate, SQL, Apache NIFI framework,RESTful services, and microservices.
+
+
+During my tenure, I've had the opportunity to work on two impactful projects:
+
+1. **LYNC-OMS Project**: Developed an Order Management System (OMS) application for internal sales and order processing teams. This system streamlined the process of placing business orders, where Account Executives (AE) could place orders on behalf of customers, which were then reviewed and approved by Operations (OP) team members.
+
+2. **NIFI Development Project**: Led the development of customized NIFI processors aimed at simplifying PDF/RTF to text conversion. As the sole team member, I analyzed client requirements and developed specialized processors to convert files into plain text format, storing them in a MySQL database.
+
+These projects have not only enhanced my technical skills but also provided me with valuable experience in problem-solving and client collaboration.
+
+
+Outside of work, I'm known for my positive attitude, hardworking, and dedication. 
+I approach challenges with optimism, always striving to find solutions and grow professionally. In my spare time, I enjoy playing volleyball and indulging in music.
+
+That concludes my introduction. Thank you for giving me the opportunity to present myself.
+
+
+
+
+
 WHAT IS JAVA
 ==============
 Java is an object-oriented, class-based, concurrent, secured and general-purpose computer-programming language. It is a widely used robust technology.
@@ -21,6 +88,61 @@ Applications :
 6. Smart Card
 7. Robotics
 8. Games, etc.
+
+
+Types of Java Applications
+There are mainly 4 types of applications that can be created using Java programming:
+
+1) Standalone Application
+Standalone applications are also known as desktop applications or window-based applications. These are traditional software that we need to install on every machine. Examples of standalone application are Media player, antivirus, etc. AWT and Swing are used in Java for creating standalone applications.
+
+2) Web Application
+An application that runs on the server side and creates a dynamic page is called a web application. Currently, Servlet, JSP, Struts, Spring, Hibernate, JSF, etc. technologies are used for creating web applications in Java.
+ADVERTISEMENT
+
+3) Enterprise Application
+An application that is distributed in nature, such as banking applications, etc. is called an enterprise application. It has advantages like high-level security, load balancing, and clustering. In Java, EJB is used for creating enterprise applications.
+
+4) Mobile Application
+An application which is created for mobile devices is called a mobile application. Currently, Android and Java ME are used for creating mobile applications.
+
+Java Platforms / Editions
+There are 4 platforms or editions of Java:
+
+1) Java SE (Java Standard Edition)
+It is a Java programming platform. It includes Java programming APIs such as java.lang, java.io, java.net, java.util, java.sql, java.math etc. It includes core topics like OOPs, String, Regex, Exception, Inner classes, Multithreading, I/O Stream, Networking, AWT, Swing, Reflection, Collection, etc.
+
+2) Java EE (Java Enterprise Edition)
+It is an enterprise platform that is mainly used to develop web and enterprise applications. It is built on top of the Java SE platform. It includes topics like Servlet, JSP, Web Services, EJB, JPA, etc.
+
+3) Java ME (Java Micro Edition)
+It is a micro platform that is dedicated to mobile applications.
+
+4) JavaFX
+It is used to develop rich internet applications. It uses a lightweight user interface API.
+
+
+Features of Java
+==================
+The primary objective of Java programming language creation was to make it portable, simple and secure programming language. Apart from this, there are also some excellent features which play an important role in the popularity of this language. The features of Java are also known as Java buzzwords.
+
+A list of the most important features of the Java language is given below.
+
+1.Java Features
+2.Simple
+3.Object-Oriented
+4.Portable
+5.Platform independent
+6.Secured
+7.Robust
+8.Architecture neutral
+9.Interpreted
+10.High Performance
+11.Multithreaded
+12.Distributed
+13.Dynamic
+
+
 
 
 JVM , JDK AND JRE IN JAVA
@@ -60,16 +182,58 @@ JVM, JDK, and JRE are important components in the Java programming and runtime e
 	
 	It is the implementation of JVM. It physically exists. It contains a set of libraries + other files that JVM uses at runtime.
 
+Access Modifiers:
+=================
+Private: The access level of a private modifier is only within the class. It cannot be accessed from outside the class.
+Default: The access level of a default modifier is only within the package. It cannot be accessed from outside the package. If you do not specify any access level, it will be the default.
+Protected: The access level of a protected modifier is within the package and outside the package through child class. If you do not make the child class, it cannot be accessed from outside the package.
+Public: The access level of a public modifier is everywhere. It can be accessed from within the class, outside the class, within the package and outside the package.
+
+Java Variables
+================
+A variable is a container which holds the value while the Java program is executed. A variable is assigned with a data type.
+
+Variable is a name of memory location. There are three types of variables in java: local, instance and static.
+
+There are two types of data types in Java: primitive and non-primitive.
+
+Variable
+---------
+A variable is the name of a reserved area allocated in memory. In other words, it is a name of the memory location. It is a combination of "vary + able" which means its value can be changed.
+
+1) Local Variable
+A variable declared inside the body of the method is called local variable. You can use this variable only within that method and the other methods in the class aren't even aware that the variable exists.
+
+A local variable cannot be defined with "static" keyword.
+
+2) Instance Variable
+A variable declared inside the class but outside the body of the method, is called an instance variable. It is not declared as static.
+
+It is called an instance variable because its value is instance-specific and is not shared among instances.
+
+3) Static variable
+A variable that is declared as static is called a static variable. It cannot be local. You can create a single copy of the static variable and share it among all the instances of the class. Memory allocation for static variables happens only once when the class is loaded in the memory.
 
 
+Final Keyword : 
+================
+The final keyword in java is used to restrict the user. The java final keyword can be used in many context. Final can be:
 
+1. variable : If you make any variable as final, you cannot change the value of final variable(It will be constant).
+2. method : If you make any method as final, you cannot override it.
+3. class : If you make any class as final, you cannot extend it.
 
-
+Static Keyword:
+================
+1. **Static Variables**: Shared among all instances, initialized once, accessed using the class name.
+2. **Static Methods**: Belong to the class, callable without instance creation, cannot access instance variables directly.
+3. **Static Blocks**: Used for static variables initialization, executed once when the class is loaded.
+4. **Static Nested Classes**: Nested classes declared static, can access only static members of the outer class, can be instantiated without an outer class instance.
 
 JAVA OOPS:
 ==========
 
-Object-Oriented Programming is a paradigm that provides many concepts, such as inheritance, data binding, polymorphism, etc.
+Object-Oriented Programming is a paradigm that provides many concepts, such as inheritance, Abstraction, Encapsulation, polymorphism, etc.
 
 Simula is considered the first object-oriented programming language. The programming paradigm where everything is represented as an object is known as a truly object-oriented programming language.
 
@@ -137,6 +301,22 @@ The popular object-oriented languages are Java, C#, PHP, Python, C++, etc.
    Types i. Single Inheritance 2. Mutlilevel Inheritance 3. Hierarchical Inheritance 
    
    Note : To reduce the complexity and simplify the language, multiple inheritance is not supported in java. It is possiable with interfaces.
+   
+   
+   NOTE : Aggregation in Java
+		If a class have an entity reference, it is known as Aggregation. Aggregation represents HAS-A relationship.
+		Consider a situation, Employee object contains many informations such as id, name, emailId etc. 
+		It contains one more object named address, which contains its own informations such as city, state, country, zipcode etc.
+		it is useful for code reusability.
+		
+		example : 
+		----------
+		class Employee{  
+		int id;  
+		String name;  
+		Address address;//Address is a class  
+		...  
+		} 
 
 4. **Polymorphism**:
 
@@ -596,6 +776,102 @@ Java Arrays
 	2. Java array is an object which contains elements of a similar data type. Additionally, The elements of an array are stored in a contiguous memory location. 
 	3. It is a data structure where we store similar elements. We can store only a fixed set of elements in a Java array.
 	4. Array in Java is index-based, the first element of the array is stored at the 0th index, 2nd element is stored on 1st index and so on.
+	
+	
+public class ArrayExample {
+    public static void main(String[] args) {
+        
+        // creating an array and initialize with values - way 1 
+        int[] intArray = new int[5];
+        intArray[0] = 3;
+        intArray[1] = 4;
+        intArray[2] = 6;
+        intArray[3] = 7;
+        intArray[4] = 8;
+
+        // creating an array and initialize with values - way 2
+        int[] intArray2 = {14, 15, 16, 17, 18};
+
+        for (int i : intArray) {
+            System.out.println(i);
+        }
+        System.out.println("\n");
+
+        for (int i = 0; i < intArray2.length; i++) {
+            System.out.println(intArray2[i]);
+        }
+        System.out.println("\n");
+
+        String[] stringArray = new String[5];
+        stringArray[0] = "Nani";
+        stringArray[1] = "Welcome";
+        stringArray[2] = "To";
+        stringArray[3] = "My world";
+        stringArray[4] = "Thank you!";
+
+        String[] stringArray2 = {"Lemon", "Orange", "Mango", "Grape", "Apple"};
+
+        for (String str : stringArray) {
+            System.out.println(str);
+        }
+        System.out.println("\n");
+
+        for (int i = 0; i < stringArray2.length; i++) {
+            System.out.println(stringArray2[i]);
+        }
+        System.out.println("\n");
+
+        char[] ch = new char[4];
+        ch[0] = 'N';
+        ch[1] = 'A';
+        ch[2] = 'N';
+        ch[3] = 'I';
+
+        for (char value : ch) {
+            System.out.println(value);
+        }
+
+        System.out.println("\n");
+
+        char[] chars = {'P', 'A', 'L', 'L', 'A', 'P', 'U'};
+        for (int i = 0; i < chars.length; i++) {
+            System.out.println(chars[i]);
+        }
+
+        /**
+         * Multi Dimensional Array
+         */
+        int[][] arr = new int[3][3];//3 row and 3 column
+        arr[0][0] = 1;
+        arr[0][1] = 2;
+        arr[0][2] = 3;
+        arr[1][0] = 4;
+        arr[1][1] = 5;
+        arr[1][2] = 6;
+        arr[2][0] = 7;
+        arr[2][1] = 8;
+        arr[2][2] = 9;
+
+        System.out.println("====== PRINTING MULTI DIMENSIONAL ARRAY VALUES ======");
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr.length; j++) {
+                System.out.print(arr[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+
+        int[][] arr2 = {{1, 2, 3}, {2, 4, 5}, {4, 4, 5}};
+        System.out.println("====== PRINTING ANOTHER MULTI DIMENSIONAL ARRAY VALUES ======");
+        for (int[] value1 : arr2) {
+            for (int value : value1) {
+                System.out.print(value + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
 
 Java String
 ==================
@@ -636,6 +912,98 @@ Java String
 	2) By new keyword
 	
 		String s=new String("Welcome");//creates two objects and one reference variable.
+		
+		
+		
+		
+		
+In Java, `String` objects are immutable, which means their state (the data they represent) cannot be changed after they are created. Once a `String` object is created, you cannot modify its contents. When you perform operations that seem to modify a `String`, you are actually creating a new `String` object rather than modifying the existing one. This design choice has several implications and advantages.
+
+**Why Strings are Immutable:**
+
+**Immutability of Strings in Java:**
+
+**1. Stack and Heap Areas:**
+   - In Java, the stack and heap are two memory areas used for storage.
+   - **Stack:** It stores method call information, local variables, and reference variables. It's fast but limited in size.
+   - **Heap:** It's a larger memory area where objects are stored, and it's managed by the garbage collector.
+
+**2. String Constant Pool:**
+   - The String Constant Pool is a special area in the heap that stores string literals (like "Hello"). It's a shared pool, and when you create a string literal, Java checks if it exists in the pool.
+
+**3. Immutability:**
+   - Strings in Java are immutable, meaning their content cannot change after creation.
+   - When you create a new string, it goes to the String Constant Pool if it's a literal. Otherwise, it's created in the heap.
+   - If another string with the same content is needed, Java reuses the existing one (if it's a literal).
+
+**How References are Saved and Accessed:**
+   - Reference variables (like `String str;`) in the stack store memory addresses (references) pointing to objects in the heap.
+   - When you assign a new value to a reference, you change the memory address it points to.
+
+**Why StringBuilder and StringBuffer are Mutable:**
+   - `StringBuilder` and `StringBuffer` are mutable string classes in Java, designed for efficient string manipulation.
+   - They use a dynamic array to store characters, allowing for in-place modifications.
+   - Unlike immutable strings, where a new object is created for each modification, mutable classes modify the existing object, reducing memory overhead.
+
+**Example:**
+```java
+// Immutable String
+String s1 = "Hello";
+String s2 = s1.concat(" World");  // New string created
+System.out.println(s1);  // Output: Hello
+System.out.println(s2);  // Output: Hello World
+
+// Mutable StringBuilder
+StringBuilder sb1 = new StringBuilder("Hello");
+sb1.append(" World");  // Modifies the existing StringBuilder
+System.out.println(sb1);  // Output: Hello World
+```
+
+**In Summary:**
+   - Strings are immutable in Java for thread safety, security, and simplicity.
+   - String literals go to the String Constant Pool, and dynamic strings are created in the heap.
+   - References in the stack point to objects in the heap.
+   - `StringBuilder` and `StringBuffer` are mutable for efficient string manipulation. They modify the existing object instead of creating new ones.
+   
+   
+
+1. **Thread Safety:**
+   - Immutability makes `String` objects thread-safe. Since the content of a `String` cannot be changed, multiple threads can safely share and use the same `String` object without the need for synchronization. This simplifies concurrent programming.
+
+2. **Security:**
+   - Because strings are used extensively in Java for representing textual data, immutability helps in building secure systems. For example, if a `String` representing a password is passed between methods or classes, immutability ensures that the password cannot be changed inadvertently.
+
+3. **Caching and String Pool:**
+   - Java maintains a pool of string literals known as the "String pool." Immutability allows Java to reuse existing string literals, reducing memory consumption. When you create a new string with the same value, Java can check the pool and return the existing instance if available.
+
+   ```java
+   String s1 = "Hello";
+   String s2 = "Hello"; // Reuses the same instance from the pool
+   ```
+
+4. **Hash Code Calculation:**
+   - Since the content of a `String` does not change, its hash code can be calculated once and cached. This is used in hash-based data structures like `HashMap` and `HashSet`.
+
+**Why Other Data Types are not Immutable:**
+
+While `String` is the most prominent example of immutability in Java, other fundamental data types, such as `Integer`, `Double`, and `Boolean`, are also immutable. This design choice brings similar benefits:
+
+1. **Predictable and Safe Behavior:**
+   - Immutable objects behave predictably. Once created, their state cannot be changed, leading to safer and more reliable code. This predictability is crucial in scenarios where the value of an object should remain constant.
+
+2. **Consistency:**
+   - Immutability promotes consistency in the language. If some data types were mutable while others were not, it could lead to confusion and unexpected behavior.
+
+3. **Simplicity:**
+   - Immutable objects simplify the design and understanding of the code. Since the state of the object does not change, you can reason about the behavior of the code more easily.
+
+However, it's important to note that not all data types in Java are immutable. For example, arrays, `StringBuilder`, and `ArrayList` are mutable. The choice between mutable and immutable objects depends on the specific requirements and use cases of the data type. Immutability is favored when predictability, thread safety, and ease of reasoning about code are critical. Mutable objects are preferred when dynamic modifications to the object's state are required.
+
+
+
+for more explanation open this video : https://youtu.be/5OXc-TsM3bg?si=LOaFCqlWqaBxyhaE
+
+
 
 EXCEPTION HANDLING 
 =====================
@@ -747,6 +1115,130 @@ EXCEPTION HANDLING
 
 
 
+
+	creating a custom exception
+	---------------------------
+	
+	
+			Custom exceptions in Java are like special error messages you create to explain specific problems in your program. 
+			They help you handle issues in a way that makes sense for your application, making your code easier to understand and maintain.
+			
+		let's say you're building a banking application in Java. You might encounter a situation where an account balance is insufficient for a withdrawal. 
+		Instead of using a generic `Exception`, you can create a custom exception to represent this specific scenario:
+
+		```java
+		public class InsufficientFundsException extends Exception {
+			public InsufficientFundsException(String message) {
+				super(message);
+			}
+		}
+		```
+
+		Now, in your banking code, when a withdrawal attempt is made, you can use this custom exception:
+
+		```java
+		public class BankAccount {
+			private double balance;
+
+			public BankAccount(double initialBalance) {
+				this.balance = initialBalance;
+			}
+
+			public void withdraw(double amount) throws InsufficientFundsException {
+				if (amount > balance) {
+					throw new InsufficientFundsException("Insufficient funds for withdrawal");
+				}
+				// Perform the withdrawal logic if there's enough balance
+				balance -= amount;
+				System.out.println("Withdrawal successful. Remaining balance: " + balance);
+			}
+		}
+		```
+
+		Now, when someone tries to withdraw more money than the account balance, you get a clear and specific error message indicating an insufficient funds situation:
+
+		```java
+		public class Main {
+			public static void main(String[] args) {
+				BankAccount account = new BankAccount(100.0);
+
+				try {
+					account.withdraw(150.0); // This will throw InsufficientFundsException
+				} catch (InsufficientFundsException e) {
+					System.out.println("Error: " + e.getMessage());
+				}
+			}
+		}
+		```
+
+		This makes your code more readable and helps you handle specific issues appropriately in your application.
+	
+
+		In Java, creating a custom exception involves extending the `Exception` class or one of its subclasses. Here's a step-by-step guide on how to create and use a custom exception:
+		
+
+
+		### Step 1: Create the Custom Exception Class
+
+		```java
+		// CustomException.java
+		public class CustomException extends Exception {
+			public CustomException(String message) {
+				super(message);
+			}
+		}
+		```
+
+		In this example, `CustomException` extends the `Exception` class. The constructor takes a `String` parameter that represents the error message associated with the exception.
+
+		### Step 2: Use the Custom Exception in Another Class
+
+		```java
+		// ExampleClass.java
+		public class ExampleClass {
+			public void performTask() throws CustomException {
+				// Your code that might throw the custom exception
+				boolean somethingWentWrong = true;
+
+				if (somethingWentWrong) {
+					throw new CustomException("CustomException: Something went wrong!");
+				}
+
+				// Rest of the method if no exception is thrown
+			}
+		}
+		```
+
+		In `ExampleClass`, the `performTask` method throws the `CustomException` if something goes wrong during the execution of the task.
+
+		### Step 3: Handle the Custom Exception in Another Class (Optional)
+
+		```java
+		// MainClass.java
+		public class MainClass {
+			public static void main(String[] args) {
+				ExampleClass example = new ExampleClass();
+
+				try {
+					example.performTask();
+				} catch (CustomException e) {
+					System.err.println("Caught CustomException: " + e.getMessage());
+					// Handle the exception or perform additional actions
+				}
+			}
+		}
+		```
+
+		In `MainClass`, the `performTask` method is called within a `try-catch` block. If the `CustomException` is thrown during the execution of `performTask`, it will be caught in the `catch` block, and you can handle it accordingly.
+
+		### Important Notes:
+		- Custom exceptions are typically used to handle specific error conditions in your application.
+		- The `throws` keyword in the method signature indicates that the method might throw the specified exception.
+		- The `try-catch` block is used to handle exceptions gracefully and provide a way to recover from errors.
+
+		Remember to adjust the class names and structures based on your specific application needs.
+
+
 INNER CLASS IN JAVA
 ====================
 
@@ -833,7 +1325,9 @@ INNER CLASS IN JAVA
 
 Functional Interface
 ======================
-	A functional interface in Java is an interface that has exactly one abstract method. Functional interfaces are also known as Single Abstract Method (SAM) interfaces. These interfaces are a fundamental concept in Java's support for lambda expressions and the Java Stream API. Functional interfaces are used to represent single behaviors, and they can be implemented as lambda expressions or method references, making code more concise and expressive.
+	A functional interface in Java is an interface that has exactly one abstract method. Functional interfaces are also known as Single Abstract Method (SAM) interfaces. 
+	These interfaces are a fundamental concept in Java's support for lambda expressions and the Java Stream API. 
+	Functional interfaces are used to represent single behaviors, and they can be implemented as lambda expressions or method references, making code more concise and expressive.
 
 	Here are the key characteristics and rules for functional interfaces in Java:
 
@@ -860,7 +1354,7 @@ Functional Interface
 		public static void main(String[] args) {
 			// Using a lambda expression to implement the functional interface
 			MyFunctionalInterface functionalObj = () -> {
-				System.out.println("Doing something...");
+				System.out.println("Doing something...");l
 			};
 			functionalObj.doSomething();
 		}
@@ -933,7 +1427,8 @@ Functional Interface
 Java Streams
 ==================
 
-	Java Streams are a powerful and versatile feature introduced in Java 8 for processing sequences of elements (e.g., collections) in a functional and declarative manner. They provide a concise and expressive way to perform operations on data, making your code more readable and efficient.
+	Java Streams are a powerful and versatile feature introduced in Java 8 for processing sequences of elements (e.g., collections) in a functional and declarative manner. 
+	They provide a concise and expressive way to perform operations on data, making your code more readable and efficient.
 
 	Here are some key concepts and operations related to Java Streams:
 
@@ -947,7 +1442,7 @@ Java Streams
 
 	2. **Intermediate and Terminal Operations**:
 	   - Streams consist of two types of operations: intermediate and terminal.
-	   - Intermediate operations transform a Stream into another Stream. Examples include `filter`, `map`, and `sorted`.
+	   - Intermediate operations transform a Stream into another Stream and Methods are chained together. Examples include `filter`, `map`, and `sorted`.
 	   - Terminal operations produce a result or a side effect. Examples include `forEach`, `collect`, and `reduce`.
 
 	3. **Filtering**:
@@ -998,7 +1493,9 @@ Java Streams
 JDBC IN JAVA
 =========================
 
-	JDBC, which stands for Java Database Connectivity, is a Java-based API (Application Programming Interface) that allows Java applications to interact with relational databases. It provides a standard interface for connecting to databases, executing SQL queries, and retrieving and manipulating data. JDBC is a crucial technology for database-driven Java applications and is part of the Java Standard Library.
+	JDBC, which stands for Java Database Connectivity, is a Java-based API (Application Programming Interface) that allows Java applications to interact with relational databases. 
+	It provides a standard interface for connecting to databases, executing SQL queries, and retrieving and manipulating data. 
+	JDBC is a crucial technology for database-driven Java applications and is part of the Java Standard Library.
 
 	Here are some key points about JDBC:
 
@@ -1115,11 +1612,94 @@ MULTITHREADING
 
 	Life cycle of a Thread (Thread States)
 	In Java, a thread always exists in any one of the following states. These states are:
-	i.   New
-	ii.  Active
-	iii. Blocked / Waiting
-	iv.  Timed Waiting
-	v.   Terminated
+
+		i. New - The thread has been instantiated but hasn't yet started its execution.
+		ii. Active - The thread is currently running and executing its tasks.
+		iii. Blocked / Waiting - The thread is paused, waiting for a resource, such as I/O or synchronization.
+		iv. Timed Waiting - The thread is paused for a specified duration before resuming execution.
+		v. Terminated - The thread has completed its task or has been stopped.
+
+In Java, there are two main ways to create a thread:
+
+1. Extending the `Thread` class:
+   - You can create a new class that extends the `Thread` class and overrides its `run()` method, where you define the task that the thread will execute.
+   - Here's an example:
+
+```java
+class MyThread extends Thread {
+    public void run() {
+        // Define the task that this thread will execute
+        System.out.println("Thread is running");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Create an instance of your custom thread class
+        MyThread myThread = new MyThread();
+        
+        // Start the thread
+        myThread.start();
+    }
+}
+```
+
+2. Implementing the `Runnable` interface:
+   - You can create a class that implements the `Runnable` interface and provides implementation for its `run()` method.
+   - Then, you can pass an instance of this class to the constructor of a `Thread` object.
+   - Here's an example:
+
+```java
+class MyRunnable implements Runnable {
+    public void run() {
+        // Define the task that this thread will execute
+        System.out.println("Thread is running");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Create an instance of your custom runnable class
+        MyRunnable myRunnable = new MyRunnable();
+        
+        // Create a thread with your runnable object
+        Thread thread = new Thread(myRunnable);
+        
+        // Start the thread
+        thread.start();
+    }
+}
+```
+
+Certainly! Let's break down each concept related to threading in Java:
+
+1. **Sleep**: `Thread.sleep()` is a method that pauses the execution of the current thread for a specified amount of time, allowing other threads to execute.
+
+2. **Yield**: `Thread.yield()` is a method that suggests to the scheduler that the current thread is willing to yield its current use of the processor. It gives other threads of the same priority a chance to run.
+
+3. **Wait, Notify, and NotifyAll**:
+
+   - `wait()`: Causes the current thread to wait until another thread invokes the `notify()` or `notifyAll()` method for the same object.
+   - `notify()`: Wakes up a single thread that is waiting on the object's monitor.
+   - `notifyAll()`: Wakes up all threads that are waiting on the object's monitor.
+   - These methods are used for inter-thread communication and synchronization.
+
+4. **Join**: The `join()` method is used to wait for a thread to die. It allows one thread to wait for the completion of another. 
+
+5. **Thread Pool**: A thread pool is a collection of pre-initialized threads that stand by, ready to be given work. This approach reduces thread creation overhead and manages the execution of tasks efficiently.
+
+6. **Thread Group**: A thread group represents a collection of threads. It allows you to set properties such as the maximum priority of its threads and to control the threads within the group as a single unit.
+
+7. **Synchronization**:
+   - **Method Synchronization**: Using the `synchronized` keyword on a method allows only one thread at a time to execute the synchronized method.
+   - **Block Synchronization**: Using synchronized blocks allows more granular control over the synchronization by locking on specific objects.
+   - **Static Synchronization**: Synchronizing static methods locks the class, preventing multiple threads from executing static synchronized methods simultaneously.
+
+8. **Deadlock**: A deadlock occurs when two or more threads are blocked forever, each waiting for the other to release a resource. It's a common synchronization problem that needs to be carefully avoided.
+
+9. **Inter-Thread Communication**: Inter-thread communication refers to communication between threads. It involves methods like `wait()`, `notify()`, and `notifyAll()`, which allow threads to coordinate their actions and share data safely.
+
+
 
 
 SOME IMPORTANT INTERFACES IN JAVA
@@ -1379,8 +1959,10 @@ To summarize, if sorting of objects needs to be based on natural order then use 
 Serializable Interface
 ======================
 The Serializable interface is present in java.io package. It is a marker interface. A Marker Interface does not have any methods and fields. Thus classes implementing it do not have to implement any methods.
-The Serializable interface in Java is a marker interface that indicates that the objects of the class implementing it can be serialized. Serialization is the process of converting an object into a byte stream, which can be easily stored in a file or transmitted over a network. Later, this byte stream can be deserialized, reconstructing the original object.
-(Serialization is a mechanism of converting the state of an object into a byte stream. Serialization is done using ObjectOutputStream. Deserialization is the reverse process where the byte stream is used to recreate the actual Java object in memory. This mechanism is used to persist the object. Deserialization is done using ObjectInputStream. Thus it can be used to make an eligible for saving its state into a file.)
+The Serializable interface in Java is a marker interface that indicates that the objects of the class implementing it can be serialized. 
+Serialization is the process of converting an object into a byte stream, which can be easily stored in a file or transmitted over a network. Later, this byte stream can be deserialized, reconstructing the original object.
+(Serialization is a mechanism of converting the state of an object into a byte stream. Serialization is done using ObjectOutputStream. 
+Deserialization is the reverse process where the byte stream is used to recreate the actual Java object in memory. This mechanism is used to persist the object. Deserialization is done using ObjectInputStream. Thus it can be used to make an eligible for saving its state into a file.)
 To make a class serializable, you simply need to implement the Serializable interface. Here's a basic example:
 
 import java.io.Serializable;  
@@ -1496,11 +2078,11 @@ Collections in Java:
 
 		i. ArrayList:
 		=============
-		1) ArrayList internally uses a dynamic array to store the elements.
+		1) ArrayList internally uses a dynamic array(can grow or shrink in size) to store the elements.
 		2) Manipulation with ArrayList is slow because it internally uses an array.     I
 		3) An ArrayList class can act as a list only because it implements List only.
 		4) ArrayList is better for storing and accessing data.
-		5) The memory location for the elements of an ArrayList is contiguous.
+		5) The memory location for the elements of an ArrayList is contiguous(elements that are next to each other).
 		6) Generally, when an ArrayList is initialized, a default capacity of 10 is assigned to the ArrayList.
 		7) To be precise, an ArrayList is a resizable array.
 
@@ -1631,11 +2213,6 @@ Collections in Java:
 			d) Java TreeSet class is non synchronized.
 			e) Java TreeSet class maintains ascending order.
 			f) Java TreeSet class contains unique elements only like HashSet.
-			g) Java TreeSet class access and retrieval times are quite fast.
-			h) Java TreeSet class doesn't allow null elements.
-			i) Java TreeSet class is non-synchronized.
-			j) Java TreeSet class maintains ascending order.
-			k) The TreeSet can only allow those generic types that are comparable. For example The Comparable interface is being implemented by the StringBuffer class.
 
 
 
@@ -1713,7 +2290,8 @@ Collections in Java:
 ### Singleton Class:
 ======================
 *Explanation:*
-A Singleton class is a design pattern that restricts the instantiation of a class to a single instance and provides a global point of access to that instance. It ensures that there is only one instance of the class in the application, and it provides a mechanism to access that instance.
+A Singleton class is a design pattern that restricts the instantiation of a class to a single instance and provides a global point of access to that instance. 
+It ensures that there is only one instance of the class in the application, and it provides a mechanism to access that instance.
 
 *Uses:*
 - *Resource Management:* When you want to control access to a shared resource, such as a database connection or a configuration manager.
@@ -1839,7 +2417,8 @@ Please note that this is a simplified example, and you may need to adapt it base
 ### Object Cloning:
 =======================
 *Explanation:*
-Object cloning is the process of creating an exact copy of an object. In Java, the Cloneable interface is used, and the clone() method is overridden to achieve object cloning. Cloning can be shallow or deep, depending on whether it creates copies of referenced objects.
+Object cloning is the process of creating an exact copy of an object. In Java, the Cloneable interface is used, and the clone() method is overridden to achieve object cloning. 
+Cloning can be shallow or deep, depending on whether it creates copies of referenced objects.
 
 *Uses:*
 - *Prototype Pattern:* Creating new objects by copying an existing object (prototype) rather than creating them from scratch.
@@ -1894,6 +2473,119 @@ Remember to handle CloneNotSupportedException or use the Cloneable interface car
 
 Remember that cloning has some complexities, especially with deep cloning and handling mutable objects within the cloned object. It's often considered in conjunction with the clone method, and sometimes custom serialization and deserialization approaches are preferred.
 
+
+Deep cloning and shallow cloning are two concepts related to the copying of objects in Java. Let's explore the differences between them and provide examples with code.
+
+### Shallow Cloning:
+
+**Shallow cloning** creates a new object but does not create copies of the objects referenced by the original object. Instead, it copies references to the objects. As a result, changes made to the internal state of the cloned object may affect the original object and vice versa if they share mutable objects.
+
+Here's an example using the `clone()` method for shallow cloning:
+
+```java
+class Person implements Cloneable {
+    String name;
+    Address address;
+
+    public Person(String name, Address address) {
+        this.name = name;
+        this.address = address;
+    }
+
+    // Shallow clone
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+}
+
+class Address {
+    String city;
+
+    public Address(String city) {
+        this.city = city;
+    }
+}
+
+public class ShallowCloneExample {
+    public static void main(String[] args) throws CloneNotSupportedException {
+        Address address = new Address("City A");
+        Person originalPerson = new Person("John", address);
+
+        // Shallow clone
+        Person clonedPerson = (Person) originalPerson.clone();
+
+        // Modify the cloned object
+        clonedPerson.name = "Jane";
+        clonedPerson.address.city = "City B";  // Shallow cloning won't create a new Address object
+
+        // Original object is also affected
+        System.out.println(originalPerson.name);          // Output: John
+        System.out.println(originalPerson.address.city);  // Output: City B
+    }
+}
+```
+
+### Deep Cloning:
+
+**Deep cloning** creates a new object and also creates copies of the objects referenced by the original object. It ensures that changes made to the internal state of the cloned object do not affect the original object, and vice versa.
+
+In Java, achieving deep cloning often involves implementing a custom clone method that explicitly creates copies of the internal objects.
+
+```java
+class Person implements Cloneable {
+    String name;
+    Address address;
+
+    public Person(String name, Address address) {
+        this.name = name;
+        this.address = address;
+    }
+
+    // Deep clone
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Person clonedPerson = (Person) super.clone();
+        // Create a new Address object for deep cloning
+        clonedPerson.address = (Address) address.clone();
+        return clonedPerson;
+    }
+}
+
+class Address implements Cloneable {
+    String city;
+
+    public Address(String city) {
+        this.city = city;
+    }
+
+    // Deep clone for Address
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+}
+
+public class DeepCloneExample {
+    public static void main(String[] args) throws CloneNotSupportedException {
+        Address address = new Address("City A");
+        Person originalPerson = new Person("John", address);
+
+        // Deep clone
+        Person clonedPerson = (Person) originalPerson.clone();
+
+        // Modify the cloned object
+        clonedPerson.name = "Jane";
+        clonedPerson.address.city = "City B";  // Original Address object remains unchanged
+
+        // Original object is not affected
+        System.out.println(originalPerson.name);          // Output: John
+        System.out.println(originalPerson.address.city);  // Output: City A
+    }
+}
+```
+
+In the deep cloning example, a custom `clone` method is implemented for both `Person` and `Address` classes to ensure that a new `Address` object is created during cloning. This way, changes to the `Address` object in the cloned `Person` do not affect the original `Person`.
 
 
 
@@ -2292,6 +2984,10 @@ Dependency Injection (DI) is a design pattern that removes the dependency from t
 
 Dependency Injection makes our programming code loosely coupled.
 
+Dependency Injection (DI) is a software design pattern that promotes the separation of concerns in an application by allowing components to request their dependencies rather than creating them directly. 
+In DI, a component's dependencies are "injected" into it from the outside, typically via constructor parameters or setter methods. This approach decouples components, making them more modular, reusable, and easier to test.
+
+
 Two ways to perform Dependency Injection in Spring framework
 
 Spring framework provides two ways to inject dependency
@@ -2299,13 +2995,7 @@ Spring framework provides two ways to inject dependency
 1. By Constructor
 2. By Setter method
 
-Dependency Injection (DI) is a software design pattern that promotes the separation of concerns in an application by allowing components to request their dependencies rather than creating them directly. In DI, a component's dependencies are "injected" into it from the outside, typically via constructor parameters or setter methods. This approach decouples components, making them more modular, reusable, and easier to test.
 
-The key concepts of Dependency Injection are as follows:
-
-Dependency: A dependency is an external component or service that a class or function relies on to perform its tasks. These can include database connections, configuration settings, logging services, and more.
-
-Injection: Injection refers to the process of providing a component's dependencies from the outside, typically through constructor arguments or setter methods. Dependencies are "injected" into the component rather than being created or managed by the component itself.
 
 Without Dependency Injection:
 
@@ -3224,30 +3914,10 @@ public class MyService {
 }
 
 
-These are just a few examples of the many annotations provided by Spring Boot. Each annotation serves a specific purpose and helps in configuring various aspects of your application.
 
 
-give me more annotations
-Sure! Here are some additional annotations based on the provided context:
-
-- Innova Solutions was founded in 1998 and has its headquarters in Atlanta (Duluth), Georgia.
-- The company has subsidiaries and employs over 50,000 professionals globally.
-- Innova Solutions reports an annual revenue approaching $3.0B, indicating its significant financial success.
-- The company operates through global delivery centers across North America, Asia, and Europe, enabling it to provide services to clients worldwide.
-- Innova Solutions specializes in strategic technology and business transformation solutions, helping its clients become leaders in their respective industries.
-- The company assists enterprises in onboarding new services, embracing new consumer devices, and implementing business innovations.
-- Innova Solutions offers a full spectrum of services for data center migration and the development of workloads that can be moved to or between cloud service providers.
-- The company's website is http://www.innovasolutions.com, where more information about their services and offerings can be found.
-- Innova Solutions is categorized under the industry of IT services and IT consulting.
-- With a company size of 10,001+ employees, Innova Solutions is a large-scale organization.
-- The company has associated members on LinkedIn who have listed Innova Solutions or its subsidiaries, such as Analysts, Diversant LLC, and five other companies, as their current workplace on their profiles.
-- Raj Sardana serves as the CEO of Innova Solutions, leading the company's operations and strategic direction.
-
-Please note that these annotations are based on the provided context and may not include all possible details about Innova Solutions.
-
-
-I am asking about springboot annotations
-Spring Boot is a popular Java framework that simplifies the development of standalone, production-grade Spring-based applications. It provides a range of annotations that help developers configure and customize their applications.
+Spring Boot is a popular Java framework that simplifies the development of standalone, production-grade Spring-based applications. 
+It provides a range of annotations that help developers configure and customize their applications.
 
 Some commonly used Spring Boot annotations include:
 
@@ -3265,6 +3935,56 @@ Some commonly used Spring Boot annotations include:
 
 7. `@Repository`: This annotation is used to mark a class as a repository component. It is typically used to define data access objects (DAOs) or repositories for database operations.
 
+8. **@Configuration:**
+   - Indicates that the class contains configuration methods that should be processed by the Spring container during application context initialization.
+   - Configuration classes often define beans using `@Bean` annotated methods.
+   - a Bean is a Java object that is managed by the Spring IoC (Inversion of Control) container. It's an instance of a class that is created, configured, and managed by the Spring framework.
+   - `@Bean` annotation declares a method that produces a bean to be managed by the Spring IoC container. It's used for manual configuration of beans not handled by component scanning, enabling explicit instantiation and customization.
+
+9. **@EnableAutoConfiguration:**
+   - Enables Spring Boot's automatic configuration mechanism.
+   - It automatically configures the Spring application based on the dependencies present in the classpath. For example, if it detects a database library in the classpath, it configures data source-related beans.
+
+10. **@ComponentScan:**
+   - Scans the specified package for Spring components (such as beans, controllers, services) and registers them with the Spring container.
+   - It ensures that Spring discovers and manages beans from the specified packages.
+   
+11. **@Transactional**:
+   - `@Transactional` is used to mark methods or classes as transactional, meaning that database operations within the annotated method or class will be executed within a transaction boundary.
+   - It ensures that either all database operations within the annotated method or class complete successfully or none of them do. If an exception occurs, the transaction is rolled back.
+   - It's typically used at the service layer to define transactional boundaries around service methods.
+	
+	Commit: When a transaction is committed, all changes made within the transaction are permanently saved to the database. The changes become visible to other transactions.
+	
+	Rollback: If an error occurs or an exception is thrown within the transaction, the changes made within the transaction are rolled back, meaning that the database is restored to its state before the transaction began.
+
+12. **@Modifying**:
+   - `@Modifying` is used in conjunction with JPQL (Java Persistence Query Language) queries to indicate that the query will modify the database state.
+   - It's used when executing UPDATE, DELETE, or INSERT queries using JPQL.
+   - This annotation is required to instruct JPA that the query being executed will perform database modifications, enabling it to properly manage transactional behavior.
+
+13. **@Query**:
+   - `@Query` is used to declare JPQL queries directly within repository methods.
+   - It allows developers to define custom queries using JPQL syntax directly within the repository interface or class.
+   - It provides more flexibility compared to query methods derived from method names.
+
+14. **@NativeQuery**:
+   - `@NativeQuery` is used to execute native SQL queries directly within repository methods.
+   - It allows developers to execute native SQL queries (SQL written in the database-specific dialect) within the repository interface or class.
+   - It's useful when JPQL is not sufficient or when you need to execute database-specific queries.
+
+   
+
+Now, regarding the "Spring container":
+=======================================
+
+- The **Spring container** is the core of the Spring Framework and is responsible for managing the lifecycle of Spring beans (objects created by the Spring IoC container). It provides a controlled environment for managing application components.
+
+- The Spring container, also known as the **IoC (Inversion of Control) container**, manages the creation, configuration, and assembly of beans. Instead of relying on application code to construct and configure objects, the Spring container takes control and injects dependencies into objects (dependency injection).
+
+- There are two main types of Spring containers: the **BeanFactory** (a more basic container with lazy-loading of beans) and the more feature-rich **ApplicationContext** (a superset of BeanFactory with additional functionalities and eager-loading of beans).
+
+In summary, the Spring container manages the lifecycle of beans, handles dependency injection, and provides a structured and controlled environment for building and managing Spring applications.
 These are just a few examples of the many annotations provided by Spring Boot. Each annotation serves a specific purpose and helps in configuring and customizing your Spring Boot application.
 
 
@@ -3295,13 +4015,11 @@ Annotations also play a crucial role in enabling features and functionalities pr
 Overall, annotations in Spring Boot simplify the development process, enhance code readability, and enable the framework to automatically handle various aspects of our application. They help in reducing boilerplate code and make it easier to build robust and scalable applications.
 
 
-simple terms
 Innova Solutions is a large company that provides IT services and consulting. They help businesses use technology to improve their operations and stay ahead in their industries. With over 50,000 employees and offices around the world, Innova Solutions offers a wide range of services, including developing software, analyzing data, using cloud technology, and implementing artificial intelligence and machine learning. They also provide consulting services to help businesses with their digital transformation. The CEO of Innova Solutions is Raj Sardana. You can learn more about them on their website at http://www.innovasolutions.com.
 
 
 JWT Spring Boot Security
 ==========================
-what is jwt webtoken in springboot security and explain me
 JWT (JSON Web Token) is a widely used standard for securely transmitting information between parties as a JSON object. In the context of Spring Boot security, JWT is often used for authentication and authorization purposes.
 
 In Spring Boot security, JWT can be implemented using the Spring Security framework along with additional libraries such as jjwt. Here's a brief explanation of how JWT works in Spring Boot security:
@@ -3340,3 +4058,863 @@ INNOVA SOLUTIONS:
 - With a company size of 10,001+ employees, Innova Solutions is a large-scale organization.
 - The company has associated members on LinkedIn who have listed Innova Solutions or its subsidiaries, such as Analysts, Diversant LLC, and five other companies, as their current workplace on their profiles.
 - Raj Sardana serves as the CEO of Innova Solutions, leading the company's operations and strategic direction.
+
+
+
+
+
+
+In Data Structures and Algorithms (DSA), various types of sorting algorithms, search algorithms, and data structures like stacks, queues, and lists are commonly used. Here's a brief overview of each:
+
+### Sorting Algorithms:
+
+1. **Bubble Sort:**
+   - Compares adjacent elements and swaps them if they are in the wrong order.
+   - Repeats this process until the entire list is sorted.
+
+2. **Selection Sort:**
+   - Divides the input list into two parts: a sorted and an unsorted region.
+   - In each iteration, finds the smallest element in the unsorted region and swaps it with the first element of the unsorted region.
+
+3. **Insertion Sort:**
+   - Builds the final sorted array one item at a time.
+   - Takes each element from the unsorted list and inserts it into its correct position in the sorted list.
+
+4. **Merge Sort:**
+   - Divides the array into two halves, recursively sorts them, and then merges them.
+   - Uses a divide-and-conquer strategy.
+
+5. **Quick Sort:**
+   - Selects a pivot element and partitions the array into two sub-arrays: elements less than the pivot and elements greater than the pivot.
+   - Recursively applies the same process to the sub-arrays.
+
+6. **Heap Sort:**
+   - Builds a binary heap and repeatedly extracts the maximum element, placing it in the sorted portion of the array.
+   - Utilizes a binary heap data structure.
+
+### Searching Algorithms:
+
+1. **Linear Search:**
+   - Checks each element in the list until a match is found or the end of the list is reached.
+
+2. **Binary Search:**
+   - Applies to a sorted list and repeatedly divides the search interval in half.
+   - Compares the target value to the middle element and narrows down the search.
+
+### Data Structures:
+
+1. **Arrays:**
+   - A collection of elements, each identified by an index or a key.
+
+2. **Linked List:**
+   - A linear data structure where elements are stored in nodes, and each node points to the next node in the sequence.
+
+3. **Stack:**
+   - Follows the Last In, First Out (LIFO) principle.
+   - Operations include push (add an item) and pop (remove the last-added item).
+
+4. **Queue:**
+   - Follows the First In, First Out (FIFO) principle.
+   - Operations include enqueue (add an item) and dequeue (remove the front item).
+
+5. **Hash Table:**
+   - Uses a hash function to map keys to indices in an array.
+   - Provides constant-time average complexity for basic operations like insert and search.
+
+6. **Binary Tree:**
+   - A hierarchical tree structure where each node has at most two children.
+   - Useful for efficient searching, insertion, and deletion.
+
+7. **Graph:**
+   - A collection of nodes (vertices) and edges that connect pairs of nodes.
+   - Used to represent relationships between entities.
+
+8. **Heap:**
+   - A specialized tree-based data structure.
+   - Used to efficiently find the maximum or minimum element in a collection.
+
+These are fundamental concepts in DSA, and there are variations and advanced versions of these algorithms and data structures. The choice of algorithm or data structure depends on the specific requirements of a problem and the characteristics of the data being processed.
+
+
+
+
+Certainly! Here are the Java programs for each of the sorting algorithms you mentioned:
+
+### 1. Bubble Sort:
+```java
+public class BubbleSort {
+    public static void main(String[] args) {
+        int[] arr = {64, 34, 25, 12, 22, 11, 90};
+        int n = arr.length;
+
+        for (int i = 0; i < n-1; i++)
+            for (int j = 0; j < n-i-1; j++)
+                if (arr[j] > arr[j+1]) {
+                    // swap temp and arr[i]
+                    int temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = temp;
+                }
+
+        System.out.println("Sorted array using Bubble Sort: " + Arrays.toString(arr));
+    }
+}
+```
+
+### 2. Selection Sort:
+```java
+public class SelectionSort {
+    public static void main(String[] args) {
+        int[] arr = {64, 34, 25, 12, 22, 11, 90};
+        int n = arr.length;
+
+        for (int i = 0; i < n-1; i++) {
+            int minIndex = i;
+            for (int j = i+1; j < n; j++)
+                if (arr[j] < arr[minIndex])
+                    minIndex = j;
+
+            // Swap the found minimum element with the first element
+            int temp = arr[minIndex];
+            arr[minIndex] = arr[i];
+            arr[i] = temp;
+        }
+
+        System.out.println("Sorted array using Selection Sort: " + Arrays.toString(arr));
+    }
+}
+```
+
+### 3. Insertion Sort:
+```java
+public class InsertionSort {
+    public static void main(String[] args) {
+        int[] arr = {64, 34, 25, 12, 22, 11, 90};
+        int n = arr.length;
+
+        for (int i = 1; i < n; i++) {
+            int key = arr[i];
+            int j = i - 1;
+
+            // Move elements of arr[0..i-1] that are greater than key to one position ahead of their current position
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];
+                j = j - 1;
+            }
+            arr[j + 1] = key;
+        }
+
+        System.out.println("Sorted array using Insertion Sort: " + Arrays.toString(arr));
+    }
+}
+```
+
+### 4. Merge Sort:
+```java
+import java.util.Arrays;
+
+public class MergeSort {
+    public static void main(String[] args) {
+        int[] arr = {64, 34, 25, 12, 22, 11, 90};
+        mergeSort(arr, 0, arr.length - 1);
+
+        System.out.println("Sorted array using Merge Sort: " + Arrays.toString(arr));
+    }
+
+    private static void mergeSort(int[] arr, int left, int right) {
+        if (left < right) {
+            int middle = left + (right - left) / 2;
+
+            // Sort first and second halves
+            mergeSort(arr, left, middle);
+            mergeSort(arr, middle + 1, right);
+
+            // Merge the sorted halves
+            merge(arr, left, middle, right);
+        }
+    }
+
+    private static void merge(int[] arr, int left, int middle, int right) {
+        int n1 = middle - left + 1;
+        int n2 = right - middle;
+
+        int[] L = new int[n1];
+        int[] R = new int[n2];
+
+        // Copy data to temporary arrays L[] and R[]
+        for (int i = 0; i < n1; ++i)
+            L[i] = arr[left + i];
+        for (int j = 0; j < n2; ++j)
+            R[j] = arr[middle + 1 + j];
+
+        // Merge the temporary arrays
+        int i = 0, j = 0;
+        int k = left;
+        while (i < n1 && j < n2) {
+            if (L[i] <= R[j]) {
+                arr[k] = L[i];
+                i++;
+            } else {
+                arr[k] = R[j];
+                j++;
+            }
+            k++;
+        }
+
+        // Copy remaining elements of L[] if any
+        while (i < n1) {
+            arr[k] = L[i];
+            i++;
+            k++;
+        }
+
+        // Copy remaining elements of R[] if any
+        while (j < n2) {
+            arr[k] = R[j];
+            j++;
+            k++;
+        }
+    }
+}
+```
+
+### 5. Quick Sort:
+```java
+import java.util.Arrays;
+
+public class QuickSort {
+    public static void main(String[] args) {
+        int[] arr = {64, 34, 25, 12, 22, 11, 90};
+        quickSort(arr, 0, arr.length - 1);
+
+        System.out.println("Sorted array using Quick Sort: " + Arrays.toString(arr));
+    }
+
+    private static void quickSort(int[] arr, int low, int high) {
+        if (low < high) {
+            int partitionIndex = partition(arr, low
+
+, high);
+
+            // Recursively sort elements before and after partition
+            quickSort(arr, low, partitionIndex - 1);
+            quickSort(arr, partitionIndex + 1, high);
+        }
+    }
+
+    private static int partition(int[] arr, int low, int high) {
+        int pivot = arr[high];
+        int i = (low - 1);
+
+        for (int j = low; j < high; j++) {
+            if (arr[j] < pivot) {
+                i++;
+
+                // Swap arr[i] and arr[j]
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+
+        // Swap arr[i+1] and arr[high] (or pivot)
+        int temp = arr[i + 1];
+        arr[i + 1] = arr[high];
+        arr[high] = temp;
+
+        return i + 1;
+    }
+}
+```
+
+### 6. Heap Sort:
+```java
+import java.util.Arrays;
+
+public class HeapSort {
+    public static void main(String[] args) {
+        int[] arr = {64, 34, 25, 12, 22, 11, 90};
+        heapSort(arr);
+
+        System.out.println("Sorted array using Heap Sort: " + Arrays.toString(arr));
+    }
+
+    private static void heapSort(int[] arr) {
+        int n = arr.length;
+
+        // Build max heap
+        for (int i = n / 2 - 1; i >= 0; i--)
+            heapify(arr, n, i);
+
+        // One by one extract an element from the heap
+        for (int i = n - 1; i >= 0; i--) {
+            // Move the current root to the end
+            int temp = arr[0];
+            arr[0] = arr[i];
+            arr[i] = temp;
+
+            // Call max heapify on the reduced heap
+            heapify(arr, i, 0);
+        }
+    }
+
+    private static void heapify(int[] arr, int n, int i) {
+        int largest = i;
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+
+        if (left < n && arr[left] > arr[largest])
+            largest = left;
+
+        if (right < n && arr[right] > arr[largest])
+            largest = right;
+
+        if (largest != i) {
+            int swap = arr[i];
+            arr[i] = arr[largest];
+            arr[largest] = swap;
+
+            heapify(arr, n, largest);
+        }
+    }
+}
+```
+
+These are basic implementations, and depending on your use case, you may want to handle edge cases, optimize, or adapt these algorithms.
+
+
+
+
+
+
+
+
+
+Certainly! Here are Java programs for Linear Search and Binary Search:
+
+### 1. Linear Search:
+```java
+public class LinearSearch {
+    public static void main(String[] args) {
+        int[] arr = {4, 2, 7, 1, 9, 5, 8};
+        int target = 5;
+
+        int result = linearSearch(arr, target);
+
+        if (result != -1) {
+            System.out.println("Element " + target + " found at index " + result);
+        } else {
+            System.out.println("Element " + target + " not found in the array");
+        }
+    }
+
+    private static int linearSearch(int[] arr, int target) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == target) {
+                return i; // Element found, return index
+            }
+        }
+        return -1; // Element not found
+    }
+}
+```
+
+### 2. Binary Search:
+```java
+import java.util.Arrays;
+
+public class BinarySearch {
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 4, 5, 7, 8, 9};
+        int target = 5;
+
+        int result = binarySearch(arr, target);
+
+        if (result != -1) {
+            System.out.println("Element " + target + " found at index " + result);
+        } else {
+            System.out.println("Element " + target + " not found in the array");
+        }
+    }
+
+    private static int binarySearch(int[] arr, int target) {
+        int left = 0, right = arr.length - 1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            if (arr[mid] == target) {
+                return mid; // Element found, return index
+            } else if (arr[mid] < target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+
+        return -1; // Element not found
+    }
+}
+```
+
+These programs demonstrate the basic implementations of Linear Search and Binary Search in Java. Note that Binary Search assumes the array is sorted.
+
+
+
+
+
+Certainly! Here are Java programs for each of the mentioned data structures:
+
+### 1. Arrays:
+```java
+public class ArrayExample {
+    public static void main(String[] args) {
+        // Declaration and initialization of an array
+        int[] numbers = {1, 2, 3, 4, 5};
+
+        // Accessing elements by index
+        System.out.println("Element at index 2: " + numbers[2]);
+
+        // Modifying an element
+        numbers[3] = 8;
+
+        // Iterating through the array
+        System.out.print("Array elements: ");
+        for (int number : numbers) {
+            System.out.print(number + " ");
+        }
+    }
+}
+```
+
+### 2. Linked List:
+```java
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+public class LinkedListExample {
+    public static void main(String[] args) {
+        // Creating nodes
+        Node head = new Node(1);
+        Node second = new Node(2);
+        Node third = new Node(3);
+
+        // Connecting nodes to form a linked list
+        head.next = second;
+        second.next = third;
+
+        // Traversing the linked list
+        System.out.print("Linked List elements: ");
+        Node current = head;
+        while (current != null) {
+            System.out.print(current.data + " ");
+            current = current.next;
+        }
+    }
+}
+```
+
+### 3. Stack:
+```java
+import java.util.Stack;
+
+public class StackExample {
+    public static void main(String[] args) {
+        // Creating a stack
+        Stack<Integer> stack = new Stack<>();
+
+        // Pushing elements onto the stack
+        stack.push(1);
+        stack.push(2);
+        stack.push(3);
+
+        // Popping elements from the stack
+        System.out.println("Popped element: " + stack.pop());
+
+        // Displaying the stack
+        System.out.println("Stack elements: " + stack);
+    }
+}
+```
+
+### 4. Queue:
+```java
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class QueueExample {
+    public static void main(String[] args) {
+        // Creating a queue
+        Queue<Integer> queue = new LinkedList<>();
+
+        // Enqueuing elements
+        queue.add(1);
+        queue.add(2);
+        queue.add(3);
+
+        // Dequeuing elements
+        System.out.println("Dequeued element: " + queue.poll());
+
+        // Displaying the queue
+        System.out.println("Queue elements: " + queue);
+    }
+}
+```
+
+### 5. Hash Table:
+```java
+import java.util.HashMap;
+import java.util.Map;
+
+public class HashTableExample {
+    public static void main(String[] args) {
+        // Creating a hash table
+        Map<String, Integer> hashTable = new HashMap<>();
+
+        // Inserting key-value pairs
+        hashTable.put("One", 1);
+        hashTable.put("Two", 2);
+        hashTable.put("Three", 3);
+
+        // Retrieving value for a key
+        System.out.println("Value for key 'Two': " + hashTable.get("Two"));
+
+        // Displaying the hash table
+        System.out.println("Hash table: " + hashTable);
+    }
+}
+```
+
+### 6. Binary Tree:
+```java
+class TreeNode {
+    int data;
+    TreeNode left, right;
+
+    TreeNode(int data) {
+        this.data = data;
+        this.left = this.right = null;
+    }
+}
+
+public class BinaryTreeExample {
+    public static void main(String[] args) {
+        // Creating a binary tree
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(4);
+        root.left.right = new TreeNode(5);
+
+        // Traversing the binary tree
+        System.out.println("Inorder traversal:");
+        inorderTraversal(root);
+    }
+
+    // Inorder traversal of a binary tree
+    private static void inorderTraversal(TreeNode root) {
+        if (root != null) {
+            inorderTraversal(root.left);
+            System.out.print(root.data + " ");
+            inorderTraversal(root.right);
+        }
+    }
+}
+```
+
+### 7. Graph:
+```java
+import java.util.LinkedList;
+import java.util.List;
+
+class Graph {
+    int vertices;
+    List<List<Integer>> adjacencyList;
+
+    Graph(int vertices) {
+        this.vertices = vertices;
+        this.adjacencyList = new LinkedList<>();
+        for (int i = 0; i < vertices; i++) {
+            this.adjacencyList.add(new LinkedList<>());
+        }
+    }
+
+    // Function to add an edge to the graph
+    void addEdge(int source, int destination) {
+        this.adjacencyList.get(source).add(destination);
+        this.adjacencyList.get(destination).add(source);
+    }
+}
+
+public class GraphExample {
+    public static void main(String[] args) {
+        // Creating a graph with 5 vertices
+        Graph graph = new Graph(5);
+
+        // Adding edges to the graph
+       
+
+ graph.addEdge(0, 1);
+        graph.addEdge(0, 4);
+        graph.addEdge(1, 2);
+        graph.addEdge(1, 3);
+        graph.addEdge(1, 4);
+        graph.addEdge(2, 3);
+        graph.addEdge(3, 4);
+    }
+}
+```
+
+### 8. Heap:
+```java
+import java.util.PriorityQueue;
+
+public class HeapExample {
+    public static void main(String[] args) {
+        // Creating a max heap (PriorityQueue in Java is a min heap by default)
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a, b) -> b - a);
+
+        // Adding elements to the max heap
+        maxHeap.add(5);
+        maxHeap.add(2);
+        maxHeap.add(8);
+        maxHeap.add(1);
+
+        // Polling elements from the max heap
+        System.out.println("Max element: " + maxHeap.poll());
+
+        // Displaying the max heap
+        System.out.println("Max heap elements: " + maxHeap);
+    }
+}
+```
+
+These programs demonstrate the basic functionality of each data structure. Let me know if you have any specific questions or if you'd like further explanations!
+
+
+
+
+
+
+
+API-Gateway
+============
+
+An API Gateway is a server or service that acts as an entry point for a collection of microservices. 
+It provides a centralized point for managing, securing, and routing API requests from clients to the appropriate microservices. 
+The API Gateway plays a crucial role in microservices architectures by offering various features and benefits:
+
+1. **Request Routing:** The API Gateway directs incoming API requests to the appropriate microservices based on predefined rules and configurations.
+
+2. **Aggregation:** It can aggregate data from multiple microservices and provide a unified response to clients. This is useful when a client needs information from multiple services.
+
+3. **Load Balancing:** The API Gateway can distribute incoming requests across multiple instances of microservices, ensuring even load distribution and improved performance.
+
+4. **Authentication and Authorization:** It handles user authentication and authorization, ensuring that only authorized users can access specific microservices.
+
+5. **Security:** The API Gateway acts as a security layer, protecting microservices from direct external access. It can enforce security policies, validate tokens, and encrypt/decrypt sensitive information.
+
+6. **Rate Limiting:** It can implement rate limiting to prevent abuse or excessive usage by a single client, ensuring fair resource allocation.
+
+7. **Logging and Monitoring:** The API Gateway can centralize logging and monitoring, providing insights into API usage, performance, and potential issues.
+
+8. **Transformation:** It can transform requests and responses between different formats, making it easier for clients and microservices to communicate.
+
+9. **Caching:** The API Gateway can cache responses from microservices, reducing the load on backend services and improving overall system performance.
+
+10. **Versioning:** It can handle API versioning, allowing for the coexistence of different API versions and smooth transitions during updates.
+
+Popular tools and frameworks for building API Gateways include Spring Cloud Gateway, Netflix Zuul, NGINX, and Kong.
+
+In summary, an API Gateway simplifies the complexity of interacting with multiple microservices by providing a unified entry point for clients and offering various features to enhance security, performance, and manageability.
+
+
+
+different types of security authentication on springboot security?
+===================================================================
+
+Spring Security supports various types of authentication mechanisms to secure applications. Here are some of the common types of authentication supported by Spring Security:
+
+1. **Form-Based Authentication:**
+   - **Description:** Users enter their credentials (username and password) in a login form.
+   - **Usage:** Suitable for web applications where users interact through a web-based user interface.
+
+2. **HTTP Basic Authentication:**
+   - **Description:** Users provide their credentials in the form of a username and password in the HTTP headers.
+   - **Usage:** Often used for simple authentication in web services where the communication is stateless.
+
+3. **HTTP Digest Authentication:**
+   - **Description:** Similar to HTTP Basic Authentication, but the password is hashed before being sent.
+   - **Usage:** Offers a more secure alternative to HTTP Basic Authentication, especially in scenarios where credentials might be intercepted.
+
+4. **JWT (JSON Web Token) Authentication:**
+   - **Description:** Authentication is performed using tokens, and the server does not need to keep track of the user's state.
+   - **Usage:** Suitable for stateless architectures, microservices, and modern web applications.
+
+5. **OAuth 2.0 Authentication:**
+   - **Description:** Allows third-party applications to obtain limited access to an HTTP service.
+   - **Usage:** Commonly used for authorization and delegation scenarios in web and mobile applications.
+
+6. **SAML (Security Assertion Markup Language) Authentication:**
+   - **Description:** Supports single sign-on (SSO) using XML-based tokens (SAML assertions).
+   - **Usage:** Ideal for scenarios where users need to authenticate once and access multiple services without re-authenticating.
+
+7. **LDAP (Lightweight Directory Access Protocol) Authentication:**
+   - **Description:** Authenticates users against an LDAP directory service.
+   - **Usage:** Commonly used in enterprise environments where user information is stored in LDAP directories.
+
+8. **JDBC Authentication:**
+   - **Description:** Authenticates users against a database using JDBC (Java Database Connectivity).
+   - **Usage:** Useful when user credentials are stored in a relational database.
+
+9. **Custom Authentication Providers:**
+   - **Description:** Allows developers to implement custom authentication logic by extending `AuthenticationProvider`.
+   - **Usage:** When none of the built-in authentication mechanisms meets specific requirements, developers can create their own authentication logic.
+
+10. **Remember-Me Authentication:**
+    - **Description:** Provides a "remember me" functionality allowing users to be remembered across sessions.
+    - **Usage:** Useful for improving user experience by keeping users authenticated between sessions.
+
+These authentication mechanisms can be configured and customized based on the specific security requirements of your Spring Boot application. The choice of authentication depends on factors such as the application's architecture, the type of users, and the desired level of security.
+
+
+PLEASE OPEN THE LINK FOR SPRINGBOOT SECURITY TUTORIAL 
+------------------------------------------------------
+
+https://www.tutorialspoint.com/spring_security/index.htm
+
+
+
+
+
+
+
+JWT Authentication - Spring Security
+====================================
+
+Browser												Server
+-------												------
+1. Login with username and password		------->	2. Create JWT with Secret
+
+										<-------	3. Send the JWT token to the Browser
+4. Send the JWT token to the Server		
+										-------->	5. Verify JWT token
+
+													6. Send the response to the client	
+
+Sure, here's an explanation of the JWT (JSON Web Token) authentication process in your application:
+
+1. **Client Authentication Request**:
+   - When a client (such as a web browser or mobile app) sends a request to your server to authenticate a user, it typically includes the user's credentials (e.g., username and password) in the request body.
+
+2. **JWT Token Creation**:
+   - Upon receiving the authentication request, your server's `JwtResource` controller handles the request.
+   - The `createJwtToken` method in the `JwtService` class is invoked. This method generates a JWT token based on the provided user credentials.
+   - The `createJwtToken` method utilizes Spring Security's `AuthenticationManager` to authenticate the user's credentials.
+
+3. **User Authentication**:
+   - The `JwtService` class uses Spring Security's `AuthenticationManager` to authenticate the user's credentials.
+   - The `authenticate` method in `JwtService` performs the authentication process using Spring Security's authentication mechanisms.
+   - If the provided credentials are valid, authentication succeeds, and the user is considered authenticated.
+
+4. **JWT Token Generation**:
+   - After successful authentication, the `createJwtToken` method in the `JwtService` class generates a JWT token.
+   - The JWT token includes claims such as the user's identity (username), issuance time, expiration time, and possibly other custom claims.
+
+5. **Token Issuance**:
+   - The generated JWT token is returned to the client as part of the response from the `createJwtToken` method in the `JwtResource` controller.
+   - The client receives the JWT token and typically stores it securely (e.g., in local storage or a cookie) for future authenticated requests.
+
+6. **Subsequent Requests with JWT**:
+   - For subsequent requests that require authentication, the client includes the JWT token in the request headers, typically in the `Authorization` header with the value `Bearer <token>`.
+   - The client sends the JWT token along with the request to access protected resources on the server.
+
+7. **JWT Token Validation**:
+   - Upon receiving a request with a JWT token, the server's `JwtRequestFilter` intercepts the request.
+   - The filter extracts the JWT token from the request headers and validates its integrity and expiration using the `JwtUtil` class.
+   - If the token is valid, the filter allows the request to proceed; otherwise, it may reject the request with an unauthorized response.
+
+8. **Access to Protected Resources**:
+   - If the JWT token is valid and the user is authenticated, the server grants access to the requested resources.
+   - Spring Security's authorization mechanisms may further control access based on user roles and permissions.
+
+9. **Token Expiry and Renewal**:
+   - When a JWT token expires, the client needs to obtain a new token by re-authenticating with the server.
+   - The client can initiate the re-authentication process by sending another authentication request to obtain a fresh JWT token.
+
+In summary, the JWT authentication process involves generating a token upon successful user authentication, issuing the token to the client, validating the token on subsequent requests, and granting access to protected resources if the token is valid and the user is authenticated.
+
+
+
+
+
+KAFKA Tutorial
+==============
+Apache Kafka 
+------------
+Apache Kafka is a software platform which is based on a distributed streaming process. 
+It is a publish-subscribe messaging system which let exchanging of data between applications, servers, and processors as well.
+
+What is a messaging system
+--------------------------
+A messaging system is a simple exchange of messages between two or more persons, devices, etc. A publish-subscribe messaging system allows a sender to send/write the message and a receiver to read that message. 
+In Apache Kafka, a sender is known as a producer who publishes messages, and a receiver is known as a consumer who consumes that message by subscribing it.
+
+What is Streaming process
+-------------------------
+A streaming process is the processing of data in parallelly connected systems. 
+This process allows different applications to limit the parallel execution of the data, where one record executes without waiting for the output of the previous record. 
+Therefore, a distributed streaming platform enables the user to simplify the task of the streaming process and parallel execution.
+
+	Therefore, a streaming platform in Kafka has the following key capabilities:
+	1. As soon as the streams of records occur, it processes it.
+	2. It works similar to an enterprise messaging system where it publishes and subscribes streams of records.
+	3. It stores the streams of records in a fault-tolerant durable way.
+	
+	
+Producer API: This API allows/permits an application to publish streams of records to one or more topics. (discussed in later section)
+
+Consumer API: This API allows an application to subscribe one or more topics and process the stream of records produced to them.
+
+Streams API: This API allows an application to effectively transform the input streams to the output streams. It permits an application to act as a stream processor which consumes an input stream from one or more topics, and produce an output stream to one or more output topics.
+
+Connector API: This API executes the reusable producer and consumer APIs with the existing data systems or applications.
+
+Why Apache Kafka
+----------------
+
+Apache Kafka is a software platform that has the following reasons which best describes the need of Apache Kafka.
+
+1. Apache Kafka is capable of handling millions of data or messages per second.
+
+2. Apache Kafka works as a mediator between the source system and the target system. 
+Thus, the source system (producer) data is sent to the Apache Kafka, where it decouples the data, and the target system (consumer) consumes the data from Kafka.
+
+3. Apache Kafka is having extremely high performance, i.e., it has really low latency value less than 10ms which proves it as a well-versed software.
+
+4. Apache Kafka has a resilient architecture which has resolved unusual complications in data sharing.
+
+5. Organizations such as NETFLIX, UBER, Walmart, etc. and over thousands of such firms make use of Apache Kafka.
+
+6. Apache Kafka is able to maintain the fault-tolerance. Fault-tolerance means that sometimes a consumer successfully consumes the message that was delivered by the producer. 
+But, the consumer fails to process the message back due to backend database failure, or due to presence of a bug in the consumer code. 
+In such a situation, the consumer is unable to consume the message again. Consequently, Apache Kafka has resolved the problem by reprocessing the data
+
+
+Brokers
+=======
+
+A Kafka cluster is comprised of one or more servers which are known as brokers or Kafka brokers. 
+A broker is a container that holds several topics with their multiple partitions. 
+The brokers in the cluster are identified by an integer id only. 
+Kafka brokers are also known as Bootstrap brokers because connection with any one broker means connection with the entire cluster. 
+Although a broker does not contain whole data, but each broker in the cluster knows about all other brokers, partitions as well as topics.
+
+
