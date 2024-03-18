@@ -46,6 +46,8 @@ export class UserAuthService {
 
   public clear(){
     localStorage.clear();
+    localStorage.removeItem('jwtToken');
+    localStorage.removeItem('roles');
   }
 
   public isLoggedIn():boolean{
