@@ -8,6 +8,7 @@ import { PaginationInstance, PaginationService } from 'ngx-pagination';
 import { UserAuthService } from '../../services/user-auth.service';
 import { UserService } from '../../services/user.service';
 
+
 @Component({
   selector: 'app-employees-list',
   templateUrl: './employees-list.component.html',

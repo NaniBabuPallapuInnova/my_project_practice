@@ -8,6 +8,17 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "employee")
+@NamedStoredProcedureQueries({
+  @NamedStoredProcedureQuery(
+    name = "SearchEmployees",
+    procedureName = "security_telugu.usp_search_employee",
+    resultClasses = Employee.class,
+    parameters = {
+      @StoredProcedureParameter(mode = ParameterMode.IN, name = "emp_email", type = String.class)
+    }
+  )
+})
+
 public class Employee {
 
   @Id

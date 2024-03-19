@@ -12,8 +12,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.StoredProcedureQuery;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -21,11 +25,16 @@ import java.util.NoSuchElementException;
 public class EmployeeService {
 
   public static final Logger log = LoggerFactory.getLogger(EmployeeService.class);
+  public static final String EMAIL_REGEX =  "\\b[A-Za-z0-9._%+-]+@gmail\\.com\\b";
+
   @Autowired
   EmployeeRepository employeeRepository;
 
   @Autowired
   EmployeeMapper employeeMapper;
+
+  @Autowired
+  EntityManager entityManager;
 
   public Page<EmployeeDTO> getAllEmployees(Pageable pageable) {
     Page<Employee> employeePage = employeeRepository.findAll(pageable);
@@ -77,12 +86,22 @@ public class EmployeeService {
     employeeRepository.deleteById(id);
   }
 
+  @Transactional
   public List<EmployeeDTO> searchEmployeeByEmployeeIdOrName(String keyword) {
     List<Employee> employeeList = employeeRepository.findByNameContainingIgnoreCaseOrEmpIdContainingIgnoreCase(keyword, keyword);
 
-    List<EmployeeDTO> employeeDTOS = new ArrayList<>();
+    if (keyword.matches(EMAIL_REGEX)) {
+      StoredProcedureQuery storedProcedureQuery = entityManager.createNamedStoredProcedureQuery("SearchEmployees");
+      storedProcedureQuery.setParameter("emp_email", keyword);
 
+      // Execute the stored procedure query
+      List<Employee> resultList =storedProcedureQuery.execute() ? storedProcedureQuery.getResultList() : Collections.emptyList();
+      employeeList.addAll(resultList);
+    }
+
+    List<EmployeeDTO> employeeDTOS = new ArrayList<>();
     employeeList.forEach(employee -> employeeDTOS.add(employeeMapper.toDTO(employee)));
     return employeeDTOS;
   }
+
 }

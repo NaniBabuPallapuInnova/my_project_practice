@@ -12,12 +12,12 @@ import { SearchEmployeesComponent } from './components/search-employees/search-e
 import { SearchResultEmployeeComponent } from './components/search-employees/search-result-employee/search-result-employee.component'
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AdminComponent } from './components/admin/admin.component';
-import { UserComponent } from './components/user/user.component';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
-import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { LoginComponent } from './components/login/login.component';
+import { UserComponent } from './components/user/user.component';
 import { UserService } from './services/user.service';
 
 @NgModule({
