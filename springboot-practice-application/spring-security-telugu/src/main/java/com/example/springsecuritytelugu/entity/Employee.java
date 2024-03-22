@@ -8,13 +8,31 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "employee")
+/**
+ * Defines named stored procedure queries for accessing employee data.
+ */
 @NamedStoredProcedureQueries({
+
+  /**
+   * Named Stored Procedure Query: SearchEmployees
+   *
+   * This query is used to search for employees by email using a stored procedure.
+   */
   @NamedStoredProcedureQuery(
-    name = "SearchEmployees",
-    procedureName = "security_telugu.usp_search_employee",
-    resultClasses = Employee.class,
+    name = "SearchEmployees", // Name of the stored procedure query
+    procedureName = "security_telugu.usp_search_employee", // Name of the stored procedure
+    resultClasses = Employee.class, // Result class type
     parameters = {
-      @StoredProcedureParameter(mode = ParameterMode.IN, name = "emp_email", type = String.class)
+      /**
+       * IN Parameter: emp_email
+       *
+       * Specifies the email address of the employee to search for.
+       */
+      @StoredProcedureParameter(
+        mode = ParameterMode.IN, // Parameter mode (IN, OUT, INOUT)
+        name = "emp_email", // Name of the parameter in the stored procedure
+        type = String.class // Data type of the parameter
+      )
     }
   )
 })

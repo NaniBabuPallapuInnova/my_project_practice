@@ -1,0 +1,30 @@
+Struts Tutorial
+===============
+Struts is a open source framework which make building of the web applications easier based on the java Servlet and JavaServer pages technologies.
+Struts is based on Model-View-Controller (MVC) design paradigm, it is an implementation of JSP Model 2 Architecture.
+Struts 1.x is a complete web framework, provides complete web form components, validator, internalization, error handling, tiles layout, low learning curve and easy to implement it.
+
+
+Model View Controller(MVC) Introduction
+========================================
+A web application is a collection of static and dynamic web resources programs or client and server side resources or programs.
+
+Static web resource programs(html) generate static contents where as dynamic web resources(Servlet,JSP etc) generate dynamic web-pages.
+
+A Typical Web Application Logic :
+=================================
+
+Presentation Logic :- Logic that generates user interface for end users.
+
+Form Validation Logic :- Logic that verifies the pattern and format of data is called as form validation logic.It can be done at client side or server side.
+
+Request Parameter gathering Logic :-Logic that can read all data from http request like header values,Request Parameter values etc is called as request data gathering logic.
+
+Session Management Logic :- The logic that remembers client data across the multiple requests during a session and makes web application as state-full application is called as session management logic.We use hidden forms,cookies,HttpSession and URL rewriting techniques for this purpose.
+
+Business/Request Processing/Service Logic :- Main logic of application that generates result by using input values and performing calculation on these value is called business logic.
+
+Persistence Logic :- Logic that interacts with database and manipulates the data by performing CURD operation is called as Persistence Logic.
+
+Middleware Services Configuration Logic :- Middleware services are additional and optional configuration logic of the application.
+Example:- Security Service, Transaction Management, Connection Pooling etc.

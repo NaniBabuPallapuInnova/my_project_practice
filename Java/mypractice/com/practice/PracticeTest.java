@@ -1,52 +1,92 @@
 package mypractice.com.practice;
 
+import java.util.*;
+
+class Cinema {
+
+    public Cinema() {
+    }
+
+    public Cinema(int movieId, String movieName, double movieRating) {
+        this.movieId = movieId;
+        this.movieName = movieName;
+        this.movieRating = movieRating;
+    }
+
+    private int movieId;
+    private String movieName;
+    private double movieRating;
+
+    public void setMovieId(int movieId) {
+        this.movieId = movieId;
+    }
+
+    public void setMovieName(String movieName) {
+        this.movieName = movieName;
+    }
+
+    public void setMovieRating(double movieRating) {
+        this.movieRating = movieRating;
+    }
+
+    public int getMovieId() {
+        return movieId;
+    }
+
+    public String getMovieName() {
+        return movieName;
+    }
+
+    public double getMovieRating() {
+        return movieRating;
+    }
+
+    @Override
+    public String toString() {
+        return "Cinema{" +
+                "movieId=" + movieId +
+                ", movieName='" + movieName + '\'' +
+                ", movieRating=" + movieRating +
+                '}';
+    }
+
+
+//    @Override
+//    public int compareTo(Cinema o) {
+//        return Integer.compare(this.getMovieId(), o.getMovieId());
+//    }
+}
+
 public class PracticeTest {
-    private static final Object LOCK1 = new Object();
-    private static final Object LOCK2 = new Object();
 
     public static void main(String[] args) {
-        Thread thread1 = new Thread(() -> {
-            synchronized (LOCK1) {
-                System.out.println("Thread 1 acquired LOCK1");
-                try {
-                    Thread.sleep(100); // Introduce delay to increase likelihood of deadlock
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                System.out.println("Thread 1 waiting for LOCK2");
-                synchronized (LOCK2) {
-                    System.out.println("Thread 1 acquired LOCK2");
-                }
-            }
-        });
 
-        Thread thread2 = new Thread(() -> {
-            synchronized (LOCK2) {
-                System.out.println("Thread 2 acquired LOCK2");
-                try {
-                    Thread.sleep(100); // Introduce delay to increase likelihood of deadlock
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                System.out.println("Thread 2 waiting for LOCK1");
-                synchronized (LOCK1) {
-                    System.out.println("Thread 2 acquired LOCK1");
-                }
-            }
-        });
+        Set<Cinema> list = new LinkedHashSet<>();
+        list.add(new Cinema(11, "Avengers", 8.8));
+        list.add(new Cinema(2, "Ride", 7.5));
+        list.add(new Cinema(32, "Mission Impossible", 9.9));
+        list.add(new Cinema(4, "JonWick", 8.5));
+        list.add(new Cinema(4, "JonWick", 8.5));
+        list.add(new Cinema(4, "JonWick", 8.5));
+        list.add(new Cinema(4, "JonWick", 8.5));
 
-        thread1.start();
-        thread2.start();
-
-        try {
-            thread1.join();
-            thread2.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        Map<Integer, String> map = new TreeMap<>(Comparator.reverseOrder());
+        for (Cinema cinema : list) {
+            map.put(cinema.getMovieId(), cinema.getMovieName());
+            int value = cinema.hashCode();
+            System.out.println(value);
         }
 
-        // This code is never reached because the threads are deadlocked
-        System.out.println("Program completed.");
+        for (Map.Entry<Integer, String> data : map.entrySet()) {
+            System.out.println(data.getKey() + " " + data.getValue());
+
+
+        }
+
+        list.forEach(cinema -> System.out.println(cinema.toString()));
+
     }
+
 }
+
 

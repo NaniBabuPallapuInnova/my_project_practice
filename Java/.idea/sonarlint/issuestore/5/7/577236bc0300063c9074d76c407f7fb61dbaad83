@@ -1,0 +1,10 @@
+
+@	java:S106"+Replace this use of System.out by a logger.(Ùí…¯
+@	java:S106"+Replace this use of System.out by a logger.(‡„—Ë
+F
+java:S1481"0Remove this unused "alternative" local variable.(ˆ¸ä”
+@	java:S106%"+Replace this use of System.out by a logger.(Ù©È±
+P	java:S125)"<This block of commented-out lines of code should be removed.(—êŸ
+E	java:S1065"+Replace this use of System.out by a logger.(×ª”•ýÿÿÿÿ
+I
+java:S1128".Remove this unused import 'java.util.Scanner'.(ÒÜÅ¸úÿÿÿÿ
