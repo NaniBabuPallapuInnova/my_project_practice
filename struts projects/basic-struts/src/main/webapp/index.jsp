@@ -6,6 +6,6 @@
     <title>Basic Struts 2 Application - Welcome</title>
   </head>
   <body>
-    <h1>This is first Struts Application!</h1>
+    <h1>This is first Struts Application! Testing index JSP page</h1>
   </body>
 </html>

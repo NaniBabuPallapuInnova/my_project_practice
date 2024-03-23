@@ -68,11 +68,11 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/ognl/ognl -->
-		<dependency>
+<!--		<dependency>
 			<groupId>ognl</groupId>
 			<artifactId>ognl</artifactId>
 			<version>3.4.2</version>
-		</dependency>
+		</dependency>-->
 
 		<!-- https://mvnrepository.com/artifact/org.javassist/javassist -->
 		<dependency>

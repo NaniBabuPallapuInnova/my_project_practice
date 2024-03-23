@@ -15,11 +15,6 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 --><tomcat-users version="1.0" xmlns="http://tomcat.apache.org/xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://tomcat.apache.org/xml tomcat-users.xsd">
-
-
-  <role rolename="admin-gui,manager-gui,manager-script,manager-jmx,manager-status,admin-gui"/>
-  <user password="admin" roles="admin-gui,manager-gui,manager-script" username="admin"/>
-
 <!--
   By default, no user is included in the "manager-gui" role required
   to operate the "/manager/html" web application.  If you wish to use this app,
@@ -37,9 +32,8 @@
   will also need to set the passwords to something appropriate.
 -->
 <!--
-  <user username="admin" password="admin" roles="admin-gui,manager-gui,manager-script"/>
-  <user username="robot" password="admin" roles="manager-script"/>
-  <user username="admin" password="admin" roles="manager-gui" />
+  <user username="admin" password="<must-be-changed>" roles="manager-gui"/>
+  <user username="robot" password="<must-be-changed>" roles="manager-script"/>
 -->
 <!--
   The sample user and role entries below are intended for use with the
