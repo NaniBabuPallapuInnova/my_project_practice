@@ -28,3 +28,13 @@ Persistence Logic :- Logic that interacts with database and manipulates the data
 
 Middleware Services Configuration Logic :- Middleware services are additional and optional configuration logic of the application.
 Example:- Security Service, Transaction Management, Connection Pooling etc.
+
+web.xml - default data
+======================
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name> 
+</web-app>

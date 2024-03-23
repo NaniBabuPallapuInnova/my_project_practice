@@ -1,7 +1,35 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4"
+	xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<!-- This line specifies the XML version and encoding used in the document. -->
 
-<web-app>
-  <display-name>Archetype Created Web Application</display-name>
+	<display-name>Basic Struts2</display-name>
+	<!-- This specifies the display name of the web application. -->
+
+	<filter>
+		<filter-name>struts2</filter-name>
+		<!-- This names the filter used for Struts2. -->
+
+		<filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>
+		<!-- This specifies the class implementing the Struts2 filter. This filter 
+			is essential for Struts2 to process requests. -->
+	</filter>
+
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<!-- This associates the filter name "struts2" with the following URL pattern. -->
+
+		<url-pattern>/*</url-pattern>
+		<!-- This specifies the URL pattern for which the filter should be applied. 
+			In this case, it's set to apply to all URLs. -->
+	</filter-mapping>
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+		<!-- This specifies the default file to be served when the web application 
+			is accessed without specifying a specific file in the URL. In this case, 
+			it's set to serve "index". -->
+	</welcome-file-list>
 </web-app>
