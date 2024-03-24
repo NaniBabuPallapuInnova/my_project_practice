@@ -52,7 +52,8 @@ Overall, servlets provide a robust and efficient way to build server-side logic 
 here's a simple and friendly explanation of what a servlet is:
 -----------------------------------------------------------------------
 
-A servlet is like a tiny program that lives on a web server. Imagine the web server as a big machine that stores and manages websites. Now, a servlet is a small program inside that machine that does specific tasks when someone visits a website.
+A servlet is like a tiny program that lives on a web server. Imagine the web server as a big machine that stores and manages websites. 
+Now, a servlet is a small program inside that machine that does specific tasks when someone visits a website.
 
 Here's how it works:
 
@@ -67,6 +68,7 @@ Here's how it works:
 5. **Back to the Visitor**: The web server takes this response and sends it back to the visitor's browser. The browser then displays whatever the servlet sent, and the visitor sees the result on their screen.
 
 In a nutshell, a servlet is like a little worker bee inside a web server, doing specific tasks whenever someone visits a webpage. It helps make websites dynamic and interactive, handling requests and sending back responses to visitors.
+
 
 Struts Tutorial
 ===============
@@ -236,3 +238,348 @@ In summary, the `web.xml` file configures the web application's filter, which is
 
 
 
+
+
+
+How the Code Works
+==================
+Your browser sends to the web server a request for the URL http://localhost:8080/helloworld/hello.action.
+
+1. The container receives from the web server a request for the resource hello.action. 
+	According to the settings loaded from the web.xml, the container finds that all requests are being routed to org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter, including the *.action requests. 
+	The StrutsPrepareAndExecuteFilter is the entry point into the framework.
+
+2. The framework looks for an action mapping named “hello”, and it finds that this mapping corresponds to the class HelloWorldAction. 
+	The framework instantiates the Action and calls the Action’s execute method.
+	
+3. The execute method creates the MessageStore object and returns SUCCESS (="success"). 
+	The framework checks the action mapping to see what page to load if SUCCESS is returned. 
+	The framework tells the container to render as the response to the request, the resource HelloWorld.jsp.
+	
+4. As the page HelloWorld.jsp is being processed, the <s:property value="messageStore.message" /> tag calls the getter getMessageStore of the HelloWorld Action and then calls the getMessage of the MessageStore object returned by getMessageStore. 
+	The tag merges the value of the message attribute into the response.
+	
+5. A pure HTML response is sent back to the browser.
+
+What to Remember
+----------------
+The framework uses Actions to process HTML forms and other requests. The Action class returns a result-name such as SUCCESS, ERROR or INPUT. 
+Based on the mappings loaded from the struts.xml, a given result-name may select a page (as in this example), another action, or some other web resource (image, PDF).
+
+When a server page is rendered, most often it will include dynamic data provided by the Action. 
+To make it easy to display dynamic data, the framework provides a set of tags that can be used along with HTML markup to create a server page.
+
+
+
+
+
+CREATE TABLE `user` (
+  `enrollment_id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(60) NOT NULL,
+  `age` int NOT NULL,
+  `gender` varchar(60) DEFAULT NULL,
+  `occupation` varchar(60) DEFAULT NULL,
+  `email` varchar(60) DEFAULT NULL,
+  `phone_number` varchar(60) DEFAULT NULL,
+  `city` varchar(60) DEFAULT NULL,
+  `state` varchar(60) DEFAULT NULL,
+  PRIMARY KEY (`enrollment_id`)
+);
+
+
+ALTER TABLE user AUTO_INCREMENT = 1001;
+
+
+
+
+
+CREATE TABLE `health_history` (
+    `history_id` INT AUTO_INCREMENT PRIMARY KEY,
+    `enrollment_id` INT,
+    `hypertension` BOOLEAN,
+    `diabetes` BOOLEAN,
+    `allergy` BOOLEAN,
+    `surgery` BOOLEAN,
+    `family_medical_history` BOOLEAN,
+    FOREIGN KEY (enrollment_id)
+	REFERENCES user (enrollment_id)
+);
+
+
+-- Insert data into the user table with Indian names
+INSERT INTO `user` (name, age, gender, occupation, email, phone_number, city, state)
+VALUES 
+    ('Ravi Kumar', 35, 'Male', 'Engineer', 'ravi@gmail.com', '9858582565', 'Hyderabad', 'Telangana'),
+    ('Geetha Madhuri', 28, 'Female', 'Doctor', 'priya@gmail.com', '9898586961', 'Vijayawada', 'Andhra Pradesh');
+
+-- Insert data into the health_history table associated with the users inserted previously
+INSERT INTO `health_history` (enrollment_id, hypertension, diabetes, allergy, surgery, family_medical_history)
+VALUES 
+    (1001, TRUE, FALSE, TRUE, FALSE, TRUE),  -- Ravi Kumar
+    (1002, FALSE, TRUE, FALSE, TRUE, FALSE);  -- Geetha Madhuri
+
+
+
+
+
+PROJECT:
+========
+To create the described application, you'll need to set up a Java web application project using Struts 2. Below is a basic outline of the project structure along with code snippets for the required files.
+
+**Project Structure:**
+```
+HealthPlanApp/
+├── src/
+│   ├── main/
+│   │   └── java/
+│   │       └── com/
+│   │           └── example/
+│   │               └── actions/
+│   │                   └── UserAction.java
+│   │               └── model/
+│   │                   └── User.java
+│   │               └── util/
+│   │                   └── DatabaseUtil.java
+│   └── resources/
+│       └── struts.xml
+├── WebContent/
+│   ├── WEB-INF/
+│   │   ├── lib/ (Struts and JDBC libraries)
+│   │   ├── web.xml
+│   └── index.jsp
+│   └── newEnrollment.jsp
+│   └── changeInfo.jsp
+│   └── cancelEnrollment.jsp
+└── pom.xml
+```
+
+**web.xml:**
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+    id="WebApp_ID" version="4.0">
+    <display-name>HealthPlanApp</display-name>
+    
+    <!-- Configure Struts 2 filter -->
+    <filter>
+        <filter-name>struts2</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>struts2</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+</web-app>
+```
+
+**struts.xml:**
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <constant name="struts.devMode" value="true" />
+    
+    <!-- Define actions -->
+    <package name="default" extends="struts-default">
+        <action name="newEnrollment" class="com.example.actions.UserAction" method="newEnrollment">
+            <result name="success">/confirmation.jsp</result>
+        </action>
+        <action name="changeInfo" class="com.example.actions.UserAction" method="changeInfo">
+            <result name="success">/confirmation.jsp</result>
+        </action>
+        <action name="cancelEnrollment" class="com.example.actions.UserAction" method="cancelEnrollment">
+            <result name="success">/confirmation.jsp</result>
+        </action>
+    </package>
+</struts>
+```
+
+**UserAction.java:**
+```java
+package com.example.actions;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+public class UserAction extends ActionSupport {
+    private String actionType;
+
+    // getters and setters
+
+    public String newEnrollment() {
+        // Handle new enrollment logic
+        return SUCCESS;
+    }
+
+    public String changeInfo() {
+        // Handle changing information logic
+        return SUCCESS;
+    }
+
+    public String cancelEnrollment() {
+        // Handle canceling enrollment logic
+        return SUCCESS;
+    }
+}
+```
+
+**index.jsp:**
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Health Plan App</title>
+</head>
+<body>
+    <h1>Welcome to Health Plan App</h1>
+    <form action="newEnrollment.action" method="post">
+        <input type="hidden" name="actionType" value="newEnrollment">
+        <button type="submit">New Enrollment</button>
+    </form>
+    <form action="changeInfo.action" method="post">
+        <input type="hidden" name="actionType" value="changeInfo">
+        <button type="submit">Changed Information</button>
+    </form>
+    <form action="cancelEnrollment.action" method="post">
+        <input type="hidden" name="actionType" value="cancelEnrollment">
+        <button type="submit">Cancel Previous Enrollment</button>
+    </form>
+</body>
+</html>
+```
+
+**newEnrollment.jsp, changeInfo.jsp, cancelEnrollment.jsp:**
+These pages will contain forms for gathering necessary information. You can customize them according to your requirements.
+
+**Confirmation.jsp:**
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confirmation</title>
+</head>
+<body>
+    <h1>Action Confirmed</h1>
+    <p>You selected: ${actionType}</p>
+</body>
+</html>
+```
+
+**pom.xml:**
+You need to include dependencies for Struts 2 and MySQL JDBC driver.
+
+This is a basic setup. You may need to add more functionality and error handling based on your requirements. Also, ensure proper database connectivity and handle form submissions accordingly in your actions.
+
+
+
+
+
+
+
+
+**User.java:**
+```java
+package com.example.model;
+
+public class User {
+    private int enrollmentId;
+    private String name;
+    private int age;
+    private String gender;
+    private String occupation;
+    private String email;
+    private String phoneNumber;
+    private String city;
+    private String state;
+
+    // getters and setters
+}
+```
+
+**DatabaseUtil.java:**
+```java
+package com.example.util;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class DatabaseUtil {
+    private static final String URL = "jdbc:mysql://localhost:3306/your_database_name";
+    private static final String USER = "your_database_username";
+    private static final String PASSWORD = "your_database_password";
+
+    public static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(URL, USER, PASSWORD);
+    }
+
+    public static void closeConnection(Connection connection) {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+```
+
+**UserAction.java:**
+```java
+package com.example.actions;
+
+import com.example.model.User;
+import com.example.util.DatabaseUtil;
+import com.opensymphony.xwork2.ActionSupport;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class UserAction extends ActionSupport {
+    private String actionType;
+    private User user;
+
+    // getters and setters
+
+    public String newEnrollment() {
+        // Handle new enrollment logic
+        try (Connection connection = DatabaseUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement("INSERT INTO user (name, age, gender, occupation, email, phone_number, city, state) VALUES (?, ?, ?, ?, ?, ?, ?, ?)")) {
+
+            statement.setString(1, user.getName());
+            statement.setInt(2, user.getAge());
+            statement.setString(3, user.getGender());
+            statement.setString(4, user.getOccupation());
+            statement.setString(5, user.getEmail());
+            statement.setString(6, user.getPhoneNumber());
+            statement.setString(7, user.getCity());
+            statement.setString(8, user.getState());
+
+            int rowsInserted = statement.executeUpdate();
+            if (rowsInserted > 0) {
+                return SUCCESS;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ERROR;
+    }
+
+    public String changeInfo() {
+        // Handle changing information logic
+        return SUCCESS;
+    }
+
+    public String cancelEnrollment() {
+        // Handle canceling enrollment logic
+        return SUCCESS;
+    }
+}
+```
+
+These Java classes include basic implementations for handling user actions like new enrollment, changing information, and canceling enrollment. You should further expand these methods to handle different scenarios and perform appropriate database operations. Also, make sure to handle validations, error handling, and exception management as per your application requirements.

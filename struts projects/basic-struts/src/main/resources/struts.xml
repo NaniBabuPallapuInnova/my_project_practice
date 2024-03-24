@@ -11,9 +11,20 @@
 		<action name="index">
 			<result>/index.jsp</result>
 		</action>
-		
-		<action name="hello" class="com.example.controller.HelloWorldAction" method="execute">
-		<result name="Success">/HelloWorld.jsp</result>
+
+		<action name="enrollForm">
+			<result>/enrollmentForm.jsp</result>
+		</action>
+
+		<action name="saveEnrollment"
+			class="com.example.controller.UserAction" method="newEnrollment">
+			<result name="success">/success.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="hello"
+			class="com.example.controller.HelloWorldAction" method="execute">
+			<result name="Success">/HelloWorld.jsp</result>
 		</action>
 	</package>
 </struts>
