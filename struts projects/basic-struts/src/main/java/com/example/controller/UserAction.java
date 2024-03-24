@@ -90,7 +90,6 @@ public class UserAction extends ActionSupport {
 	                int rows2 = healthHistoryStatement.executeUpdate();
 	                if (rows2 > 0) {
 	                    connection.commit();
-	                    DBUtils.closeConnection(connection);
 	                    return "success";
 	                }
 	            }
