@@ -1,3 +1,73 @@
+What is Apache Tomcat?
+======================
+
+Apache Tomcat is an open-source web server and servlet container developed by the Apache Software Foundation. 
+It's one of the most popular choices for deploying Java-based web applications.
+
+Here's why and when we use Apache Tomcat:
+
+1. **Servlet Container**: Tomcat serves as a servlet container, which means it can execute Java servlets and render dynamic web content. Servlets are Java classes that extend the capabilities of servers to generate dynamic content and handle requests from clients, typically web browsers.
+
+2. **Java Server Pages (JSP) Support**: Tomcat supports JavaServer Pages (JSP), which are HTML pages with embedded Java code that can dynamically generate web content. JSP pages are compiled into servlets by Tomcat, allowing for dynamic content generation.
+
+3. **Open Source and Free**: Tomcat is open-source software distributed under the Apache License, which means it's free to use and modify. This makes it accessible to developers and organizations of all sizes.
+
+4. **Lightweight and Fast**: Tomcat is known for its lightweight nature and fast performance. It's designed to be efficient and scalable, making it suitable for both small-scale development projects and large-scale production deployments.
+
+5. **Cross-Platform Compatibility**: Tomcat is written in Java and runs on multiple platforms, including Windows, Linux, and macOS. This cross-platform compatibility allows developers to build and deploy applications on their preferred operating systems.
+
+6. **Embedded Deployment**: Tomcat can be embedded within other applications, allowing developers to package their web applications with Tomcat for easy deployment. This makes it convenient for deploying applications in various environments, such as development, testing, and production.
+
+7. **Web Application Deployment**: Tomcat is commonly used for deploying Java-based web applications, including enterprise applications, e-commerce sites, content management systems, and more. It provides a reliable and scalable platform for hosting web applications and serving web content to users.
+
+Overall, Apache Tomcat is used whenever there is a need to deploy Java-based web applications and servlets, whether for development, testing, or production purposes. It provides a robust and efficient platform for hosting dynamic web content and serving requests from clients.
+
+
+
+
+What is Servlet? 
+===================
+
+A servlet is a Java class that extends the capabilities of servers, allowing them to generate dynamic content and interact with clients, typically web browsers. 
+Servlets are a key component of Java EE (Enterprise Edition) platform, now Jakarta EE, and they are commonly used to build web applications.
+
+Here are some key points about servlets:
+
+1. **Dynamic Content Generation**: Servlets are used to dynamically generate content for web applications. They can process requests from clients, perform some logic, and generate responses, which can be HTML, XML, JSON, or any other format.
+
+2. **HTTP Servlets**: Most servlets are HTTP servlets, which means they handle HTTP requests and responses. They typically implement methods such as `doGet()` for handling GET requests and `doPost()` for handling POST requests.
+
+3. **Lifecycle**: Servlets have a well-defined lifecycle, including initialization, request handling, and destruction. This lifecycle is managed by the servlet container (such as Apache Tomcat or Jetty) in which the servlet is deployed.
+
+4. **Platform Independence**: Servlets are written in Java and are therefore platform-independent. They can run on any platform that supports Java, as long as there is a servlet container available.
+
+5. **Communication with Clients**: Servlets can communicate with clients using HTTP protocols. They can read data from HTTP requests (such as form submissions or URL parameters) and send responses back to clients (such as HTML pages or data in JSON format).
+
+6. **Scalability**: Servlets are highly scalable because they run within a servlet container, which can manage multiple instances of servlets to handle concurrent requests from clients.
+
+Overall, servlets provide a robust and efficient way to build server-side logic for web applications, making them a fundamental building block in Java web development.
+
+
+
+here's a simple and friendly explanation of what a servlet is:
+-----------------------------------------------------------------------
+
+A servlet is like a tiny program that lives on a web server. Imagine the web server as a big machine that stores and manages websites. Now, a servlet is a small program inside that machine that does specific tasks when someone visits a website.
+
+Here's how it works:
+
+1. **Visitor Arrives**: When someone opens a webpage, their browser sends a request to the web server saying, "Hey, I want to see this page!"
+
+2. **Servlet Springs into Action**: The web server receives this request and hands it over to the servlet that's responsible for handling it. The servlet then swings into action, doing whatever job it's been programmed to do.
+
+3. **Doing the Job**: The servlet might fetch some data from a database, process information, or generate a webpage dynamically based on the request.
+
+4. **Sending a Response**: Once the servlet finishes its job, it sends a response back to the web server. This response could be a webpage, a piece of data, or even a simple "Hello!" message.
+
+5. **Back to the Visitor**: The web server takes this response and sends it back to the visitor's browser. The browser then displays whatever the servlet sent, and the visitor sees the result on their screen.
+
+In a nutshell, a servlet is like a little worker bee inside a web server, doing specific tasks whenever someone visits a webpage. It helps make websites dynamic and interactive, handling requests and sending back responses to visitors.
+
 Struts Tutorial
 ===============
 Struts is a open source framework which make building of the web applications easier based on the java Servlet and JavaServer pages technologies.
@@ -29,12 +99,140 @@ Persistence Logic :- Logic that interacts with database and manipulates the data
 Middleware Services Configuration Logic :- Middleware services are additional and optional configuration logic of the application.
 Example:- Security Service, Transaction Management, Connection Pooling etc.
 
-web.xml - default data
-======================
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
-<web-app>
-  <display-name>Archetype Created Web Application</display-name> 
+FILTERS
+========
+Certainly! Let's break down each of these components:
+
+1. **Filter**:
+   - A filter is a Java component that can intercept and manipulate requests and responses before they reach the servlet or JSP page.
+   - Filters are commonly used for tasks such as authentication, logging, encryption, and compression.
+   - They provide a way to perform common pre-processing and post-processing tasks on web requests and responses.
+
+2. **Filter Name**:
+   - The filter name is a unique identifier for a filter within the web application.
+   - It's used to reference the filter in the `web.xml` file and in filter-mapping configurations.
+
+3. **Filter Class**:
+   - The filter class specifies the Java class that implements the filter logic.
+   - This class typically extends `javax.servlet.Filter` and overrides the `doFilter` method to define the filter's behavior.
+
+4. **Filter Mapping**:
+   - Filter mapping is used to specify which URLs or URL patterns should be intercepted by a particular filter.
+   - It associates a filter with one or more URL patterns, indicating when the filter should be applied.
+   - Filter mapping allows for fine-grained control over which requests the filter should process.
+
+When to use them:
+
+- **Filters** are used when you need to perform common pre-processing or post-processing tasks on web requests and responses. For example, you might use a filter to log requests, authenticate users, compress responses, or enforce security constraints.
+- **Filter mappings** are used to specify when and where filters should be applied within a web application. They allow you to define which URLs or URL patterns should be intercepted by a particular filter, providing flexibility in controlling the filter's behavior.
+- You use **filter names** and **filter classes** to define and implement the filter logic. The filter name serves as a unique identifier for the filter, while the filter class specifies the Java class that contains the filter's implementation.
+
+Overall, filters are a powerful mechanism for implementing cross-cutting concerns in web applications, providing a way to encapsulate common functionality and apply it selectively to different parts of the application.
+
+web.xml file
+================
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    This line declares the XML version and encoding of the document.
+-->
+
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://jakarta.ee/xml/ns/jakartaee"
+    xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee 
+    https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+    version="6.0">
+    <!-- 
+        This section defines the root element of the web application deployment descriptor.
+        It declares namespaces and specifies the schema location for validation.
+        The version attribute indicates the version of the Jakarta EE specification being used.
+    -->
+
+    <display-name>Basic Struts2</display-name>
+    <!-- 
+        This element provides a display name for the web application.
+    -->
+
+    <filter>
+        <!-- 
+            This section defines a filter that can intercept requests and responses.
+        -->
+        <filter-name>struts2</filter-name>
+        <!-- 
+            This element specifies the name of the filter.
+        -->
+        <filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>
+        <!-- 
+            This element specifies the fully qualified class name of the filter implementation.
+            Here, it's pointing to a Struts 2 filter used for request preparation and execution.
+        -->
+    </filter>
+
+    <filter-mapping>
+        <!-- 
+            This section maps a filter to one or more URL patterns, indicating when the filter should be applied.
+        -->
+        <filter-name>struts2</filter-name>
+        <!-- 
+            This element specifies the name of the filter being mapped.
+        -->
+        <url-pattern>/*</url-pattern>
+        <!-- 
+            This element specifies the URL pattern to which the filter should be applied.
+            Here, the filter is mapped to all URLs in the application.
+        -->
+    </filter-mapping>
+
+    <welcome-file-list>
+        <!-- 
+            This section configures a list of welcome files for the web application.
+            When a request comes in without a specific file name, the server looks for these files in order.
+        -->
+        <welcome-file>index.jsp</welcome-file>
+        <!-- 
+            This element specifies the name of a file to be considered a welcome file.
+            Here, it indicates that index.jsp should be served as the default page if no specific page is requested.
+        -->
+    </welcome-file-list>
 </web-app>
+
+
+
+
+Sure, let's break down how the provided files work together in a typical web application flow:
+
+1. **User Request**:
+   - A user sends a request to access the web application.
+
+2. **Web Container (Servlet Container) Handling**:
+   - The request is intercepted by the web container (e.g., Apache Tomcat).
+   - The container checks the `web.xml` file to understand how to handle the request.
+
+3. **URL Mapping**:
+   - In `web.xml`, the `<filter-mapping>` element specifies that the filter named `struts2` should be applied to all URL patterns (`/*`).
+
+4. **Filter Execution**:
+   - The filter `org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter` is executed due to the URL pattern matching.
+   - This filter is part of the Struts 2 framework and is responsible for preparing and executing Struts actions.
+
+5. **Struts 2 Action Processing**:
+   - Struts 2 processes the incoming request using its defined actions and mappings.
+   - Actions are Java classes that contain the business logic for handling the request.
+   - Based on the URL and request parameters, Struts 2 determines which action class to execute.
+
+6. **Response Generation**:
+   - After executing the appropriate action, Struts 2 forwards the request to the associated JSP page for rendering.
+
+7. **JSP Rendering**:
+   - The `index.jsp` file is responsible for generating the HTML response sent back to the user's browser.
+   - Any dynamic content or data retrieved from the action class can be embedded in the HTML response.
+
+8. **HTML Response**:
+   - The HTML response, generated by the JSP, is sent back to the user's browser.
+   - The user's browser renders the HTML, and the user sees the web page.
+
+In summary, the `web.xml` file configures the web application's filter, which is responsible for intercepting requests and handing them over to the Struts 2 framework. Struts 2 processes the requests by executing appropriate actions and eventually forwarding the response to JSP pages for rendering. The JSP pages generate HTML responses that are sent back to the user's browser.
+
+
+
+
