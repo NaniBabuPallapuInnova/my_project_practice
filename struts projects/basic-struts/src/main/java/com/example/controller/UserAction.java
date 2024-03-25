@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,6 +26,8 @@ public class UserAction extends ActionSupport {
 	private HealthHistory healthHistory;
 
 	Connection connection = null;
+	
+	public List<User> users;
 	
 	public UserAction() {
 		
@@ -51,12 +55,80 @@ public class UserAction extends ActionSupport {
 	public void setHealthHistory(HealthHistory healthHistory) {
 		this.healthHistory = healthHistory;
 	}
+	
+	
+	public String retriveUsers() {
+		
+		try {
+			
+			connection = DBUtils.getConnection();
+			
+			String query = "SELECT * FROM user";
+			
+			PreparedStatement statement = connection.prepareStatement(query);
+			
+			ResultSet result = statement.executeQuery();
+			
+			users = new ArrayList<>();
+			
+			log.info("all users "+result.toString());
+			while(result.next()) {
+				User user = new User();
+				
+                user.setEnrollmentId(result.getInt("enrollment_id"));
+                user.setName(result.getString("name"));
+                user.setAge(result.getInt("age"));
+                user.setGender(result.getString("gender"));
+                user.setOccupation(result.getString("occupation"));
+                user.setEmail(result.getString("email"));
+                user.setPhoneNumber(result.getString("phone_number"));
+                user.setCity(result.getString("city"));
+                user.setState(result.getString("state"));
+                
+                log.info("fetched user data : "+user.toString());
+
+                
+                HealthHistory history = new HealthHistory();
+                
+    			String query2 = "SELECT * FROM health_history WHERE enrollment_id = ?";
+    			PreparedStatement statement2 = connection.prepareStatement(query2);
+    			statement2.setInt(1, user.getEnrollmentId());
+    			log.info("fetching id, "+result.getInt("enrollment_id"));
+    			
+    			ResultSet resultSet = statement2.executeQuery();
+
+    			
+    			while(resultSet.next()) {
+    				history.setHypertension(resultSet.getBoolean("hypertension"));
+    				history.setDiabetes(resultSet.getBoolean("diabetes"));
+    				history.setAllergy(resultSet.getBoolean("allergy"));
+    				history.setSurgery(resultSet.getBoolean("surgery"));
+    				history.setFamilyMedicalHistory(resultSet.getBoolean("family_medical_history"));
+    				
+    				user.setHealthHistory(history);
+    			}
+
+                
+                log.info("user data : "+user.toString());
+                users.add(user);
+			}
+			
+			if(!users.isEmpty()) {
+				return "success";
+			}
+			
+		}catch(SQLException ex) {
+			ex.printStackTrace();
+		}
+		
+		return "failed";
+	}
 
 	public String newEnrollment() {
 
 	    try {
 	        connection = DBUtils.getConnection();
-	        connection.setAutoCommit(false); // Disable autocommit
+	        connection.setAutoCommit(false); // when we want to manage transactions manually, especially when we need to execute multiple SQL statements as part of a single transaction. This allows us to ensure data consistency and integrity by committing or rolling back the entire transaction as needed.
 
 	        String query = "INSERT INTO user (name, age, gender, occupation, email, phone_number, city, state) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 	        PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -80,7 +152,7 @@ public class UserAction extends ActionSupport {
 	                String healthHistoryQuery = "INSERT INTO health_history (enrollment_id, hypertension, diabetes, allergy, surgery, family_medical_history) VALUES (?, ?, ?, ?, ?, ?)";
 	                PreparedStatement healthHistoryStatement = connection.prepareStatement(healthHistoryQuery);
 
-	                healthHistoryStatement.setInt(1, enrolmentId); // Use enrolmentId obtained from user insertion
+	                healthHistoryStatement.setInt(1, enrolmentId);
 	                healthHistoryStatement.setBoolean(2, healthHistory.isHypertension());
 	                healthHistoryStatement.setBoolean(3, healthHistory.isDiabetes());
 	                healthHistoryStatement.setBoolean(4, healthHistory.isAllergy());

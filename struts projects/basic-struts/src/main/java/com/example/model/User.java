@@ -33,11 +33,11 @@ public class User {
 		this.healthHistory = healthHistory;
 	}
 
-	public int getEnrollment_id() {
+	public int getEnrollmentId() {
 		return enrollmentId;
 	}
 
-	public void setEnrollment_id(int enrollmentId) {
+	public void setEnrollmentId(int enrollmentId) {
 		this.enrollmentId = enrollmentId;
 	}
 

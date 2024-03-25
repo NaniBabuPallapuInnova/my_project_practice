@@ -19,7 +19,6 @@
         <s:textfield label="City" name="user.city" />
         <s:textfield label="State" name="user.state" />
         
-        <!-- Health History Fields as Radio Buttons -->
         <s:radio label="Hypertension" name="healthHistory.hypertension" list="#{'true':'Yes', 'false':'No'}" />
         <s:radio label="Diabetes" name="healthHistory.diabetes" list="#{'true':'Yes', 'false':'No'}" />
         <s:radio label="Allergy" name="healthHistory.allergy" list="#{'true':'Yes', 'false':'No'}" />
