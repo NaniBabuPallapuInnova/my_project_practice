@@ -22,10 +22,11 @@ public class UserAction extends ActionSupport {
 
 	private int enrollmentId;
 
+	private boolean choice;
+
 	private User user;
 
 	private HealthHistory healthHistory;
-	
 
 	Connection connection = null;
 
@@ -34,27 +35,27 @@ public class UserAction extends ActionSupport {
 	public UserAction() {
 
 	}
-	
-	
 
 	public UserAction(User user, HealthHistory healthHistory) {
 		this.user = user;
 		this.healthHistory = healthHistory;
 	}
-	
-	
-	
+
 	public int getEnrollmentId() {
 		return enrollmentId;
 	}
-
-
 
 	public void setEnrollmentId(int enrollmentId) {
 		this.enrollmentId = enrollmentId;
 	}
 
+	public boolean isChoice() {
+		return choice;
+	}
 
+	public void setChoice(boolean choice) {
+		this.choice = choice;
+	}
 
 	public User getUser() {
 		return user;
@@ -216,7 +217,7 @@ public class UserAction extends ActionSupport {
 			PreparedStatement preparedStatement = connection.prepareStatement(query);
 
 			preparedStatement.setInt(1, enrollmentId);
-			log.info("enrollment id printing : "+enrollmentId);
+			log.info("enrollment id printing : " + enrollmentId);
 
 			ResultSet result = preparedStatement.executeQuery();
 
@@ -232,9 +233,8 @@ public class UserAction extends ActionSupport {
 				user.setCity(result.getString("city"));
 				user.setState(result.getString("state"));
 
-				
 				log.info("fetched user information based on Id : " + user.toString());
-				
+
 				HealthHistory history = new HealthHistory();
 
 				String query2 = "SELECT * FROM health_history WHERE enrollment_id = ?";
@@ -252,10 +252,10 @@ public class UserAction extends ActionSupport {
 					history.setFamilyMedicalHistory(resultSet.getBoolean("family_medical_history"));
 
 					user.setHealthHistory(history);
-					log.info("print total user info to update "+user.toString());
+					log.info("print total user info to update " + user.toString());
 				}
 			}
-			
+
 			return "success";
 
 		} catch (SQLException e) {
@@ -280,7 +280,7 @@ public class UserAction extends ActionSupport {
 
 		return "failed";
 	}
-	
+
 	public String updateUserEnrollement() {
 		try {
 			connection = DBUtils.getConnection();
@@ -289,10 +289,9 @@ public class UserAction extends ActionSupport {
 												// allows us to ensure data consistency and integrity by committing or
 												// rolling back the entire transaction as needed.
 
-            String query = "UPDATE user SET name = ?, age = ?, gender = ?, occupation = ?, email = ?, phone_number = ?, city = ?, state = ? WHERE enrollment_id = ?";
+			String query = "UPDATE user SET name = ?, age = ?, gender = ?, occupation = ?, email = ?, phone_number = ?, city = ?, state = ? WHERE enrollment_id = ?";
 			PreparedStatement preparedStatement = connection.prepareStatement(query);
-			
-			
+
 			log.info("user details " + user.toString());
 			preparedStatement.setString(1, user.getName());
 			preparedStatement.setInt(2, user.getAge());
@@ -305,26 +304,97 @@ public class UserAction extends ActionSupport {
 			preparedStatement.setInt(9, user.getEnrollmentId());
 
 			int rows = preparedStatement.executeUpdate();
-			if (rows > 0) {
-				ResultSet result = preparedStatement.getGeneratedKeys();
-				if (result.next()) {
-					String healthHistoryQuery = "UPDATE health_history SET hypertension=? , diabetes = ?, allergy = ?, surgery = ?, family_medical_history = ? WHERE enrollment_id = ? ";
-					PreparedStatement healthHistoryStatement = connection.prepareStatement(healthHistoryQuery);
+			log.info("User is updated " + user.toString() + " rows updated " + rows);
+			if (rows >= 0) {
+				String healthHistoryQuery = "UPDATE health_history SET hypertension=? , diabetes = ?, allergy = ?, surgery = ?, family_medical_history = ? WHERE enrollment_id = ? ";
+				PreparedStatement healthHistoryStatement = connection.prepareStatement(healthHistoryQuery);
 
-					healthHistoryStatement.setBoolean(1, healthHistory.isHypertension());
-					healthHistoryStatement.setBoolean(2, healthHistory.isDiabetes());
-					healthHistoryStatement.setBoolean(3, healthHistory.isAllergy());
-					healthHistoryStatement.setBoolean(4, healthHistory.isSurgery());
-					healthHistoryStatement.setBoolean(5, healthHistory.isFamilyMedicalHistory());
-					healthHistoryStatement.setInt(6, user.getEnrollmentId());
+				log.info("health history details : " + user.getHealthHistory().toString());
+				healthHistoryStatement.setBoolean(1, user.getHealthHistory().isHypertension());
+				healthHistoryStatement.setBoolean(2, user.getHealthHistory().isDiabetes());
+				healthHistoryStatement.setBoolean(3, user.getHealthHistory().isAllergy());
+				healthHistoryStatement.setBoolean(4, user.getHealthHistory().isSurgery());
+				healthHistoryStatement.setBoolean(5, user.getHealthHistory().isFamilyMedicalHistory());
+				healthHistoryStatement.setInt(6, user.getEnrollmentId());
 
+				int rows2 = healthHistoryStatement.executeUpdate();
+				if (rows2 >= 0) {
+					log.info("User's Health History is also updated  " + user.getHealthHistory().toString()
+							+ " rows updated " + rows2);
 
-					int rows2 = healthHistoryStatement.executeUpdate();
-					if (rows2 > 0) {
+					connection.commit();
+					return "success";
+				}
+
+			}
+		} catch (SQLException e) {
+			try {
+				if (connection != null) {
+					connection.rollback();
+				}
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+			e.printStackTrace();
+		} finally {
+			try {
+				if (connection != null) {
+					connection.setAutoCommit(true);
+					DBUtils.closeConnection(connection);
+				}
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+		}
+
+		return "failed";
+	}
+
+	public String cancelEnrollementOfUser() {
+		try {
+
+			log.info("Choice "+isChoice());
+			
+			if (isChoice()) {
+
+				connection = DBUtils.getConnection();
+				connection.setAutoCommit(false); // when we want to manage transactions manually, especially when we
+													// need to
+													// execute multiple SQL statements as part of a single transaction.
+													// This
+													// allows us to ensure data consistency and integrity by committing
+													// or
+													// rolling back the entire transaction as needed.
+
+				String query = "DELETE FROM health_history WHERE enrollment_id = ?";
+				PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+				log.info("DELETING Health History Of User details " + enrollmentId);
+				preparedStatement.setInt(1, enrollmentId);
+
+				int rows = preparedStatement.executeUpdate();
+				if (rows >= 0) {
+					log.info(" User's Health History Has been deleted " + " rows updated " + rows);
+
+					String healthHistoryQuery = "DELETE FROM user WHERE enrollment_id = ?";
+					PreparedStatement statement = connection.prepareStatement(healthHistoryQuery);
+
+					log.info("Deleting User's Info : " + " enrollment Id " + enrollmentId);
+
+					statement.setInt(1, enrollmentId);
+					int rows2 = statement.executeUpdate();
+
+					if (rows2 >= 0) {
+						log.info("User's Health History is also updated  "
+								+ " rows updated " + rows2);
+
 						connection.commit();
 						return "success";
 					}
+
 				}
+			} else {
+				return "no";
 			}
 		} catch (SQLException e) {
 			try {

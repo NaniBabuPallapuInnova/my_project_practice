@@ -11,7 +11,7 @@
 
 
     <s:form action="updateUserInfo" method="post">
-        <s:textfield  label="Enrollment Id" name="user.enrollmentId"  value="%{user.enrollmentId}" disabled="true" />
+        <s:hidden label="Enrollment Id" name="user.enrollmentId"  value="%{user.enrollmentId}" />
         <s:textfield label="Name" name="user.name" value="%{user.name}" />
         <s:textfield label="Age" name="user.age" value="%{user.age}" />
         <s:textfield label="Gender" name="user.gender" value="%{user.gender}" />

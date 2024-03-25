@@ -34,19 +34,35 @@
 
 
 		<action name="updateUserInfo"
-			class="com.example.controller.UserAction" method="updateUserEnrollement">
+			class="com.example.controller.UserAction"
+			method="updateUserEnrollement">
 			<result name="success">/success.jsp</result>
 			<result name="failed">/error.jsp</result>
-
 		</action>
 
+		<action name="deleteForm"
+			class="com.example.controller.UserAction"
+			method="loadUserByEnrollmentId">
+			<param name="enrollmentId">${enrollmentId}</param>
+			<result name="success">/cancelEnrollment.jsp</result>
+			<result name="failed">/error.jsp</result>
+		</action>
 
+		<action name="cancelUserEnrollment"
+			class="com.example.controller.UserAction"
+			method="cancelEnrollementOfUser">
+			<result name="success">/success.jsp</result>
+			<result name="no">/index.jsp</result>
+			<result name="failed">/error.jsp</result>
+		</action>
 
 
 
 		<action name="hello"
 			class="com.example.controller.HelloWorldAction" method="execute">
-			<result name="Success">/HelloWorld.jsp</result>
+			<result name="success">/HelloWorld.jsp</result>
+			<result name="failed">/error.jsp</result>
+
 		</action>
 	</package>
 </struts>
