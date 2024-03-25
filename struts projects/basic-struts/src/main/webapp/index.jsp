@@ -75,9 +75,8 @@
 						<td><s:property value="healthHistory.allergy" /></td>
 						<td><s:property value="healthHistory.surgery" /></td>
 						<td><s:property value="healthHistory.familyMedicalHistory" /></td>
-						<td><a class="btn btn-info" href="updateForm">Update Info</a></td>
-						<td><a class="btn btn-danger" href="deleteForm">Cancel
-								Enrollment</a></td>
+						<td><a class="btn btn-info" href="updateForm?enrollmentId=<s:property value="enrollmentId" />">Update Info</a></td>
+						<td><a class="btn btn-danger" href="deleteForm?enrollmentId=<s:property value="enrollmentId" />">Cancel Enrollment</a></td>
 					</tr>
 
 				</s:iterator>

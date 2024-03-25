@@ -8,8 +8,10 @@
 	<constant name="struts.devMode" value="true" />
 	<package name="basicstruts2" extends="struts-default">
 
-		<action name="index" class="com.example.controller.UserAction" method="retriveUsers">
+		<action name="index" class="com.example.controller.UserAction"
+			method="retriveUsers">
 			<result name="success">/index.jsp</result>
+			<result name="failed">/error.jsp</result>
 		</action>
 
 		<action name="enrollForm">
@@ -19,10 +21,28 @@
 		<action name="saveEnrollment"
 			class="com.example.controller.UserAction" method="newEnrollment">
 			<result name="success">/success.jsp</result>
-			<result name="error">/error.jsp</result>
+			<result name="failed">/error.jsp</result>
 		</action>
-		
-		
+
+		<action name="updateForm"
+			class="com.example.controller.UserAction"
+			method="loadUserByEnrollmentId">
+			<param name="enrollmentId">${enrollmentId}</param>
+			<result name="success">/updateEnrollment.jsp</result>
+			<result name="failed">/error.jsp</result>
+		</action>
+
+
+		<action name="updateUserInfo"
+			class="com.example.controller.UserAction" method="updateUserEnrollement">
+			<result name="success">/success.jsp</result>
+			<result name="failed">/error.jsp</result>
+
+		</action>
+
+
+
+
 
 		<action name="hello"
 			class="com.example.controller.HelloWorldAction" method="execute">
