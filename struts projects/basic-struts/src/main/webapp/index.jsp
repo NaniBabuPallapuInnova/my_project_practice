@@ -16,6 +16,8 @@
 	margin-left: 0;
 }
 </style>
+
+
 </head>
 <body>
 	<h1>This is first Struts Application! Click below link to view
@@ -70,19 +72,32 @@
 						<td><s:property value="phoneNumber" /></td>
 						<td><s:property value="city" /></td>
 						<td><s:property value="state" /></td>
-						<td><s:property value="healthHistory.hypertension" /></td>
-						<td><s:property value="healthHistory.diabetes" /></td>
-						<td><s:property value="healthHistory.allergy" /></td>
-						<td><s:property value="healthHistory.surgery" /></td>
-						<td><s:property value="healthHistory.familyMedicalHistory" /></td>
-						<td><a class="btn btn-info" href="updateForm?enrollmentId=<s:property value="enrollmentId" />">Update Info</a></td>
-						<td><a class="btn btn-danger" href="deleteForm?enrollmentId=<s:property value="enrollmentId" />">Cancel Enrollment</a></td>
+						<td><s:property
+								value="healthHistory.hypertension ? 'Yes' : 'No' " /></td>
+						<td><s:property
+								value="healthHistory.diabetes ? 'Yes' : 'No' " /></td>
+						<td><s:property
+								value="healthHistory.allergy  ? 'Yes' : 'No' " /></td>
+						<td><s:property value="healthHistory.surgery ? 'Yes' : 'No' " /></td>
+						<td><s:property
+								value="healthHistory.familyMedicalHistory ? 'Yes' : 'No' " /></td>
+						<td><a class="btn btn-info"
+							href="updateForm?enrollmentId=<s:property value="enrollmentId" />">Update
+								Info</a></td>
+						<td><a class="btn btn-danger"
+							href="deleteForm?enrollmentId=<s:property value="enrollmentId" />">Cancel
+								Enrollment</a></td>
+
 					</tr>
 
 				</s:iterator>
 			</tbody>
 		</table>
 	</div>
+
+
+
+
 
 
 	<!-- Bootstrap JS (optional, if needed) -->
