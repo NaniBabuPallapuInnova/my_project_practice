@@ -1,0 +1,3 @@
+com\example\AppTest.class
+com\example\converter\JSONConverterTest.class
+com\example\converter\DSVParserTest.class

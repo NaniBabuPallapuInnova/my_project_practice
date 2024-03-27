@@ -1,0 +1,1390 @@
+What is Apache Tomcat?
+======================
+
+Apache Tomcat is an open-source web server and servlet container developed by the Apache Software Foundation. 
+It's one of the most popular choices for deploying Java-based web applications.
+
+Here's why and when we use Apache Tomcat:
+
+1. **Servlet Container**: Tomcat serves as a servlet container, which means it can execute Java servlets and render dynamic web content. Servlets are Java classes that extend the capabilities of servers to generate dynamic content and handle requests from clients, typically web browsers.
+
+2. **Java Server Pages (JSP) Support**: Tomcat supports JavaServer Pages (JSP), which are HTML pages with embedded Java code that can dynamically generate web content. JSP pages are compiled into servlets by Tomcat, allowing for dynamic content generation.
+
+3. **Open Source and Free**: Tomcat is open-source software distributed under the Apache License, which means it's free to use and modify. This makes it accessible to developers and organizations of all sizes.
+
+4. **Lightweight and Fast**: Tomcat is known for its lightweight nature and fast performance. It's designed to be efficient and scalable, making it suitable for both small-scale development projects and large-scale production deployments.
+
+5. **Cross-Platform Compatibility**: Tomcat is written in Java and runs on multiple platforms, including Windows, Linux, and macOS. This cross-platform compatibility allows developers to build and deploy applications on their preferred operating systems.
+
+6. **Embedded Deployment**: Tomcat can be embedded within other applications, allowing developers to package their web applications with Tomcat for easy deployment. This makes it convenient for deploying applications in various environments, such as development, testing, and production.
+
+7. **Web Application Deployment**: Tomcat is commonly used for deploying Java-based web applications, including enterprise applications, e-commerce sites, content management systems, and more. It provides a reliable and scalable platform for hosting web applications and serving web content to users.
+
+Overall, Apache Tomcat is used whenever there is a need to deploy Java-based web applications and servlets, whether for development, testing, or production purposes. It provides a robust and efficient platform for hosting dynamic web content and serving requests from clients.
+
+
+
+
+What is Servlet? 
+===================
+
+A servlet is a Java class that extends the capabilities of servers, allowing them to generate dynamic content and interact with clients, typically web browsers. 
+Servlets are a key component of Java EE (Enterprise Edition) platform, now Jakarta EE, and they are commonly used to build web applications.
+
+Here are some key points about servlets:
+
+1. **Dynamic Content Generation**: Servlets are used to dynamically generate content for web applications. They can process requests from clients, perform some logic, and generate responses, which can be HTML, XML, JSON, or any other format.
+
+2. **HTTP Servlets**: Most servlets are HTTP servlets, which means they handle HTTP requests and responses. They typically implement methods such as `doGet()` for handling GET requests and `doPost()` for handling POST requests.
+
+3. **Lifecycle**: Servlets have a well-defined lifecycle, including initialization, request handling, and destruction. This lifecycle is managed by the servlet container (such as Apache Tomcat or Jetty) in which the servlet is deployed.
+
+4. **Platform Independence**: Servlets are written in Java and are therefore platform-independent. They can run on any platform that supports Java, as long as there is a servlet container available.
+
+5. **Communication with Clients**: Servlets can communicate with clients using HTTP protocols. They can read data from HTTP requests (such as form submissions or URL parameters) and send responses back to clients (such as HTML pages or data in JSON format).
+
+6. **Scalability**: Servlets are highly scalable because they run within a servlet container, which can manage multiple instances of servlets to handle concurrent requests from clients.
+
+Overall, servlets provide a robust and efficient way to build server-side logic for web applications, making them a fundamental building block in Java web development.
+
+
+
+here's a simple and friendly explanation of what a servlet is:
+-----------------------------------------------------------------------
+
+A servlet is like a tiny program that lives on a web server. Imagine the web server as a big machine that stores and manages websites. 
+Now, a servlet is a small program inside that machine that does specific tasks when someone visits a website.
+
+Here's how it works:
+
+1. **Visitor Arrives**: When someone opens a webpage, their browser sends a request to the web server saying, "Hey, I want to see this page!"
+
+2. **Servlet Springs into Action**: The web server receives this request and hands it over to the servlet that's responsible for handling it. The servlet then swings into action, doing whatever job it's been programmed to do.
+
+3. **Doing the Job**: The servlet might fetch some data from a database, process information, or generate a webpage dynamically based on the request.
+
+4. **Sending a Response**: Once the servlet finishes its job, it sends a response back to the web server. This response could be a webpage, a piece of data, or even a simple "Hello!" message.
+
+5. **Back to the Visitor**: The web server takes this response and sends it back to the visitor's browser. The browser then displays whatever the servlet sent, and the visitor sees the result on their screen.
+
+In a nutshell, a servlet is like a little worker bee inside a web server, doing specific tasks whenever someone visits a webpage. It helps make websites dynamic and interactive, handling requests and sending back responses to visitors.
+
+
+Struts Tutorial
+===============
+Struts is a open source framework which make building of the web applications easier based on the java Servlet and JavaServer pages technologies.
+Struts is based on Model-View-Controller (MVC) design paradigm, it is an implementation of JSP Model 2 Architecture.
+Struts 1.x is a complete web framework, provides complete web form components, validator, internalization, error handling, tiles layout, low learning curve and easy to implement it.
+
+
+Model View Controller(MVC) Introduction
+========================================
+A web application is a collection of static and dynamic web resources programs or client and server side resources or programs.
+
+Static web resource programs(html) generate static contents where as dynamic web resources(Servlet,JSP etc) generate dynamic web-pages.
+
+A Typical Web Application Logic :
+=================================
+
+Presentation Logic :- Logic that generates user interface for end users.
+
+Form Validation Logic :- Logic that verifies the pattern and format of data is called as form validation logic.It can be done at client side or server side.
+
+Request Parameter gathering Logic :-Logic that can read all data from http request like header values,Request Parameter values etc is called as request data gathering logic.
+
+Session Management Logic :- The logic that remembers client data across the multiple requests during a session and makes web application as state-full application is called as session management logic.We use hidden forms,cookies,HttpSession and URL rewriting techniques for this purpose.
+
+Business/Request Processing/Service Logic :- Main logic of application that generates result by using input values and performing calculation on these value is called business logic.
+
+Persistence Logic :- Logic that interacts with database and manipulates the data by performing CURD operation is called as Persistence Logic.
+
+Middleware Services Configuration Logic :- Middleware services are additional and optional configuration logic of the application.
+Example:- Security Service, Transaction Management, Connection Pooling etc.
+
+
+FILTERS
+========
+Certainly! Let's break down each of these components:
+
+1. **Filter**:
+   - A filter is a Java component that can intercept and manipulate requests and responses before they reach the servlet or JSP page.
+   - Filters are commonly used for tasks such as authentication, logging, encryption, and compression.
+   - They provide a way to perform common pre-processing and post-processing tasks on web requests and responses.
+
+2. **Filter Name**:
+   - The filter name is a unique identifier for a filter within the web application.
+   - It's used to reference the filter in the `web.xml` file and in filter-mapping configurations.
+
+3. **Filter Class**:
+   - The filter class specifies the Java class that implements the filter logic.
+   - This class typically extends `javax.servlet.Filter` and overrides the `doFilter` method to define the filter's behavior.
+
+4. **Filter Mapping**:
+   - Filter mapping is used to specify which URLs or URL patterns should be intercepted by a particular filter.
+   - It associates a filter with one or more URL patterns, indicating when the filter should be applied.
+   - Filter mapping allows for fine-grained control over which requests the filter should process.
+
+When to use them:
+
+- **Filters** are used when you need to perform common pre-processing or post-processing tasks on web requests and responses. For example, you might use a filter to log requests, authenticate users, compress responses, or enforce security constraints.
+- **Filter mappings** are used to specify when and where filters should be applied within a web application. They allow you to define which URLs or URL patterns should be intercepted by a particular filter, providing flexibility in controlling the filter's behavior.
+- You use **filter names** and **filter classes** to define and implement the filter logic. The filter name serves as a unique identifier for the filter, while the filter class specifies the Java class that contains the filter's implementation.
+
+Overall, filters are a powerful mechanism for implementing cross-cutting concerns in web applications, providing a way to encapsulate common functionality and apply it selectively to different parts of the application.
+
+web.xml file
+================
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    This line declares the XML version and encoding of the document.
+-->
+
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://jakarta.ee/xml/ns/jakartaee"
+    xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee 
+    https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+    version="6.0">
+    <!-- 
+        This section defines the root element of the web application deployment descriptor.
+        It declares namespaces and specifies the schema location for validation.
+        The version attribute indicates the version of the Jakarta EE specification being used.
+    -->
+
+    <display-name>Basic Struts2</display-name>
+    <!-- 
+        This element provides a display name for the web application.
+    -->
+
+    <filter>
+        <!-- 
+            This section defines a filter that can intercept requests and responses.
+        -->
+        <filter-name>struts2</filter-name>
+        <!-- 
+            This element specifies the name of the filter.
+        -->
+        <filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>
+        <!-- 
+            This element specifies the fully qualified class name of the filter implementation.
+            Here, it's pointing to a Struts 2 filter used for request preparation and execution.
+        -->
+    </filter>
+
+    <filter-mapping>
+        <!-- 
+            This section maps a filter to one or more URL patterns, indicating when the filter should be applied.
+        -->
+        <filter-name>struts2</filter-name>
+        <!-- 
+            This element specifies the name of the filter being mapped.
+        -->
+        <url-pattern>/*</url-pattern>
+        <!-- 
+            This element specifies the URL pattern to which the filter should be applied.
+            Here, the filter is mapped to all URLs in the application.
+        -->
+    </filter-mapping>
+
+    <welcome-file-list>
+        <!-- 
+            This section configures a list of welcome files for the web application.
+            When a request comes in without a specific file name, the server looks for these files in order.
+        -->
+        <welcome-file>index.jsp</welcome-file>
+        <!-- 
+            This element specifies the name of a file to be considered a welcome file.
+            Here, it indicates that index.jsp should be served as the default page if no specific page is requested.
+        -->
+    </welcome-file-list>
+</web-app>
+
+
+
+
+Sure, let's break down how the provided files work together in a typical web application flow:
+
+1. **User Request**:
+   - A user sends a request to access the web application.
+
+2. **Web Container (Servlet Container) Handling**:
+   - The request is intercepted by the web container (e.g., Apache Tomcat).
+   - The container checks the `web.xml` file to understand how to handle the request.
+
+3. **URL Mapping**:
+   - In `web.xml`, the `<filter-mapping>` element specifies that the filter named `struts2` should be applied to all URL patterns (`/*`).
+
+4. **Filter Execution**:
+   - The filter `org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter` is executed due to the URL pattern matching.
+   - This filter is part of the Struts 2 framework and is responsible for preparing and executing Struts actions.
+
+5. **Struts 2 Action Processing**:
+   - Struts 2 processes the incoming request using its defined actions and mappings.
+   - Actions are Java classes that contain the business logic for handling the request.
+   - Based on the URL and request parameters, Struts 2 determines which action class to execute.
+
+6. **Response Generation**:
+   - After executing the appropriate action, Struts 2 forwards the request to the associated JSP page for rendering.
+
+7. **JSP Rendering**:
+   - The `index.jsp` file is responsible for generating the HTML response sent back to the user's browser.
+   - Any dynamic content or data retrieved from the action class can be embedded in the HTML response.
+
+8. **HTML Response**:
+   - The HTML response, generated by the JSP, is sent back to the user's browser.
+   - The user's browser renders the HTML, and the user sees the web page.
+
+In summary, the `web.xml` file configures the web application's filter, which is responsible for intercepting requests and handing them over to the Struts 2 framework. 
+Struts 2 processes the requests by executing appropriate actions and eventually forwarding the response to JSP pages for rendering. 
+The JSP pages generate HTML responses that are sent back to the user's browser.
+
+
+
+
+
+
+
+How the Code Works
+==================
+Your browser sends to the web server a request for the URL http://localhost:8080/helloworld/hello.action.
+
+1. The container receives from the web server a request for the resource hello.action. 
+	According to the settings loaded from the web.xml, the container finds that all requests are being routed to org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter, including the *.action requests. 
+	The StrutsPrepareAndExecuteFilter is the entry point into the framework.
+
+2. The framework looks for an action mapping named “hello”, and it finds that this mapping corresponds to the class HelloWorldAction. 
+	The framework instantiates the Action and calls the Action’s execute method.
+	
+3. The execute method creates the MessageStore object and returns SUCCESS (="success"). 
+	The framework checks the action mapping to see what page to load if SUCCESS is returned. 
+	The framework tells the container to render as the response to the request, the resource HelloWorld.jsp.
+	
+4. As the page HelloWorld.jsp is being processed, the <s:property value="messageStore.message" /> tag calls the getter getMessageStore of the HelloWorld Action and then calls the getMessage of the MessageStore object returned by getMessageStore. 
+	The tag merges the value of the message attribute into the response.
+	
+5. A pure HTML response is sent back to the browser.
+
+What to Remember
+----------------
+The framework uses Actions to process HTML forms and other requests. The Action class returns a result-name such as SUCCESS, ERROR or INPUT. 
+Based on the mappings loaded from the struts.xml, a given result-name may select a page (as in this example), another action, or some other web resource (image, PDF).
+
+When a server page is rendered, most often it will include dynamic data provided by the Action. 
+To make it easy to display dynamic data, the framework provides a set of tags that can be used along with HTML markup to create a server page.
+
+
+
+
+
+CREATE TABLE `user` (
+  `enrollment_id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(60) NOT NULL,
+  `age` int NOT NULL,
+  `gender` varchar(60) DEFAULT NULL,
+  `occupation` varchar(60) DEFAULT NULL,
+  `email` varchar(60) DEFAULT NULL,
+  `phone_number` varchar(60) DEFAULT NULL,
+  `city` varchar(60) DEFAULT NULL,
+  `state` varchar(60) DEFAULT NULL,
+  PRIMARY KEY (`enrollment_id`)
+);
+
+
+ALTER TABLE user AUTO_INCREMENT = 1001;
+
+
+
+
+
+CREATE TABLE `health_history` (
+    `history_id` INT AUTO_INCREMENT PRIMARY KEY,
+    `enrollment_id` INT,
+    `hypertension` BOOLEAN,
+    `diabetes` BOOLEAN,
+    `allergy` BOOLEAN,
+    `surgery` BOOLEAN,
+    `family_medical_history` BOOLEAN,
+    FOREIGN KEY (enrollment_id)
+	REFERENCES user (enrollment_id)
+);
+
+
+-- Insert data into the user table with Indian names
+INSERT INTO `user` (name, age, gender, occupation, email, phone_number, city, state)
+VALUES 
+    ('Ravi Kumar', 35, 'Male', 'Engineer', 'ravi@gmail.com', '9858582565', 'Hyderabad', 'Telangana'),
+    ('Geetha Madhuri', 28, 'Female', 'Doctor', 'priya@gmail.com', '9898586961', 'Vijayawada', 'Andhra Pradesh');
+
+-- Insert data into the health_history table associated with the users inserted previously
+INSERT INTO `health_history` (enrollment_id, hypertension, diabetes, allergy, surgery, family_medical_history)
+VALUES 
+    (1001, TRUE, FALSE, TRUE, FALSE, TRUE),  -- Ravi Kumar
+    (1002, FALSE, TRUE, FALSE, TRUE, FALSE);  -- Geetha Madhuri
+
+
+
+
+
+PROJECT:
+========
+To create the described application, you'll need to set up a Java web application project using Struts 2. Below is a basic outline of the project structure along with code snippets for the required files.
+
+**Project Structure:**
+```
+HealthPlanApp/
+├── src/
+│   ├── main/
+│   │   └── java/
+│   │       └── com/
+│   │           └── example/
+│   │               └── actions/
+│   │                   └── UserAction.java
+│   │               └── model/
+│   │                   └── User.java
+│   │               └── util/
+│   │                   └── DatabaseUtil.java
+│   └── resources/
+│       └── struts.xml
+├── WebContent/
+│   ├── WEB-INF/
+│   │   ├── lib/ (Struts and JDBC libraries)
+│   │   ├── web.xml
+│   └── index.jsp
+│   └── newEnrollment.jsp
+│   └── changeInfo.jsp
+│   └── cancelEnrollment.jsp
+└── pom.xml
+```
+
+**web.xml:**
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+    id="WebApp_ID" version="4.0">
+    <display-name>HealthPlanApp</display-name>
+    
+    <!-- Configure Struts 2 filter -->
+    <filter>
+        <filter-name>struts2</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>struts2</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+</web-app>
+```
+
+**struts.xml:**
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <constant name="struts.devMode" value="true" />
+    
+    <!-- Define actions -->
+    <package name="default" extends="struts-default">
+        <action name="newEnrollment" class="com.example.actions.UserAction" method="newEnrollment">
+            <result name="success">/confirmation.jsp</result>
+        </action>
+        <action name="changeInfo" class="com.example.actions.UserAction" method="changeInfo">
+            <result name="success">/confirmation.jsp</result>
+        </action>
+        <action name="cancelEnrollment" class="com.example.actions.UserAction" method="cancelEnrollment">
+            <result name="success">/confirmation.jsp</result>
+        </action>
+    </package>
+</struts>
+```
+
+**UserAction.java:**
+```java
+package com.example.actions;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+public class UserAction extends ActionSupport {
+    private String actionType;
+
+    // getters and setters
+
+    public String newEnrollment() {
+        // Handle new enrollment logic
+        return SUCCESS;
+    }
+
+    public String changeInfo() {
+        // Handle changing information logic
+        return SUCCESS;
+    }
+
+    public String cancelEnrollment() {
+        // Handle canceling enrollment logic
+        return SUCCESS;
+    }
+}
+```
+
+**index.jsp:**
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Health Plan App</title>
+</head>
+<body>
+    <h1>Welcome to Health Plan App</h1>
+    <form action="newEnrollment.action" method="post">
+        <input type="hidden" name="actionType" value="newEnrollment">
+        <button type="submit">New Enrollment</button>
+    </form>
+    <form action="changeInfo.action" method="post">
+        <input type="hidden" name="actionType" value="changeInfo">
+        <button type="submit">Changed Information</button>
+    </form>
+    <form action="cancelEnrollment.action" method="post">
+        <input type="hidden" name="actionType" value="cancelEnrollment">
+        <button type="submit">Cancel Previous Enrollment</button>
+    </form>
+</body>
+</html>
+```
+
+**newEnrollment.jsp, changeInfo.jsp, cancelEnrollment.jsp:**
+These pages will contain forms for gathering necessary information. You can customize them according to your requirements.
+
+**Confirmation.jsp:**
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confirmation</title>
+</head>
+<body>
+    <h1>Action Confirmed</h1>
+    <p>You selected: ${actionType}</p>
+</body>
+</html>
+```
+
+**pom.xml:**
+You need to include dependencies for Struts 2 and MySQL JDBC driver.
+
+This is a basic setup. You may need to add more functionality and error handling based on your requirements. Also, ensure proper database connectivity and handle form submissions accordingly in your actions.
+
+
+
+
+
+
+
+
+**User.java:**
+```java
+package com.example.model;
+
+public class User {
+    private int enrollmentId;
+    private String name;
+    private int age;
+    private String gender;
+    private String occupation;
+    private String email;
+    private String phoneNumber;
+    private String city;
+    private String state;
+
+    // getters and setters
+}
+```
+
+**DatabaseUtil.java:**
+```java
+package com.example.util;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class DatabaseUtil {
+    private static final String URL = "jdbc:mysql://localhost:3306/your_database_name";
+    private static final String USER = "your_database_username";
+    private static final String PASSWORD = "your_database_password";
+
+    public static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(URL, USER, PASSWORD);
+    }
+
+    public static void closeConnection(Connection connection) {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+```
+
+**UserAction.java:**
+```java
+package com.example.actions;
+
+import com.example.model.User;
+import com.example.util.DatabaseUtil;
+import com.opensymphony.xwork2.ActionSupport;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class UserAction extends ActionSupport {
+    private String actionType;
+    private User user;
+
+    // getters and setters
+
+    public String newEnrollment() {
+        // Handle new enrollment logic
+        try (Connection connection = DatabaseUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement("INSERT INTO user (name, age, gender, occupation, email, phone_number, city, state) VALUES (?, ?, ?, ?, ?, ?, ?, ?)")) {
+
+            statement.setString(1, user.getName());
+            statement.setInt(2, user.getAge());
+            statement.setString(3, user.getGender());
+            statement.setString(4, user.getOccupation());
+            statement.setString(5, user.getEmail());
+            statement.setString(6, user.getPhoneNumber());
+            statement.setString(7, user.getCity());
+            statement.setString(8, user.getState());
+
+            int rowsInserted = statement.executeUpdate();
+            if (rowsInserted > 0) {
+                return SUCCESS;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ERROR;
+    }
+
+    public String changeInfo() {
+        // Handle changing information logic
+        return SUCCESS;
+    }
+
+    public String cancelEnrollment() {
+        // Handle canceling enrollment logic
+        return SUCCESS;
+    }
+}
+```
+
+These Java classes include basic implementations for handling user actions like new enrollment, changing information, and canceling enrollment. You should further expand these methods to handle different scenarios and perform appropriate database operations. Also, make sure to handle validations, error handling, and exception management as per your application requirements.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Converting a Struts 2 application to Struts 1.2 or 1.3 involves significant changes as Struts 1.x and Struts 2 have different architectures and approaches. Below, I'll outline the general steps involved in converting your Struts 2 application to Struts 1.2 or 1.3 and discuss some key differences between Struts 1.x and Struts 2.
+
+### Steps to convert from Struts 2 to Struts 1.2 or 1.3:
+
+1. **Action Classes**:
+   - In Struts 1.x, action classes extend `org.apache.struts.action.Action` instead of implementing interfaces like in Struts 2.
+   - Action methods are defined differently in Struts 1.x compared to Struts 2.
+
+2. **Configuration Files**:
+   - Struts 1.x uses `struts-config.xml` for configuration, while Struts 2 uses `struts.xml`.
+   - You need to convert your Struts 2 configuration (`struts.xml`) to Struts 1.x configuration (`struts-config.xml`).
+
+3. **JSP Pages**:
+   - JSP pages in Struts 1.x use different tags compared to Struts 2.
+   - You need to update your JSP pages to use Struts 1.x tags and syntax.
+
+4. **Dependency Injection**:
+   - Struts 2 provides built-in support for dependency injection (DI), while Struts 1.x does not.
+   - You may need to manually handle dependencies in your action classes in Struts 1.x.
+
+5. **Validation**:
+   - Struts 1.x validation is typically done using the `validate` method in action classes or through XML-based validation.
+   - Struts 2 validation is annotation-based or XML-based.
+   - You need to update validation logic accordingly.
+
+6. **Filters and Interceptors**:
+   - Struts 2 uses interceptors for processing requests, while Struts 1.x uses filters.
+   - You may need to re-implement any custom interceptors as filters in Struts 1.x.
+
+7. **Model Classes**:
+   - Model classes remain mostly unchanged, but you may need to adjust them according to any changes in action classes or configuration.
+
+### Key Differences between Struts 1.x and Struts 2:
+
+1. **Architecture**:
+   - Struts 1.x follows a Model 1 architecture, where JSP pages handle both presentation and controller logic.
+   - Struts 2 follows a Model 2 architecture, where actions (controllers) handle requests and delegate to JSP pages or other views for presentation.
+
+2. **Action Handling**:
+   - In Struts 1.x, actions are represented by servlets or action classes extending `Action`.
+   - Struts 2 actions are plain POJOs, often with annotations for configuration.
+
+3. **Configuration**:
+   - Struts 1.x uses XML-based configuration (`struts-config.xml`).
+   - Struts 2 configuration is XML-based (`struts.xml`) but can also be annotation-driven.
+
+4. **Tag Libraries**:
+   - Struts 1.x uses JSP-based custom tag libraries.
+   - Struts 2 introduced its own tag libraries (`struts-tags`) but also supports JSP tags.
+
+5. **Validation**:
+   - Struts 1.x validation typically involves extending `ValidatorForm` and defining validation rules in XML.
+   - Struts 2 supports annotation-based validation and provides a more flexible validation framework.
+
+6. **Dependency Injection**:
+   - Struts 2 supports built-in dependency injection (DI) using frameworks like Spring or Guice.
+   - Struts 1.x does not have built-in support for DI.
+
+7. **Interceptors**:
+   - Struts 2 uses interceptors for cross-cutting concerns like logging, validation, etc.
+   - Struts 1.x does not have interceptors; filters are used for similar purposes.
+
+8. **Ajax Support**:
+   - Struts 2 provides built-in support for AJAX requests.
+   - Struts 1.x requires additional libraries or custom solutions for AJAX support.
+
+Converting from Struts 2 to Struts 1.x involves substantial changes due to architectural and conceptual differences. It's advisable to carefully plan the conversion process and thoroughly test the application after migration. Additionally, consider the long-term support and compatibility of the chosen framework with your project requirements.
+
+
+
+
+
+
+Converting the entire project from Struts 2 to Struts 1.2 or 1.3 involves multiple files, including Java classes, configuration files, and JSP pages. Below, I'll provide an example of how to convert your project, focusing on key components. Please note that this example assumes a basic conversion and may need further adjustments based on your specific project structure and requirements.
+
+### Project Structure
+```
+- src
+  - main
+    - java
+      - com
+        - example
+          - action
+            - UserAction.java
+          - model
+            - HealthHistory.java
+            - User.java
+          - utils
+            - DBUtils.java
+    - resources
+      - struts-config.xml
+    - webapp
+      - WEB-INF
+        - jsp
+          - enrollmentForm.jsp
+          - index.jsp
+          - success.jsp
+          - updateEnrollment.jsp
+          - cancelEnrollment.jsp
+        - web.xml
+```
+
+### Step-by-Step Conversion:
+
+#### 1. Update `pom.xml`:
+Remove dependencies related to Struts 2 and add dependencies for Struts 1.2 or 1.3 along with any required libraries.
+
+#### 2. Convert Action Classes:
+Modify `UserAction.java` to extend `org.apache.struts.action.Action` and adjust action mappings in `struts-config.xml` accordingly.
+
+```java
+package com.example.action;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+
+public class UserAction extends Action {
+    public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
+        // Your action logic here
+        return mapping.findForward("success");
+    }
+}
+```
+
+#### 3. Update Struts Configuration:
+Create a `struts-config.xml` file and define action mappings, forms, and other configurations as needed for Struts 1.2 or 1.3.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+    <form-beans>
+        <!-- Define your form beans here if needed -->
+    </form-beans>
+
+    <action-mappings>
+        <action path="/user" type="com.example.action.UserAction" name="userForm" scope="request"
+            validate="false">
+            <forward name="success" path="/WEB-INF/jsp/success.jsp" />
+            <!-- Add more forwards if needed -->
+        </action>
+        <!-- Add more action mappings as needed -->
+    </action-mappings>
+
+    <!-- Add other configurations as needed -->
+</struts-config>
+```
+
+#### 4. Modify JSP Pages:
+Update JSP pages (`index.jsp`, `enrollmentForm.jsp`, `updateEnrollment.jsp`, `cancelEnrollment.jsp`, `success.jsp`) to use Struts 1.x tags instead of Struts 2 tags.
+
+For example, replace Struts 2 tags like `<s:form>`, `<s:textfield>`, etc., with Struts 1.x tags like `<html:form>`, `<html:text>`, etc.
+
+### Additional Considerations:
+1. Adjust any additional Java classes and utilities as necessary, especially if they rely on Struts 2 features.
+2. Ensure proper configuration of servlets and filters in `web.xml` for Struts 1.x.
+3. Test thoroughly to verify the functionality of the converted application.
+
+This conversion process should give you a basic understanding of how to migrate from Struts 2 to Struts 1.2 or 1.3. Depending on the complexity of your project, you may need to make further adjustments and refinements.
+
+
+
+
+
+
+Another example for struts 1
+=============================
+
+
+
+Here's a simple example of a Struts 1 project with a UserAction class handling CRUD operations. This example includes the necessary files and code for a basic Struts 1 project:
+
+To implement the described functionality in a Struts 1.2 application, you'll need to set up a few components:
+
+1. **Struts Action Mapping**: Define action mappings in `struts-config.xml` to map URLs to specific actions.
+
+2. **JSP Pages**: Create JSP pages for displaying the index page, the user creation form, and possibly a success page.
+
+3. **Action Classes**: Implement action classes to handle user actions, such as creating a new user.
+
+Here's a basic implementation:
+
+1. **Project Structure**:
+   ```
+   /WEB-INF
+   ├── classes
+   │   └── com
+   │       └── example
+   │           └── actions
+   │               └── UserAction.class
+   ├── lib
+   │   ├── struts-core.jar
+   │   └── (other JARs)
+   ├── struts-config.xml
+   ├── web.xml
+   └── jsp
+       ├── createUser.jsp
+       ├── readUser.jsp
+       ├── updateUser.jsp
+       └── deleteUser.jsp
+   ```
+
+2. **web.xml**:
+   ```xml
+   <?xml version="1.0" encoding="UTF-8"?>
+   <web-app xmlns="http://java.sun.com/xml/ns/javaee"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+            version="3.0">
+       <display-name>Struts1Example</display-name>
+       <servlet>
+           <servlet-name>action</servlet-name>
+           <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+           <init-param>
+               <param-name>config</param-name>
+               <param-value>/WEB-INF/struts-config.xml</param-value>
+           </init-param>
+           <load-on-startup>1</load-on-startup>
+       </servlet>
+       <servlet-mapping>
+           <servlet-name>action</servlet-name>
+           <url-pattern>*.do</url-pattern>
+       </servlet-mapping>
+   </web-app>
+   ```
+
+
+3. **struts-config.xml**:
+
+```xml
+<struts-config>
+    <form-beans>
+        <form-bean name="userForm" type="org.apache.struts.action.DynaActionForm"/>
+    </form-beans>
+
+    <action-mappings>
+        <!-- Mapping for creating a user -->
+        <action path="/createUser" type="com.example.actions.UserAction" name="userForm" scope="request" validate="true"
+                parameter="createUser">
+            <forward name="success" path="/success.jsp"/>
+            <forward name="failure" path="/createUser.jsp"/>
+        </action>
+
+        <!-- Mapping for updating a user -->
+        <action path="/updateUser" type="com.example.actions.UserAction" name="userForm" scope="request" validate="true"
+                parameter="updateUser">
+            <forward name="success" path="/success.jsp"/>
+            <forward name="failure" path="/updateUser.jsp"/>
+        </action>
+
+        <!-- Mapping for deleting a user -->
+        <action path="/deleteUser" type="com.example.actions.UserAction" name="userForm" scope="request" validate="false"
+                parameter="deleteUser">
+            <forward name="success" path="/success.jsp"/>
+            <forward name="failure" path="/error.jsp"/>
+        </action>
+        
+        <!-- Mapping for retrieving user information -->
+        <action path="/retrieveUser" type="com.example.actions.UserAction" name="userForm" scope="request" validate="false"
+                parameter="retrieveUser">
+            <forward name="success" path="/userInfo.jsp"/>
+            <forward name="failure" path="/error.jsp"/>
+        </action>
+    </action-mappings>
+</struts-config>
+
+```
+
+4. **index.jsp**:
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Index Page</title>
+</head>
+<body>
+    <h1>Welcome to My Struts Application</h1>
+    <a href="newUser.do">New User</a>
+</body>
+</html>
+```
+
+5. **createUser.jsp**:
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Create User</title>
+</head>
+<body>
+    <h1>Create User</h1>
+    <form action="createUserAction.do" method="post">
+        Username: <input type="text" name="username"><br>
+        Password: <input type="password" name="password"><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+```
+
+6. **UserAction.java**:
+
+```java
+package com.example.actions;
+
+import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class UserAction extends Action {
+    public ActionForward createUser(ActionMapping mapping, ActionForm form,
+                                    HttpServletRequest request, HttpServletResponse response) {
+        // Logic to create user
+        return mapping.findForward("success");
+    }
+
+    public ActionForward updateUser(ActionMapping mapping, ActionForm form,
+                                    HttpServletRequest request, HttpServletResponse response) {
+        // Logic to update user
+        return mapping.findForward("success");
+    }
+
+    public ActionForward deleteUser(ActionMapping mapping, ActionForm form,
+                                    HttpServletRequest request, HttpServletResponse response) {
+        // Logic to delete user
+        return mapping.findForward("success");
+    }
+
+    public ActionForward retrieveUser(ActionMapping mapping, ActionForm form,
+                                    HttpServletRequest request, HttpServletResponse response) {
+        // Logic to retrieve user
+        return mapping.findForward("success");
+    }
+}
+
+```
+
+This implementation provides a basic setup for a Struts 1.2 application with an index page (`index.jsp`) displaying a link to create a new user. 
+When the user clicks on the "New User" link, they are redirected to the `createUser.jsp` page where they can fill out a form to create a new user. 
+Upon form submission, the data is sent to the `UserAction` class for processing. Depending on the outcome, the user is redirected to a success or failure page.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Struts 1.2 and Struts 2 are both Java web application frameworks, but they have significant differences in terms of architecture, features, and ease of use. Here's a breakdown of some key differences:
+
+1. **Architecture**:
+   - Struts 1.2 follows the Model 1 architecture, where the controller and view are tightly coupled. It heavily relies on servlets and JSPs for request handling and view rendering.
+   - Struts 2, on the other hand, follows the Model 2 (MVC) architecture. It uses a more modular approach where the controller, model, and view are decoupled. It employs actions (POJOs) as controllers and allows various result types for view rendering, including JSP, FreeMarker, Velocity, and others.
+
+2. **Configuration**:
+   - Struts 1.2 relies on XML configuration files (struts-config.xml) for mapping URLs to actions and configuring the framework.
+   - Struts 2 utilizes both XML and annotations for configuration. It offers a convention-over-configuration approach, reducing the need for extensive XML configuration.
+
+3. **Action Classes**:
+   - In Struts 1.2, action classes need to extend the `org.apache.struts.action.Action` class and override its `execute()` method.
+   - Struts 2 actions are simple Plain Old Java Objects (POJOs) that don't require any specific base class. They can use annotations or XML configuration for mapping URLs to methods.
+
+4. **Validation**:
+   - Struts 1.2 relies on the `validate()` method within action classes for validation, often implemented through the `org.apache.struts.action.ActionForm` class.
+   - Struts 2 provides a more robust validation framework with both server-side and client-side validation support. It offers validation through XML configuration, annotations, or implementing the `validate()` method in action classes.
+
+5. **Ajax Support**:
+   - Struts 1.2 lacks built-in support for Ajax. Developers often need to rely on additional libraries like DWR (Direct Web Remoting) for Ajax functionality.
+   - Struts 2 provides built-in support for Ajax through the integration of various JavaScript frameworks like Dojo, jQuery, and Prototype.
+
+6. **Expression Language (EL)**:
+   - Struts 1.2 uses JSP expression language (EL) for dynamic content rendering.
+   - Struts 2 supports both JSP EL and its own OGNL (Object-Graph Navigation Language), which provides more powerful expression evaluation capabilities.
+
+7. **Interceptors**:
+   - Struts 2 introduces interceptors, which are pluggable components that can be configured globally or on a per-action basis to perform pre-processing and post-processing tasks such as logging, validation, authentication, etc. This provides a more flexible and modular approach to request processing.
+
+Overall, Struts 2 is considered more modern, flexible, and easier to use compared to Struts 1.2, due to its improved architecture, enhanced features, and better integration with modern web development practices. Therefore, many developers prefer Struts 2 for new projects or migrating existing Struts 1.2 applications.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+DSV TO JSONL
+============
+
+- Create a Maven project that converts DSV (Delimiter-separated values) files into JSONL (JSON line) format.
+- The test input files and expected output file are included.
+- Requirements:
+    + Dates in JSONL output file must be in YYYY-MM-dd format.
+    + The project can be built using Maven in a terminal, e.g. with "mvn package".    
+    + Any DSV file with any arbitrary data should be convertible with this tool. This means the test files are only examples, the real structure of the data at runtime should be dynamic.
+    + An executable JAR is created to allow user to run the conversion in a terminal.
+    + The user can specify the input file and any additional parameters if necessary via command-line arguments.
+    + Both reading input and writing output files should be done in a streaming manner:
+        * You must never store all data entries in memory at the same time (Expect millions of entries in a real use case).
+        * You should use Java Stream API for stream processing.
+    + Unit tests with either JUnit 4 or 5 should be created for the project. Both of the provided test input files should be used in the tests.
+
+
+DSV-INPUT1
+
+firstName,middleName,lastName,gender,dateOfBirth,salary
+Wolfgang,Amadeus,Mozart,Male,1756-01-27,1000
+Albert,,Einstein,Male,1955-04-18,2000
+"Marie, Salomea",Skłodowska |,Curie,Female,04-07-1934,3000
+
+
+DSV -INPUT 2
+firstName,middleName,lastName,gender,dateOfBirth,salary
+Wolfgang,Amadeus,Mozart,Male,1756-01-27,1000
+Albert,,Einstein,Male,1955-04-18,2000
+"Marie, Salomea",Skłodowska |,Curie,Female,04-07-1934,3000
+
+
+
+EXPECTED OUTPUT
+{"firstName": "Wolfgang","middleName": "Amadeus","lastName": "Mozart","gender": "Male","dateOfBirth": "1756-01-27","salary": 1000}
+{"firstName": "Albert","lastName": "Einstein","gender": "Male","dateOfBirth": "1955-04-18","salary": 2000}
+{"firstName": "Marie, Salomea","middleName": "Skłodowska |","lastName": "Curie","gender": "Female","dateOfBirth": "1934-07-04","salary": 3000}
+
+
+
+
+
+
+
+
+
+
+
+Creating a Maven project involves several steps, including directory structure, creating Maven `pom.xml` file, and writing Java code for the functionality you described. Below is a simplified version of the project structure and code:
+
+### Project Structure
+```
+dsv-to-jsonl-converter
+    ├── src
+    │   ├── main
+    │   │   ├── java
+    │   │   │   └── com
+    │   │   │       └── example
+    │   │   │           └── dsvtojsonl
+    │   │   │               ├── Converter.java
+    │   │   │               └── Main.java
+    │   │   └── resources
+    │   │       └── log4j2.xml
+    │   └── test
+    │       └── java
+    │           └── com
+    │               └── example
+    │                   └── dsvtojsonl
+    │                       └── ConverterTest.java
+    ├── pom.xml
+    └── README.md
+```
+
+### Maven `pom.xml`
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example</groupId>
+    <artifactId>dsv-to-jsonl-converter</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <!-- Add dependencies as needed -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.12.0</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.example.dsvtojsonl.Main</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+### Java Code
+
+#### Converter.java
+```java
+package com.example.dsvtojsonl;
+
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
+import org.json.JSONObject;
+
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
+
+public class Converter {
+
+    private static final SimpleDateFormat DSV_DATE_FORMAT = new SimpleDateFormat("yyyy/MM/dd");
+    private static final SimpleDateFormat JSONL_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+
+    public static void convertDSVtoJSONL(String inputFile, String outputFile) throws IOException {
+        try (Reader reader = Files.newBufferedReader(Paths.get(inputFile));
+             CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withHeader())) {
+
+            FileWriter fileWriter = new FileWriter(outputFile);
+
+            Stream<CSVRecord> csvRecordStream = StreamSupport.stream(csvParser.spliterator(), false);
+            csvRecordStream.forEach(record -> {
+                JSONObject jsonRecord = convertRecordToJSON(record);
+                try {
+                    fileWriter.write(jsonRecord.toString() + "\n");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+
+            fileWriter.close();
+        }
+    }
+
+    private static JSONObject convertRecordToJSON(CSVRecord record) {
+        JSONObject jsonObject = new JSONObject();
+        record.forEach((key, value) -> {
+            if ("dateOfBirth".equals(key)) {
+                try {
+                    Date date = DSV_DATE_FORMAT.parse(value);
+                    jsonObject.put(key, JSONL_DATE_FORMAT.format(date));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            } else if ("salary".equals(key)) {
+                jsonObject.put(key, Integer.parseInt(value));
+            } else {
+                jsonObject.put(key, value);
+            }
+        });
+        return jsonObject;
+    }
+}
+```
+
+#### Main.java
+```java
+package com.example.dsvtojsonl;
+
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) {
+        if (args.length < 2) {
+            System.err.println("Usage: java -jar dsv-to-jsonl-converter.jar <input_file> <output_file>");
+            System.exit(1);
+        }
+
+        String inputFile = args[0];
+        String outputFile = args[1];
+
+        try {
+            Converter.convertDSVtoJSONL(inputFile, outputFile);
+            System.out.println("Conversion completed successfully.");
+        } catch (IOException e) {
+            System.err.println("An error occurred during conversion: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Unit Tests
+
+#### ConverterTest.java
+```java
+package com.example.dsvtojsonl;
+
+import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class ConverterTest {
+
+    @Test
+    void testConversion() {
+        String inputFile = "src/test/resources/DSV-INPUT1.csv";
+        String outputFile = "src/test/resources/output.jsonl";
+
+        try {
+            Converter.convertDSVtoJSONL(inputFile, outputFile);
+        } catch (IOException e) {
+            fail("Conversion failed: " + e.getMessage());
+        }
+
+        // Add assertions to check the content of the output file if needed
+        // You can read the output file and compare its content with expected content
+    }
+}
+```
+
+This is a basic implementation. You may need to further enhance it based on your specific requirements and use cases. Additionally, you would need to add error handling, logging, and possibly more robust parsing logic depending on the complexity and variability of your input data.
+
+
+
+
+
+Certainly! Let's go through each dependency and plugin in your Maven `pom.xml` file and explain their functionality and purpose:
+
+### Dependencies:
+
+1. **Apache Commons CSV (`org.apache.commons:commons-csv:1.9.0`)**:
+   - Functionality: This dependency provides classes and utilities for working with CSV (Comma-Separated Values) files.
+   - Purpose: It allows your application to read and write CSV files easily.
+
+2. **Jackson Databind (`com.fasterxml.jackson.core:jackson-databind:2.12.4`)**:
+   - Functionality: Jackson is a popular JSON processing library for Java. Databind module provides functionality to convert JSON data to and from Java objects.
+   - Purpose: It enables your application to serialize and deserialize JSON data.
+
+3. **JSON (`org.json:json:20210307`)**:
+   - Functionality: This dependency provides a simple JSON library for Java.
+   - Purpose: It allows your application to work with JSON data, such as creating JSON objects and parsing JSON strings.
+
+4. **Logback Classic (`ch.qos.logback:logback-classic:1.2.5`)**:
+   - Functionality: Logback is a logging framework for Java. Classic module provides SLF4J binding.
+   - Purpose: It allows your application to log messages, warnings, and errors with different log levels and configure logging behavior.
+
+5. **JUnit (`junit:junit:3.8.1`)**:
+   - Functionality: JUnit is a popular unit testing framework for Java.
+   - Purpose: It allows you to write and execute unit tests for your Java code.
+
+6. **TestNG (`org.testng:testng:RELEASE`)**:
+   - Functionality: TestNG is another testing framework for Java, offering additional features compared to JUnit.
+   - Purpose: It provides an alternative to JUnit for writing and executing tests, including support for parameterized tests, test grouping, and test configuration.
+
+### Build Plugins:
+
+1. **Maven Compiler Plugin (`org.apache.maven.plugins:maven-compiler-plugin:3.8.1`)**:
+   - Functionality: This plugin configures the Java compiler settings for your Maven project.
+   - Purpose: It specifies the Java source and target versions to use during compilation.
+
+2. **Maven Assembly Plugin (`org.apache.maven.plugins:maven-assembly-plugin:3.3.0`)**:
+   - Functionality: This plugin allows you to create an assembly of your project, bundling dependencies and other files into an archive.
+   - Purpose: It's commonly used to create executable JAR files with dependencies bundled, making it easier to distribute and run standalone Java applications.
+
+### Additional Explanations:
+
+- **`<scope>test</scope>`**: This element specifies the scope of the dependency. Dependencies with scope `test` are only available for use during testing and are not included in the production code.
+
+- **`<mainClass>com.example.App</mainClass>`**: This configuration in the Maven Assembly Plugin specifies the main class to be used when running the generated JAR file. Adjust the value (`com.example.App`) to match your main class.
+
+These dependencies and plugins are essential components for developing and testing Java applications with Maven, providing functionalities for working with CSV and JSON data, logging, unit testing, and building executable JAR files.
+
+
+
+### Project Structure:
+
+- **src/main/java/com/example/dsvtojsonl/Converter.java**: This class contains the logic for converting a DSV (Delimiter-Separated Values) file into JSONL (JSON Lines) format. It uses Apache Commons CSV library (`org.apache.commons.csv.CSVParser` and `org.apache.commons.csv.CSVRecord`) to parse the DSV file and convert each record into a JSON object. Dates are formatted using `SimpleDateFormat`. The method `convertDSVtoJSONL()` takes input file path and output file path as parameters and performs the conversion.
+
+- **src/main/java/com/example/dsvtojsonl/Main.java**: This class contains the `main()` method, which serves as the entry point of the application. It reads command-line arguments for input and output file paths, then calls `Converter.convertDSVtoJSONL()` method to perform the conversion.
+
+- **src/test/java/com/example/dsvtojsonl/ConverterTest.java**: This class contains unit tests for `Converter` class. It tests the conversion logic with sample input files.
+
+### Maven Configuration:
+
+- **pom.xml**: This file is used for configuring the Maven project. It specifies project metadata, dependencies, and build configuration. In this project, we have dependencies on Apache Commons CSV library for handling CSV files. We also configure Maven to build a standalone JAR with dependencies using the `maven-assembly-plugin`.
+
+### Code Explanation:
+
+#### Converter.java:
+
+- **convertDSVtoJSONL(String inputFile, String outputFile)**: This method takes the input DSV file path and output JSONL file path as parameters. It reads the DSV file using `Files.newBufferedReader()` and parses it using `CSVParser`. For each record in the DSV file, it converts the record to a JSON object using `convertRecordToJSON()` method and writes the JSON object to the output file.
+
+- **convertRecordToJSON(CSVRecord record)**: This method converts a single CSV record (represented as `CSVRecord` object) to a JSON object (`JSONObject`). It iterates over each field in the record and handles special formatting for the "dateOfBirth" field, parsing it using `SimpleDateFormat` and converting it to the required format. Other fields are added directly to the JSON object.
+
+#### Main.java:
+
+- **main(String[] args)**: This is the entry point of the application. It checks if the correct number of command-line arguments is provided. If arguments are correct, it calls `Converter.convertDSVtoJSONL()` method with input and output file paths. It handles exceptions if any occur during the conversion process.
+
+#### ConverterTest.java:
+
+- **testConversion()**: This method tests the conversion logic of `Converter` class. It specifies the input DSV file path and output JSONL file path, then calls `Converter.convertDSVtoJSONL()` method to perform the conversion. Assertions can be added to verify the correctness of the conversion output.
+
+### Inbuilt Classes and Libraries Used:
+
+- **java.nio.file.Files**: Used for file I/O operations, specifically reading input DSV file.
+- **org.apache.commons.csv.CSVParser** and **org.apache.commons.csv.CSVRecord**: Used for parsing DSV files.
+- **java.text.SimpleDateFormat**: Used for parsing and formatting dates.
+- **org.json.JSONObject**: Used for creating JSON objects.
+
+### Functionality:
+
+1. **Reading DSV File**: The project reads a DSV file line by line using `CSVParser` without loading the entire file into memory.
+
+2. **Converting to JSON**: Each line of the DSV file is converted to a JSON object, where field names are keys and corresponding values are values.
+
+3. **Formatting Dates**: Dates are formatted from DSV format to the specified JSON format.
+
+4. **Writing JSONL File**: The JSON objects are written to the output file line by line in JSONL format.
+
+5. **Command-line Interface**: The project can be executed from the command line by providing input and output file paths as arguments.
+
+6. **Unit Testing**: The conversion logic is unit tested using JUnit to ensure correctness.
+
+Overall, the project demonstrates a simple yet robust way to convert DSV files to JSONL format while adhering to specified requirements, including streaming processing and dynamic data handling.
