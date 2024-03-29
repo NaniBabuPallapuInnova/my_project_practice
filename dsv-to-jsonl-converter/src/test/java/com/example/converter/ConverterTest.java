@@ -18,7 +18,5 @@ public class ConverterTest {
             fail("Conversion failed: " + e.getMessage());
         }
 
-        // Add assertions to check the content of the output file if needed
-        // You can read the output file and compare its content with expected content
     }
 }
