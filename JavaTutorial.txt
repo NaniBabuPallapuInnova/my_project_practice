@@ -31,6 +31,10 @@ nanipallapu369@mail,
 93925-90089
 
 
+
+
+
+
 SELF-INTRODUCTION:
 ====================
 
@@ -40,7 +44,7 @@ Good Morning,
 I'm Nani Babu Pallapu, a Java Full Stack Developer holding a Bachelor's degree in Computer Science from Nova College of Engineering & Technology, graduated in 2020.
 
 
-My professional journey began as a Trainee & Contract-based Java Developer at TechEra IT Consulting, where I completed an intensive 6-month training program before joining Innova Solutions in December 2021. 
+My professional journey began as a Trainee & Contract-based Java Developer at TechEra IT Consulting, where I completed an intensive 6-month training program before joining Innova Solutions in December 2021 as a Contract-based Java Developer. 
 Since then, I've transitioned to a Permanent Employee role, leading the development of web-based applications like the Lync OMS with a focus on enhancements and resolving critical issues.
 
 
@@ -58,7 +62,9 @@ These projects have not only enhanced my technical skills but also provided me w
 
 
 Outside of work, I'm known for my positive attitude, hardworking, and dedication. 
-I approach challenges with optimism, always striving to find solutions and grow professionally. 
+
+I approach challenges with confidence, always striving to find solutions and grow professionally. 
+
 In my spare time, I enjoy playing volleyball and indulging in music.
 
 That concludes my introduction. Thank you for giving me the opportunity to present myself.
@@ -1243,7 +1249,8 @@ EXCEPTION HANDLING
 Global Level Exception Handling
 ================================
 
-Global level exception handling in Java typically refers to handling exceptions that occur across the entire application, rather than handling exceptions on a per-method or per-class basis. In a Spring application, global exception handling can be achieved using `@ControllerAdvice` or `@RestControllerAdvice` annotations combined with `@ExceptionHandler` methods.
+Global level exception handling in Java typically refers to handling exceptions that occur across the entire application, rather than handling exceptions on a per-method or per-class basis. 
+In a Spring application, global exception handling can be achieved using `@ControllerAdvice` or `@RestControllerAdvice` annotations combined with `@ExceptionHandler` methods.
 
 The scope of a bean in Spring defines the lifecycle and visibility of the bean within the Spring container. There are different scopes available in Spring, such as singleton, prototype, request, session, etc., each serving a different purpose.
 
@@ -3504,6 +3511,15 @@ Some commonly used Spring Boot annotations include:
    - is an annotation in Spring Security that activates web security features in a Spring Boot application. 
    - It's usually paired with a custom configuration class extending WebSecurityConfigurerAdapter, where you can define security rules like access control, login, and logout settings to secure your web application
    
+16. **@Qualifier**:
+	- In Spring Framework, @Qualifier is used to disambiguate bean injections when there are multiple beans of the same type. 
+	- When you have more than one bean of the same type and you want to autowire a specific bean, you can use @Qualifier along with @Autowired to specify the bean to be injected by its bean name.
+	
+	
+17. **@Required**:
+	- It applies to bean property setter methods. It provides a method-level annotation that is applied to the bean property setter methods for making the setter-injection mandatory. This means it can be used to mark a property as ‘required-to-be-set’.
+	- So that container will check the annotated (setter) method of a class if it is configured to be dependency injected with a value or not. If not, an Exception will be thrown by the container at runtime.
+	- This annotation indicates that the affected bean property must be populated at configuration time: either through an explicit property value in a bean definition or through autowiring
 
 Regarding bean scopes, let's consider an example:
 ==================================================
@@ -4909,6 +4925,63 @@ These programs demonstrate the basic functionality of each data structure. Let m
 
 
 
+
+Additionally
+==============
+
+
+1. **Convert JSON to Object and Object to JSON**:
+	=============================================
+	
+   - **Jackson Dependency**: Jackson is a popular Java library for handling JSON data. You can use the `jackson-databind` dependency to convert JSON strings to Java objects and vice versa.
+   - **Conversion Process**:
+     - To convert JSON to an object, you can use the `ObjectMapper` class from Jackson. The `readValue()` method of `ObjectMapper` is used to deserialize JSON data into a Java object.
+     - To convert an object to JSON, you can use the `writeValueAsString()` method of `ObjectMapper`. This method serializes a Java object into a JSON string.
+   - **Example**:
+     ```java
+     ObjectMapper objectMapper = new ObjectMapper();
+     
+     // Convert JSON to Object
+     MyObject myObject = objectMapper.readValue(jsonString, MyObject.class);
+     
+     // Convert Object to JSON
+     String jsonOutput = objectMapper.writeValueAsString(myObject);
+     ```
+
+2. **Convert XML to Object and Object to XML**:
+	===========================================
+	
+   - **JAXB Dependency**: JAXB (Java Architecture for XML Binding) is a Java API for mapping XML to Java objects and vice versa. You can use the `jaxb-api` dependency for XML data binding.
+   - **Conversion Process**:
+     - To convert XML to an object, you need to create a JAXB context for your class and then use the `Unmarshaller` to deserialize XML data into a Java object.
+     - To convert an object to XML, you need to create a JAXB context for your class and then use the `Marshaller` to serialize the object into XML.
+   - **Example**:
+     ```java
+     JAXBContext jaxbContext = JAXBContext.newInstance(MyObject.class);
+     Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+     Marshaller marshaller = jaxbContext.createMarshaller();
+     
+     // Convert XML to Object
+     MyObject myObject = (MyObject) unmarshaller.unmarshal(xmlFile);
+     
+     // Convert Object to XML
+     marshaller.marshal(myObject, xmlOutputFile);
+     ```
+
+These are the general steps and concepts involved in converting JSON and XML data to Java objects and vice versa using Jackson for JSON and JAXB for XML in a Spring Boot application. Depending on your specific use case and requirements, you may need to customize the conversion process or handle exceptions appropriately.
+
+
+
+
+
+INTERVIEW QUESTION:
+===================
+1. Composit key in sql.
+2. @Qualifier
+3. @Required
+4. SingletonList
+5. why we use String data type for password instead of StringBuffer or StringBuilder or Char Array.
+6. Difference between InnerJoin and OuterJoin
 
 
 KAFKA Tutorial

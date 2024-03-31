@@ -5,13 +5,15 @@
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" routerLink="/home"  routerLinkActive="active" >HOME</a>
+                    <a class="nav-link active" routerLink="/home" routerLinkActive="active">HOME</a>
                 </li>
                 <li class="nav-item">
-                    <a *ngIf="userService.matchRole(['admin'])" class="nav-link" routerLink="/admin"  routerLinkActive="active" >ADMIN DASHBOARD</a>
+                    <a *ngIf="userService.matchRole(['admin'])" class="nav-link" routerLink="/admin"
+                        routerLinkActive="active">ADMIN DASHBOARD</a>
                 </li>
                 <li class="nav-item">
-                    <a *ngIf="userService.matchRole(['user'])"  class="nav-link" routerLink="/user"  routerLinkActive="active" >USER DASHBOARD</a>
+                    <a *ngIf="userService.matchRole(['user'])" class="nav-link" routerLink="/user"
+                        routerLinkActive="active">USER DASHBOARD</a>
                 </li>
             </ul>
         </div>
@@ -24,14 +26,16 @@
     <button class="btn btn-primary col-md-1" routerLink="/create" routerLinkActive="active"
         type="button">CREATE</button>
 
-    <button *ngIf="!isLoggedIn" class="btn btn-primary col-md-1"  routerLink="/login" routerLinkActive="active" type="button">LogIn</button>
-    <button *ngIf="isLoggedIn" class="btn btn-danger col-md-1"  routerLinkActive="active" type="button" (click)="logOut()">LogOut</button>
+    <button *ngIf="!isLoggedIn" class="btn btn-primary col-md-1" routerLink="/login" routerLinkActive="active"
+        type="button">LogIn</button>
+    <button *ngIf="isLoggedIn" class="btn btn-danger col-md-1" routerLinkActive="active" type="button"
+        (click)="logOut()">LogOut</button>
 </div>
 
 
 
 
-<table class="table table-bordered table-hover table-striped ">
+<table class="table table-sm table-bordered table-hover table-striped ">
     <thead class="thead-dark">
         <tr>
             <th scope="col">EmployeeId</th>
@@ -42,6 +46,7 @@
             <th scope="col">Salary</th>
             <th scope="col">DOJ</th>
             <th scope="col">Actions</th>
+            <th scope="col">Downloads</th>
         </tr>
     </thead>
     <tbody>
@@ -53,9 +58,15 @@
             <td>{{employee.phone}}</td>
             <td>{{employee.salary}}</td>
             <td>{{employee.dateOfJoining}}</td>
-            <button class="btn btn-success" routerLink="show/{{employee.id}}" type="button">VIEW</button>
-            <button class="btn btn-success" routerLink="update/{{employee.id}}" type="button">UPDATE</button>
-            <button class="btn btn-danger" (click)="deleteEmployeeById(employee.id)" type="button">DELETE</button>
+            <td>
+                <button class="btn btn-success" routerLink="show/{{employee.id}}" type="button">VIEW</button>
+                <button class="btn btn-success" routerLink="update/{{employee.id}}" type="button">UPDATE</button>
+                <button class="btn btn-danger" (click)="deleteEmployeeById(employee.id)" type="button">DELETE</button>
+            </td>
+            <td >
+                <button (click)="downloadEmployeeDetailAsJSONFile(employee.id)">JSON File</button>
+                <button (click)="downloadEmployeeDetailAsXMLFile(employee.id)">XML File</button>
+            </td>
         </tr>
     </tbody>
 </table>

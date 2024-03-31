@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<employeeDTO>
+    <id>4</id>
+    <empId>H1004</empId>
+    <name>Pavan Dandugula</name>
+    <email>pavandandugula@gmail.com</email>
+    <password>pavan@2002</password>
+    <activeAccount>true</activeAccount>
+    <phone>9895655889</phone>
+    <salary>36000.0</salary>
+    <dateOfJoining>2024-02-15</dateOfJoining>
+</employeeDTO>

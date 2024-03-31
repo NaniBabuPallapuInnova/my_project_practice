@@ -70,6 +70,22 @@ export class EmployeesListComponent implements OnInit {
     this.getEmployeesList();
   }
 
+  downloadEmployeeDetailAsJSONFile(id : number){
+
+    this.employeeService.downloadEmployeeDetailsAsJSONFile(id).subscribe( data => {
+      console.log(data+" file dowloaded");
+      window.alert("JSON file downloaded successfully");
+    })
+  }
+
+  downloadEmployeeDetailAsXMLFile(id : number){
+
+    this.employeeService.downloadEmployeeDetailsAsXMLFile(id).subscribe( data => {
+      console.log(data+" file downloaded");
+      window.alert("XML file downloaded successfully");
+    })
+  }
+
   previousPage(){
     if(this.currentPage > 1){
       this.currentPage --;

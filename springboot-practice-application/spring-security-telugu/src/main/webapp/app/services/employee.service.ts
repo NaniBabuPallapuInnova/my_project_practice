@@ -81,5 +81,27 @@ export class EmployeeService {
       })
     );
   }
+
+  downloadEmployeeDetailsAsJSONFile(id: number):Observable<void> {
+
+    return this.httpClient.get<void>(`${this.baseUrl}/download/json/${id}`).pipe(
+      catchError(error => {
+        console.log('unable to download file', error);
+        return throwError('downlolad failed', error)
+      })
+    );
+  }
   
+
+  downloadEmployeeDetailsAsXMLFile(id: number):Observable<void> {
+
+    return this.httpClient.get<void>(`${this.baseUrl}/download/xml/${id}`).pipe(
+      catchError(error => {
+        console.log('unable to download file', error);
+        return throwError('downlolad failed', error)
+      })
+    );
+  }
+
+
 }

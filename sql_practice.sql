@@ -298,6 +298,17 @@ If any interruption occurs between the constraint and data action, the action is
 	In the above table structures, we can see that the "Person_ID" field in the "Orders" table points to the "Person_ID" field in the "Persons" table. 
 	The "Person_ID" is the PRIMARY KEY in the "Persons" table, while the "Person_ID" column of the "Orders" table is a FOREIGN KEY.
 
+9)	A composite key is made by the combination of two or more columns in a table that can be used to uniquely identify each row in the table when the columns are combined uniqueness of a row is guaranteed, but when it is taken individually it does not guarantee uniqueness, or it can also be understood as a primary key made by the combination of two or more attributes to uniquely identify every row in a table. 
+
+		example : 
+		CREATE TABLE Students (
+			first_name VARCHAR(50),
+			last_name VARCHAR(50),
+			age INT,
+			-- Other columns...
+			PRIMARY KEY (first_name, last_name)
+		);
+
 
 /* Copy data from one table to another table (coping from product row 1 data to product_info table row1 */
 insert into product_info(id, expiry_date, product_name, product_price )  select id, expiry_date, product_name, product_price from product where id =1
@@ -1327,19 +1338,20 @@ SELECT o.* FROM orders o JOIN customers c ON o.customer_id = c.customer_id WHERE
 
 
 
+
 51. **Retrieve the first and last names of customers along with their corresponding addresses.**
 ```sql
 SELECT c.first_name, c.last_name, a.street, a.city, a.state, a.country
 FROM customers c
-JOIN addresses a ON c.customer_id = a.customer_id;
+INNER JOIN addresses a ON c.customer_id = a.customer_id;
 ```
 
 52. **Get the total amount of each order along with the corresponding customer''s first name.**
 ```sql
 SELECT o.order_id, c.first_name, SUM(oi.quantity * oi.unit_price) AS total_amount
 FROM orders o
-JOIN customers c ON o.customer_id = c.customer_id
-JOIN order_items oi ON o.order_id = oi.order_id
+INNER JOIN customers c ON o.customer_id = c.customer_id
+INNER JOIN order_items oi ON o.order_id = oi.order_id
 GROUP BY o.order_id, c.first_name;
 ```
 
@@ -1347,9 +1359,9 @@ GROUP BY o.order_id, c.first_name;
 ```sql
 SELECT a.city, AVG(oi.quantity * oi.unit_price) AS avg_total_amount
 FROM orders o
-JOIN customers c ON o.customer_id = c.customer_id
-JOIN addresses a ON c.customer_id = a.customer_id
-JOIN order_items oi ON o.order_id = oi.order_id
+INNER JOIN customers c ON o.customer_id = c.customer_id
+INNER JOIN addresses a ON c.customer_id = a.customer_id
+INNER JOIN order_items oi ON o.order_id = oi.order_id
 GROUP BY a.city;
 ```
 
@@ -1357,8 +1369,8 @@ GROUP BY a.city;
 ```sql
 SELECT o.*, c.phone_number, a.city
 FROM orders o
-JOIN customers c ON o.customer_id = c.customer_id
-JOIN addresses a ON c.customer_id = a.customer_id;
+INNER JOIN customers c ON o.customer_id = c.customer_id
+INNER JOIN addresses a ON c.customer_id = a.customer_id;
 ```
 
 55. **Get the product names along with their corresponding unit prices.**
@@ -1371,8 +1383,8 @@ FROM order_items;
 ```sql
 SELECT o.order_id, c.last_name, SUM(oi.quantity * oi.unit_price) AS total_amount
 FROM orders o
-JOIN customers c ON o.customer_id = c.customer_id
-JOIN order_items oi ON o.order_id = oi.order_id
+INNER JOIN customers c ON o.customer_id = c.customer_id
+INNER JOIN order_items oi ON o.order_id = oi.order_id
 GROUP BY o.order_id, c.last_name;
 ```
 
@@ -1380,7 +1392,7 @@ GROUP BY o.order_id, c.last_name;
 ```sql
 SELECT o.*
 FROM orders o
-JOIN customers c ON o.customer_id = c.customer_id
+INNER JOIN customers c ON o.customer_id = c.customer_id
 WHERE SUBSTRING(c.phone_number, 1, 3) = '123'; -- Replace '123' with the desired area code
 ```
 
@@ -1388,9 +1400,9 @@ WHERE SUBSTRING(c.phone_number, 1, 3) = '123'; -- Replace '123' with the desired
 ```sql
 SELECT a.state, o.order_date, SUM(oi.quantity * oi.unit_price) AS total_amount
 FROM orders o
-JOIN customers c ON o.customer_id = c.customer_id
-JOIN addresses a ON c.customer_id = a.customer_id
-JOIN order_items oi ON o.order_id = oi.order_id
+INNER JOIN customers c ON o.customer_id = c.customer_id
+INNER JOIN addresses a ON c.customer_id = a.customer_id
+INNER JOIN order_items oi ON o.order_id = oi.order_id
 GROUP BY a.state, o.order_date;
 ```
 
@@ -1398,8 +1410,8 @@ GROUP BY a.state, o.order_date;
 ```sql
 SELECT c.first_name, c.last_name
 FROM customers c
-JOIN orders o ON c.customer_id = o.customer_id
-JOIN order_items oi ON o.order_id = oi.order_id
+INNER JOIN orders o ON c.customer_id = o.customer_id
+INNER JOIN order_items oi ON o.order_id = oi.order_id
 GROUP BY c.customer_id
 ORDER BY SUM(oi.quantity * oi.unit_price) DESC
 LIMIT 1;
@@ -1409,7 +1421,7 @@ LIMIT 1;
 ```sql
 SELECT o.*, c.first_name, c.last_name
 FROM orders o
-JOIN customers c ON o.customer_id = c.customer_id;
+INNER JOIN customers c ON o.customer_id = c.customer_id;
 ```
 
 
@@ -1417,16 +1429,16 @@ JOIN customers c ON o.customer_id = c.customer_id;
 ```sql
 SELECT DISTINCT c.first_name, c.last_name
 FROM customers c
-JOIN orders o ON c.customer_id = o.customer_id;
+INNER JOIN orders o ON c.customer_id = o.customer_id;
 ```
 
 62. **Get the total amount of orders placed in each country.**
 ```sql
 SELECT a.country, SUM(oi.quantity * oi.unit_price) AS total_amount
 FROM orders o
-JOIN customers c ON o.customer_id = c.customer_id
-JOIN addresses a ON c.customer_id = a.customer_id
-JOIN order_items oi ON o.order_id = oi.order_id
+INNER JOIN customers c ON o.customer_id = c.customer_id
+INNER JOIN addresses a ON c.customer_id = a.customer_id
+INNER JOIN order_items oi ON o.order_id = oi.order_id
 GROUP BY a.country;
 ```
 
@@ -1434,8 +1446,8 @@ GROUP BY a.country;
 ```sql
 SELECT o.order_date, SUM(oi.quantity * oi.unit_price) AS total_amount
 FROM orders o
-JOIN customers c ON o.customer_id = c.customer_id
-JOIN order_items oi ON o.order_id = oi.order_id
+INNER JOIN customers c ON o.customer_id = c.customer_id
+INNER JOIN order_items oi ON o.order_id = oi.order_id
 WHERE c.first_name = 'Ramesh' AND c.last_name = 'Kumar' -- Replace with the desired customer''s name
 GROUP BY o.order_date;
 ```
@@ -1444,15 +1456,15 @@ GROUP BY o.order_date;
 ```sql
 SELECT DISTINCT c.first_name, c.email
 FROM customers c
-JOIN orders o ON c.customer_id = o.customer_id;
+INNER JOIN orders o ON c.customer_id = o.customer_id;
 ```
 
 65. **Get the order date and total amount of orders placed by a customer with a specific email address.**
 ```sql
 SELECT o.order_date, SUM(oi.quantity * oi.unit_price) AS total_amount
 FROM orders o
-JOIN customers c ON o.customer_id = c.customer_id
-JOIN order_items oi ON o.order_id = oi.order_id
+INNER JOIN customers c ON o.customer_id = c.customer_id
+INNER JOIN order_items oi ON o.order_id = oi.order_id
 WHERE c.email = 'suresh@example.com' -- Replace with the desired email address
 GROUP BY o.order_date;
 ```
@@ -1461,8 +1473,8 @@ GROUP BY o.order_date;
 ```sql
 SELECT c.first_name, c.last_name
 FROM customers c
-JOIN orders o ON c.customer_id = o.customer_id
-JOIN order_items oi ON o.order_id = oi.order_id
+INNER JOIN orders o ON c.customer_id = o.customer_id
+INNER JOIN order_items oi ON o.order_id = oi.order_id
 GROUP BY c.customer_id
 ORDER BY SUM(oi.quantity * oi.unit_price) ASC
 LIMIT 1;
@@ -1472,7 +1484,7 @@ LIMIT 1;
 ```sql
 SELECT DISTINCT c.first_name, c.phone_number
 FROM customers c
-JOIN orders o ON c.customer_id = o.customer_id;
+INNER JOIN orders o ON c.customer_id = o.customer_id;
 ```
 
 68. **Get the total number of orders placed in each month.**
@@ -1486,8 +1498,8 @@ GROUP BY MONTH(order_date);
 ```sql
 SELECT o.order_date, SUM(oi.quantity * oi.unit_price) AS total_amount
 FROM orders o
-JOIN customers c ON o.customer_id = c.customer_id
-JOIN order_items oi ON o.order_id = oi.order_id
+INNER JOIN customers c ON o.customer_id = c.customer_id
+INNER JOIN order_items oi ON o.order_id = oi.order_id
 WHERE c.phone_number = '9876543210' -- Replace with the desired phone number
 GROUP BY o.order_date;
 ```
@@ -1496,7 +1508,7 @@ GROUP BY o.order_date;
 ```sql
 SELECT DISTINCT c.first_name, a.city
 FROM customers c
-JOIN addresses a ON c.customer_id = a.customer_id;
+INNER JOIN addresses a ON c.customer_id = a.customer_id;
 ```
 
 
@@ -1505,8 +1517,8 @@ JOIN addresses a ON c.customer_id = a.customer_id;
 ```sql
 SELECT DISTINCT c.first_name, c.last_name
 FROM customers c
-JOIN addresses a ON c.customer_id = a.customer_id
-JOIN orders o ON c.customer_id = o.customer_id
+INNER JOIN addresses a ON c.customer_id = a.customer_id
+INNER JOIN orders o ON c.customer_id = o.customer_id
 WHERE a.state = 'Maharashtra';
 ```
 
@@ -1514,7 +1526,7 @@ WHERE a.state = 'Maharashtra';
 ```sql
 SELECT a.city, COUNT(o.order_id) AS total_orders
 FROM addresses a
-JOIN orders o ON a.customer_id = o.customer_id
+INNER JOIN orders o ON a.customer_id = o.customer_id
 GROUP BY a.city;
 ```
 
@@ -1522,9 +1534,9 @@ GROUP BY a.city;
 ```sql
 SELECT o.order_date, SUM(oi.quantity * oi.unit_price) AS total_amount
 FROM orders o
-JOIN customers c ON o.customer_id = c.customer_id
-JOIN addresses a ON c.customer_id = a.customer_id
-JOIN order_items oi ON o.order_id = oi.order_id
+INNER JOIN customers c ON o.customer_id = c.customer_id
+INNER JOIN addresses a ON c.customer_id = a.customer_id
+INNER JOIN order_items oi ON o.order_id = oi.order_id
 WHERE a.city = 'Bangalore'
 GROUP BY o.order_date;
 ```
@@ -1533,8 +1545,8 @@ GROUP BY o.order_date;
 ```sql
 SELECT DISTINCT c.first_name, c.email
 FROM customers c
-JOIN addresses a ON c.customer_id = a.customer_id
-JOIN orders o ON c.customer_id = o.customer_id
+INNER JOIN addresses a ON c.customer_id = a.customer_id
+INNER JOIN orders o ON c.customer_id = o.customer_id
 WHERE a.city = 'Delhi';
 ```
 
@@ -1542,7 +1554,7 @@ WHERE a.city = 'Delhi';
 ```sql
 SELECT a.state, COUNT(o.order_id) AS total_orders
 FROM addresses a
-JOIN orders o ON a.customer_id = o.customer_id
+INNER JOIN orders o ON a.customer_id = o.customer_id
 GROUP BY a.state;
 ```
 
@@ -1550,9 +1562,9 @@ GROUP BY a.state;
 ```sql
 SELECT o.order_date, SUM(oi.quantity * oi.unit_price) AS total_amount
 FROM orders o
-JOIN customers c ON o.customer_id = c.customer_id
-JOIN addresses a ON c.customer_id = a.customer_id
-JOIN order_items oi ON o.order_id = oi.order_id
+INNER JOIN customers c ON o.customer_id = c.customer_id
+INNER JOIN addresses a ON c.customer_id = a.customer_id
+INNER JOIN order_items oi ON o.order_id = oi.order_id
 WHERE a.state = 'Tamil Nadu'
 GROUP BY o.order_date;
 ```
@@ -1561,8 +1573,8 @@ GROUP BY o.order_date;
 ```sql
 SELECT DISTINCT c.first_name, c.phone_number
 FROM customers c
-JOIN addresses a ON c.customer_id = a.customer_id
-JOIN orders o ON c.customer_id = o.customer_id
+INNER JOIN addresses a ON c.customer_id = a.customer_id
+INNER JOIN orders o ON c.customer_id = o.customer_id
 WHERE a.city = 'Mumbai';
 ```
 
@@ -1570,7 +1582,7 @@ WHERE a.city = 'Mumbai';
 ```sql
 SELECT a.country, COUNT(o.order_id) AS total_orders
 FROM addresses a
-JOIN orders o ON a.customer_id = o.customer_id
+INNER JOIN orders o ON a.customer_id = o.customer_id
 GROUP BY a.country;
 ```
 
@@ -1578,9 +1590,9 @@ GROUP BY a.country;
 ```sql
 SELECT o.order_date, SUM(oi.quantity * oi.unit_price) AS total_amount
 FROM orders o
-JOIN customers c ON o.customer_id = c.customer_id
-JOIN addresses a ON c.customer_id = a.customer_id
-JOIN order_items oi ON o.order_id = oi.order_id
+INNER JOIN customers c ON o.customer_id = c.customer_id
+INNER JOIN addresses a ON c.customer_id = a.customer_id
+INNER JOIN order_items oi ON o.order_id = oi.order_id
 WHERE a.state = 'West Bengal'
 GROUP BY o.order_date;
 ```
@@ -1589,8 +1601,8 @@ GROUP BY o.order_date;
 ```sql
 SELECT DISTINCT c.first_name, a.postal_code
 FROM customers c
-JOIN addresses a ON c.customer_id = a.customer_id
-JOIN orders o ON c.customer_id = o.customer_id
+INNER JOIN addresses a ON c.customer_id = a.customer_id
+INNER JOIN orders o ON c.customer_id = o.customer_id
 WHERE a.city = 'Chennai';
 ```
 
@@ -1599,8 +1611,8 @@ WHERE a.city = 'Chennai';
 ```sql
 SELECT DISTINCT c.first_name, c.last_name
 FROM customers c
-JOIN orders o ON c.customer_id = o.customer_id
-JOIN order_items oi ON o.order_id = oi.order_id
+INNER JOIN orders o ON c.customer_id = o.customer_id
+INNER JOIN order_items oi ON o.order_id = oi.order_id
 GROUP BY c.customer_id
 HAVING SUM(oi.quantity * oi.unit_price) > 1000.00;
 ```
@@ -1609,8 +1621,8 @@ HAVING SUM(oi.quantity * oi.unit_price) > 1000.00;
 ```sql
 SELECT c.last_name, SUM(oi.quantity * oi.unit_price) AS total_amount
 FROM customers c
-JOIN orders o ON c.customer_id = o.customer_id
-JOIN order_items oi ON o.order_id = oi.order_id
+INNER JOIN orders o ON c.customer_id = o.customer_id
+INNER JOIN order_items oi ON o.order_id = oi.order_id
 WHERE c.last_name = 'Kumar' -- Replace with the desired last name
 GROUP BY c.last_name;
 ```
@@ -1619,8 +1631,8 @@ GROUP BY c.last_name;
 ```sql
 SELECT o.order_date, SUM(oi.quantity * oi.unit_price) AS total_amount
 FROM orders o
-JOIN customers c ON o.customer_id = c.customer_id
-JOIN order_items oi ON o.order_id = oi.order_id
+INNER JOIN customers c ON o.customer_id = c.customer_id
+INNER JOIN order_items oi ON o.order_id = oi.order_id
 WHERE c.first_name = 'Ramesh' -- Replace with the desired first name
 GROUP BY o.order_date;
 ```
@@ -1629,8 +1641,8 @@ GROUP BY o.order_date;
 ```sql
 SELECT DISTINCT c.first_name, c.email
 FROM customers c
-JOIN orders o ON c.customer_id = o.customer_id
-JOIN order_items oi ON o.order_id = oi.order_id
+INNER JOIN orders o ON c.customer_id = o.customer_id
+INNER JOIN order_items oi ON o.order_id = oi.order_id
 GROUP BY c.customer_id
 HAVING SUM(oi.quantity * oi.unit_price) < 500.00;
 ```
@@ -1639,8 +1651,8 @@ HAVING SUM(oi.quantity * oi.unit_price) < 500.00;
 ```sql
 SELECT c.phone_number, SUM(oi.quantity * oi.unit_price) AS total_amount
 FROM customers c
-JOIN orders o ON c.customer_id = o.customer_id
-JOIN order_items oi ON o.order_id = oi.order_id
+INNER JOIN orders o ON c.customer_id = o.customer_id
+INNER JOIN order_items oi ON o.order_id = oi.order_id
 WHERE c.phone_number = '9876543210' -- Replace with the desired phone number
 GROUP BY c.phone_number;
 ```
@@ -1649,8 +1661,8 @@ GROUP BY c.phone_number;
 ```sql
 SELECT o.order_date, SUM(oi.quantity * oi.unit_price) AS total_amount
 FROM orders o
-JOIN customers c ON o.customer_id = c.customer_id
-JOIN order_items oi ON o.order_id = oi.order_id
+INNER JOIN customers c ON o.customer_id = c.customer_id
+INNER JOIN order_items oi ON o.order_id = oi.order_id
 WHERE c.email = 'ramesh@example.com' -- Replace with the desired email address
 GROUP BY o.order_date;
 ```
@@ -1659,8 +1671,8 @@ GROUP BY o.order_date;
 ```sql
 SELECT DISTINCT c.first_name, c.phone_number
 FROM customers c
-JOIN orders o ON c.customer_id = o.customer_id
-JOIN order_items oi ON o.order_id = oi.order_id
+INNER JOIN orders o ON c.customer_id = o.customer_id
+INNER JOIN order_items oi ON o.order_id = oi.order_id
 GROUP BY c.customer_id
 HAVING SUM(oi.quantity * oi.unit_price) > 750.00;
 ```
@@ -1669,8 +1681,8 @@ HAVING SUM(oi.quantity * oi.unit_price) > 750.00;
 ```sql
 SELECT a.city, SUM(oi.quantity * oi.unit_price) AS total_amount
 FROM addresses a
-JOIN orders o ON a.customer_id = o.customer_id
-JOIN order_items oi ON o.order_id = oi.order_id
+INNER JOIN orders o ON a.customer_id = o.customer_id
+INNER JOIN order_items oi ON o.order_id = oi.order_id
 WHERE a.city = 'Mumbai' -- Replace with the desired city
 GROUP BY a.city;
 ```
@@ -1679,9 +1691,9 @@ GROUP BY a.city;
 ```sql
 SELECT o.order_date, SUM(oi.quantity * oi.unit_price) AS total_amount
 FROM orders o
-JOIN customers c ON o.customer_id = c.customer_id
-JOIN addresses a ON c.customer_id = a.customer_id
-JOIN order_items oi ON o.order_id = oi.order_id
+INNER JOIN customers c ON o.customer_id = c.customer_id
+INNER JOIN addresses a ON c.customer_id = a.customer_id
+INNER JOIN order_items oi ON o.order_id = oi.order_id
 WHERE a.state = 'Maharashtra' -- Replace with the desired state
 GROUP BY o.order_date;
 ```
@@ -1690,9 +1702,9 @@ GROUP BY o.order_date;
 ```sql
 SELECT DISTINCT c.first_name, a.postal_code
 FROM customers c
-JOIN addresses a ON c.customer_id = a.customer_id
-JOIN orders o ON c.customer_id = o.customer_id
-JOIN order_items oi ON o.order_id = oi.order_id
+INNER JOIN addresses a ON c.customer_id = a.customer_id
+INNER JOIN orders o ON c.customer_id = o.customer_id
+INNER JOIN order_items oi ON o.order_id = oi.order_id
 GROUP BY c.customer_id
 HAVING SUM(oi.quantity * oi.unit_price) < 600.00;
 ```
@@ -1702,8 +1714,8 @@ HAVING SUM(oi.quantity * oi.unit_price) < 600.00;
 ```sql
 SELECT DISTINCT c.first_name, c.last_name
 FROM customers c
-JOIN orders o ON c.customer_id = o.customer_id
-JOIN order_items oi ON o.order_id = oi.order_id
+INNER JOIN orders o ON c.customer_id = o.customer_id
+INNER JOIN order_items oi ON o.order_id = oi.order_id
 WHERE oi.product_name = 'Product A'; -- Replace with the desired product name
 ```
 
@@ -1711,8 +1723,8 @@ WHERE oi.product_name = 'Product A'; -- Replace with the desired product name
 ```sql
 SELECT a.postal_code, SUM(oi.quantity * oi.unit_price) AS total_amount
 FROM addresses a
-JOIN orders o ON a.customer_id = o.customer_id
-JOIN order_items oi ON o.order_id = oi.order_id
+INNER JOIN orders o ON a.customer_id = o.customer_id
+INNER JOIN order_items oi ON o.order_id = oi.order_id
 WHERE a.postal_code = '400001' -- Replace with the desired postal code
 GROUP BY a.postal_code;
 ```
@@ -1721,9 +1733,9 @@ GROUP BY a.postal_code;
 ```sql
 SELECT o.order_date, SUM(oi.quantity * oi.unit_price) AS total_amount
 FROM orders o
-JOIN customers c ON o.customer_id = c.customer_id
-JOIN addresses a ON c.customer_id = a.customer_id
-JOIN order_items oi ON o.order_id = oi.order_id
+INNER JOIN customers c ON o.customer_id = c.customer_id
+INNER JOIN addresses a ON c.customer_id = a.customer_id
+INNER JOIN order_items oi ON o.order_id = oi.order_id
 WHERE a.country = 'India' -- Replace with the desired country
 GROUP BY o.order_date;
 ```
@@ -1732,8 +1744,8 @@ GROUP BY o.order_date;
 ```sql
 SELECT DISTINCT c.first_name, c.email
 FROM customers c
-JOIN orders o ON c.customer_id = o.customer_id
-JOIN order_items oi ON o.order_id = oi.order_id
+INNER JOIN orders o ON c.customer_id = o.customer_id
+INNER JOIN order_items oi ON o.order_id = oi.order_id
 WHERE oi.product_name = 'Product B'; -- Replace with the desired product name
 ```
 
@@ -1741,8 +1753,8 @@ WHERE oi.product_name = 'Product B'; -- Replace with the desired product name
 ```sql
 SELECT SUBSTRING_INDEX(c.email, '@', -1) AS email_domain, SUM(oi.quantity * oi.unit_price) AS total_amount
 FROM customers c
-JOIN orders o ON c.customer_id = o.customer_id
-JOIN order_items oi ON o.order_id = oi.order_id
+INNER JOIN orders o ON c.customer_id = o.customer_id
+INNER JOIN order_items oi ON o.order_id = oi.order_id
 WHERE SUBSTRING_INDEX(c.email, '@', -1) = 'example.com' -- Replace with the desired email domain
 GROUP BY email_domain;
 ```
@@ -1751,8 +1763,8 @@ GROUP BY email_domain;
 ```sql
 SELECT o.order_date, SUM(oi.quantity * oi.unit_price) AS total_amount
 FROM orders o
-JOIN customers c ON o.customer_id = c.customer_id
-JOIN order_items oi ON o.order_id = oi.order_id
+INNER JOIN customers c ON o.customer_id = c.customer_id
+INNER JOIN order_items oi ON o.order_id = oi.order_id
 WHERE SUBSTRING(c.phone_number, 1, 3) = '987' -- Replace with the desired area code
 GROUP BY o.order_date;
 ```
@@ -1761,8 +1773,8 @@ GROUP BY o.order_date;
 ```sql
 SELECT DISTINCT c.first_name, c.phone_number
 FROM customers c
-JOIN orders o ON c.customer_id = o.customer_id
-JOIN order_items oi ON o.order_id = oi.order_id
+INNER JOIN orders o ON c.customer_id = o.customer_id
+INNER JOIN order_items oi ON o.order_id = oi.order_id
 WHERE oi.product_name = 'Product C'; -- Replace with the desired product name
 ```
 
@@ -1770,8 +1782,8 @@ WHERE oi.product_name = 'Product C'; -- Replace with the desired product name
 ```sql
 SELECT LEFT(c.last_name, 1) AS last_name_initial, SUM(oi.quantity * oi.unit_price) AS total_amount
 FROM customers c
-JOIN orders o ON c.customer_id = o.customer_id
-JOIN order_items oi ON o.order_id = oi.order_id
+INNER JOIN orders o ON c.customer_id = o.customer_id
+INNER JOIN order_items oi ON o.order_id = oi.order_id
 WHERE LEFT(c.last_name, 1) = 'S' -- Replace with the desired last name initial
 GROUP BY last_name_initial;
 ```
@@ -1780,8 +1792,8 @@ GROUP BY last_name_initial;
 ```sql
 SELECT LEFT(c.first_name, 1) AS first_name_initial, SUM(oi.quantity * oi.unit_price) AS total_amount
 FROM customers c
-JOIN orders o ON c.customer_id = o.customer_id
-JOIN order_items oi ON o.order_id = oi.order_id
+INNER JOIN orders o ON c.customer_id = o.customer_id
+INNER JOIN order_items oi ON o.order_id = oi.order_id
 WHERE LEFT(c.first_name, 1) = 'R' -- Replace with the desired first name initial
 GROUP BY first_name_initial;
 ```
@@ -1790,9 +1802,9 @@ GROUP BY first_name_initial;
 ```sql
 SELECT DISTINCT c.first_name, a.city
 FROM customers c
-JOIN orders o ON c.customer_id = o.customer_id
-JOIN addresses a ON c.customer_id = a.customer_id
-JOIN order_items oi ON o.order_id = oi.order_id
+INNER JOIN orders o ON c.customer_id = o.customer_id
+INNER JOIN addresses a ON c.customer_id = a.customer_id
+INNER JOIN order_items oi ON o.order_id = oi.order_id
 WHERE oi.product_name = 'Product D'; -- Replace with the desired product name
 ```
 

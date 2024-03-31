@@ -36,6 +36,12 @@ public class EmployeeService {
   @Autowired
   EntityManager entityManager;
 
+  @Autowired
+  JSONParserService jsonParserService;
+
+  @Autowired
+  XmlParseService xmlParseService;
+
   public Page<EmployeeDTO> getAllEmployees(Pageable pageable) {
     Page<Employee> employeePage = employeeRepository.findAll(pageable);
 
@@ -72,6 +78,7 @@ public class EmployeeService {
   public EmployeeDTO findEmployeeById(Long id) {
     Employee employee = employeeRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Employee Not Found" + id));
     EmployeeDTO employeeDTO = employeeMapper.toDTO(employee);
+
     return employeeDTO;
   }
 
@@ -110,5 +117,31 @@ public class EmployeeService {
     employeeList.forEach(employee -> employeeDTOS.add(employeeMapper.toDTO(employee)));
     return employeeDTOS;
   }
+
+
+  public EmployeeDTO downloadEmployeeAsJSONFile(Long id) {
+    Employee employee = employeeRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Employee Not Found" + id));
+    EmployeeDTO employeeDTO = employeeMapper.toDTO(employee);
+
+    // converting Java Object into JSON String and download file
+    String jsonString = jsonParserService.objectToJson(employeeDTO);
+
+    //converting JSON string into Java Object
+    jsonParserService.jsonToObject(jsonString);
+    return employeeDTO;
+  }
+
+  public EmployeeDTO downloadEmployeeAsXMLFile(Long id) {
+    Employee employee = employeeRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Employee Not Found" + id));
+    EmployeeDTO employeeDTO = employeeMapper.toDTO(employee);
+
+    // converting object into xml and print on console
+    String xmlString = xmlParseService.objectToXML(employeeDTO);
+
+    employeeDTO = xmlParseService.XMLToObject(xmlString);
+
+    return employeeDTO;
+  }
+
 
 }

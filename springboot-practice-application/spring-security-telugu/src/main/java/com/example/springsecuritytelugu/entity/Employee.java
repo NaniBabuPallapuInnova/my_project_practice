@@ -1,6 +1,7 @@
 package com.example.springsecuritytelugu.entity;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.beans.factory.annotation.Required;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -45,6 +46,7 @@ public class Employee {
 
   @Column(name = "emp_id")
   private String empId;
+
   @Column(name = "name")
   @Size(min = 4, max = 20, message = "Name must be between 4 and 20 characters")
   private String name;
