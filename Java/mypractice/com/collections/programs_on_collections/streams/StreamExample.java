@@ -30,7 +30,6 @@ public class StreamExample {
         List<Integer> list = Arrays.stream(array).boxed().toList();
         int sum = list.stream()
                 .map(element -> element * element)
-                .sorted()
                 .reduce(0, (element1 , element2) -> element1+element2);
         System.out.println("Sum = "+sum);
     }
