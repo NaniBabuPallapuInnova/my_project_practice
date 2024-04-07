@@ -4,7 +4,9 @@ import java.beans.BeanProperty;
 import java.util.*;
 class Student {
     private int id = 10;
-    private String name = "Nani";
+
+    @Value("nani")
+    private String;
     private String email = "innova@gmail.com";
 
     public Student() {

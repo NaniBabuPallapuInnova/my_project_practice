@@ -3773,19 +3773,65 @@ Annotations in simple terms :
 			// you can write the logic to delete the records while applicatino is being shutdown.
 			}
 		}
+		
+6. @Lazy : 
+	- By defult , Spring creates all singleton bean eagerly at the startup/boostraping of the application context.
+	- You can load the Spring beans lazily(on-demand) using @Lazy annotatation.
+	- that mean, at application startup , spring container will not create a bean for the particulr class which was annotated with @Component and @Lazy. Spring Container will create bean only on-demand.
+	- @Lazy annotatation is used with @Configuration , @Component and @Bean.
+	- Eager initialization is recommended : to avoid and detect all possible errors immediately rather than at runtime.
+
+7. @Scope :
+	- @Scope annotatation is used to define the scope of the bean.
+	- We use @Scope to define the scope of @Component class or a @Bean definition.
+
+8. @Value :
+	- @Value annotatation is used to assign default values to variables and method arguments.
+	- @Value annotatation is used to get value for specific property key from the property file.
+	- We can read spirng environment variables as well as system variables using @Value annotatation.
+	ex: 
+	@Value("nani")
+    private String;
+	
+	@Value("${email}") // the value of email is provided in application.properties file.
+    private String;
+	
+9. @SpringBootApplication : 
+	- This annotation is used to mark the main class of a Spring Boot application. 
+	- It combines three annotations: `@Configuration` or `@SpringBootConfiguration`, `@EnableAutoConfiguration`, and `@ComponentScan`
+	
+	
+	(i) @Configuration : 
+		- @Configuration is used to indicate that a class defines one or more bean definition methods. 
+		- These methods are used to configure the Spring application context and define beans. 
+		- When Spring Boot scans the classpath for bean definitions, it looks for classes annotated with @Configuration and processes their bean definitions.
+	
+	
+	(ii) @EnableAutoConfiguration : 
+		- @EnableAutoConfiguration tells Spring Boot to automatically configure the Spring application based on the dependencies and the environment.
+		- It scans the classpath for configuration classes and applies automatic configuration based on the dependencies present.
+		- It helps reduce the amount of configuration required in Spring Boot applications by automatically configuring beans, components, and other settings based on sensible defaults.
+	
+	(iii) @ComponentScan:
+		- @ComponentScan is used to specify the base package(s) to scan for Spring-managed components, such as @Component, @Service, @Repository, and @Controller.
+		- It tells Spring where to look for components to create beans, allowing Spring to find and register them in the application context.
+		- If not specified, @ComponentScan defaults to scanning the package of the class with this annotation
 
 
-
+10. @ConfigurationProperties(prefix = "application", ignoreUnknownFields = false) - Properties are configured in the application.properties file
 
 Scope OF Beans In Spring
 ==================================================
 
 The scope of a bean defines the life cycle and visibility of that bean in the contexts we use it.
 
+	- @Scope annotatation is used to define the scope of the bean.
+	- We use @Scope to define the scope of @Component class or a @Bean definition.
+	
 The latest version of the Spring framework defines 6 types of scopes:
 
-1. singleton
-2. prototype
+1. singleton - only one instance of the bean is created and shared across the entire application. This is default scope. @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON) or @Scope(value="singleton") - It will give you only one bean with same hashcode if you try to create/call the beans and print multiple times.
+2. prototype - new Instance of the bean is created everytime it is requested. @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE) or @Scope(value = "prototype") - It will give you different beans with different hashcodes if you try to create/call the beans and print multiple times.
 3. request
 4. session
 5. application
