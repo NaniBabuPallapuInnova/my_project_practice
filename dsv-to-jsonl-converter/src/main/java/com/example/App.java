@@ -1,27 +1,34 @@
 package com.example;
 
-import com.example.converter.Converter;
+import java.io.*;
+import java.text.ParseException;
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 /**
- * Hello world!
+ * Main class for converting DSV (Delimiter Separated Values) to JSONL (JSON Lines) format.
  */
+
+import java.io.IOException;
+
 public class App {
+
     public static void main(String[] args) {
-        if (args.length < 2) {
-            System.err.println("Usage: java -jar dsv-to-jsonl-converter.jar <input_file> <output_file>");
-            System.exit(1);
+        if (args.length < 3) {
+            System.out.println("Usage: java -jar dsv-to-jsonl-converter.jar <inputFile> <outputFile> <delimiter>");
+            return;
         }
 
-        String input1 = args[0];
-        String input2 = args[1];
+        String inputFile = args[0];
+        String outputFile = args[1];
+        String delimiter = args[2];
 
         try {
-            Converter.convertDsvToJSONL(input1, input2);
+            Converter.convertDSVtoJsonl(inputFile, outputFile, delimiter);
             System.out.println("Conversion completed successfully.");
-
-        } catch (Exception e) {
-            System.err.println("An error occurred during conversion: " + e.getMessage());
-            e.printStackTrace();
+        } catch (IOException e) {
+            System.err.println("Error: " + e.getMessage());
         }
     }
 }

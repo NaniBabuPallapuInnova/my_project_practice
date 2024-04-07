@@ -31,10 +31,14 @@ public class LinkedListExample {
 
         String[] courses = list.toArray(new String[list.size()]);
         for (String course : courses){
-            System.out.print(course+" ");
+            System.out.println(course+" ");
 
         }
 
+
+        names.remove(2);
+        names.add(2,"Nani");
+        System.out.print(names.get(2)+" = 2 index value ");
 
 
     }

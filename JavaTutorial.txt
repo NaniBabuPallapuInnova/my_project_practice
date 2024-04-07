@@ -11,27 +11,41 @@ Considering the skills and experience I have acquired, I am expecting a salary r
 
 
 
-Subject: Application for Java Developer Position
-
+Subject: Application for Java Full Stack Developer Position
 Hi,
 
-I hope this message finds you well. I'm reaching out to express my interest in the Java Developer or Java Full Stack Developer role at your company. 
-With 3 years of hands-on experience in Java, Spring Boot, and Angular, I'm keen on contributing my skills to your team. 
+I hope this message finds you well. I'm reaching out to express my interest in the Java Developer or Java Full Stack Developer role at your company.
+With 3 years of hands-on experience in Java, Spring Boot, and Angular, I'm keen on contributing my skills to your team.
 
-I have attached my resume for your consideration. 
+I have attached my resume for your consideration.
 I believe my skills and experience make me a strong candidate for the position, and I am eager to discuss how I can contribute to the success of your team.
 
+Please let me know if additional information is required from my end.
 
-Thank you for considering my inquiry. I look forward to hearing from you soon.
-
+Thank you!. I look forward to hearing from you soon.
 
 Thanks & Regards,
 Nani Babu Pallapu,
 nanipallapu369@mail,
 93925-90089
 
+Candidate Name:
+Mobile Number:
+Mail id:
+Total Experience:
+Experience on Core Java:
+Experience on Springboot:
+Experience on Microservices:
+Current CTC:
+Expected CTC:
+Notice period:
+Location:
+Interested in Hyderabad Location: Y/N
 
 
+Thank you for the update and for the opportunity to discuss the salary for the Java Full Stack Developer role. I am comfortable with the proposed salary of 5500RM per month.
+
+Looking forward to moving forward with the next steps.
 
 
 
@@ -41,20 +55,20 @@ SELF-INTRODUCTION:
 Good Morning,
 
 
-I'm Nani Babu Pallapu, a Java Full Stack Developer holding a Bachelor's degree in Computer Science from Nova College of Engineering & Technology, graduated in 2020.
+I'm Nani Babu Pallapu, a Java Full Stack Developer holding a Bachelor's degree in Computer Science from Nova College of Engineering & Technology, graduated in 2020. 
+I was born and brought up in Eluru, Andhra Pradesh.
 
 
 My professional journey began as a Trainee & Contract-based Java Developer at TechEra IT Consulting, where I completed an intensive 6-month training program before joining Innova Solutions in December 2021 as a Contract-based Java Developer. 
-Since then, I've transitioned to a Permanent Employee role, leading the development of web-based applications like the Lync OMS with a focus on enhancements and resolving critical issues.
-
+Within 4 months, I demonstrated hard work and dedication, leading to a transition to a permanent employee role at Innova Solutions.
 
 Now I have been working as a Java Full Stack Developer with around 3 years of hands-on experience. 
-My expertise lies in Java, Spring Boot, and Angular frameworks, Hibernate, SQL, Apache NIFI framework,RESTful services, and microservices.
+My expertise lies in Java, Spring Boot, and Angular frameworks, Hibernate, MySQL, SQL Server, Apache NIFI framework, and microservices.
 
 
 During my tenure, I've had the opportunity to work on two impactful projects:
 
-1. **LYNC-OMS Project**: Developed an Order Management System (OMS) application for internal sales and order processing teams. This system streamlined the process of placing business orders, where Account Executives (AE) could place orders on behalf of customers, which were then reviewed and approved by Operations (OP) team members.
+1. **LYNC-OMS Project**: Developed an Order Management System (OMS) application for internal sales and order processing teams. This system streamlined the process of placing business orders, where Account Executives (AE) could place orders on behalf of customers, which were then reviewed and approved by Order Processing (OP) team members.
 
 2. **NIFI Development Project**: Led the development of customized NIFI processors aimed at simplifying PDF/RTF to text conversion. As the sole team member, I analyzed client requirements and developed specialized processors to convert files into plain text format, storing them in a MySQL database.
 
@@ -2084,6 +2098,123 @@ The serialization process at runtime associates an id with each Serializable cla
 
 private static final long serialVersionUID=1L; 
 
+
+HASHCODE
+=========
+
+In Java, hashCode() is a method defined in the Object class that returns a hash code value for an object. This hash code is a numerical representation of the object's memory address or some other unique identifier associated with the object. 
+The primary purpose of hashCode() is to provide a way to efficiently store and retrieve objects in hash-based data structures such as HashMap, HashSet, Hashtable, etc
+
+
+class Employee {
+    private int id;
+
+    public Employee(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
+    }
+}
+
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Main {
+    public static void main(String[] args) {
+        Map<Integer, Employee> employeeMap = new HashMap<>();
+
+        Employee employee1 = new Employee(101);
+        Employee employee2 = new Employee(102);
+
+        employeeMap.put(employee1.getId(), employee1);
+        employeeMap.put(employee2.getId(), employee2);
+
+        // Searching for an employee by id
+        int searchId = 101;
+        Employee foundEmployee = employeeMap.get(searchId);
+
+        if (foundEmployee != null) {
+            System.out.println("Employee found: " + foundEmployee.getId());
+        } else {
+            System.out.println("Employee not found with id: " + searchId);
+        }
+    }
+}
+
+
+
+Certainly! Let's illustrate the advantages of hashCode() with an example:
+
+Suppose you have a class called Employee with attributes id, name, and department. You want to store Employee objects in a HashMap where the id of each employee serves as the key. In this case, having a proper implementation of the hashCode() method is crucial for efficient searching operations.
+
+Here's a simplified version of the Employee class with only the id attribute:
+
+java
+Copy code
+class Employee {
+    private int id;
+
+    public Employee(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
+    }
+}
+And here's how you might use this class in a HashMap:
+
+java
+Copy code
+import java.util.HashMap;
+import java.util.Map;
+
+public class Main {
+    public static void main(String[] args) {
+        Map<Integer, Employee> employeeMap = new HashMap<>();
+
+        Employee employee1 = new Employee(101);
+        Employee employee2 = new Employee(102);
+
+        employeeMap.put(employee1.getId(), employee1);
+        employeeMap.put(employee2.getId(), employee2);
+
+        // Searching for an employee by id
+        int searchId = 101;
+        Employee foundEmployee = employeeMap.get(searchId);
+
+        if (foundEmployee != null) {
+            System.out.println("Employee found: " + foundEmployee.getId());
+        } else {
+            System.out.println("Employee not found with id: " + searchId);
+        }
+    }
+}
+In this example:
+
+Each Employee object's hashCode() method returns the id of the employee.
+When you put Employee objects into the HashMap, the id serves as the key.
+When you want to search for an Employee object by its id, you simply provide the id to the get() method of the HashMap.
+The HashMap uses the hash code of the id to quickly locate the bucket where the object might be located. If the hash code is unique (which is often the case with unique identifiers like id), the search operation is very efficient.
+Once the bucket is located, the equals() method is used to compare the provided id with the id of the objects in that bucket to find the exact match.
+Overall, having a proper implementation of hashCode() allows for efficient searching operations in hash-based data structures like HashMap. 
+It helps in quickly locating the potential bucket where the object might be stored, which significantly improves the performance of search operations.
+
+
+
 Collections in Java:
 ====================
 	The Collection in Java is a framework that provides an architecture to store and manipulate the group of objects.
@@ -3521,35 +3652,146 @@ Some commonly used Spring Boot annotations include:
 	- So that container will check the annotated (setter) method of a class if it is configured to be dependency injected with a value or not. If not, an Exception will be thrown by the container at runtime.
 	- This annotation indicates that the affected bean property must be populated at configuration time: either through an explicit property value in a bean definition or through autowiring
 
-Regarding bean scopes, let's consider an example:
+
+
+
+Annotations in simple terms :
+=============================
+
+1. @Component :  
+	- @Component indicates that an annotated class is a "Spring Bean / Component".
+	- @Component tells the spring container to automatically the spring bean.
+	- Spring IOC container the object of the class and manage that object.
+	- Spring Contaier will give the name of the bean as Class name with first letter is small.(StudentComponent --> studentComponent) we can give our name also.
+	
+	example:
+	
+		@Component("studentComponent")
+		class StudentComponent{
+			
+		}
+
+2. @Autowired : 
+	- The @Autowired annotation is used for automatic dependency injection
+	- The @Autowired annotation is used to inject the bean automatically.
+	- The @Autowired annotation is used in filed injection, constructor injection and setter injection.
+
+3. @Qualifier : 
+	- @Qualifier annotation is used in conjection with @Autowired to avoid confusion when we have two or more beans configured for same type.
+	Example : 
+			public interface MessageService {
+			void sendMessage(String message);
+		}
+
+		@Component
+		@Qualifier("email")
+		public class EmailService implements MessageService {
+			@Override
+			public void sendMessage(String message) {
+				System.out.println("Sending email: " + message);
+			}
+		}
+
+		@Component
+		@Qualifier("sms")
+		public class SMSService implements MessageService {
+			@Override
+			public void sendMessage(String message) {
+				System.out.println("Sending SMS: " + message);
+			}
+		}
+		
+		
+		@Component
+		public class NotificationService {
+			private final MessageService messageService;
+
+			// Constructor injection with @Qualifier
+			@Autowired
+			public NotificationService(@Qualifier("email") MessageService messageService) {
+				this.messageService = messageService;
+			}
+
+			public void notifyUser(String message) {
+				messageService.sendMessage(message);
+			}
+		}
+		
+4. @Primary : 
+	- We use @Primary Annotation to give higher preference to a bean when there are multiple beans of the same type.
+	- based on above example almost same : use @Primary instead of using @Qualifier. EmailService bean is having a higher preference of it's same type(MessageService).
+		@Component
+		@Primary
+		public class EmailService implements MessageService {
+			@Override
+			public void sendMessage(String message) {
+				System.out.println("Sending email: " + message);
+			}
+		}
+
+5. @Bean :
+	- @Bean annotation indicates that a method produces a bean to be managed by the Spring Container. 
+	- Then @Bean annotatation is usuallay declared in Configuration class to create Spring Bean definitions.
+	- By default , the bean name is as method name. we can specify bean name using @Bean(name="beanName").
+	- @Bean annotatation provides initMethod and destroyMethod attributes to perform certain actions after bean initialization or before bean destruction by a container.
+	
+	Example : 
+			
+		import org.springframework.context.annotation.Bean;
+		import org.springframework.context.annotation.Configuration;
+
+		@Configuration
+		public class AppConfig {
+
+			@Bean(name = "userService")
+			public MessageService userService() {
+				return new UserService();
+			}
+
+			@Bean(name = "emailService")
+			public MessageService emailService() {
+				return new EmailService();
+			}
+		}
+		
+		
+		// we can use initMethod and destroyMethod like below example
+		//for examplel, you want to insert records in database table and delete the records from database table.
+		
+		@Bean(initMethod="init", destroyMethod="destroy")
+		public StudentController studentController(){
+			return new StudentController();
+		}
+		
+		StudentController {
+			
+			public void init(){
+			// you can write the logic to insert the records while application is being started.
+			}
+			
+			public void destroy(){
+			// you can write the logic to delete the records while applicatino is being shutdown.
+			}
+		}
+
+
+
+
+Scope OF Beans In Spring
 ==================================================
 
-```java
-import org.springframework.context.annotation.*;
+The scope of a bean defines the life cycle and visibility of that bean in the contexts we use it.
 
-@Component
-@Scope("prototype")
-public class PrototypeBean {
-    private int value;
+The latest version of the Spring framework defines 6 types of scopes:
 
-    public int getValue() {
-        return value;
-    }
+1. singleton
+2. prototype
+3. request
+4. session
+5. application
+6. websocket
 
-    public void setValue(int value) {
-        this.value = value;
-    }
-}
-```
-
-In this example:
-
-- We have a `PrototypeBean` class annotated with `@Component`. This annotation marks the class as a Spring bean.
-- We also use `@Scope("prototype")` to define the scope of this bean as "prototype". This means that a new instance of `PrototypeBean` will be created every time it is requested from the Spring container.
-- Any client of this bean, when injecting it, will receive a new instance.
-
-These examples demonstrate how global exception handling can be implemented using `@ControllerAdvice`, and how bean scopes can be defined using annotations in Spring.
-
+The last four scopes mentioned, request, session, application and websocket, are only available in a web-aware application.
 
 
 
@@ -4925,6 +5167,63 @@ These programs demonstrate the basic functionality of each data structure. Let m
 
 
 
+JUNIT
+========
+It is an open-source testing framework for java programmers. The java programmer can create test cases and test his/her own code.
+
+It is one of the unit testing framework. Current version is junit 4.
+
+To perform unit testing, we need to create test cases. The unit test case is a code which ensures that the program logic works as expected.
+
+The org.junit package contains many interfaces and classes for junit testing such as Assert, Test, Before, After etc.
+
+
+
+1) Manual Testing
+If you execute the test cases manually without any tool support, it is known as manual testing. It is time consuming and less reliable.
+
+2) Automated Testing
+If you execute the test cases by tool support, it is known as automated testing. It is fast and more reliable.
+
+
+Annotations for Junit testing
+-------------------------------
+@Test annotation specifies that method is the test method.
+
+@Test(timeout=1000) annotation specifies that method will be failed if it takes longer than 1000 milliseconds (1 second).
+
+@BeforeClass annotation specifies that method will be invoked only once, before starting all the tests.
+
+@Before annotation specifies that method will be invoked before each test.
+
+@After annotation specifies that method will be invoked after each test.
+
+@AfterClass annotation specifies that method will be invoked only once, after finishing all the tests.
+
+
+Assert class
+-------------
+The org.junit.Assert class provides methods to assert the program logic.
+
+The common methods of Assert class are as follows:
+
+void assertEquals(boolean expected,boolean actual): checks that two primitives/objects are equal. It is overloaded.
+void assertTrue(boolean condition): checks that a condition is true.
+void assertFalse(boolean condition): checks that a condition is false.
+void assertNull(Object obj): checks that object is null.
+void assertNotNull(Object obj): checks that object is not null.
+
+
+
+
+
+
+
+
+
+
+
+
 
 Additionally
 ==============
@@ -4982,6 +5281,8 @@ INTERVIEW QUESTION:
 4. SingletonList
 5. why we use String data type for password instead of StringBuffer or StringBuilder or Char Array.
 6. Difference between InnerJoin and OuterJoin
+
+
 
 
 KAFKA Tutorial
@@ -5045,5 +5346,21 @@ A broker is a container that holds several topics with their multiple partitions
 The brokers in the cluster are identified by an integer id only. 
 Kafka brokers are also known as Bootstrap brokers because connection with any one broker means connection with the entire cluster. 
 Although a broker does not contain whole data, but each broker in the cluster knows about all other brokers, partitions as well as topics.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

@@ -1,4 +1,4 @@
-com\example\converter\JSONConverter.class
 com\example\App.class
-com\example\converter\CommandLineParser.class
-com\example\converter\DSVParser.class
+com\example\DsvToJsonlConverterUtil.class
+com\example\DsvToJsonlConverterService.class
+com\example\Person.class
