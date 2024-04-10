@@ -1,7 +1,9 @@
 package practice.com;
+import java.util.*;
 
-
-
-public class Practice {
-
+class Practice{
+    public static void main(String[] args) {
+        System.out.println("hello");
+    }
 }
+

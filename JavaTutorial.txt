@@ -1026,6 +1026,61 @@ for more explanation open this video : https://youtu.be/5OXc-TsM3bg?si=LOaFCqlWq
 
 
 
+Sure, here's a breakdown of immutable objects and immutable classes in Java, along with their uses, presented in a point-wise manner:
+
+### Immutable Objects:
+
+1. **Definition**: An immutable object is an object whose state cannot be modified after it is created. Once created, the values of the object's fields remain constant throughout its lifetime.
+
+2. **Characteristics**:
+   - Immutable objects have all their fields marked as `final`, making them unchangeable.
+   - They don't have any setter methods to modify their state after construction.
+   - Any modification to an immutable object results in creating a new instance with the updated values.
+
+3. **Thread Safety**: Immutable objects are inherently thread-safe because their state cannot be changed after creation. This eliminates the need for synchronization in multithreaded environments.
+
+4. **Benefits**:
+   - Simplicity: Immutable objects simplify code by ensuring that their state remains constant.
+   - Thread Safety: They eliminate race conditions and synchronization issues in concurrent programming.
+   - Ease of Caching: Immutable objects can be safely cached since their values never change.
+   
+5. **Example**:
+   ```java
+   public final class ImmutablePerson {
+       private final String name;
+       private final int age;
+
+       public ImmutablePerson(String name, int age) {
+           this.name = name;
+           this.age = age;
+       }
+
+       public String getName() {
+           return name;
+       }
+
+       public int getAge() {
+           return age;
+       }
+   }
+   ```
+   
+   
+   public class Main {
+    public static void main(String[] args) {
+        ImmutablePerson person = new ImmutablePerson("John", 30); // Immutable Object
+        System.out.println("Name: " + person.getName());
+        System.out.println("Age: " + person.getAge());
+        
+        // Attempting to modify the object's state will result in a compilation error
+        // person.setName("Alice"); // Compilation error
+    }
+}
+
+   - In this example, `ImmutablePerson` is an immutable class with two private final fields, `name` and `age`. It provides only getter methods to access the values of its fields, ensuring that its state remains constant after construction.
+
+Immutable objects and classes offer simplicity, thread safety, and ease of reasoning about code. By enforcing immutability, Java developers can create more robust and maintainable software systems.
+
 EXCEPTION HANDLING 
 =====================
 
@@ -1743,7 +1798,7 @@ Certainly! Let's break down each concept related to threading in Java:
 
 1. **Sleep**: `Thread.sleep()` is a method that pauses the execution of the current thread for a specified amount of time, allowing other threads to execute.
 
-2. **Yield**: `Thread.yield()` is a method that suggests to the scheduler that the current thread is willing to yield its current use of the processor. It gives other threads of the same priority a chance to run.
+2. **Yield**: `Thread.yield()` method in Java is used to pause the execution of the currently running thread and give the opportunity for other threads of the same priority to run.
 
 3. **Wait, Notify, and NotifyAll**:
 
@@ -2958,93 +3013,6 @@ In the Hibernate example, you define an `Employee` entity, and Hibernate takes c
 
 
 
-Dependency Injection in Spring
--------------------------------
-
-Dependency Injection (DI) is a design pattern that removes the dependency from the programming code so that it can be easy to manage and test the application. 
-
-Dependency Injection makes our programming code loosely coupled.
-
-Dependency Injection (DI) is a software design pattern that promotes the separation of concerns in an application by allowing components to request their dependencies rather than creating them directly. 
-In DI, a component's dependencies are "injected" into it from the outside, typically via constructor parameters or setter methods. This approach decouples components, making them more modular, reusable, and easier to test.
-
-
-Two ways to perform Dependency Injection in Spring framework
-
-Spring framework provides two ways to inject dependency
-
-1. By Constructor
-2. By Setter method
-
-
-
-Without Dependency Injection:
-
-In this example, the Car class creates its own Engine:
-
-class Engine {
-    public void start() {
-        System.out.println("Engine started");
-    }
-}
-
-class Car {
-    private Engine engine;
-
-    public Car() {
-        engine = new Engine(); // Creating the engine internally
-    }
-
-    public void start() {
-        engine.start();
-        System.out.println("Car started");
-    }
-}
-
-public class Main {
-    public static void main(String[] args) {
-        Car car = new Car(); // Car creates its own Engine
-        car.start();
-    }
-}
-
-
-With Dependency Injection:
---------------------------
-
-With Dependency Injection, you can provide the Engine to the Car from the outside:
-
-class Engine {
-    public void start() {
-        System.out.println("Engine started");
-    }
-}
-
-class Car {
-    private Engine engine;
-
-    public Car(Engine engine) {
-        this.engine = engine; // Injecting the engine from the outside
-    }
-
-    public void start() {
-        engine.start();
-        System.out.println("Car started");
-    }
-}
-
-public class Main {
-    public static void main(String[] args) {
-        Engine carEngine = new Engine(); // Engine created externally
-        Car car = new Car(carEngine); // Car receives the Engine through injection
-        car.start();
-    }
-}
-
-
-
-
-
 SPRING
 ======================
 Spring is a widely used framework for building enterprise-level Java applications. It provides comprehensive infrastructure support for developing Java-based applications, making it easier to create robust, maintainable, and scalable software. Spring offers various modules for different purposes, such as dependency injection, aspect-oriented programming, data access, messaging, and more. In a Spring application, you can develop components as POJOs (Plain Old Java Objects) and use Spring to manage these components, their dependencies, and other aspects of the application.
@@ -3388,61 +3356,6 @@ RequestBod for List<User>
     }
 	
 	
-	
-	Dependency Injection (DI)
-===================================
-In Spring Boot is a design pattern and framework feature that helps manage the dependencies between various components in a Spring application. 
-The primary goal of DI is to achieve the Inversion of Control (IoC) principle, where the control of creating and managing objects is shifted from the components themselves to an external entity or container. 
-In the context of Spring Boot, this container is the Spring IoC container.
-
-Here's why Dependency Injection is used and its advantages:
-
-	1. Loose Coupling:** DI promotes loose coupling between components, making it easier to maintain, extend, and test the application. Components don't need to know how their dependencies are created or configured; they simply rely on the provided interfaces.
-	
-	2. Reusability:** Components can be reused across different parts of the application, as they are not tightly bound to specific implementations of their dependencies.
-	
-	3. Testability:** DI allows for easier unit testing. You can inject mock or stub dependencies during testing to isolate and verify the behavior of individual components.
-	
-	4. Configurability:** DI enables you to configure the application's components and dependencies, often through configuration files or annotations, without changing the code. This makes the application more adaptable to different environments or configurations.
-
-Here's a simple example of Dependency Injection in a Spring Boot application:
-
-**UserService.java:**
-```java
-@Service
-public class UserService {
-    private final UserRepository userRepository;
-
-    @Autowired
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
-    public User getUserById(Long id) {
-        return userRepository.findById(id).orElse(null);
-    }
-}
-```
-
-**UserRepository.java:**
-```java
-public interface UserRepository extends JpaRepository<User, Long> {
-}
-```
-
-In this example:
-
-- `UserService` is a Spring service class that depends on `UserRepository` for fetching user data.
-
-- `UserRepository` is an interface that extends `JpaRepository`. Spring Data JPA will provide the actual implementation of this interface.
-
-- Constructor injection is used in `UserService` to receive an instance of `UserRepository`. The `@Autowired` annotation tells Spring to inject the dependency.
-
-- By using DI, `UserService` is loosely coupled with the concrete implementation of `UserRepository`. The Spring IoC container takes care of creating and providing instances of `UserRepository` to `UserService`.
-
-In your Spring Boot application, you can configure and define beans in various ways, such as through annotations or XML configuration files. Spring Boot's auto-configuration and component scanning capabilities help simplify the DI process, allowing you to focus on your application's logic rather than the details of object creation and wiring.
-
-
 
 
 Spring Boot MVC (Model-View-Controller)
@@ -3455,7 +3368,7 @@ Spring Boot MVC (Model-View-Controller)
 
 3. Controller: Acts as an intermediary between the Model and View. It processes incoming HTTP requests, interacts with the Model to retrieve data, and selects the appropriate View for rendering the response.
 
-	Uses of Spring Boot MVC:
+Uses of Spring Boot MVC:
 ----------------------------------
 
 Spring Boot MVC is widely used for building web applications, both simple and complex. Some common use cases include:
@@ -3533,32 +3446,197 @@ This is a simplified example, but it demonstrates the essential components of a 
 
 Spring Boot simplifies the setup and configuration of such applications, making it easier to develop web-based systems.
 
-Now, regarding the "Spring container":
-=======================================
 
-- The **Spring container** is the core of the Spring Framework and is responsible for managing the lifecycle of Spring beans (objects created by the Spring IoC container). It provides a controlled environment for managing application components.
+Spring IOC Container : 
+======================
+The Spring IOC (Inversion of Control) container creates objects of classes and manages their lifecycle, dependencies, and configurations. 
+It also controls the instantiation, wiring, and lifecycle of these objects, allowing them to be loosely coupled and promoting modular, maintainable, and scalable application development.
+There are two main types of Spring containers: the **BeanFactory** (a more basic container with lazy-loading of beans) and the more feature-rich **ApplicationContext** (a superset of BeanFactory with additional functionalities and eager-loading of beans).
 
-- The Spring container, also known as the **IoC (Inversion of Control) container**, manages the creation, configuration, and assembly of beans. Instead of relying on application code to construct and configure objects, the Spring container takes control and injects dependencies into objects (dependency injection).
+		Bean Factory : 
+		--------------
+		import org.springframework.beans.factory.BeanFactory;
+		import org.springframework.beans.factory.xml.XmlBeanFactory;
+		import org.springframework.core.io.ClassPathResource;
 
-- There are two main types of Spring containers: the **BeanFactory** (a more basic container with lazy-loading of beans) and the more feature-rich **ApplicationContext** (a superset of BeanFactory with additional functionalities and eager-loading of beans).
+		public class BeanFactoryExample {
+			public static void main(String[] args) {
+				BeanFactory factory = new XmlBeanFactory(new ClassPathResource("beans.xml"));
+				
+				// Retrieving a bean from BeanFactory
+				MyBean bean = (MyBean) factory.getBean("myBean"); 
+				
+				// Using the bean
+				bean.doSomething();
+			}
+		}
 
-In summary, the Spring container manages the lifecycle of beans, handles dependency injection, and provides a structured and controlled environment for building and managing Spring applications.
-These are just a few examples of the many annotations provided by Spring Boot. Each annotation serves a specific purpose and helps in configuring and customizing your Spring Boot application.
+		ApplicationContext :
+		--------------------
+		import org.springframework.context.ApplicationContext;
+		import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+		public class ApplicationContextExample {
+			public static void main(String[] args) {
+				ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+				
+				// Retrieving a bean from ApplicationContext
+				MyBean bean = (MyBean) context.getBean("myBean");
+				
+				// Using the bean
+				bean.doSomething();
+			}
+		}
 
 
-whaat is annotation in springboot and why we use them ?
-In Spring Boot, annotations are used to provide metadata and instructions to the framework. Annotations play a crucial role in configuring and customizing various aspects of a Spring Boot application.
+		NOTE : @SpringBootApplication is typically used in Spring Boot applications. When you annotate your main application class with @SpringBootApplication, it implicitly creates an ApplicationContext. Internally, Spring Boot uses ApplicationContext rather than BeanFactory for managing beans and providing various application services.
 
-Annotations in Spring Boot serve multiple purposes. Firstly, they help in defining the behavior of components, such as controllers, services, repositories, and configuration classes. By annotating these classes, you can specify their roles and responsibilities within the application.
 
-Secondly, annotations enable the framework to automatically scan and discover components during the application's startup. This eliminates the need for manual configuration and allows for a more streamlined development process.
 
-Additionally, annotations in Spring Boot facilitate dependency injection, which is a key feature of the framework. By using annotations like @Autowired, you can easily inject dependencies into your classes, reducing coupling and promoting modularity.
+dependency injection (DI) :
+--------------------------
+dependency injection (DI) in Spring Boot is a design pattern where objects are provided with their dependencies rather than creating them internally.
+Imagine you have a class that needs to interact with a database. Instead of creating a database connection inside the class, you pass the database connection to the class from outside. 
+This way, the class doesn't need to worry about how the database connection is created or managed; it just uses it.
 
-Annotations also aid in configuring various aspects of the application, such as database connections, security settings, caching mechanisms, and request mappings. By applying specific annotations, you can fine-tune these configurations without the need for extensive XML or property file configurations.
+Dependency injection promotes loose coupling between classes, making your code easier to maintain, test, and extend. 
+It also allows for better modularization and reuse of components within your application.
 
-In summary, annotations in Spring Boot provide a concise and declarative way to configure and customize the behavior of components, enable automatic scanning and dependency injection, and simplify the overall development process.
+				(OR)
 
+In Spring Boot, Dependency Injection is a design pattern and framework feature that helps manage the dependencies between various components in a Spring application.
+Dependency Injection (DI) in Spring Boot, in simple terms, is a way for components within your application to receive the objects they depend on, rather than creating them directly. 
+Think of it as a mechanism for providing necessary dependencies to an object, rather than the object having to create them itself.
+
+The primary goal of DI is to achieve the Inversion of Control (IoC) principle, where the control of creating and managing objects is shifted from the components themselves to an external entity or container. 
+In the context of Spring Boot, this container is the Spring IoC container.
+
+
+
+Spring framework provides three ways to inject dependency
+
+1. By Constructor Injection
+2. By Setter method Injection
+3. By Field Injection
+
+
+
+Without Dependency Injection:
+
+In this example, the Car class creates its own Engine:
+
+class Engine {
+    public void start() {
+        System.out.println("Engine started");
+    }
+}
+
+class Car {
+    private Engine engine;
+
+    public Car() {
+        engine = new Engine(); // Creating the engine internally
+    }
+
+    public void start() {
+        engine.start();
+        System.out.println("Car started");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Car car = new Car(); // Car creates its own Engine
+        car.start();
+    }
+}
+
+
+With Dependency Injection:
+--------------------------
+
+With Dependency Injection, you can provide the Engine to the Car from the outside:
+
+class Engine {
+    public void start() {
+        System.out.println("Engine started");
+    }
+}
+
+class Car {
+    private Engine engine;
+
+    public Car(Engine engine) {
+        this.engine = engine; // Injecting the engine from the outside
+    }
+
+    public void start() {
+        engine.start();
+        System.out.println("Car started");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Engine carEngine = new Engine(); // Engine created externally
+        Car car = new Car(carEngine); // Car receives the Engine through injection
+        car.start();
+    }
+}
+
+
+Here's why Dependency Injection is used and its advantages:
+
+	1. Loose Coupling:** DI promotes loose coupling between components, making it easier to maintain, extend, and test the application. Components don't need to know how their dependencies are created or configured; they simply rely on the provided interfaces.
+	
+	2. Reusability:** Components can be reused across different parts of the application, as they are not tightly bound to specific implementations of their dependencies.
+	
+	3. Testability:** DI allows for easier unit testing. You can inject mock or stub dependencies during testing to isolate and verify the behavior of individual components.
+	
+	4. Configurability:** DI enables you to configure the application's components and dependencies, often through configuration files or annotations, without changing the code. This makes the application more adaptable to different environments or configurations.
+
+Here's a simple example of Dependency Injection in a Spring Boot application:
+
+**UserService.java:**
+```java
+@Service
+public class UserService {
+    private final UserRepository userRepository;
+
+    @Autowired
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public User getUserById(Long id) {
+        return userRepository.findById(id).orElse(null);
+    }
+}
+```
+
+**UserRepository.java:**
+```java
+public interface UserRepository extends JpaRepository<User, Long> {
+}
+```
+
+In this example:
+
+- `UserService` is a Spring service class that depends on `UserRepository` for fetching user data.
+
+- `UserRepository` is an interface that extends `JpaRepository`. Spring Data JPA will provide the actual implementation of this interface.
+
+- Constructor injection is used in `UserService` to receive an instance of `UserRepository`. The `@Autowired` annotation tells Spring to inject the dependency.
+
+- By using DI, `UserService` is loosely coupled with the concrete implementation of `UserRepository`. The Spring IoC container takes care of creating and providing instances of `UserRepository` to `UserService`.
+
+In your Spring Boot application, you can configure and define beans in various ways, such as through annotations or XML configuration files. Spring Boot's auto-configuration and component scanning capabilities help simplify the DI process, allowing you to focus on your application's logic rather than the details of object creation and wiring.
+
+
+
+
+Annotations in simple terms :
+=============================
 
 in simple format and simple terms explan this whaat is annotation in springboot and why we use them ?
 
@@ -3568,100 +3646,12 @@ Annotations in Spring Boot serve several purposes. Firstly, they help in definin
 
 Secondly, annotations enable Spring Boot to automatically configure and manage various aspects of our application. For example, by using the @Autowired annotation, we can let Spring Boot handle the dependency injection of required dependencies into our classes.
 
-Annotations also play a crucial role in enabling features and functionalities provided by Spring Boot, such as security, caching, transaction management, and RESTful APIs. By using specific annotations, we can easily enable and customize these features without writing extensive configuration code.
 
-Overall, annotations in Spring Boot simplify the development process, enhance code readability, and enable the framework to automatically handle various aspects of our application. They help in reducing boilerplate code and make it easier to build robust and scalable applications.
-
-
-**Annotation**
-==============
-
-Spring Boot is a popular Java framework that simplifies the development of standalone, production-grade Spring-based applications. 
-It provides a range of annotations that help developers configure and customize their applications.
-
-Some commonly used Spring Boot annotations include:
-
-1. `@SpringBootApplication`: This annotation is used to mark the main class of a Spring Boot application. It combines three annotations: `@Configuration`, `@EnableAutoConfiguration`, and `@ComponentScan`.
-
-2. `@RestController`: This annotation is used to define a RESTful controller class. It combines the `@Controller` and `@ResponseBody` annotations, making it easier to handle HTTP requests and responses.
-
-3. `@RequestMapping`: This annotation is used to map HTTP requests to specific methods in a controller class. It allows you to define the URL path and HTTP method for each request mapping.
-
-4. `@Autowired`: This annotation is used for automatic dependency injection. It allows Spring to automatically wire dependencies into your beans, reducing the need for manual configuration.
-
-5. `@Component`: This annotation is a generic stereotype for any Spring-managed component. It is used to mark a class as a Spring bean, allowing it to be automatically detected and instantiated by the Spring container.
-
-6. `@Service`: This annotation is used to mark a class as a service component. It is typically used to define business logic or service layer components.
-
-7. `@Repository`: This annotation is used to mark a class as a repository component. It is typically used to define data access objects (DAOs) or repositories for database operations.
-
-8. **@Configuration:**
-   - Indicates that the class contains configuration methods that should be processed by the Spring container during application context initialization.
-   - Configuration classes often define beans using `@Bean` annotated methods.
-   - a Bean is a Java object that is managed by the Spring IoC (Inversion of Control) container. It's an instance of a class that is created, configured, and managed by the Spring framework.
-   - `@Bean` annotation declares a method that produces a bean to be managed by the Spring IoC container. It's used for manual configuration of beans not handled by component scanning, enabling explicit instantiation and customization.
-
-9. **@EnableAutoConfiguration:**
-   - Enables Spring Boot's automatic configuration mechanism.
-   - It automatically configures the Spring application based on the dependencies present in the classpath. 
-   - For example, if it detects a database library in the classpath, it configures data source-related beans.
-
-10. **@ComponentScan:**
-   - Scans the specified package for Spring components (such as beans, controllers, services) and registers them with the Spring container.
-   - It ensures that Spring discovers and manages beans from the specified packages.
-   
-11. **@Transactional**:
-   - `@Transactional` is used to mark methods or classes as transactional, meaning that database operations within the annotated method or class will be executed within a transaction boundary.
-   - It ensures that either all database operations within the annotated method or class complete successfully or none of them do. If an exception occurs, the transaction is rolled back.
-   - It's typically used at the service layer to define transactional boundaries around service methods.
-	
-	Commit: When a transaction is committed, all changes made within the transaction are permanently saved to the database. The changes become visible to other transactions.
-	
-	Rollback: If an error occurs or an exception is thrown within the transaction, the changes made within the transaction are rolled back, meaning that the database is restored to its state before the transaction began.
-
-	Commit - With @Transactional(noRollbackFor = Exception.class), you're telling the system to continue with the transaction even if there are minor issues, ensuring that your data is saved even in case of non-critical errors. Commit by default: If no exceptions occur during the execution of the method annotated with @Transactional, the transaction will be committed by default.
-	Rollback (default) - With @Transactional(rollbackFor = Exception.class), you're ensuring that if any problem occurs, the entire transaction will be canceled to maintain data integrity, ensuring that no partial or incorrect data is saved. Rollback for unchecked exceptions: If an unchecked exception (subclass of RuntimeException or Error) is thrown during the execution of the method annotated with @Transactional, the transaction will be rolled back by default.
-
-
-12. **@Modifying**:
-   - `@Modifying` is used in conjunction with JPQL (Java Persistence Query Language) queries to indicate that the query will modify the database state.
-   - It's used when executing UPDATE, DELETE, or INSERT queries using JPQL.
-   - This annotation is required to instruct JPA that the query being executed will perform database modifications, enabling it to properly manage transactional behavior.
-
-13. **@Query**:
-   - `@Query` is used to declare JPQL queries directly within repository methods.
-   - It allows developers to define custom queries using JPQL syntax directly within the repository interface or class.
-   - It provides more flexibility compared to query methods derived from method names.
-
-14. **@NativeQuery**:
-   - `@NativeQuery` is used to execute native SQL queries directly within repository methods.
-   - It allows developers to execute native SQL queries (SQL written in the database-specific dialect) within the repository interface or class.
-   - It's useful when JPQL is not sufficient or when you need to execute database-specific queries.
-
-15. **@EnableWebSecurity**:
-   - is an annotation in Spring Security that activates web security features in a Spring Boot application. 
-   - It's usually paired with a custom configuration class extending WebSecurityConfigurerAdapter, where you can define security rules like access control, login, and logout settings to secure your web application
-   
-16. **@Qualifier**:
-	- In Spring Framework, @Qualifier is used to disambiguate bean injections when there are multiple beans of the same type. 
-	- When you have more than one bean of the same type and you want to autowire a specific bean, you can use @Qualifier along with @Autowired to specify the bean to be injected by its bean name.
-	
-	
-17. **@Required**:
-	- It applies to bean property setter methods. It provides a method-level annotation that is applied to the bean property setter methods for making the setter-injection mandatory. This means it can be used to mark a property as ‘required-to-be-set’.
-	- So that container will check the annotated (setter) method of a class if it is configured to be dependency injected with a value or not. If not, an Exception will be thrown by the container at runtime.
-	- This annotation indicates that the affected bean property must be populated at configuration time: either through an explicit property value in a bean definition or through autowiring
-
-
-
-
-Annotations in simple terms :
-=============================
 
 1. @Component :  
 	- @Component indicates that an annotated class is a "Spring Bean / Component".
-	- @Component tells the spring container to automatically the spring bean.
-	- Spring IOC container the object of the class and manage that object.
+	- @Component tells the spring container to automatically create the spring bean.
+	- Spring IOC container creates the object of the class and manage that object.
 	- Spring Contaier will give the name of the bean as Class name with first letter is small.(StudentComponent --> studentComponent) we can give our name also.
 	
 	example:
@@ -3820,6 +3810,53 @@ Annotations in simple terms :
 
 10. @ConfigurationProperties(prefix = "application", ignoreUnknownFields = false) - Properties are configured in the application.properties file
 
+   
+11. **@Transactional**:
+   - `@Transactional` is used to mark methods or classes as transactional, meaning that database operations within the annotated method or class will be executed within a transaction boundary.
+   - It ensures that either all database operations within the annotated method or class complete successfully or none of them do. If an exception occurs, the transaction is rolled back.
+   - It's typically used at the service layer to define transactional boundaries around service methods.
+	
+	Commit: When a transaction is committed, all changes made within the transaction are permanently saved to the database. The changes become visible to other transactions.
+	
+	Rollback: If an error occurs or an exception is thrown within the transaction, the changes made within the transaction are rolled back, meaning that the database is restored to its state before the transaction began.
+
+	Commit - With @Transactional(noRollbackFor = Exception.class), you're telling the system to continue with the transaction even if there are minor issues, ensuring that your data is saved even in case of non-critical errors. Commit by default: If no exceptions occur during the execution of the method annotated with @Transactional, the transaction will be committed by default.
+	Rollback (default) - With @Transactional(rollbackFor = Exception.class), you're ensuring that if any problem occurs, the entire transaction will be canceled to maintain data integrity, ensuring that no partial or incorrect data is saved. Rollback for unchecked exceptions: If an unchecked exception (subclass of RuntimeException or Error) is thrown during the execution of the method annotated with @Transactional, the transaction will be rolled back by default.
+
+
+12. **@Modifying**:
+   - `@Modifying` is used in conjunction with JPQL (Java Persistence Query Language) queries to indicate that the query will modify the database state.
+   - It's used when executing UPDATE, DELETE, or INSERT queries using JPQL.
+   - This annotation is required to instruct JPA that the query being executed will perform database modifications, enabling it to properly manage transactional behavior.
+
+13. **@Query**:
+   - `@Query` is used to declare JPQL queries directly within repository methods.
+   - It allows developers to define custom queries using JPQL syntax directly within the repository interface or class.
+   - It provides more flexibility compared to query methods derived from method names.
+
+14. **@NativeQuery**:
+   - `@NativeQuery` is used to execute native SQL queries directly within repository methods.
+   - It allows developers to execute native SQL queries (SQL written in the database-specific dialect) within the repository interface or class.
+   - It's useful when JPQL is not sufficient or when you need to execute database-specific queries.
+
+15. **@EnableWebSecurity**:
+   - is an annotation in Spring Security that activates web security features in a Spring Boot application. 
+   - It's usually paired with a custom configuration class extending WebSecurityConfigurerAdapter, where you can define security rules like access control, login, and logout settings to secure your web application
+
+16. `@RestController`: This annotation is used to define a RESTful controller class. It combines the `@Controller` and `@ResponseBody` annotations, making it easier to handle HTTP requests and responses.
+
+17. `@RequestMapping`: This annotation is used to map HTTP requests to specific methods in a controller class. It allows you to define the URL path and HTTP method for each request mapping.
+
+18. `@Autowired`: This annotation is used for automatic dependency injection. It allows Spring to automatically wire dependencies into your beans, reducing the need for manual configuration.
+
+19. `@Component`: This annotation is a generic stereotype for any Spring-managed component. It is used to mark a class as a Spring bean, allowing it to be automatically detected and instantiated by the Spring container.
+
+20. `@Service`: This annotation is used to mark a class as a service component. It is typically used to define business logic or service layer components.
+
+21. `@Repository`: This annotation is used to mark a class as a repository component. It is typically used to define data access objects (DAOs) or repositories for database operations.
+
+
+
 Scope OF Beans In Spring
 ==================================================
 
@@ -3832,112 +3869,253 @@ The latest version of the Spring framework defines 6 types of scopes:
 
 1. singleton - only one instance of the bean is created and shared across the entire application. This is default scope. @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON) or @Scope(value="singleton") - It will give you only one bean with same hashcode if you try to create/call the beans and print multiple times.
 2. prototype - new Instance of the bean is created everytime it is requested. @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE) or @Scope(value = "prototype") - It will give you different beans with different hashcodes if you try to create/call the beans and print multiple times.
-3. request
-4. session
-5. application
-6. websocket
+3. request : A new instance of the bean is created for each HTTP request. This scope is only available in a web-aware application. Beans with request scope are destroyed at the end of each HTTP request.@Scope(value = WebApplicationContext.SCOPE_REQUEST)
+4. session: A single instance of the bean is created for each HTTP session. This scope is only available in a web-aware application. Beans with session scope persist throughout the duration of the HTTP session. @Scope(value = WebApplicationContext.SCOPE_SESSION)
+5. application : A single instance of the bean is created for the entire lifecycle of the application context. This scope is not tied to any particular HTTP request or session and is available across the entire application. It is equivalent to the "singleton" scope, but with a broader application context.@Scope(value = WebApplicationContext.SCOPE_APPLICATION)
+6. websocket : A single instance of the bean is created for each WebSocket connection. This scope is only available in applications that use WebSocket communication. Beans with websocket scope persist for the duration of the WebSocket connection.@Scope(value = "websocket", proxyMode = ScopedProxyMode.TARGET_CLASS)
 
 The last four scopes mentioned, request, session, application and websocket, are only available in a web-aware application.
 
 
+SpringBOot Application Flow :
+============================
+
+Here's a simplified explanation of what happens when you run a Spring Boot application:
+
+1. The `main` method of the main application class is executed.
+2. Spring Boot initializes the application context and sets up the Spring IoC container.
+3. Component scanning is performed to identify and register beans annotated with `@Component`, `@Service`, `@Repository`, and other stereotype annotations.
+4. Spring Boot enables auto-configuration based on the dependencies and configurations present in the classpath.
+5. Configuration classes annotated with `@Configuration` are processed, and beans defined in these classes are registered with the application context.
+6. The embedded web server (e.g., Tomcat, Jetty) is started if the application includes web dependencies.
+7. Request mapping and endpoint handling are configured based on controllers and REST endpoints defined in the application.
+8. The application is ready to handle incoming requests and perform business logic as defined in the application components.
 
 
+Microservices  :
+======================
+**Microservices** is an architectural approach where a software application is divided into a collection of small, independent, and loosely coupled services, each responsible for specific functionality. Spring Boot, a popular Java framework, is often used to build microservices due to its ease of development and the tools it provides.
+
+API-Gateway
+============
+
+- An API Gateway is a server or service that acts as an entry point for a collection of microservices. 
+It provides a centralized point for managing, securing, and routing API requests from clients to the appropriate microservices. 
+The API Gateway plays a crucial role in microservices architectures by offering various features and benefits:
+
+- Load Balancing:** The API Gateway can distribute incoming requests across multiple instances of microservices, ensuring even load distribution and improved performance.
+
+Note : Load Balancing : Load balancing is like a traffic cop directing cars to different lanes on a highway to avoid congestion and keep traffic flowing smoothly. 
+	   It distributes incoming requests across multiple servers, preventing any one server from becoming overloaded and ensuring faster, more reliable access to websites and applications.
+	
+**Client-Side Load Balancing with Ribbon**: Clients decide which server instance to communicate with using Ribbon.
+-------------------------------------------
+		Example : 
+
+			@Bean
+			@LoadBalanced // Enable client-side load balancing
+			public RestTemplate restTemplate() {
+				return new RestTemplate();
+			}
+			
+			@Bean
+			public IRule ribbonRule() {
+				return new RoundRobinRule(); // Use round-robin load balancing strategy
+			}
+	
+**Server-Side Load Balancing with Eureka**: Eureka handles the distribution of incoming requests among multiple instances of a service.
+-------------------------------------------
+		Example : 
+		import org.springframework.boot.SpringApplication;
+		import org.springframework.boot.autoconfigure.SpringBootApplication;
+		import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+
+		@SpringBootApplication
+		@EnableEurekaServer
+		public class EurekaServerApplication {
+			public static void main(String[] args) {
+				SpringApplication.run(EurekaServerApplication.class, args);
+			}
+		}
+
+
+Certainly! Let's break down the provided code and configuration for a microservices architecture using Spring Cloud Gateway, Eureka Server, and Eureka Clients:
+
+### 1. Discovery Services Application (`DiscoveryServicesApplication`):
+
+- **`@EnableEurekaServer`**: Enables this application as a Eureka server for service registration and discovery.
+- **`eureka.client.register-with-eureka=false` and `eureka.client.fetch-registry=false`**: These properties are set to false because this application itself acts as the Eureka server and does not need to register with another Eureka server or fetch registry information.
+- **`spring.application.name=discovery-services`**: Specifies the name of this application.
+
+### 2. Product Service Application (`ProductServiceApplication`):
+
+- **`@EnableEurekaClient`**: Indicates that this application is a Eureka client and should register itself with the Eureka server.
+- **Database and Eureka Configurations**: Configures database connection details and specifies the Eureka server URL for service registration and discovery.
+
+### 3. API Gateway Application (`ApiGatewayApplication`):
+
+- **`@EnableEurekaClient`**: Indicates that this application is a Eureka client and should register itself with the Eureka server.
+- **Gateway Routes Configuration**: Configures routes for forwarding requests to other microservices based on their paths.
+- **Eureka Client Configuration**: Specifies the Eureka server URL for service registration and discovery.
+
+### Flow of Microservices Architecture:
+
+1. **Service Registration**: Each microservice (e.g., Product Service, Order Service) registers itself with the Eureka-Server (Discovery-Service) upon startup using the `@EnableEurekaClient` annotation.
+2. **Service Discovery**: The API Gateway queries the Eureka server to discover the available microservices using the `spring.cloud.gateway.discovery.locator.enabled=true` property.
+3. **Routing and Load Balancing**: The API Gateway routes incoming requests to the appropriate microservices based on their paths and uses Spring Cloud LoadBalancer (`lb://`) to load balance requests across multiple instances of each microservice retrieved from Eureka.
+4. **Centralized Configuration**: Eureka server acts as a centralized registry for all microservices, allowing them to dynamically discover and communicate with each other without hardcoding service locations or configurations.
+
+Overall, this architecture provides a scalable, resilient, and flexible solution for building microservices-based applications, enabling dynamic service registration, discovery, and routing.
+
+**Microservices Flow:**
+
+1. **User Interaction (Angular Frontend):**
+   - Angular frontend provides the user interface.
+   - Users interact with the frontend to perform actions and view data.
+
+2. **API Gateway (E.g.  Netflix Zuul or spring-cloud-starter-gateway):**
+   - Acts as a single entry point for client requests.
+   - Routes requests to appropriate microservices.
+   - Performs tasks like load balancing, authentication, and rate limiting.
+
+	Note : Load Balancing : Load balancing is like a traffic cop directing cars to different lanes on a highway to avoid congestion and keep traffic flowing smoothly. 
+		   It distributes incoming requests across multiple servers, preventing any one server from becoming overloaded and ensuring faster, more reliable access to websites and applications.
+	
+3. **Discovery Service (E.g., Netflix Eureka):**
+   - Helps microservices locate and communicate with each other.
+   - Microservices register themselves upon startup.
+   - Maintains a registry of available microservices and their network locations.
+
+4. **Backend Microservices (Spring Boot):**
+   - Individual microservices handle specific business functions.
+   - Expose RESTful APIs for CRUD operations and other tasks.
+   - Communicate with each other via HTTP calls.
+
+5. **RestTemplate and WebClient:**
+   - Spring Boot's HTTP clients for making HTTP requests to other services.
+   - RestTemplate: synchronous and blocking, suitable for traditional I/O operations.
+   - WebClient: asynchronous and non-blocking, suitable for reactive programming.
+
+		Sure, here's an example of using both RestTemplate and WebClient in a Spring Boot application:
+
+		1. **Using RestTemplate (Synchronous):**
+		   ```java
+		   import org.springframework.stereotype.Service;
+		   import org.springframework.web.client.RestTemplate;
+
+		   @Service
+		   public class MyService {
+			   private final String API_URL = "https://api.example.com/data";
+
+			   private final RestTemplate restTemplate;
+
+			   public MyService(RestTemplate restTemplate) {
+				   this.restTemplate = restTemplate;
+			   }
+
+			   public String fetchData() {
+				   // Synchronous call using RestTemplate
+				   String response = restTemplate.getForObject(API_URL, String.class);
+				   return response;
+			   }
+		   }
+		   ```
+
+		2. **Using WebClient (Asynchronous):**
+		   ```java
+		   import org.springframework.stereotype.Service;
+		   import org.springframework.web.reactive.function.client.WebClient;
+		   import reactor.core.publisher.Mono;
+
+		   @Service
+		   public class MyReactiveService {
+			   private final String API_URL = "https://api.example.com/data";
+
+			   private final WebClient webClient;
+
+			   public MyReactiveService(WebClient.Builder webClientBuilder) {
+				   this.webClient = webClientBuilder.baseUrl(API_URL).build();
+			   }
+
+			   public Mono<String> fetchData() {
+				   // Asynchronous call using WebClient
+				   Mono<String> responseMono = webClient.get()
+						   .retrieve()
+						   .bodyToMono(String.class);
+				   return responseMono;
+			   }
+		   }
+		   ```
+		   
+		With `RestTemplate`, the execution thread is blocked until the response is received, while with `WebClient`, the execution is non-blocking, allowing the thread to be free to handle other tasks while waiting for the response. This makes `WebClient` suitable for applications requiring high concurrency and responsiveness, such as reactive applications.
+
+6. **Authentication and Authorization:**
+   - Handled at the frontend using mechanisms like JWT.
+   - Upon successful authentication, frontend includes JWT token in HTTP requests.
+   - Backend verifies JWT token to ensure user identity and grants access based on roles.
+
+Certainly! Below are examples of how to use each of the mentioned `RestTemplate` methods:
+
+### 1. `getForObject`
+
+```java
+// Example: Fetching a user resource by ID
+User user = restTemplate.getForObject("http://api.example.com/users/{id}", User.class, userId);
+```
+
+### 2. `getForEntity`
+
+```java
+// Example: Fetching a user resource by ID and retrieving the entire response entity
+ResponseEntity<User> response = restTemplate.getForEntity("http://api.example.com/users/{id}", User.class, userId);
+User user = response.getBody();
+HttpStatus statusCode = response.getStatusCode();
+HttpHeaders headers = response.getHeaders();
+```
+
+### 3. `postForObject`
+
+```java
+// Example: Creating a new user by sending user data as request body
+User newUser = ...; // Assuming newUser is an instance of User class with user data
+User createdUser = restTemplate.postForObject("http://api.example.com/users", newUser, User.class);
+```
+
+### 4. `postForEntity`
+
+```java
+// Example: Creating a new user and retrieving the entire response entity
+User newUser = ...; // Assuming newUser is an instance of User class with user data
+ResponseEntity<User> response = restTemplate.postForEntity("http://api.example.com/users", newUser, User.class);
+User createdUser = response.getBody();
+HttpStatus statusCode = response.getStatusCode();
+HttpHeaders headers = response.getHeaders();
+```
+
+### 5. `exchange`
+
+```java
+// Example: Sending a PUT request to update user data and retrieving the entire response entity
+User updatedUser = ...; // Assuming updatedUser is an instance of User class with updated data
+HttpHeaders headers = new HttpHeaders();
+headers.setContentType(MediaType.APPLICATION_JSON);
+HttpEntity<User> requestEntity = new HttpEntity<>(updatedUser, headers);
+ResponseEntity<User> response = restTemplate.exchange("http://api.example.com/users/{id}", HttpMethod.PUT, requestEntity, User.class, userId);
+User updatedUserResponse = response.getBody();
+```
+
+### 6. `delete`
+
+```java
+// Example: Deleting a user resource by ID
+restTemplate.delete("http://api.example.com/users/{id}", userId);
+```
+
+These examples demonstrate how to use various `RestTemplate` methods to interact with RESTful services for common CRUD operations (Create, Read, Update, Delete). Each method provides different levels of flexibility and control over the HTTP request and response handling.
 **Normal Spring Boot Monolithic Application:**
 -------------------------------------------------
 
 In a monolithic Spring Boot application, all functionalities are bundled together in a single application. Here's an example of a simplified monolithic application for a basic e-commerce platform:
-
-**MonolithicEcommerceApplication.java:**
-
-```java
-@SpringBootApplication
-public class MonolithicEcommerceApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(MonolithicEcommerceApplication.class, args);
-    }
-}
-```
-
-**ProductController.java:**
-
-```java
-@RestController
-@RequestMapping("/products")
-public class ProductController {
-    @GetMapping("/{productId}")
-    public Product getProduct(@PathVariable Long productId) {
-        // Retrieve and return the product from the database
-    }
-    
-    @PostMapping
-    public Product addProduct(@RequestBody Product product) {
-        // Save the new product to the database and return it
-    }
-    
-    // Other product-related endpoints
-}
-```
-
-In this monolithic example:
-
-- There's a single Spring Boot application that handles all aspects of the e-commerce platform, including product management.
-
-- The `ProductController` defines endpoints for retrieving and adding products.
-
-
-**Microservices Architecture:**
----------------------------------
-=================================
----------------------------------
-
-Now, let's look at a simplified microservices architecture for the same e-commerce platform. We'll split the product management into a separate microservice.
-
-**ProductService.java:**
-
-```java
-@SpringBootApplication
-@EnableEurekaClient
-public class ProductServiceApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(ProductServiceApplication.class, args);
-    }
-}
-```
-
-**ProductController.java (Microservice):**
-
-```java
-@RestController
-@RequestMapping("/products")
-public class ProductController {
-    @GetMapping("/{productId}")
-    public Product getProduct(@PathVariable Long productId) {
-        // Retrieve and return the product from the microservice's database
-    }
-    
-    @PostMapping
-    public Product addProduct(@RequestBody Product product) {
-        // Save the new product to the microservice's database and return it
-    }
-    
-    // Other product-related endpoints
-}
-```
-
-In this microservices example:
-
-- There are two separate Spring Boot applications: the **ProductService** microservice and the **E-commerceGateway** application (not shown here) that routes requests to various microservices.
-
-- The **ProductService** microservice handles product-related operations, just as in the monolithic example. It runs independently and can be scaled separately.
-
-- Other microservices can handle different parts of the e-commerce platform, and they can use various technologies and databases as needed.
-
-The key difference is that in the microservices architecture, the functionalities are divided into smaller, independently deployable services, whereas the monolithic application handles everything in a single codebase. Microservices offer advantages in terms of scalability, maintainability, and technology stack diversity but introduce complexities in terms of service coordination and inter-service communication.
-
-
-
-
-
 
 **Microservice Architecture with Spring Boot:**
 ===================================================
@@ -3964,115 +4142,6 @@ A **microservice in Spring Boot** is a standalone, independently deployable appl
 
 Consider an e-commerce platform. You might have separate microservices for user authentication, product catalog, order processing, and payment handling.
 
-Here's a simplified example of a product catalog microservice using Spring Boot:
-
-**ProductService.java:**
-```java
-@RestController
-@RequestMapping("/products")
-public class ProductService {
-    
-    @GetMapping("/{productId}")
-    public Product getProductById(@PathVariable Long productId) {
-        // Retrieve product information from the database and return it
-    }
-
-    @PostMapping
-    public Product addProduct(@RequestBody Product product) {
-        // Save the new product to the database and return it
-    }
-
-    // Other product-related endpoints
-}
-```
-
-In this example:
-
-- `ProductService` is a Spring Boot application serving as a microservice for product-related operations.
-
-- It defines endpoints to retrieve a product by ID and add a new product.
-
-- Each operation is independent, and the service can be deployed and scaled on its own.
-
-**Differences Between a Normal Spring Boot Application and a Microservices Application:**
-
-1. **Monolith vs. Distributed:** A normal Spring Boot application is often a monolith, where all functionalities are tightly integrated into a single codebase. In contrast, a microservices application is distributed, with functionalities divided into separate services.
-
-2. **Size:** Normal Spring Boot applications tend to be larger, with all functionalities in one place. Microservices are smaller, focused on specific tasks.
-
-3. **Complexity:** Microservices applications can be more complex to manage due to the need for service coordination, inter-service communication, and distributed data.
-
-4. **Scalability:** Microservices allow for fine-grained scalability, while a monolith typically scales as a single unit.
-
-5. **Independent Deployment:** Microservices can be deployed independently. In a monolith, changes may require redeploying the entire application.
-
-6. **Technology Stack:** In a monolith, the entire application uses the same technology stack. In microservices, different services can use different stacks.
-
-7. **Maintenance:** Microservices can be easier to maintain as changes in one service don't affect others. In a monolith, changes can be riskier.
-
-The choice between a normal Spring Boot application and a microservices architecture depends on the specific project requirements, scalability needs, development team size, and other factors. Microservices offer advantages in terms of scalability and maintainability but introduce complexity in managing the interactions between services.
-
-
-Spring Cloud is a set of tools and frameworks within the broader Spring ecosystem for building and deploying cloud-native applications. It provides a range of capabilities for building microservices-based systems and addressing common challenges that arise in cloud and distributed architectures. Spring Cloud is primarily designed to work with the Spring Framework, which is a popular framework for building Java-based applications.
-
-Key components and features of Spring Cloud include:
----------------------------------------------------
-
-1. **Service Discovery**: Spring Cloud provides tools like Eureka and Consul for service discovery. This allows services to register themselves with a registry and discover other services. This is crucial for building resilient and dynamic microservices architectures.
-
-2. **Load Balancing**: Spring Cloud integrates with load balancers like Ribbon, enabling client-side load balancing for services. This ensures that requests are distributed across instances of a service, improving scalability and fault tolerance.
-
-3. **API Gateway**: Spring Cloud offers tools like Zuul and Spring Cloud Gateway for creating API gateways. These components act as a single entry point to your microservices, providing routing, authentication, and other cross-cutting concerns.
-
-4. **Circuit Breakers**: To deal with failures in distributed systems, Spring Cloud incorporates Hystrix, which provides circuit breaker and fault tolerance patterns. It helps prevent cascading failures in the system.
-
-5. **Configuration Management**: Spring Cloud Config allows you to manage and distribute configuration properties for your services. It supports externalized configuration, versioning, and dynamic property updates without service restarts.
-
-6. **Distributed Tracing**: Tools like Spring Cloud Sleuth and Zipkin provide distributed tracing capabilities, helping you track and diagnose issues across microservices.
-
-7. **Security**: Spring Cloud Security provides features for securing your microservices and managing authentication and authorization in a distributed system.
-
-8. **Messaging**: Spring Cloud Stream simplifies event-driven microservices by providing abstractions for message brokers like Apache Kafka and RabbitMQ.
-
-9. **Distributed Data**: Tools like Spring Cloud Data Flow and Spring Cloud Task help manage and process data across distributed systems.
-
-10. **Monitoring and Metrics**: Spring Cloud integrates with monitoring solutions like Prometheus and Grafana to gather metrics and monitor the health of your microservices.
-
-11. **Batch Processing**: Spring Cloud Data Flow and Spring Batch offer batch processing capabilities, making it easier to manage batch jobs in a microservices architecture.
-
-Spring Cloud promotes the development of scalable, resilient, and maintainable microservices applications by providing pre-built solutions for common distributed system challenges. It's particularly well-suited for Java-based applications and is a popular choice for organizations looking to adopt microservices and cloud-native architectures.
-
-
-API-Gateway
-============
-
-An API Gateway is a server or service that acts as an entry point for a collection of microservices. 
-It provides a centralized point for managing, securing, and routing API requests from clients to the appropriate microservices. 
-The API Gateway plays a crucial role in microservices architectures by offering various features and benefits:
-
-1. **Request Routing:** The API Gateway directs incoming API requests to the appropriate microservices based on predefined rules and configurations.
-
-2. **Aggregation:** It can aggregate data from multiple microservices and provide a unified response to clients. This is useful when a client needs information from multiple services.
-
-3. **Load Balancing:** The API Gateway can distribute incoming requests across multiple instances of microservices, ensuring even load distribution and improved performance.
-
-4. **Authentication and Authorization:** It handles user authentication and authorization, ensuring that only authorized users can access specific microservices.
-
-5. **Security:** The API Gateway acts as a security layer, protecting microservices from direct external access. It can enforce security policies, validate tokens, and encrypt/decrypt sensitive information.
-
-6. **Rate Limiting:** It can implement rate limiting to prevent abuse or excessive usage by a single client, ensuring fair resource allocation.
-
-7. **Logging and Monitoring:** The API Gateway can centralize logging and monitoring, providing insights into API usage, performance, and potential issues.
-
-8. **Transformation:** It can transform requests and responses between different formats, making it easier for clients and microservices to communicate.
-
-9. **Caching:** The API Gateway can cache responses from microservices, reducing the load on backend services and improving overall system performance.
-
-10. **Versioning:** It can handle API versioning, allowing for the coexistence of different API versions and smooth transitions during updates.
-
-Popular tools and frameworks for building API Gateways include Spring Cloud Gateway, Netflix Zuul, NGINX, and Kong.
-
-In summary, an API Gateway simplifies the complexity of interacting with multiple microservices by providing a unified entry point for clients and offering various features to enhance security, performance, and manageability.
 
 
 
@@ -4514,7 +4583,6 @@ By using JWT in Spring Boot security, developers can implement stateless authent
 It's important to note that while JWT provides a secure way to transmit information, it does not encrypt the data within the token. Therefore, sensitive information should not be included in the token payload to maintain security.
 
 https://www.geeksforgeeks.org/spring-boot-3-0-jwt-authentication-with-spring-security-using-mysql-database/
-
 
 
 
@@ -5229,7 +5297,7 @@ The org.junit package contains many interfaces and classes for junit testing suc
 If you execute the test cases manually without any tool support, it is known as manual testing. It is time consuming and less reliable.
 
 2) Automated Testing
-If you execute the test cases by tool support, it is known as automated testing. It is fast and more reliable.
+If you execute the test cases by tool support, it is known as automated testing. It is fast and more reliable. script example : Selenium WebDriver
 
 
 Annotations for Junit testing
@@ -5258,13 +5326,6 @@ void assertTrue(boolean condition): checks that a condition is true.
 void assertFalse(boolean condition): checks that a condition is false.
 void assertNull(Object obj): checks that object is null.
 void assertNotNull(Object obj): checks that object is not null.
-
-
-
-
-
-
-
 
 
 
@@ -5321,14 +5382,40 @@ These are the general steps and concepts involved in converting JSON and XML dat
 
 INTERVIEW QUESTION:
 ===================
-1. Composit key in sql.
-2. @Qualifier
-3. @Required
-4. SingletonList
-5. why we use String data type for password instead of StringBuffer or StringBuilder or Char Array.
-6. Difference between InnerJoin and OuterJoin
+Sure, let's break down each of these concepts:
 
+### 1. Composite Key in SQL:
+- **Definition**: A composite key is a combination of two or more columns that uniquely identify a record in a database table.
+- **Example**: In a table representing orders, a composite key might be a combination of `order_id` and `customer_id`.
+- **Usage**: It's used when a single column cannot uniquely identify records, requiring a combination of columns for uniqueness.
 
+### 2. @Qualifier Annotation:
+- **Definition**: @Qualifier is used in Spring Framework for resolving bean ambiguity by specifying the bean to be injected by its name.
+- **Example**: In case multiple beans of the same type are available, @Qualifier("beanName") specifies which one to inject.
+- **Usage**: When there are multiple beans of the same type and Spring needs clarification on which one to inject.
+
+### 3. @Required Annotation:
+- **Definition**: @Required annotation indicates that the annotated property must be populated during bean initialization in Spring.
+- **Example**: Applied to setter methods, ensuring the corresponding properties are set before the bean is used.
+- **Usage**: Ensures that mandatory properties are set, preventing configuration errors.
+
+### 4. SingletonList:
+- **Definition**: SingletonList is an immutable list containing a single specified element, useful when you need an immutable list with only one element.
+- **Example**: `Collections.singletonList("example")` creates a list containing only the string "example".
+- **Usage**: When you need to represent a list with a single element and ensure its immutability.
+
+### 5. Usage of String for Passwords:
+- **Explanation**: Strings are immutable, making them safer for storing sensitive information like passwords, as they cannot be modified in memory.
+- **Example**: `String password = "secret";`
+- **Usage**: Prevents security vulnerabilities by avoiding accidental modification or exposure of sensitive information.
+
+### 6. Difference between InnerJoin and OuterJoin:
+- **Inner Join**: Retrieves records that have matching values in both tables based on a specified condition.
+- **Outer Join**: Retrieves all records from one table and only the matching records from the other table, based on a specified condition.
+- **Example**: Inner Join: `SELECT * FROM table1 INNER JOIN table2 ON table1.id = table2.id;` Outer Join: `SELECT * FROM table1 LEFT JOIN table2 ON table1.id = table2.id;`
+- **Usage**: Inner Join when you need only matching records, Outer Join when you need all records from one table regardless of matches in the other.
+
+These explanations provide a concise understanding of each concept along with simple examples and usage scenarios.
 
 
 KAFKA Tutorial
@@ -5392,6 +5479,9 @@ A broker is a container that holds several topics with their multiple partitions
 The brokers in the cluster are identified by an integer id only. 
 Kafka brokers are also known as Bootstrap brokers because connection with any one broker means connection with the entire cluster. 
 Although a broker does not contain whole data, but each broker in the cluster knows about all other brokers, partitions as well as topics.
+
+
+
 
 
 
