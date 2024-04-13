@@ -2153,6 +2153,209 @@ The serialization process at runtime associates an id with each Serializable cla
 
 private static final long serialVersionUID=1L; 
 
+OTHER INTERFACES :
+==================
+
+Certainly! Here's an explanation of each functional interface along with examples:
+
+1. **Supplier**:
+   - `Supplier` represents a supplier of results. It is functional interface. It does not accept any arguments but produces a result(T).
+   - T: denotes the type of the result. we can use Supplier for Lazy Loading.
+   - It has a single method `get()` that returns a result.
+
+   ```java
+   import java.util.function.Supplier;
+
+   public class SupplierExample {
+       public static void main(String[] args) {
+           Supplier<String> supplier = () -> "Hello, world!";
+           System.out.println(supplier.get()); // Output: Hello, world!
+       }
+   }
+   ```
+
+2. **Function**:
+   - `Function` represents a function that accepts one argument and produces a result.
+   - It has a single method `R apply(T t)`.
+   - T: denotes the type of the input argument
+   - R: denotes the return type of the function
+
+   ```java
+   import java.util.function.Function;
+
+   public class FunctionExample {
+       public static void main(String[] args) {
+           Function<Integer, Integer> square = x -> x * x;
+           System.out.println(square.apply(5)); // Output: 25
+       }
+   }
+   ```
+
+3. **BiFunction**:
+   - `BiFunction` represents a function that accepts two arguments and produces a result.
+   - It has a single method `R apply(T t, U u)`.
+   
+	t– the first function argument
+	u– the second function argument
+	Returns: This method returns the function result which is of type R.
+
+   ```java
+   import java.util.function.BiFunction;
+
+   public class BiFunctionExample {
+       public static void main(String[] args) {
+           BiFunction<Integer, Integer, Integer> add = (x, y) -> x + y;
+           System.out.println(add.apply(3, 5)); // Output: 8
+       }
+   }
+   ```
+
+4. **UnaryOperator**:
+   - `UnaryOperator` represents an operation on a single operand that produces a result of the same type as its operand.
+   - It extends `Function` and has a single method `T apply(T t)`.
+   - T: denotes the type of the input argument to the operation and return type
+
+
+   ```java
+   import java.util.function.UnaryOperator;
+
+   public class UnaryOperatorExample {
+       public static void main(String[] args) {
+           UnaryOperator<Integer> square = x -> x * x;
+           System.out.println(square.apply(4)); // Output: 16
+       }
+   }
+   ```
+
+5. **BinaryOperator**:
+   - `BinaryOperator` represents an operation upon two operands of the same type, producing a result of the same type as the operands.
+   - It extends `BiFunction` and has a single method `T apply(T t1, T t2)`.
+   - T: denotes the type of the input argument to the operation and return type.
+
+
+   ```java
+   import java.util.function.BinaryOperator;
+
+   public class BinaryOperatorExample {
+       public static void main(String[] args) {
+           BinaryOperator<Integer> add = (x, y) -> x + y;
+           System.out.println(add.apply(3, 5)); // Output: 8
+       }
+   }
+   ```
+
+6. **Predicate**:
+   - `Predicate` represents a predicate (boolean-valued function) of one argument. it is functional interface.
+   - It has a single abstract method `boolean test(T t)` and other default and static methods.
+
+   ```java
+   import java.util.function.Predicate;
+
+   public class PredicateExample {
+       public static void main(String[] args) {
+           Predicate<Integer> isEven = x -> x % 2 == 0;
+           System.out.println(isEven.test(4)); // Output: true
+       }
+   }
+   ```
+
+7. **Consumer**:
+   - `Consumer` represents an operation that accepts a single input argument and returns no result.
+   - It has a single method `void accept(T t)`.
+   -  However these kind of functions don’t return any value.
+
+   ```java
+   import java.util.function.Consumer;
+
+   public class ConsumerExample {
+       public static void main(String[] args) {
+           Consumer<String> print = message -> System.out.println(message);
+           print.accept("Hello, world!"); // Output: Hello, world!
+       }
+   }
+   ```
+
+8. **BiConsumer**:
+   - `BiConsumer` represents an operation that accepts two input arguments and returns no result.
+   - It has a single method `void accept(T t, U u)`.
+
+   ```java
+   import java.util.function.BiConsumer;
+
+   public class BiConsumerExample {
+       public static void main(String[] args) {
+           BiConsumer<String, Integer> printLength = (str, length) -> System.out.println("Length of " + str + ": " + length);
+           printLength.accept("Hello", 5); // Output: Length of Hello: 5
+       }
+   }
+   ```
+
+
+
+These functional interfaces are extensively used in Java for functional programming and can be particularly handy when working with streams, lambda expressions, and method references.
+
+These interfaces provide a way to pass behavior in a more functional style, especially useful when working with streams, lambdas, and functional programming paradigms in Java.
+
+One Example Program for Important Functional INTERFACES
+---------------------------------------------------------
+package test.com;
+
+import mypractice.com.collections.Student;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
+
+public class PracticeTest {
+
+    public static void main(String[] args) {
+
+        // 1. Supplier
+        Supplier<Double> value = () -> Math.random();
+        System.out.println(value.get()); //output : 0.1301492672379272
+
+        // 2. Function
+
+        Function<String, Integer> function = string -> string.length(); //it gives 5
+
+        function = function.andThen(data -> 3 * data); // (5 * 3) = 15
+
+        function = function.compose(element -> 3 + element); // 15+3 = 18
+
+        System.out.println(function.apply("Hello")); // output : 18
+
+        // 3. Predicate interface
+
+        Predicate<Integer> isEven = number -> number % 2 == 0; // checking even or not
+        System.out.println(isEven.test(10)); // true 
+
+        // 4. Consumer Interface
+
+        Consumer<Integer> consumer = element -> System.out.println("Printing "+element);
+
+        consumer.accept(10); // output : Printing 10
+
+        Consumer<List<Student>> listConsumer = student -> System.out.println(student);
+
+        List<Student> students = new ArrayList<>();
+        students.add(new Student(1, "Nani", 25));
+        students.add(new Student(2, "Babu", 30));
+        students.add(new Student(3, "Priya", 40));
+        students.add(new Student(4, "Praneetha", 50));
+
+        listConsumer.accept(students); // output : [Student{id=1, name='Nani', age=25}, Student{id=2, name='Babu', age=30}, Student{id=3, name='Priya', age=40}, Student{id=4, name='Praneetha', age=50}]
+
+    }
+
+}
+
+
+
 
 HASHCODE
 =========
@@ -3447,50 +3650,6 @@ This is a simplified example, but it demonstrates the essential components of a 
 Spring Boot simplifies the setup and configuration of such applications, making it easier to develop web-based systems.
 
 
-Spring IOC Container : 
-======================
-The Spring IOC (Inversion of Control) container creates objects of classes and manages their lifecycle, dependencies, and configurations. 
-It also controls the instantiation, wiring, and lifecycle of these objects, allowing them to be loosely coupled and promoting modular, maintainable, and scalable application development.
-There are two main types of Spring containers: the **BeanFactory** (a more basic container with lazy-loading of beans) and the more feature-rich **ApplicationContext** (a superset of BeanFactory with additional functionalities and eager-loading of beans).
-
-		Bean Factory : 
-		--------------
-		import org.springframework.beans.factory.BeanFactory;
-		import org.springframework.beans.factory.xml.XmlBeanFactory;
-		import org.springframework.core.io.ClassPathResource;
-
-		public class BeanFactoryExample {
-			public static void main(String[] args) {
-				BeanFactory factory = new XmlBeanFactory(new ClassPathResource("beans.xml"));
-				
-				// Retrieving a bean from BeanFactory
-				MyBean bean = (MyBean) factory.getBean("myBean"); 
-				
-				// Using the bean
-				bean.doSomething();
-			}
-		}
-
-		ApplicationContext :
-		--------------------
-		import org.springframework.context.ApplicationContext;
-		import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-		public class ApplicationContextExample {
-			public static void main(String[] args) {
-				ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-				
-				// Retrieving a bean from ApplicationContext
-				MyBean bean = (MyBean) context.getBean("myBean");
-				
-				// Using the bean
-				bean.doSomething();
-			}
-		}
-
-
-		NOTE : @SpringBootApplication is typically used in Spring Boot applications. When you annotate your main application class with @SpringBootApplication, it implicitly creates an ApplicationContext. Internally, Spring Boot uses ApplicationContext rather than BeanFactory for managing beans and providing various application services.
-
 
 
 dependency injection (DI) :
@@ -3633,6 +3792,50 @@ In this example:
 In your Spring Boot application, you can configure and define beans in various ways, such as through annotations or XML configuration files. Spring Boot's auto-configuration and component scanning capabilities help simplify the DI process, allowing you to focus on your application's logic rather than the details of object creation and wiring.
 
 
+
+Spring IOC Container : 
+======================
+The Spring IOC (Inversion of Control) container creates objects of classes and manages their lifecycle, dependencies, and configurations. 
+It also controls the instantiation, wiring, and lifecycle of these objects, allowing them to be loosely coupled and promoting modular, maintainable, and scalable application development.
+There are two main types of Spring containers: the **BeanFactory** (a more basic container with lazy-loading of beans) and the more feature-rich **ApplicationContext** (a superset of BeanFactory with additional functionalities and eager-loading of beans).
+
+		Bean Factory : 
+		--------------
+		import org.springframework.beans.factory.BeanFactory;
+		import org.springframework.beans.factory.xml.XmlBeanFactory;
+		import org.springframework.core.io.ClassPathResource;
+
+		public class BeanFactoryExample {
+			public static void main(String[] args) {
+				BeanFactory factory = new XmlBeanFactory(new ClassPathResource("beans.xml"));
+				
+				// Retrieving a bean from BeanFactory
+				MyBean bean = (MyBean) factory.getBean("myBean"); 
+				
+				// Using the bean
+				bean.doSomething();
+			}
+		}
+
+		ApplicationContext :
+		--------------------
+		import org.springframework.context.ApplicationContext;
+		import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+		public class ApplicationContextExample {
+			public static void main(String[] args) {
+				ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+				
+				// Retrieving a bean from ApplicationContext
+				MyBean bean = (MyBean) context.getBean("myBean");
+				
+				// Using the bean
+				bean.doSomething();
+			}
+		}
+
+
+		NOTE : @SpringBootApplication is typically used in Spring Boot applications. When you annotate your main application class with @SpringBootApplication, it implicitly creates an ApplicationContext. Internally, Spring Boot uses ApplicationContext rather than BeanFactory for managing beans and providing various application services.
 
 
 Annotations in simple terms :
