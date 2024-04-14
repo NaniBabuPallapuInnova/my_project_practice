@@ -2512,3 +2512,38 @@ export class UserAuthService {
 - **UserAuthService**: Manages user authentication data, such as JWT tokens and user roles, stored in local storage.
 
 These classes and methods together provide authentication and authorization functionality in an Angular application, ensuring that users are authenticated and authorized to access certain routes and resources.
+
+
+
+
+
+
+
+
+
+Brokers
+=======
+
+A Kafka cluster is comprised of one or more servers which are known as brokers or Kafka brokers. 
+A broker is a container that holds several topics with their multiple partitions. 
+The brokers in the cluster are identified by an integer id only. 
+Kafka brokers are also known as Bootstrap brokers because connection with any one broker means connection with the entire cluster. 
+Although a broker does not contain whole data, but each broker in the cluster knows about all other brokers, partitions as well as topics.
+
+
+** IMPORTANT ** : 
+=================
+
+Kafka Cluster: A Kafka cluster is a system that comprises of different brokers, topics, and their respective partitions. Data is written to the topic within the cluster and read by the cluster itself.
+
+Producers: A producer sends or writes data/messages to the topic within the cluster. In order to store a huge amount of data, different producers within an application send data to the Kafka cluster.
+
+Consumers: A consumer is the one that reads or consumes messages from the Kafka cluster. There can be several consumers consuming different types of data form the cluster. The beauty of Kafka is that each consumer knows from where it needs to consume the data.
+
+Brokers: A Kafka server is known as a broker. A broker is a bridge between producers and consumers. If a producer wishes to write data to the cluster, it is sent to the Kafka server. All brokers lie within a Kafka cluster itself. Also, there can be multiple brokers.
+
+Topics: It is a common name or a heading given to represent a similar type of data. In Apache Kafka, there can be multiple topics in a cluster. Each topic specifies different types of messages.
+
+Partitions: The data or message is divided into small subparts, known as partitions. Each partition carries data within it having an offset value. The data is always written in a sequential manner. We can have an infinite number of partitions with infinite offset values. However, it is not guaranteed that to which partition the message will be written.
+
+ZooKeeper: A ZooKeeper is used to store information about the Kafka cluster and details of the consumer clients. It manages brokers by maintaining a list of them. Also, a ZooKeeper is responsible for choosing a leader for the partitions. If any changes like a broker die, new topics, etc., occurs, the ZooKeeper sends notifications to Apache Kafka. A ZooKeeper is designed to operate with an odd number of Kafka servers. Zookeeper has a leader server that handles all the writes, and rest of the servers are the followers who handle all the reads. However, a user does not directly interact with the Zookeeper, but via brokers. No Kafka server can run without a zookeeper server. It is mandatory to run the zookeeper server.
