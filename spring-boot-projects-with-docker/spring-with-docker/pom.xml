@@ -41,6 +41,9 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+
+<!--		with this name, jar will be created-->
+		<finalName>spring-with-docker</finalName>
 	</build>
 
 </project>

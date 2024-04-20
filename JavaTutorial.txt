@@ -5840,6 +5840,59 @@ These are the general steps and concepts involved in converting JSON and XML dat
 
 
 
+When should we use HyperVisor and Docker ?
+===========================================
+
+**Hypervisor:**
+- ** Description:** A hypervisor is a software layer that allows multiple operating systems to run concurrently on a single physical machine. It creates and manages virtual machines (VMs), each with its own OS, enabling efficient resource sharing and isolation.
+- **Use Case:** Ideal for running a single application.
+- **Description:** Requires a single hypervisor and a single operating system (OS).
+- **Resource Usage:** Each application runs in its own virtual machine (VM) with its own OS, leading to potential resource waste.
+- **Cost Implications:** May require purchasing licenses for multiple OS instances.
+- **Summary:** Suitable for scenarios where only one application needs to be isolated and run independently.
+- **Example:** Deploy your monolithic Spring Boot application within the VM. You create a VM named "EcommerceAppVM" with Ubuntu Server installed. Within this VM, you deploy your monolithic Spring Boot application for the entire e-commerce platform, including order management, inventory management, product catalog, and user authentication.
+
+**Docker:**
+- ** Description:** Docker is a platform that simplifies the development, deployment, and management of applications using containerization technology. It packages applications and their dependencies into lightweight, portable containers, allowing them to run consistently across different environments without the overhead of traditional virtualization.
+- **Use Case:** Suitable for deploying and running multiple services or applications simultaneously.
+- **Description:** Utilizes containers, which package each application with its dependencies into a single unit.
+- **Resource Usage:** Containers share the host OS kernel, reducing resource overhead compared to VMs.
+- **Efficiency:** Offers better resource utilization and efficiency by avoiding the need for separate OS instances for each application.
+- **Cost Savings:** Minimizes resource wastage and eliminates the need to purchase licenses for multiple OS instances.
+- **Summary:** Preferred for scenarios where multiple applications need to be deployed and managed efficiently on the same hardware.
+- **Example:** Deploy and Run your microservices on Docker Containers. You create Docker images for the order service, inventory service, product service, and authentication service. Then, you run multiple instances of these Docker images as containers on a Docker host. Each container represents a separate microservice, allowing you to independently scale and update components of the e-commerce platform.
+
+
+DOCKER 
+===========
+step : 1 : 
+
+			add this tag in pom.xml file
+			------------------------------
+			<!--		with this name, jar will be created-->
+			<finalName>spring-with-docker</finalName>
+			
+			DOCKER FILE (create a Dockerfile and add these fields in that file)
+			-------------------------------------------------------------------
+			FROM openjdk:17
+			EXPOSE 9191
+			ADD target/  spring-with-docker.jar
+			ENTRYPOINT ["java", "-jar", "/spring-with-docker.jar"]
+
+step : 2 : mvn clean install
+
+step : 3 : build the docker image using below command
+
+			docker build -t spring-with-docker.jar .
+
+step : 4 : run the docker container based on docker image using below command
+			
+			docker run -p 9192:9191 spring-with-docker.jar
+
+
+Now you will be able to access application using http://localhost:9192/message
+
+
 INTERVIEW QUESTION:
 ===================
 Sure, let's break down each of these concepts:
@@ -5876,6 +5929,29 @@ Sure, let's break down each of these concepts:
 - **Usage**: Inner Join when you need only matching records, Outer Join when you need all records from one table regardless of matches in the other.
 
 These explanations provide a concise understanding of each concept along with simple examples and usage scenarios.
+
+
+
+
+
+
+IaaS, SaaS, PaaS, and IDaaS architectures and concepts
+=======================================================
+
+Sure, let's break down each of these concepts:
+
+1. **IaaS (Infrastructure as a Service):**
+   - IaaS provides virtualized computing resources over the internet. It includes virtualized computing resources such as virtual machines, storage, and networking. With IaaS, users can rent these resources on a pay-as-you-go basis rather than purchasing and maintaining physical hardware. Examples of IaaS providers include Amazon Web Services (AWS), Microsoft Azure, and Google Cloud Platform (GCP).
+
+2. **SaaS (Software as a Service):**
+   - SaaS delivers software applications over the internet on a subscription basis. Instead of installing and maintaining software on individual computers, users can access the software via a web browser or API. SaaS providers handle all the maintenance, including updates, patches, and security. Examples of SaaS applications include Google Workspace (formerly G Suite), Microsoft Office 365, Salesforce, and Dropbox.
+
+3. **PaaS (Platform as a Service):**
+   - PaaS provides a platform allowing customers to develop, run, and manage applications without the complexity of building and maintaining the infrastructure typically associated with developing and launching an app. PaaS typically includes development tools, database management systems, middleware, and other services. It allows developers to focus on writing code and deploying applications without worrying about underlying infrastructure. Examples of PaaS providers include Heroku, Google App Engine, and Microsoft Azure App Service.
+
+4. **IDaaS (Identity as a Service):**
+   - IDaaS is a cloud-based service that provides identity and access management capabilities to organizations. It allows companies to manage user identities, access privileges, and authentication methods centrally. IDaaS typically offers features such as single sign-on (SSO), multi-factor authentication (MFA), user provisioning, and directory services. Examples of IDaaS providers include Okta, Azure Active Directory, and Ping Identity.
+
 
 
 KAFKA Tutorial

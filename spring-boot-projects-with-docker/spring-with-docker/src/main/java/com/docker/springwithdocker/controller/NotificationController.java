@@ -11,7 +11,7 @@ public class NotificationController {
     public NotificationService notificationService;
 
 
-    @GetMapping("/first")
+    @GetMapping("/message")
     public String getMessage(){
        notificationService.message();
        return "Completed";
