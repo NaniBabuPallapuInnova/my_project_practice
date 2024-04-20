@@ -21,3 +21,13 @@ vspring-security-client/src/main/java/com/codingspiderverse/springsecurityclient
 `spring-security-client/src/main/java/com/codingspiderverse/springsecurityclient/entity/User.java,f\d\fdb7d2259d587f9b2e76131d5534f4db3d19140f
 ¤
 tspring-security-client/src/main/java/com/codingspiderverse/springsecurityclient/SpringSecurityClientApplication.java,7\e\7e9560ecb3e5aec2d7b9f4f9573a1f4e00e52c48
+N
+spring-security-client/pom.xml,3\f\3f8d3573846e27a916ef7ec27e59ae84a83a637e
+¢
+rspring-security-client/src/main/java/com/codingspiderverse/springsecurityclient/config/WebClientConfiguration.java,7\7\7708f453c448766f23c784e4b316a6e33c3916de
+ž
+nOauth-resource-server/src/main/java/com/codingspiderverse/Oauthresourceserver/config/ResourceServerConfig.java,1\9\195d7f79548706932e44048c877559ade5732ba5
+Ÿ
+oOauth-authorization-server/src/main/java/com/codingspiderverse/oauthserver/service/CustomUserDetailService.java,1\d\1de85e26f2943f86a50db938458e104f36d8c8b0
+œ
+lOauth-authorization-server/src/main/java/com/codingspiderverse/oauthserver/config/DefaultSecurityConfig.java,b\c\bc51fc821caaf3177d4261b679b60b2de1e03431

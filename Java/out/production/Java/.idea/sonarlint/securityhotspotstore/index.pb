@@ -41,3 +41,5 @@ p
 @mypractice/com/collections/programs_on_collections/Program2.java,c\a\cae4195a82eb791066c4c3cdb8e7abea52d0a923
 y
 Imypractice/com/programs_practice/basics_programs/PrimeNumbersProgram.java,5\7\577236bc0300063c9074d76c407f7fb61dbaad83
+J
+test/com/PracticeTest.java,5\1\514f54566dc89dde3b3167f7de8b667343474e1d
