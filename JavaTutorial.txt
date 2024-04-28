@@ -221,7 +221,7 @@ Java Code (Student.java) 	→ 	Compiler 	→ 	Bytecode (checks Error | No Error)
 **Run-Time:**
 -------------
 
-Bytecode (if no error)	 → 	Class Loader 	→ 	Bytecode Verifier 	→ 	Interpreter (or Just-In-Time Compiler) 	→ 	OS and Hardware
+Bytecode (if no error)	 → 	JVM's Class Loader 	→ 	Bytecode Verifier 	→ 	Interpreter (or Just-In-Time Compiler) 	→ 	OS and Hardware
 
 - **Bytecode (Student.class)**: If there are no compilation errors, the bytecode is loaded into memory by the JVM's class loader.
 - **Class Loader**: The class loader loads the bytecode into memory and resolves references to other classes.
@@ -365,7 +365,7 @@ The popular object-oriented languages are Java, C#, PHP, Python, C++, etc.
 
 2. **Encapsulation**:
 
-    Encapsulation is the concept of bundling data (attributes) and methods (functions) that operate on that data into a single unit (a class).
+    Encapsulation is the concept of bundling attributes and methods that operate on that data into a single unit (a class).
    
     Encapsulation in Java is a process of wrapping code and data together into a single unit, for example, a capsule which is mixed of several medicines.
    
@@ -430,6 +430,7 @@ The popular object-oriented languages are Java, C#, PHP, Python, C++, etc.
    There are two types of polymorphism in Java: compile-time polymorphism and runtime polymorphism. We can perform polymorphism in java by method overloading and method overriding.
 
 5. **Abstraction**:
+
    Abstraction is a process of hiding the implementation details and showing only functionality to the user.
    
    Another way, it shows only essential things to the user and hides the internal details, for example, sending SMS where you type the text and send the message. You don't know the internal processing about the message delivery.
@@ -974,7 +975,10 @@ public class ArrayExample {
 
 Java String
 ==================
-	In Java, string is basically an object that represents sequence of char values. The java.lang.String class is used to create a string object. An array of characters works same as Java string.  For example:
+
+	In Java, string is basically an object that represents sequence of char values. The java.lang.String class is used to create a string object. An array of characters works same as Java string.  
+	
+	For example:
 
 	char[] ch={'j','a','v','a','t','p','o','i','n','t'};  
 	String s=new String(ch);  
@@ -1326,64 +1330,10 @@ EXCEPTION HANDLING
 		```
 
 		This makes your code more readable and helps you handle specific issues appropriately in your application.
-	
 
 		In Java, creating a custom exception involves extending the `Exception` class or one of its subclasses. Here's a step-by-step guide on how to create and use a custom exception:
 		
-
-
-		### Step 1: Create the Custom Exception Class
-
-		```java
-		// CustomException.java
-		public class CustomException extends Exception {
-			public CustomException(String message) {
-				super(message);
-			}
-		}
-		```
-
 		In this example, `CustomException` extends the `Exception` class. The constructor takes a `String` parameter that represents the error message associated with the exception.
-
-		### Step 2: Use the Custom Exception in Another Class
-
-		```java
-		// ExampleClass.java
-		public class ExampleClass {
-			public void performTask() throws CustomException {
-				// Your code that might throw the custom exception
-				boolean somethingWentWrong = true;
-
-				if (somethingWentWrong) {
-					throw new CustomException("CustomException: Something went wrong!");
-				}
-
-				// Rest of the method if no exception is thrown
-			}
-		}
-		```
-
-		In `ExampleClass`, the `performTask` method throws the `CustomException` if something goes wrong during the execution of the task.
-
-		### Step 3: Handle the Custom Exception in Another Class (Optional)
-
-		```java
-		// MainClass.java
-		public class MainClass {
-			public static void main(String[] args) {
-				ExampleClass example = new ExampleClass();
-
-				try {
-					example.performTask();
-				} catch (CustomException e) {
-					System.err.println("Caught CustomException: " + e.getMessage());
-					// Handle the exception or perform additional actions
-				}
-			}
-		}
-		```
-
-		In `MainClass`, the `performTask` method is called within a `try-catch` block. If the `CustomException` is thrown during the execution of `performTask`, it will be caught in the `catch` block, and you can handle it accordingly.
 
 		### Important Notes:
 		- Custom exceptions are typically used to handle specific error conditions in your application.
@@ -1525,6 +1475,7 @@ INNER CLASS IN JAVA
 
 Functional Interface
 ======================
+
 	A functional interface in Java is an interface that has exactly one abstract method. Functional interfaces are also known as Single Abstract Method (SAM) interfaces. 
 	These interfaces are a fundamental concept in Java's support for lambda expressions and the Java Stream API. 
 	Functional interfaces are used to represent single behaviors, and they can be implemented as lambda expressions or method references, making code more concise and expressive.
@@ -1919,7 +1870,7 @@ public class Main {
 }
 ```
 
-1. Extending `Thread` class creates a thread with the task defined in the subclass itself.
+1. Extending `Thread` class creates a thread with the task defined in the subclass itself.Limited flexibility in class inheritance, as your class cannot extend any other class.Useful for quick, standalone thread implementations
 2. Implementing `Runnable` interface separates the task from the thread, allowing flexibility in class hierarchy and promoting better design practices (Multiple Inheritance).
 
 Certainly! Let's break down each concept related to threading in Java:
@@ -1950,6 +1901,87 @@ Certainly! Let's break down each concept related to threading in Java:
 
 9. **Inter-Thread Communication**: Inter-thread communication refers to communication between threads. It involves methods like `wait()`, `notify()`, and `notifyAll()`, which allow threads to coordinate their actions and share data safely.
 
+
+Some Important concepts in Threads in java
+===========================================
+
+	### 1. Runnable Interface:
+	- **Purpose**: The `Runnable` interface is used to represent a task that can be executed asynchronously by a thread.
+	- **Why Use**: It provides a way to encapsulate code that needs to run concurrently without directly dealing with threads.
+	- **Methods**: It has a single method `run()` that contains the code to be executed by the thread.
+	- **Example**:
+
+	```java
+	public class MyRunnableTask implements Runnable {
+		@Override
+		public void run() {
+			// Task logic goes here
+			System.out.println("Runnable task executed");
+		}
+	}
+	```
+
+	### 2. Callable Interface:
+	- **Purpose**: Similar to `Runnable`, but can return a result or throw an exception.
+	- **Why Use**: Useful when you need to get a result or handle exceptions from the task.
+	- **Methods**: It has a single method `call()` that contains the code to be executed by the thread.
+	- **Example**:
+
+	```java
+	import java.util.concurrent.Callable;
+
+	public class MyCallableTask implements Callable<String> {
+		@Override
+		public String call() throws Exception {
+			// Task logic goes here
+			return "Callable task executed";
+		}
+	}
+	```
+
+	### 3. Executors Class:
+	- **Purpose**: Provides utility methods for creating different types of thread pools.
+	- **Why Use**: Simplifies the process of managing threads and executing tasks asynchronously.
+	- **Methods**: Various factory methods for creating different types of thread pools, such as `newFixedThreadPool()`, `newSingleThreadExecutor()`, etc.
+	- **Example**:
+
+	```java
+	import java.util.concurrent.ExecutorService;
+	import java.util.concurrent.Executors;
+
+	ExecutorService executor = Executors.newFixedThreadPool(5);
+	executor.execute(new MyRunnableTask());
+	```
+
+	### 4. Future Interface:
+	- **Purpose**: Represents the result of an asynchronous computation.
+	- **Why Use**: Allows checking if the computation is complete, retrieving the result, or canceling the computation.
+	- **Methods**: Methods like `get()`, `isDone()`, `cancel()`, etc.
+	- **Example**:
+
+	```java
+	import java.util.concurrent.ExecutorService;
+	import java.util.concurrent.Executors;
+	import java.util.concurrent.Future;
+
+	ExecutorService executor = Executors.newSingleThreadExecutor();
+	Future<String> future = executor.submit(new MyCallableTask());
+	String result = future.get(); // Blocks until the task is complete
+	```
+
+	### 5. void:
+	- **Purpose**: Indicates that a method does not return any value.
+	- **Why Use**: Used as the return type of a method that performs an action but does not produce a result.
+	- **Example**:
+
+	```java
+	public void performAction() {
+		// Method logic goes here
+		System.out.println("Action performed");
+	}
+	```
+
+	These concepts are fundamental in concurrent programming in Java and are extensively used when working with threads and asynchronous tasks. They provide flexibility, simplicity, and control over concurrent execution in Java applications.
 
 
 
@@ -2712,7 +2744,7 @@ Collections in Java:
 		1) PriorityQueue is also class that is defined in the collection framework that gives us a way for processing the objects on the basis of priority.
 		2) It is already described that the insertion and deletion of objects follows FIFO pattern in the Java queue.
 		3) However, sometimes the elements of the queue are needed to be processed according to the priority, that's where a PriorityQueue comes into action.
-		4. PriorityQueue uses offer() method to add objects and poll method to return high priority elements (usuallay lowest numbers have highest priority).
+		4. PriorityQueue uses offer() method to add objects and peek method to return high priority elements (usuallay lowest numbers have highest priority).
 		
 
 
@@ -4097,7 +4129,8 @@ Secondly, annotations enable Spring Boot to automatically configure and manage v
 			}
 		}
 		
-6. @Lazy : 
+6. @Lazy :
+ 
 	- By defult , Spring creates all singleton bean eagerly at the startup/boostraping of the application context. However, sometimes you might want to defer the initialization of a bean until it's actually needed, which can help improve startup time and reduce memory usage.
 	- You can load the Spring beans lazily(on-demand) using @Lazy annotatation. 
 	- that mean, at application startup , spring container will not create a bean for the particulr class which was annotated with @Component and @Lazy. Spring Container will create bean only on-demand.
@@ -4224,6 +4257,105 @@ Secondly, annotations enable Spring Boot to automatically configure and manage v
 
 				// Getters and setters
 			}
+			
+			
+23. `@Profile`: annotation is used to specify which beans or configurations should be active or inactive based on the environment or profile in which the application is running. 
+				Profiles are a way to segregate parts of your application's configuration and code based on different environments (such as development, testing, production) or specific use cases.
+
+		Here's how you can use `@Profile` in Spring Boot:
+
+		a. **Annotate Beans**: You can annotate Spring beans with `@Profile` to specify that they should only be created when a certain profile is active. For example:
+		   
+		   ```java
+		   @Component
+		   @Profile("development")
+		   public class DevelopmentDataSource implements DataSource {
+			   // Development-specific configuration
+		   }
+		   
+		   @Component
+		   @Profile("production")
+		   public class ProductionDataSource implements DataSource {
+			   // Production-specific configuration
+		   }
+		   ```
+
+		b. **Specify Active Profiles**: You can specify active profiles using the `spring.profiles.active` property in your `application.properties` or `application.yml` file. For example:
+
+		   ```properties
+		   spring.profiles.active=development
+		   ```
+
+		   You can also set active profiles programmatically or through command-line arguments.
+
+		c. **Conditional Configuration**: You can use `@ConditionalOnProperty` along with `@Profile` to conditionally enable or disable certain configurations based on properties or profiles.
+
+		   ```java
+		   @Configuration
+		   @Profile("production")
+		   @ConditionalOnProperty(name = "custom.property", havingValue = "true")
+		   public class ProductionConfig {
+			   // Configuration for production environment when custom.property is set to true
+		   }
+		   ```
+
+		d. **Spring Boot Profiles**: Spring Boot provides several predefined profiles such as `default`, `dev`, `test`, and `prod`. The `default` profile is active when no other profiles are specified.
+
+		Using `@Profile`, you can create environment-specific configurations, beans, or components, making it easier to manage and customize your Spring Boot application for different deployment environments.
+
+
+24. `@Async`:  annotation in Spring Boot allows methods to be executed asynchronously in separate threads, improving performance and responsiveness by parallelizing non-blocking tasks such as I/O operations or long-running computations. 
+				 Use it when you need to offload tasks that don't depend on each other's results and can be executed concurrently.
+				 
+				Certainly! Here's a simple code example demonstrating the usage of `@Async` annotation in a Spring Boot application:
+
+				```java
+				import org.springframework.scheduling.annotation.Async;
+				import org.springframework.stereotype.Service;
+
+				@Service
+				public class MyAsyncService {
+
+					@Async
+					public void asyncMethod() {
+						// Simulate a long-running task
+						try {
+							Thread.sleep(5000); // Sleep for 5 seconds
+							System.out.println("Async method completed");
+						} catch (InterruptedException e) {
+							Thread.currentThread().interrupt();
+							System.err.println("Async method interrupted");
+						}
+					}
+				}
+				```
+
+				In this example:
+
+				- We have a `MyAsyncService` class annotated with `@Service`, indicating that it's a Spring-managed bean.
+				- The `asyncMethod()` is annotated with `@Async`, indicating that it should be executed asynchronously in a separate thread.
+				- Inside the `asyncMethod()`, we simulate a long-running task by sleeping the thread for 5 seconds.
+				- When calling `asyncMethod()`, it will return immediately, and the actual execution will be performed asynchronously in a separate thread.
+
+				To enable asynchronous processing in your Spring Boot application, ensure that you have `@EnableAsync` annotation at the configuration level, usually in your main application class:
+
+				```java
+				import org.springframework.boot.SpringApplication;
+				import org.springframework.boot.autoconfigure.SpringBootApplication;
+				import org.springframework.scheduling.annotation.EnableAsync;
+
+				@SpringBootApplication
+				@EnableAsync
+				public class MyApplication {
+					public static void main(String[] args) {
+						SpringApplication.run(MyApplication.class, args);
+					}
+				}
+				```
+
+				With this setup, you can call `asyncMethod()` from any other component or service in your application, and it will be executed asynchronously, allowing the calling thread to continue without waiting for the method to complete.
+
+		 
 
 Scope OF Beans In Spring
 ==================================================
@@ -5024,6 +5156,7 @@ Abstract Protocol Flow
 
 JWT Spring Boot Security
 ==========================
+
 JWT (JSON Web Token) is a widely used standard for securely transmitting information between parties as a JSON object. In the context of Spring Boot security, JWT is often used for authentication and authorization purposes.
 
 In Spring Boot security, JWT can be implemented using the Spring Security framework along with additional libraries such as jjwt. Here's a brief explanation of how JWT works in Spring Boot security:
@@ -5775,6 +5908,8 @@ Annotations for Junit testing
 @AfterClass annotation specifies that method will be invoked only once, after finishing all the tests.
 
 
+
+
 Assert class
 -------------
 The org.junit.Assert class provides methods to assert the program logic.
@@ -5789,7 +5924,66 @@ void assertNotNull(Object obj): checks that object is not null.
 
 
 
+MOCKITO TESTING 
+================
 
+What is Mocking ?
+-----------------
+Mocking is a process of developing the objects that act as the mock or clone of the real objects. 
+In other words, mocking is a testing technique where mock objects are used instead of real objects for testing purposes. 
+Mock objects provide a specific (dummy) output for a particular (dummy) input passed to it.
+
+The mocking technique is not only used in Java but also used in any object-oriented programming language. 
+There are many frameworks available in Java for mocking, but Mockito is the most popular framework among them.
+
+What is Mockito ?
+-----------------
+Mockito is a Java-based mocking framework used for unit testing of Java application. Mockito plays a crucial role in developing testable applications. 
+Mockito was released as an open-source testing framework under the MIT (Massachusetts Institute of Technology) License. 
+It internally uses the Java Reflection API to generate mock objects for a specific interface. 
+Mock objects are referred to as the dummy or proxy objects used for actual implementations
+
+
+Methods in MOCKITO
+------------------
+mock() : It is used to create mock objects of a given class or interface. Mockito contains five mock() methods with different arguments. 
+		 When we didn't assign anything to mocks, they will return default values. All five methods perform the same function of mocking the objects.
+		 
+		 Ex : Calculate calculate = mock(Calculate.class);  
+
+when() : It enables stubbing methods. It should be used when we want to mock to return specific values when particular methods are called. 
+		 In simple terms, "When the XYZ() method is called, then return ABC." It is mostly used when there is some condition to execute.
+		 
+		 Ex : when(mock.someCode ()).thenReturn(5);  
+
+verify(): The verify() method is used to check whether some specified methods are called or not. 
+		 In simple terms, it validates the certain behavior that happened once in a test. It is used at the bottom of the testing code to assure that the defined methods are called.
+		 
+spy() 	: Mockito provides a method to partially mock an object, which is known as the spy method. 
+		  When using the spy method, there exists a real object, and spies or stubs are created of that real object.
+		  
+			spy() method: It creates a spy of the real object. The spy method calls the real methods unless they are stubbed. 
+						  We should use the real spies carefully and occasionally, for example, when dealing with the legacy code.
+				Syntax: <T> spy(T object)
+				
+			spy() method with Class: It creates a spy object based on class instead of an object. The spy(T object) method is particularly useful for spying abstract classes because they cannot be instantiated.
+				Syntax: <T> spy(Class<T> classToSpy)
+		  
+		  List spyArrayList = spy(ArrayList.class);  
+		  
+reset() : The Mockito reset() method is used to reset the mocks. It is mainly used for working with the container injected mocks. 
+		  Usually, the reset() method results in a lengthy code and poor tests. 
+		  It's better to create new mocks rather than using reset() method. That is why the reset() method is rarely used in testing
+
+
+
+1. We use the @ExtendWith(MockitoExtension.class) annotation at the class level to tell JUnit 5 to initialize mocks and prepare them for injection.
+
+2. The @Mock annotation creates a mock implementation of the EmployeeRepository interface.
+
+3. @InjectMocks is used to inject mock fields into the service instance.
+
+4. In the test method testGetEmployeeDetails, we define the behavior of the mock (when(repository.findEmployeeById(1L)).thenReturn(emp);) and then execute the service method to be tested.
 
 
 Additionally
@@ -5839,62 +6033,9 @@ These are the general steps and concepts involved in converting JSON and XML dat
 
 
 
-
-When should we use HyperVisor and Docker ?
-===========================================
-
-**Hypervisor:**
-- ** Description:** A hypervisor is a software layer that allows multiple operating systems to run concurrently on a single physical machine. It creates and manages virtual machines (VMs), each with its own OS, enabling efficient resource sharing and isolation.
-- **Use Case:** Ideal for running a single application.
-- **Description:** Requires a single hypervisor and a single operating system (OS).
-- **Resource Usage:** Each application runs in its own virtual machine (VM) with its own OS, leading to potential resource waste.
-- **Cost Implications:** May require purchasing licenses for multiple OS instances.
-- **Summary:** Suitable for scenarios where only one application needs to be isolated and run independently.
-- **Example:** Deploy your monolithic Spring Boot application within the VM. You create a VM named "EcommerceAppVM" with Ubuntu Server installed. Within this VM, you deploy your monolithic Spring Boot application for the entire e-commerce platform, including order management, inventory management, product catalog, and user authentication.
-
-**Docker:**
-- ** Description:** Docker is a platform that simplifies the development, deployment, and management of applications using containerization technology. It packages applications and their dependencies into lightweight, portable containers, allowing them to run consistently across different environments without the overhead of traditional virtualization.
-- **Use Case:** Suitable for deploying and running multiple services or applications simultaneously.
-- **Description:** Utilizes containers, which package each application with its dependencies into a single unit.
-- **Resource Usage:** Containers share the host OS kernel, reducing resource overhead compared to VMs.
-- **Efficiency:** Offers better resource utilization and efficiency by avoiding the need for separate OS instances for each application.
-- **Cost Savings:** Minimizes resource wastage and eliminates the need to purchase licenses for multiple OS instances.
-- **Summary:** Preferred for scenarios where multiple applications need to be deployed and managed efficiently on the same hardware.
-- **Example:** Deploy and Run your microservices on Docker Containers. You create Docker images for the order service, inventory service, product service, and authentication service. Then, you run multiple instances of these Docker images as containers on a Docker host. Each container represents a separate microservice, allowing you to independently scale and update components of the e-commerce platform.
-
-
-DOCKER 
-===========
-step : 1 : 
-
-			add this tag in pom.xml file
-			------------------------------
-			<!--		with this name, jar will be created-->
-			<finalName>spring-with-docker</finalName>
-			
-			DOCKER FILE (create a Dockerfile and add these fields in that file)
-			-------------------------------------------------------------------
-			FROM openjdk:17
-			EXPOSE 9191
-			ADD target/  spring-with-docker.jar
-			ENTRYPOINT ["java", "-jar", "/spring-with-docker.jar"]
-
-step : 2 : mvn clean install
-
-step : 3 : build the docker image using below command
-
-			docker build -t spring-with-docker.jar .
-
-step : 4 : run the docker container based on docker image using below command
-			
-			docker run -p 9192:9191 spring-with-docker.jar
-
-
-Now you will be able to access application using http://localhost:9192/message
-
-
 INTERVIEW QUESTION:
 ===================
+
 Sure, let's break down each of these concepts:
 
 ### 1. Composite Key in SQL:
@@ -5933,8 +6074,6 @@ These explanations provide a concise understanding of each concept along with si
 
 
 
-
-
 IaaS, SaaS, PaaS, and IDaaS architectures and concepts
 =======================================================
 
@@ -5953,6 +6092,318 @@ Sure, let's break down each of these concepts:
    - IDaaS is a cloud-based service that provides identity and access management capabilities to organizations. It allows companies to manage user identities, access privileges, and authentication methods centrally. IDaaS typically offers features such as single sign-on (SSO), multi-factor authentication (MFA), user provisioning, and directory services. Examples of IDaaS providers include Okta, Azure Active Directory, and Ping Identity.
 
 
+
+
+When should we use HyperVisor and Docker ?
+===========================================
+
+**Hypervisor:**
+
+- ** Description:** A hypervisor(VM) is a software layer that allows multiple operating systems to run concurrently on a single physical machine. It creates and manages virtual machines (VMs), each with its own OS, enabling efficient resource sharing and isolation.
+- **Use Case:** Ideal for running a single application.
+- **Description:** Requires a single hypervisor and a single operating system (OS).
+- **Resource Usage:** Each application runs in its own virtual machine (VM) with its own OS, leading to potential resource waste.
+- **Cost Implications:** May require purchasing licenses for multiple OS instances.
+- **Summary:** Suitable for scenarios where only one application needs to be isolated and run independently.
+- **Example:** Deploy your monolithic Spring Boot application within the VM. You create a VM named "EcommerceAppVM" with Ubuntu Server installed. Within this VM, you deploy your monolithic Spring Boot application for the entire e-commerce platform, including order management, inventory management, product catalog, and user authentication.
+
+**Docker:**
+
+- ** Description:** Docker is a platform that simplifies the development, deployment, and management of applications using containerization technology. It packages applications and their dependencies into lightweight, portable containers, allowing them to run consistently across different environments without the overhead of traditional virtualization.
+- **Use Case:** Suitable for deploying and running multiple services or applications simultaneously.
+- **Description:** Utilizes containers, which package each application with its dependencies into a single unit.
+- **Resource Usage:** Containers share the host OS kernel, reducing resource overhead compared to VMs.
+- **Efficiency:** Offers better resource utilization and efficiency by avoiding the need for separate OS instances for each application.
+- **Cost Savings:** Minimizes resource wastage and eliminates the need to purchase licenses for multiple OS instances.
+- **Summary:** Preferred for scenarios where multiple applications need to be deployed and managed efficiently on the same hardware.
+- **Example:** Deploy and Run your microservices on Docker Containers. You create Docker images for the order service, inventory service, product service, and authentication service. Then, you run multiple instances of these Docker images as containers on a Docker host. Each container represents a separate microservice, allowing you to independently scale and update components of the e-commerce platform.
+
+
+DOCKER 
+===========
+
+
+Docker is a containerization platform that allows you to package your application and its dependencies into a standardized unit called a container. Containers are lightweight, portable, and isolated environments that run on top of the host operating system. Docker provides tools and APIs to build, ship, and run containers consistently across different environments.
+
+### Why Use Docker?
+
+1. **Consistency**: Docker ensures consistency between development, testing, and production environments. You can package your application and its dependencies into a container image, guaranteeing that it runs the same way everywhere.
+
+2. **Isolation**: Containers provide isolation for your application, preventing conflicts with other applications or dependencies on the host system.
+
+3. **Portability**: Containers are portable across different platforms and cloud providers. You can build your application once and run it anywhere that supports Docker.
+
+4. **Efficiency**: Docker containers are lightweight and share the host operating system's kernel, resulting in faster startup times and efficient resource utilization.
+
+5. **Scalability**: Docker enables easy scaling of your application by running multiple instances of containers, either manually or through orchestration tools like Kubernetes.
+
+### Docker Concepts:
+
+1. **Docker Images**: An image is a read-only template with instructions for creating a Docker container. It contains the application code, runtime, libraries, and other dependencies needed to run the application.
+
+2. **Docker Containers**: A container is a runnable instance of a Docker image. It encapsulates the application and its runtime environment, including the filesystem, network, and processes.
+
+3. **Dockerfile**: A Dockerfile is a text file that contains instructions for building a Docker image. It defines the base image, dependencies, environment variables, and commands needed to set up the container environment.
+
+4. **Docker Registry**: A registry is a repository for storing and sharing Docker images. The Docker Hub is a public registry, but you can also set up private registries for internal use.
+
+5. **Docker Engine**: Docker Engine is the runtime environment for running Docker containers. It includes the Docker daemon, API, and command-line interface (CLI) tools for managing containers and images.
+
+### With Docker vs. Without Docker:
+
+#### With Docker:
+1. You package your Spring Boot microservices application along with its dependencies into Docker images.
+2. You define Dockerfiles for each microservice to specify the container environment and build instructions.
+3. You use Docker Compose or Kubernetes to manage and orchestrate your Dockerized microservices application.
+4. Docker ensures consistency, isolation, and portability of your application across different environments.
+
+#### Without Docker:
+1. You manually install and configure dependencies (Java, Spring Boot, etc.) on each server or environment where you deploy your microservices application.
+2. You need to ensure that each server has the correct versions of dependencies, leading to potential inconsistencies and conflicts.
+3. Managing dependencies and ensuring consistency becomes challenging, especially in large-scale deployments.
+4. Deployment and scaling are more complex and time-consuming without the lightweight, portable nature of Docker containers.
+
+In summary, Docker simplifies the development, deployment, and management of microservices applications by providing a consistent, isolated, and portable environment for running your application and its dependencies.
+
+
+Certainly! Below are some common Docker commands and instructions you can use for building and running a Java-Spring Boot-Angular microservices application:
+
+### Docker Commands:
+=====================
+1. **Build Docker Image**:
+   ```
+   docker build -t myapp .
+   ```
+   This command builds a Docker image named `myapp` using the Dockerfile in the current directory (`.`).
+
+2. **Run Docker Container**:
+   ```
+   docker run -p 8080:8080 myapp
+   ```
+   This command runs a Docker container based on the `myapp` image, forwarding port 8080 from the container to port 8080 on the host.
+
+3. **List Running Containers**:
+   ```
+   docker ps
+   ```
+   This command lists all running Docker containers.
+
+4. **Stop Container**:
+   ```
+   docker stop <container_id>
+   ```
+   Replace `<container_id>` with the ID of the container you want to stop.
+
+5. **Remove Container**:
+   ```
+   docker rm <container_id>
+   ```
+   This command removes a stopped container. Use `-f` flag to force removal of a running container.
+
+6. **Remove Image**:
+   ```
+   docker rmi <image_id>
+   ```
+   This command removes a Docker image. Use `-f` flag to force removal of an image in use by a container.
+
+7. **View Logs**:
+   ```
+   docker logs <container_id>
+   ```
+   This command displays the logs of a specific container.
+
+### Dockerfile Instructions for Spring Boot Application:
+
+```Dockerfile
+# Use a base image with Java installed
+FROM openjdk:11-jdk-slim
+
+# Set working directory in the container
+WORKDIR /app
+
+# Copy the packaged Spring Boot application JAR file into the container
+COPY target/myapp.jar /app
+
+# Expose the port that the Spring Boot application will run on
+EXPOSE 8080
+
+# Command to run the Spring Boot application when the container starts
+CMD ["java", "-jar", "myapp.jar"]
+```
+
+### Dockerfile Instructions for Angular Application:
+
+```Dockerfile
+# Use a base image with Node.js and NPM installed
+FROM node:14 as build
+
+# Set working directory in the container
+WORKDIR /app
+
+# Copy the Angular application source code into the container
+COPY . .
+
+# Install dependencies and build the Angular application
+RUN npm install && npm run build
+
+# Use a lightweight base image to serve the Angular application
+FROM nginx:alpine
+
+# Copy the built Angular application files into the NGINX web server directory
+COPY --from=build /app/dist/myapp /usr/share/nginx/html
+
+# Expose port 80 to access the Angular application
+EXPOSE 80
+```
+
+These are basic examples. You may need to adjust them based on your project structure and requirements. Let me know if you need further explanation or assistance with any specific command or instruction!
+
+
+DEPLOYING SAMPLE APPLICATION :
+==============================
+
+step : 1 : 
+
+			add this tag in pom.xml file
+			------------------------------
+			<!--		with this name, jar will be created-->
+			<finalName>spring-with-docker</finalName>
+			
+			DOCKER FILE (create a Dockerfile and add these fields in that file)
+			-------------------------------------------------------------------
+			FROM openjdk:17
+			EXPOSE 9191
+			ADD target/spring-with-docker.jar
+			ENTRYPOINT ["java", "-jar", "/spring-with-docker.jar"]
+
+step : 2 : mvn clean install
+
+step : 3 : build the docker image using below command
+
+			docker build -t spring-with-docker.jar .
+
+step : 4 : run the docker container based on docker image using below command
+			
+			docker run -p 9192:9191 spring-with-docker.jar
+
+
+Now you will be able to access application using http://localhost:9192/message
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+KUBERNATES : 
+=============
+
+Kubernetes (often abbreviated as K8s) is an open-source container orchestration platform for automating the deployment, scaling, and management of containerized applications. It was originally developed by Google and is now maintained by the Cloud Native Computing Foundation (CNCF). Kubernetes provides a robust framework for managing distributed systems and microservices at scale.
+
+### Why Use Kubernetes?
+
+1. **Orchestration**: Kubernetes automates the deployment, scaling, and management of containerized applications, freeing developers from manual intervention and reducing operational overhead.
+
+2. **Scalability**: Kubernetes enables horizontal scaling of applications by automatically adding or removing containers based on resource utilization and user-defined scaling policies.
+
+3. **High Availability**: Kubernetes ensures high availability of applications by automatically restarting containers that fail, scheduling containers on healthy nodes, and providing self-healing capabilities.
+
+4. **Resource Utilization**: Kubernetes optimizes resource utilization by intelligently scheduling containers on nodes with available resources and efficiently packing multiple containers on the same node.
+
+5. **Rolling Updates**: Kubernetes supports rolling updates for applications, allowing you to deploy new versions of your application without downtime by gradually replacing old containers with new ones.
+
+### Kubernetes Concepts:
+
+1. **Pods**: Pods are the smallest deployable units in Kubernetes. A pod can contain one or more containers that share the same network namespace and storage volumes.
+
+2. **Deployments**: Deployments manage the lifecycle of pods and provide features like rolling updates and scaling. They ensure that a specified number of replicas of a pod are running at any given time.
+
+3. **Services**: Services provide a stable network endpoint for accessing a set of pods. They enable load balancing, service discovery, and internal communication between different parts of an application.
+
+4. **ReplicaSets**: ReplicaSets are responsible for maintaining a specified number of replicas of a pod. They ensure that the desired number of pods are running and automatically create or delete pods as needed.
+
+5. **Nodes**: Nodes are individual machines (physical or virtual) in a Kubernetes cluster where containers are deployed. Each node runs Kubernetes services and hosts one or more pods.
+
+### With Kubernetes vs. Without Kubernetes:
+
+#### With Kubernetes:
+- You deploy your Spring Boot microservices application as containers in a Kubernetes cluster.
+- Kubernetes automatically manages the deployment, scaling, and networking of your application, ensuring high availability and efficient resource utilization.
+- You can use Kubernetes features like rolling updates, auto-scaling, and service discovery to simplify application management and improve reliability.
+
+#### Without Kubernetes:
+- You manually deploy and manage your microservices application on individual servers or virtual machines.
+- Managing deployment, scaling, networking, and reliability requires manual intervention and custom scripting.
+- Ensuring high availability and efficient resource utilization can be challenging and time-consuming, especially in large-scale deployments.
+
+In summary, Kubernetes provides a powerful platform for automating and managing containerized applications, simplifying deployment, scaling, and management tasks, and improving application reliability and efficiency.
+
+
+
+Certainly! Kubernetes provides a rich set of commands (kubectl) and features for managing containerized applications within a cluster. Below are some common commands and restrictions you may encounter when working with Kubernetes:
+
+### Common kubectl Commands:
+============================
+
+1. **Creating Resources**:
+   - `kubectl create`: Create a resource from a file, URL, or stdin.
+   - `kubectl apply`: Apply a configuration to a resource.
+
+2. **Managing Resources**:
+   - `kubectl get`: Retrieve information about resources.
+   - `kubectl describe`: Show details about a specific resource.
+   - `kubectl edit`: Edit a resource in your preferred editor.
+
+3. **Scaling**:
+   - `kubectl scale`: Scale the number of replicas of a resource (e.g., Deployment, ReplicaSet).
+
+4. **Deleting Resources**:
+   - `kubectl delete`: Delete one or more resources.
+   - `kubectl delete -f <filename>`: Delete resources defined in a YAML file.
+
+5. **Viewing Logs**:
+   - `kubectl logs`: Print the logs of a container in a pod.
+
+6. **Port Forwarding**:
+   - `kubectl port-forward`: Forward one or more local ports to a pod.
+
+7. **Executing Commands**:
+   - `kubectl exec`: Execute a command in a container in a pod.
+
+8. **Troubleshooting**:
+   - `kubectl describe pod <pod_name>`: Describe the state of a pod, including events and conditions.
+   - `kubectl get events`: View cluster events.
+
+### Restrictions in Kubernetes:
+
+1. **Resource Limits**:
+   - Kubernetes imposes resource limits on pods to prevent over-utilization of cluster resources. You may need to specify resource requests and limits in your pod manifests.
+
+2. **Security Policies**:
+   - Kubernetes enforces security policies to restrict access and prevent unauthorized actions. You may encounter restrictions related to role-based access control (RBAC), network policies, and pod security policies.
+
+3. **Namespaces**:
+   - Kubernetes uses namespaces to organize resources and provide isolation between different environments or teams. Access to resources may be restricted based on namespace permissions.
+
+4. **Cluster Quotas**:
+   - Kubernetes administrators can define quotas to limit the amount of compute resources or the number of objects (e.g., pods, services) that can be created within a namespace.
+
+5. **Networking**:
+   - Kubernetes networking policies and plugins may impose restrictions on network communication between pods and external services. Network policies can control traffic flow and enforce security rules.
+
+6. **Persistent Storage**:
+   - Kubernetes provides persistent volume (PV) and persistent volume claim (PVC) objects for managing storage resources. Access to persistent storage may be restricted based on policies defined by the cluster administrator.
+
+Understanding these commands and restrictions is essential for effectively managing and troubleshooting applications deployed on Kubernetes. Additionally, familiarizing yourself with Kubernetes documentation and best practices can help you navigate these complexities and optimize your application deployment process.
 
 KAFKA Tutorial
 ==============

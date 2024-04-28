@@ -43,3 +43,7 @@ y
 Imypractice/com/programs_practice/basics_programs/PrimeNumbersProgram.java,5\7\577236bc0300063c9074d76c407f7fb61dbaad83
 J
 test/com/PracticeTest.java,5\1\514f54566dc89dde3b3167f7de8b667343474e1d
+M
+junit_practice/Calculate.java,a\7\a77216e99d6a4c07d7b44645a312de8377be7458
+Q
+!junit_practice/CalculateTest.java,1\7\17c3676accc7061beec211e80e9a9e51b3bd4370
