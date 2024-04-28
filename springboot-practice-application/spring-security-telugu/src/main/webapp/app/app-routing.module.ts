@@ -5,6 +5,13 @@ import { CreateEmployeeComponent } from './components/create-employee/create-emp
 import { EmployeeDetailsComponent } from './components/employee-details/employee-details.component';
 import { SearchResultEmployeeComponent } from './components/search-employees/search-result-employee/search-result-employee.component';
 import { SearchEmployeesComponent } from './components/search-employees/search-employees.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { ForbiddenComponent } from './components/forbidden/forbidden.component';
+
+import { HomeComponent } from './components/home/home.component';
+import { AuthGuard } from './auth/auth.guard';
+import { LoginComponent } from './components/login/login.component';
+import { UserComponent } from './components/user/user.component';
 
 const routes: Routes = [
   {
@@ -22,6 +29,20 @@ const routes: Routes = [
   ,
   {
     path: 'search', component : SearchEmployeesComponent
+  },
+  {
+    path:'admin', component : AdminComponent, canActivate : [AuthGuard], data : {roles : ['admin']}
+  },
+  {
+    path:'user', component : UserComponent, canActivate : [AuthGuard], data : {roles : ['user']}
+  },
+  {
+    path:'forbidden', component : ForbiddenComponent
+  },
+  {
+    path:'login', component : LoginComponent
+  },{
+    path : 'home', component : HomeComponent
   }
 ];
 

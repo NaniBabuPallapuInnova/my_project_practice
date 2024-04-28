@@ -7,7 +7,7 @@ public class PrimeNumbersProgram {
     public static void findPrimeOrNot(int number) {
         int count = 0;
         if (number > 1) {
-            for (int i = 2; i < number / 2; i++) {
+            for (int i = 2; i <= number / 2; i++) {
                 if (number % i == 0) {
                     count++;
                     break;
@@ -49,7 +49,7 @@ public class PrimeNumbersProgram {
 
     public static void main(String[] args) {
 
-        findPrimeOrNot(15);
+        findPrimeOrNot(4);
         System.out.print("Prime Numbers: ");
         printPrimeNumbersUpToN(1000);
     }

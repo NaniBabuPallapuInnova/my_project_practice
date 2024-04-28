@@ -1,0 +1,352 @@
+SQL Practice 
+=============
+create database practice_sql;
+
+
+--CREATING TABLES FOR PRACTICE
+--============================
+
+-- Create a table for storing customers
+CREATE TABLE customers (
+    customer_id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    phone_number VARCHAR(15)
+);
+
+-- Create a table for storing addresses
+CREATE TABLE addresses (
+    address_id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT,
+    street VARCHAR(100),
+    city VARCHAR(50),
+    state VARCHAR(50),
+    postal_code VARCHAR(20),
+    country VARCHAR(50),
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+);
+
+
+-- Create a table for storing orders
+CREATE TABLE orders (
+    order_id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT,
+    order_date DATE,
+    total_amount DECIMAL(10, 2),
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+);
+
+-- Create a table for storing order items
+CREATE TABLE order_items (
+    order_item_id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT,
+    product_name VARCHAR(100),
+    quantity INT,
+    unit_price DECIMAL(10, 2),
+    FOREIGN KEY (order_id) REFERENCES orders(order_id)
+);
+
+
+
+--INSERTING DATA INTO TABLES TO PRACTICE
+--=======================================
+
+-- Insert data into the customers table
+INSERT INTO customers (first_name, last_name, email, phone_number)
+VALUES
+    ('Ramesh', 'Kumar', 'ramesh@example.com', '9876543210'),
+    ('Suresh', 'Sharma', 'suresh@example.com', '8765432109'),
+    ('Preeti', 'Patel', 'preeti@example.com', '7654321098'),
+    ('Vikram', 'Singh', 'vikram@example.com', '6543210987'),
+    ('Priya', 'Mishra', 'priya@example.com', '5432109876'),
+    ('Amit', 'Verma', 'amit@example.com', '4321098765'),
+    ('Anita', 'Reddy', 'anita@example.com', '3210987654'),
+    ('Rajesh', 'Gupta', 'rajesh@example.com', '2109876543'),
+    ('Deepak', 'Shah', 'deepak@example.com', '1098765432'),
+    ('Neha', 'Jain', 'neha@example.com', '0987654321');
+
+
+-- Insert data into the addresses table
+INSERT INTO addresses (customer_id, street, city, state, postal_code, country)
+VALUES
+    (1, '123 ABC Street', 'Mumbai', 'Maharashtra', '400001', 'India'),
+    (2, '456 XYZ Street', 'Delhi', 'Delhi', '110001', 'India'),
+    (3, '789 PQR Street', 'Bangalore', 'Karnataka', '560001', 'India'),
+    (4, '101 QWE Street', 'Kolkata', 'West Bengal', '700001', 'India'),
+    (5, '888 JKL Street', 'Chennai', 'Tamil Nadu', '600001', 'India'),
+    (6, '222 MNO Street', 'Hyderabad', 'Telangana', '500001', 'India'),
+    (7, '555 UVW Street', 'Pune', 'Maharashtra', '411001', 'India'),
+    (8, '999 XYZ Street', 'Ahmedabad', 'Gujarat', '380001', 'India'),
+    (9, '777 FGH Street', 'Jaipur', 'Rajasthan', '302001', 'India'),
+    (10, '333 IJK Street', 'Lucknow', 'Uttar Pradesh', '226001', 'India');
+
+-- Insert data into the orders table
+INSERT INTO orders (customer_id, order_date, total_amount)
+VALUES
+    (1, '2024-03-15', 500.00),
+    (2, '2024-03-16', 750.00),
+    (3, '2024-03-17', 1000.00),
+    (4, '2024-03-18', 600.00),
+    (5, '2024-03-19', 900.00),
+    (6, '2024-03-20', 1200.00),
+    (7, '2024-03-21', 850.00),
+    (8, '2024-03-22', 950.00),
+    (9, '2024-03-23', 1100.00),
+    (10, '2024-03-24', 700.00);
+
+-- Insert data into the order_items table
+INSERT INTO order_items (order_id, product_name, quantity, unit_price)
+VALUES
+    (1, 'Product A', 2, 100.00),
+    (1, 'Product B', 1, 150.00),
+    (2, 'Product C', 3, 200.00),
+    (3, 'Product D', 1, 500.00),
+    (4, 'Product E', 2, 200.00),
+    (4, 'Product F', 1, 400.00),
+    (5, 'Product G', 3, 300.00),
+    (5, 'Product H', 1, 600.00),
+    (6, 'Product I', 2, 250.00),
+    (6, 'Product J', 1, 450.00),
+    (7, 'Product K', 4, 100.00),
+    (8, 'Product L', 2, 475.00),
+    (9, 'Product M', 1, 800.00),
+    (9, 'Product N', 3, 350.00),
+    (10, 'Product O', 2, 150.00),
+    (10, 'Product P', 1, 700.00);
+
+
+
+
+---PRACTICE QUESTIONS
+--===================
+
+**Customers Table:**
+
+1. Retrieve all customers' first names and last names.
+2. Get the email addresses of customers whose first name starts with 'R'.
+3. Find the phone numbers of customers whose last name ends with 'a'.
+4. Count the total number of customers.
+5. Get the details (first name, last name, email, phone number) of the customer with the highest customer_id.
+6. Find customers who have email addresses containing 'example'.
+7. Retrieve customers who have phone numbers starting with '98'.
+8. Get the number of distinct last names among customers.
+9. Retrieve customers sorted by last name in ascending order.
+10. Find customers who do not have an email address specified.
+
+**Addresses Table:**
+
+11. Get all addresses in Mumbai.
+12. Find the postal code of the address with the highest address_id.
+13. Retrieve addresses in Karnataka.
+14. Count the total number of addresses.
+15. Get the country of the address with the lowest address_id.
+16. Find addresses in cities starting with 'D'.
+17. Retrieve addresses with postal codes ending with '001'.
+18. Get distinct states from the addresses table.
+19. Find addresses in India.
+20. Retrieve addresses sorted by city in descending order.
+
+**Orders Table:**
+
+21. Retrieve all order IDs.
+22. Get the total amount of the order with the highest order_id.
+23. Find orders placed on '2024-03-15'.
+24. Count the total number of orders.
+25. Get the order date of the order with the lowest order_id.
+26. Find orders with a total amount greater than 1000.00.
+27. Retrieve orders placed before '2024-03-20'.
+28. Get the average total amount of all orders.
+29. Find orders placed by customer_id 3.
+30. Retrieve orders sorted by total amount in descending order.
+
+**Order_Items Table:**
+
+31. Retrieve all order item IDs.
+32. Get the product names of items with a quantity greater than 2.
+33. Find the total price of all items.
+34. Count the total number of order items.
+35. Get the quantity of the item with the highest order_item_id.
+36. Find items with a unit price less than 200.00.
+37. Retrieve items with a product name containing 'Product G'.
+38. Get the sum of the quantities of all items.
+39. Find items with a unit price greater than 500.00.
+40. Retrieve items sorted by unit price in ascending order.
+
+41. Retrieve all customers who have placed an order.
+42. Get the total number of orders placed by each customer.
+43. Find the customer who has placed the most orders.
+44. Retrieve the average total amount of orders placed by each customer.
+45. Get the customer who has spent the most on orders.
+46. Find the number of orders placed in each city.
+47. Retrieve the highest total amount of orders placed in a single order.
+48. Get the average quantity of items per order.
+49. Find the customer who has purchased the most items.
+50. Retrieve orders placed by customers with a specific email domain (e.g., '@example.com').
+
+51. Retrieve the first and last names of customers along with their corresponding addresses.
+52. Get the total amount of each order along with the corresponding customer's first name.
+53. Find the average total amount of orders placed in each city.
+54. Retrieve orders along with the customer's phone number and address city.
+55. Get the product names along with their corresponding unit prices.
+56. Find the total amount of each order along with the customer's last name.
+57. Retrieve orders placed by customers with a specific area code in their phone number.
+58. Get the order date and total amount of orders placed in each state.
+59. Find the customer who has placed the most expensive order.
+60. Retrieve orders along with the customer's first name and last name.
+
+61. Retrieve the first name and last name of customers who have placed orders.
+62. Get the total amount of orders placed in each country.
+63. Find the order date and total amount of orders placed by a specific customer.
+64. Retrieve the first name and email address of customers who have placed orders.
+65. Get the order date and total amount of orders placed by a customer with a specific email address.
+66. Find the customer who has placed the least expensive order.
+67. Retrieve the first name and phone number of customers who have placed orders.
+68. Get the total number of orders placed in each month.
+69. Find the order date and total amount of orders placed by a customer with a specific phone number.
+70. Retrieve the first name and address city of customers who have placed orders.
+
+71. Retrieve the first name and last name of customers who have placed orders in Maharashtra.
+72. Get the total number of orders placed in each city.
+73. Find the order date and total amount of orders placed in Bangalore.
+74. Retrieve the first name and email address of customers who have placed orders in Delhi.
+75. Get the total number of orders placed in each state.
+76. Find the order date and total amount of orders placed in Tamil Nadu.
+77. Retrieve the first name and phone number of customers who have placed orders in Mumbai.
+78. Get the total number of orders placed in each country.
+79. Find the order date and total amount of orders placed in West Bengal.
+80. Retrieve the first name and address postal code of customers who have placed orders in Chennai.
+
+81. Retrieve the first name and last name of customers who have placed orders with a total amount greater than 1000.00.
+82. Get the total amount of orders placed by customers with a specific last name.
+83. Find the order date and total amount of orders placed by customers with a specific first name.
+84. Retrieve the first name and email address of customers who have placed orders with a total amount less than 500.00.
+85. Get the total amount of orders placed by customers with a specific phone number.
+86. Find the order date and total amount of orders placed by customers with a specific email address.
+87. Retrieve the first name and phone number of customers who have placed orders with a total amount greater than 750.00.
+88. Get the total amount of orders placed by customers with a specific address city.
+89. Find the order date and total amount of orders placed by customers with a specific address state.
+90. Retrieve the first name and address postal code of customers who have placed orders with a total amount less than 600.00.
+
+91. Retrieve the first name and last name of customers who have placed orders containing a specific product name.
+92. Get the total amount of orders placed by customers with a specific address postal code.
+93. Find the order date and total amount of orders placed by customers with a specific address country.
+94. Retrieve the first name and email address of customers who have placed orders containing a specific product name.
+95. Get the total amount of orders placed by customers with a specific email domain.
+96. Find the order date and total amount of orders placed by customers with a specific phone number area code.
+97. Retrieve the first name and phone number of customers who have placed orders containing a specific product name.
+98. Get the total amount of orders placed by customers with a specific last name initial.
+99. Find the order date and total amount of orders placed by customers with a specific first name initial.
+100. Retrieve the first name and address city of customers who have placed orders containing a specific product name.
+
+
+101. Retrieve the first name and last name of customers who have not placed any orders.
+102. Get the total number of orders placed by customers with a specific email domain.
+103. Find the average total amount of orders placed by customers in each city.
+104. Retrieve orders placed on weekends (Saturday and Sunday).
+105. Get the total amount of orders placed by customers with a specific area code in their phone number.
+106. Find the order date and total amount of orders placed in each year.
+107. Retrieve the first name and last name of customers who have placed orders with a total amount greater than the average total amount of all orders.
+108. Get the total number of orders placed by customers in each month of a specific year.
+109. Find the order date and total amount of orders placed by customers with a specific last name.
+110. Retrieve the first name and email address of customers who have placed orders with a total amount less than the average total amount of all orders.
+
+111. Retrieve the first name and phone number of customers who have placed orders with a total amount greater than the average total amount of all orders.
+112. Get the total amount of orders placed by customers with a specific address city and state.
+113. Find the order date and total amount of orders placed by customers with a specific first name.
+114. Retrieve the first name and address postal code of customers who have placed orders with a total amount less than the average total amount of all orders.
+115. Get the total amount of orders placed by customers with a specific last name initial.
+116. Find the order date and total amount of orders placed by customers with a specific email address.
+117. Retrieve the first name and phone number of customers who have placed orders with a total amount greater than the average total amount of all orders.
+118. Get the total amount of orders placed by customers with a specific address city and country.
+119. Find the order date and total amount of orders placed by customers with a specific phone number.
+120. Retrieve the first name and address city of customers who have placed orders with a total amount greater than the average total amount of all orders.
+
+121. Retrieve the first name and last name of customers who have placed orders with a total amount less than the average total amount of all orders.
+122. Get the total amount of orders placed by customers with a specific address state and country.
+123. Find the order date and total amount of orders placed by customers with a specific address postal code.
+124. Retrieve the first name and email address of customers who have placed orders with a total amount greater than the average total amount of all orders.
+125. Get the total amount of orders placed by customers with a specific email domain.
+126. Find the order date and total amount of orders placed by customers with a specific phone number area code.
+127. Retrieve the first name and phone number of customers who have placed orders with a total amount less than the average total amount of all orders.
+128. Get the total amount of orders placed by customers with a specific address city, state, and country.
+129. Find the order date and total amount of orders placed by customers with a specific last name initial.
+130. Retrieve the first name and address postal code of customers who have placed orders with a total amount greater than the average total amount of all orders.
+
+131. Retrieve the first name and last name of customers who have placed orders with a total amount greater than the average total amount of all orders.
+132. Get the total amount of orders placed by customers with a specific address city, state, and country.
+133. Find the order date and total amount of orders placed by customers with a specific email domain.
+134. Retrieve the first name and email address of customers who have placed orders with a total amount less than the average total amount of all orders.
+135. Get the total amount of orders placed by customers with a specific phone number area code.
+136. Find the order date and total amount of orders placed by customers with a specific address city and state.
+137. Retrieve the first name and phone number of customers who have placed orders with a total amount greater than the average total amount of all orders.
+138. Get the total amount of orders placed by customers with a specific address city, state, and postal code.
+139. Find the order date and total amount of orders placed by customers with a specific address city and postal code.
+140. Retrieve the first name and address country of customers who have placed orders with a total amount less than the average total amount of all orders.
+
+141. Retrieve the first name and last name of customers who have placed orders with a total amount less than the average total amount of all orders.
+142. Get the total amount of orders placed by customers with a specific address state, postal code, and country.
+143. Find the order date and total amount of orders placed by customers with a specific address state and postal code.
+144. Retrieve the first name and email address of customers who have placed orders with a total amount greater than the average total amount of all orders.
+145. Get the total amount of orders placed by customers with a specific address city, postal code, and country.
+146. Find the order date and total amount of orders placed by customers with a specific address city, postal code, and country.
+147. Retrieve the first name and phone number of customers who have placed orders with a total amount less than the average total amount of all orders.
+148. Get the total amount of orders placed by customers with a specific address state, postal code, and country.
+149. Find the order date and total amount of orders placed by customers with a specific address city, state, and postal code.
+150. Retrieve the first name and address city of customers who have placed orders with a total amount greater than the average total amount of all orders.
+
+151. Retrieve the first name and last name of customers who have placed orders with a total amount greater than the average total amount of all orders.
+152. Get the total amount of orders placed by customers with a specific address city, state, postal code, and country.
+153. Find the order date and total amount of orders placed by customers with a specific address city, state, and country.
+154. Retrieve the first name and email address of customers who have placed orders with a total amount less than the average total amount of all orders.
+155. Get the total amount of orders placed by customers with a specific address city, state, postal code, and country.
+156. Find the order date and total amount of orders placed by customers with a specific address city, postal code, and country.
+157. Retrieve the first name and phone number of customers who have placed orders with a total amount less than the average total amount of all orders.
+158. Get the total amount of orders placed by customers with a specific address state, postal code, and country.
+159. Find the order date and total amount of orders placed by customers with a specific address city, state, and postal code.
+160. Retrieve the first name and address country of customers who have placed orders with a total amount greater than the average total amount of all orders.
+
+161. Retrieve the first name and last name of customers who have placed orders with a total amount less than the average total amount of all orders.
+162. Get the total amount of orders placed by customers with a specific address city, state, postal code, and country.
+163. Find the order date and total amount of orders placed by customers with a specific address city, state, and country.
+164. Retrieve the first name and email address of customers who have placed orders with a total amount greater than the average total amount of all orders.
+165. Get the total amount of orders placed by customers with a specific address city, state, postal code, and country.
+166. Find the order date and total amount of orders placed by customers with a specific address city, postal code, and country.
+167. Retrieve the first name and phone number of customers who have placed orders with a total amount less than the average total amount of all orders.
+168. Get the total amount of orders placed by customers with a specific address state, postal code, and country.
+169. Find the order date and total amount of orders placed by customers with a specific address city, state, and postal code.
+170. Retrieve the first name and address country of customers who have placed orders with a total amount greater than the average total amount of all orders.
+
+171. Retrieve the first name and last name of customers who have placed orders with a total amount greater than the average total amount of all orders.
+172. Get the total amount of orders placed by customers with a specific address city, state, postal code, and country.
+173. Find the order date and total amount of orders placed by customers with a specific address city, state, and country.
+174. Retrieve the first name and email address of customers who have placed orders with a total amount less than the average total amount of all orders.
+175. Get the total amount of orders placed by customers with a specific address city, state, postal code, and country.
+176. Find the order date and total amount of orders placed by customers with a specific address city, postal code, and country.
+177. Retrieve the first name and phone number of customers who have placed orders with a total amount less than the average total amount of all orders.
+178. Get the total amount of orders placed by customers with a specific address state, postal code, and country.
+179. Find the order date and total amount of orders placed by customers with a specific address city, state, and postal code.
+180. Retrieve the first name and address country of customers who have placed orders with a total amount greater than the average total amount of all orders.
+
+181. Retrieve the first name and last name of customers who have placed orders with a total amount less than the average total amount of all orders.
+182. Get the total amount of orders placed by customers with a specific address city, state, postal code, and country.
+183. Find the order date and total amount of orders placed by customers with a specific address city, state, and country.
+184. Retrieve the first name and email address of customers who have placed orders with a total amount greater than the average total amount of all orders.
+185. Get the total amount of orders placed by customers with a specific address city, state, postal code, and country.
+186. Find the order date and total amount of orders placed by customers with a specific address city, postal code, and country.
+187. Retrieve the first name and phone number of customers who have placed orders with a total amount less than the average total amount of all orders.
+188. Get the total amount of orders placed by customers with a specific address state, postal code, and country.
+189. Find the order date and total amount of orders placed by customers with a specific address city, state, and postal code.
+190. Retrieve the first name and address country of customers who have placed orders with a total amount greater than the average total amount of all orders.
+
+191. Retrieve the first name and last name of customers who have placed orders with a total amount greater than the average total amount of all orders.
+192. Get the total amount of orders placed by customers with a specific address city, state, postal code, and country.
+193. Find the order date and total amount of orders placed by customers with a specific address city, state, and country.
+194. Retrieve the first name and email address of customers who have placed orders with a total amount less than the average total amount of all orders.
+195. Get the total amount of orders placed by customers with a specific address city, state, postal code, and country.
+196. Find the order date and total amount of orders placed by customers with a specific address city, postal code, and country.
+197. Retrieve the first name and phone number of customers who have placed orders with a total amount less than the average total amount of all orders.
+198. Get the total amount of orders placed by customers with a specific address state, postal code, and country.
+199. Find the order date and total amount of orders placed by customers with a specific address city, state, and postal code.
+200. Retrieve the first name and address country of customers who have placed orders with a total amount greater than the average total amount of all orders.
+

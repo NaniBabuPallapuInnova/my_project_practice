@@ -1,0 +1,41 @@
+Sure, here's an explanation of the JWT (JSON Web Token) authentication process in your application:
+
+1. **Client Authentication Request**:
+   - When a client (such as a web browser or mobile app) sends a request to your server to authenticate a user, it typically includes the user's credentials (e.g., username and password) in the request body.
+
+2. **JWT Token Creation**:
+   - Upon receiving the authentication request, your server's `JwtResource` controller handles the request.
+   - The `createJwtToken` method in the `JwtService` class is invoked. This method generates a JWT token based on the provided user credentials.
+   - The `createJwtToken` method utilizes Spring Security's `AuthenticationManager` to authenticate the user's credentials.
+
+3. **User Authentication**:
+   - The `JwtService` class uses Spring Security's `AuthenticationManager` to authenticate the user's credentials.
+   - The `authenticate` method in `JwtService` performs the authentication process using Spring Security's authentication mechanisms.
+   - If the provided credentials are valid, authentication succeeds, and the user is considered authenticated.
+
+4. **JWT Token Generation**:
+   - After successful authentication, the `createJwtToken` method in the `JwtService` class generates a JWT token.
+   - The JWT token includes claims such as the user's identity (username), issuance time, expiration time, and possibly other custom claims.
+
+5. **Token Issuance**:
+   - The generated JWT token is returned to the client as part of the response from the `createJwtToken` method in the `JwtResource` controller.
+   - The client receives the JWT token and typically stores it securely (e.g., in local storage or a cookie) for future authenticated requests.
+
+6. **Subsequent Requests with JWT**:
+   - For subsequent requests that require authentication, the client includes the JWT token in the request headers, typically in the `Authorization` header with the value `Bearer <token>`.
+   - The client sends the JWT token along with the request to access protected resources on the server.
+
+7. **JWT Token Validation**:
+   - Upon receiving a request with a JWT token, the server's `JwtRequestFilter` intercepts the request.
+   - The filter extracts the JWT token from the request headers and validates its integrity and expiration using the `JwtUtil` class.
+   - If the token is valid, the filter allows the request to proceed; otherwise, it may reject the request with an unauthorized response.
+
+8. **Access to Protected Resources**:
+   - If the JWT token is valid and the user is authenticated, the server grants access to the requested resources.
+   - Spring Security's authorization mechanisms may further control access based on user roles and permissions.
+
+9. **Token Expiry and Renewal**:
+   - When a JWT token expires, the client needs to obtain a new token by re-authenticating with the server.
+   - The client can initiate the re-authentication process by sending another authentication request to obtain a fresh JWT token.
+
+In summary, the JWT authentication process involves generating a token upon successful user authentication, issuing the token to the client, validating the token on subsequent requests, and granting access to protected resources if the token is valid and the user is authenticated.

@@ -1,8 +1,6 @@
 
 t
 Dmypractice/com/imp_interfaces_in_java/comparable/MainComparable.java,b\9\b9c19e50ad48936164d59747767fe2c86b84c0dc
-R
-"mypractice/com/practice/Check.java,4\0\40882328a2c82b9efc675eb99021b03444e9c98c
 w
 Gmypractice/com/programs_practice/basics_programs/PalindromeProgram.java,3\2\32ba16f2fb243f3bf6f53c6f14bbd2fcc8dd6767
 r
@@ -31,17 +29,21 @@ Nmypractice/com/programs_practice/strings_programs/DivideStringNEqualParts.java
 Wmypractice/com/programs_practice/strings_programs/CheckVowelsAndConsonantsInString.java,b\e\be48f25ee2760b1946299f6fc465f91103f11096
 r
 Bmypractice/com/programs_practice/strings_programs/SwapStrings.java,5\b\5b5639ce2bdbb5d5fa626fcd048ce4aefa068d3e
-[
-+mypractice/com/practice/SortingProblem.java,f\7\f7e3594e5a552c0b68b7e8f7e1d98583237d6a9d
 t
 Dmypractice/com/imp_interfaces_in_java/comparator/MainComparator.java,4\d\4ddfef24d88b630abd4999e86264d13df2859b82
 `
 0mypractice/com/collections/Collections_Notes.txt,d\b\dbb2af84037cfdfa493bc85525afce32a97c3e29
-X
-(mypractice/com/practice/MainExample.java,8\4\84a42d7074a00a49d59a772dbfb6f677a81fbe0d
 c
 3mypractice/com/basics/DecisionMakingStatements.java,4\8\48fefb06c475ad038c84d9d3bffb5a2c5b4a529f
 f
 6mypractice/com/collections/list/ArrayListExample1.java,4\1\41b409b977998375c32eabf62c610dea87605aa6
 p
 @mypractice/com/collections/programs_on_collections/Program2.java,c\a\cae4195a82eb791066c4c3cdb8e7abea52d0a923
+y
+Imypractice/com/programs_practice/basics_programs/PrimeNumbersProgram.java,5\7\577236bc0300063c9074d76c407f7fb61dbaad83
+J
+test/com/PracticeTest.java,5\1\514f54566dc89dde3b3167f7de8b667343474e1d
+M
+junit_practice/Calculate.java,a\7\a77216e99d6a4c07d7b44645a312de8377be7458
+Q
+!junit_practice/CalculateTest.java,1\7\17c3676accc7061beec211e80e9a9e51b3bd4370

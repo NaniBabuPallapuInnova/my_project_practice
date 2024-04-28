@@ -1,0 +1,20 @@
+
+
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Çµí‘8Ïçè†ï1
+R
+java:S1128"0Remove this unused import 'java.io.IOException'.(ªº»Úıÿÿÿÿ8Ïçè†ï1
+M
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8Ïçè†ï1
+O
+java:S1128"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ8Ïçè†ï1
+M
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8Ïçè†ï1
+U
+java:S1128"8Remove this unused import 'java.util.function.Function'.(»³Í8Ïçè†ï1
+V
+java:S1128"9Remove this unused import 'java.util.function.Predicate'.(ïÍ–¶8Øçè†ï1
+Z
+java:S1128	"=Remove this unused import 'java.util.function.ToIntFunction'.(§÷Ù8Øçè†ï1
+Z
+java:S1128
+"8Remove this unused import 'java.util.stream.Collectors'.(Óóº´úÿÿÿÿ8Úçè†ï1

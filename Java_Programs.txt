@@ -1,0 +1,167 @@
+Java Practice Programs
+================================
+### Basics:
+===========
+1. Write a Java program to print "Hello, World!".
+2. Write a Java program to find the sum of two numbers.
+3. Write a Java program to swap two numbers without using a temporary variable.
+4. Write a Java program to calculate the factorial of a number.
+5. Write a Java program to check whether a number is prime or not.
+6. Write a Java program to find the largest among three numbers.
+7. Write a Java program to check whether a given character is a vowel or consonant.
+8. Write a Java program to check whether a given string is a palindrome or not.
+9. Write a Java program to calculate the area of a circle.
+10. Write a Java program to generate Fibonacci series.
+
+### Control Flow and Loops:
+============================
+11. Write a Java program to print even and odd numbers between 1 to 100.
+12. Write a Java program to display a pattern (e.g., pyramid) using nested loops.
+13. Write a Java program to find the factorial of a number using recursion.
+14. Write a Java program to implement the binary search algorithm.
+15. Write a Java program to reverse a string.
+16. Write a Java program to find the sum of digits of a number.
+17. Write a Java program to print the Fibonacci series using recursion.
+18. Write a Java program to find the GCD (Greatest Common Divisor) of two numbers.
+19. Write a Java program to convert decimal to binary.
+20. Write a Java program to find the factorial of a number using the do-while loop.
+
+
+### Arrays:
+============
+1. Write a Java program to find the sum of elements in an array.
+2. Write a Java program to find the largest element in an array.
+3. Write a Java program to find the second largest element in an array.
+4. Write a Java program to sort an array in ascending order.
+5. Write a Java program to sort an array in descending order.
+6. Write a Java program to find the intersection of two arrays.
+7. Write a Java program to merge two sorted arrays.
+8. Write a Java program to check if an array is palindrome or not.
+9. Write a Java program to remove duplicates from an array.
+10. Write a Java program to rotate an array to the left by N positions.
+11. Write a Java program to rotate an array to the right by N positions.
+12. Write a Java program to find the equilibrium index of an array.
+13. Write a Java program to find the majority element in an array.
+14. Write a Java program to find the maximum difference between two elements in an array.
+15. Write a Java program to find the subarray with the maximum sum.
+16. Write a Java program to find the subarray with the given sum.
+17. Write a Java program to find the pair with the given sum in an array.
+18. Write a Java program to reverse elements of an array.
+19. Write a Java program to implement matrix multiplication.
+20. Write a Java program to find the transpose of a matrix.
+
+### Strings:
+=================
+1. Write a Java program to check if a string is palindrome or not.
+2. Write a Java program to reverse a string.
+3. Write a Java program to check if two strings are anagrams of each other.
+4. Write a Java program to find the first non-repeating character in a string.
+5. Write a Java program to count vowels and consonants in a string.
+6. Write a Java program to find the longest substring without repeating characters.
+7. Write a Java program to check if a string contains only digits.
+8. Write a Java program to convert the case of a string (uppercase to lowercase and vice versa).
+9. Write a Java program to check if a string is a rotation of another.
+10. Write a Java program to remove all duplicates from a string.
+11. Write a Java program to count the occurrences of a character in a string.
+12. Write a Java program to reverse words in a sentence.
+13. Write a Java program to check if a string is a valid palindrome considering only alphanumeric characters.
+14. Write a Java program to find the longest common prefix among an array of strings.
+15. Write a Java program to check if a string contains a valid parentheses sequence.
+16. Write a Java program to find all permutations of a string.
+17. Write a Java program to find the shortest substring containing all characters of a given string.
+18. Write a Java program to find the kth non-repeating character in a string.
+19. Write a Java program to convert a string to its equivalent integer representation.
+20. Write a Java program to remove all spaces from a string.
+
+### Collections:
+==================
+1. Write a Java program to demonstrate basic operations on ArrayList (add, remove, get).
+2. Write a Java program to sort elements of an ArrayList in ascending order.
+3. Write a Java program to find the intersection of two ArrayLists.
+4. Write a Java program to merge two ArrayLists.
+5. Write a Java program to remove duplicates from an ArrayList.
+6. Write a Java program to reverse elements of an ArrayList.
+7. Write a Java program to find the frequency of elements in an ArrayList.
+8. Write a Java program to convert an ArrayList to an array.
+9. Write a Java program to iterate over elements of an ArrayList using Iterator.
+10. Write a Java program to convert an ArrayList to a LinkedList.
+11. Write a Java program to demonstrate basic operations on LinkedList (add, remove, get).
+12. Write a Java program to reverse elements of a LinkedList.
+13. Write a Java program to find the intersection of two LinkedLists.
+14. Write a Java program to merge two LinkedLists.
+15. Write a Java program to remove duplicates from a LinkedList.
+16. Write a Java program to find the frequency of elements in a LinkedList.
+17. Write a Java program to convert a LinkedList to an array.
+18. Write a Java program to iterate over elements of a LinkedList using ListIterator.
+19. Write a Java program to convert a LinkedList to a HashSet.
+20. Write a Java program to convert a LinkedList to a TreeSet.
+
+### Object-Oriented Programming (OOP) Concepts:
+=================================================
+31. Write a Java program to create a class representing a Circle with methods to calculate area and perimeter.
+32. Write a Java program to create a class representing a Student with fields such as name, roll number, and marks in three subjects.
+33. Write a Java program to demonstrate inheritance with a superclass and subclass.
+34. Write a Java program to demonstrate encapsulation.
+35. Write a Java program to demonstrate method overloading and method overriding.
+36. Write a Java program to demonstrate the concept of abstraction with interfaces.
+37. Write a Java program to create a class representing a Bank Account with methods for deposit, withdrawal, and balance inquiry.
+38. Write a Java program to demonstrate the use of static keyword.
+39. Write a Java program to implement a simple calculator using classes and objects.
+40. Write a Java program to demonstrate the concept of polymorphism.
+
+### Exception Handling:
+===========================
+41. Write a Java program to demonstrate the try-catch-finally block.
+42. Write a Java program to handle ArrayIndexOutOfBoundsException.
+43. Write a Java program to handle NullPointerException.
+44. Write a Java program to demonstrate the use of custom exceptions.
+45. Write a Java program to demonstrate throwing exceptions.
+
+### File Handling:
+=======================
+46. Write a Java program to read and write text files.
+47. Write a Java program to copy the contents of one file to another.
+48. Write a Java program to merge two files.
+49. Write a Java program to serialize and deserialize objects.
+50. Write a Java program to read and write CSV files.
+
+### Multithreading:
+=====================
+51. Write a Java program to create and run a simple thread.
+52. Write a Java program to demonstrate synchronization in multithreading.
+53. Write a Java program to use thread pools.
+54. Write a Java program to implement the producer-consumer problem.
+55. Write a Java program to implement the dining philosophers problem.
+
+### Matrices:
+=================
+56. Write a Java program to add two matrices.
+57. Write a Java program to multiply two matrices.
+58. Write a Java program to find the transpose of a matrix.
+59. Write a Java program to check whether a matrix is symmetric or not.
+60. Write a Java program to find the sum of each row and column of a matrix.
+
+### JDBC:
+===========
+61. Write a Java program to connect to a database.
+62. Write a Java program to insert data into a database.
+63. Write a Java program to retrieve data from a database.
+64. Write a Java program to update data in a database.
+65. Write a Java program to delete data from a database.
+
+### Collections Data Structures:
+==================================
+=
+66. Write a Java program to demonstrate ArrayList.
+67. Write a Java program to demonstrate LinkedList.
+68. Write a Java program to demonstrate HashMap.
+69. Write a Java program to demonstrate TreeSet.
+70. Write a Java program to demonstrate PriorityQueue.
+
+### Algorithms:
+==================
+71. Write a Java program to implement depth-first search (DFS).
+72. Write a Java program to implement breadth-first search (BFS).
+73. Write a Java program to implement Dijkstra's algorithm.
+74. Write a Java program to implement the A* algorithm.
+75. Write a Java program to implement bubble sort.

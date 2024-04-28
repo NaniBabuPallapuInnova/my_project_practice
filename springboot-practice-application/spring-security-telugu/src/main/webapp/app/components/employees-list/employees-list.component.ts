@@ -5,6 +5,9 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { Page } from '../../interfaces/page';
 import { PaginationInstance, PaginationService } from 'ngx-pagination';
+import { UserAuthService } from '../../services/user-auth.service';
+import { UserService } from '../../services/user.service';
+
 
 @Component({
   selector: 'app-employees-list',
@@ -12,6 +15,8 @@ import { PaginationInstance, PaginationService } from 'ngx-pagination';
   styleUrls: ['./employees-list.component.scss']
 })
 export class EmployeesListComponent implements OnInit {
+
+  isLoggedIn : boolean = false;
 
   // Initialize employeesListData with default values for its properties
   employeesListPageData!: Page<Employee>;
@@ -21,12 +26,15 @@ export class EmployeesListComponent implements OnInit {
   totalPages = 0;
 
 
-  constructor(private employeeService: EmployeeService) {
+  constructor(private employeeService: EmployeeService, private userAuthService : UserAuthService, private router : Router, public userService :UserService) {
 
   }
   ngOnInit() {
 
     this.getEmployeesList();
+
+    this.isLoggedIn = this.userAuthService.isLoggedIn();
+
   }
 
 
@@ -62,6 +70,22 @@ export class EmployeesListComponent implements OnInit {
     this.getEmployeesList();
   }
 
+  downloadEmployeeDetailAsJSONFile(id : number){
+
+    this.employeeService.downloadEmployeeDetailsAsJSONFile(id).subscribe( data => {
+      console.log(data+" file dowloaded");
+      window.alert("JSON file downloaded successfully");
+    })
+  }
+
+  downloadEmployeeDetailAsXMLFile(id : number){
+
+    this.employeeService.downloadEmployeeDetailsAsXMLFile(id).subscribe( data => {
+      console.log(data+" file downloaded");
+      window.alert("XML file downloaded successfully");
+    })
+  }
+
   previousPage(){
     if(this.currentPage > 1){
       this.currentPage --;
@@ -78,6 +102,11 @@ export class EmployeesListComponent implements OnInit {
   }
 
 
+  logOut(){
+    this.isLoggedIn = !this.isLoggedIn;
+    this.userAuthService.clear();
+    this.router.navigate(['/login']);
+  }
 
 
 }
