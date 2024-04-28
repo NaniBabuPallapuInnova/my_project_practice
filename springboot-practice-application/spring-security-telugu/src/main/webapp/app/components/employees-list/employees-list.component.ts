@@ -8,6 +8,7 @@ import { PaginationInstance, PaginationService } from 'ngx-pagination';
 import { UserAuthService } from '../../services/user-auth.service';
 import { UserService } from '../../services/user.service';
 
+
 @Component({
   selector: 'app-employees-list',
   templateUrl: './employees-list.component.html',
@@ -67,6 +68,22 @@ export class EmployeesListComponent implements OnInit {
 
     window.alert('Employee Has Been Delete Sucessfully employee :' + id);
     this.getEmployeesList();
+  }
+
+  downloadEmployeeDetailAsJSONFile(id : number){
+
+    this.employeeService.downloadEmployeeDetailsAsJSONFile(id).subscribe( data => {
+      console.log(data+" file dowloaded");
+      window.alert("JSON file downloaded successfully");
+    })
+  }
+
+  downloadEmployeeDetailAsXMLFile(id : number){
+
+    this.employeeService.downloadEmployeeDetailsAsXMLFile(id).subscribe( data => {
+      console.log(data+" file downloaded");
+      window.alert("XML file downloaded successfully");
+    })
   }
 
   previousPage(){

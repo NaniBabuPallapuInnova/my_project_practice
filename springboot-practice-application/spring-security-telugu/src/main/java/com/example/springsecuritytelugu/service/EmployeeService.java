@@ -12,8 +12,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.StoredProcedureQuery;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -21,11 +25,22 @@ import java.util.NoSuchElementException;
 public class EmployeeService {
 
   public static final Logger log = LoggerFactory.getLogger(EmployeeService.class);
+  public static final String EMAIL_REGEX = "\\b[A-Za-z0-9._%+-]+@gmail\\.com\\b";
+
   @Autowired
   EmployeeRepository employeeRepository;
 
   @Autowired
   EmployeeMapper employeeMapper;
+
+  @Autowired
+  EntityManager entityManager;
+
+  @Autowired
+  JSONParserService jsonParserService;
+
+  @Autowired
+  XmlParseService xmlParseService;
 
   public Page<EmployeeDTO> getAllEmployees(Pageable pageable) {
     Page<Employee> employeePage = employeeRepository.findAll(pageable);
@@ -47,8 +62,8 @@ public class EmployeeService {
 
   }
 
-  public EmployeeDTO updateEmployeeDetails(Long id, EmployeeDTO employeeDTO){
-    Employee employee = employeeRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Employee Not Found"+id));
+  public EmployeeDTO updateEmployeeDetails(Long id, EmployeeDTO employeeDTO) {
+    Employee employee = employeeRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Employee Not Found" + id));
     employee.setName(employeeDTO.getName());
     employee.setEmail(employeeDTO.getEmail());
     employee.setPhone(employeeDTO.getPhone());
@@ -56,13 +71,14 @@ public class EmployeeService {
     employee.setDateOfJoining(employeeDTO.getDateOfJoining());
     employeeRepository.save(employee);
     EmployeeDTO updatedEmployeeDTO = employeeMapper.toDTO(employee);
-    log.info("employee details have been updated id : {}, employee : {}",id, updatedEmployeeDTO);
+    log.info("employee details have been updated id : {}, employee : {}", id, updatedEmployeeDTO);
     return updatedEmployeeDTO;
   }
 
   public EmployeeDTO findEmployeeById(Long id) {
-    Employee employee = employeeRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Employee Not Found"+id));
+    Employee employee = employeeRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Employee Not Found" + id));
     EmployeeDTO employeeDTO = employeeMapper.toDTO(employee);
+
     return employeeDTO;
   }
 
@@ -77,12 +93,55 @@ public class EmployeeService {
     employeeRepository.deleteById(id);
   }
 
+
+  /**
+   * Searches for employees by either name or employee ID, and optionally by email using a stored procedure.
+   *
+   * @param keyword The search keyword to match against employee names, IDs, or emails.
+   * @return A list of EmployeeDTO objects representing the matched employees.
+   */
+  @Transactional(rollbackFor = Exception.class)
   public List<EmployeeDTO> searchEmployeeByEmployeeIdOrName(String keyword) {
     List<Employee> employeeList = employeeRepository.findByNameContainingIgnoreCaseOrEmpIdContainingIgnoreCase(keyword, keyword);
 
-    List<EmployeeDTO> employeeDTOS = new ArrayList<>();
+    if (keyword.matches(EMAIL_REGEX)) {
+      StoredProcedureQuery storedProcedureQuery = entityManager.createNamedStoredProcedureQuery("SearchEmployees");
+      storedProcedureQuery.setParameter("emp_email", keyword);
 
+      // Execute the stored procedure query
+      List<Employee> resultList = storedProcedureQuery.execute() ? storedProcedureQuery.getResultList() : Collections.emptyList();
+      employeeList.addAll(resultList);
+    }
+
+    List<EmployeeDTO> employeeDTOS = new ArrayList<>();
     employeeList.forEach(employee -> employeeDTOS.add(employeeMapper.toDTO(employee)));
     return employeeDTOS;
   }
+
+
+  public EmployeeDTO downloadEmployeeAsJSONFile(Long id) {
+    Employee employee = employeeRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Employee Not Found" + id));
+    EmployeeDTO employeeDTO = employeeMapper.toDTO(employee);
+
+    // converting Java Object into JSON String and download file
+    String jsonString = jsonParserService.objectToJson(employeeDTO);
+
+    //converting JSON string into Java Object
+    jsonParserService.jsonToObject(jsonString);
+    return employeeDTO;
+  }
+
+  public EmployeeDTO downloadEmployeeAsXMLFile(Long id) {
+    Employee employee = employeeRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Employee Not Found" + id));
+    EmployeeDTO employeeDTO = employeeMapper.toDTO(employee);
+
+    // converting object into xml and print on console
+    String xmlString = xmlParseService.objectToXML(employeeDTO);
+
+    employeeDTO = xmlParseService.XMLToObject(xmlString);
+
+    return employeeDTO;
+  }
+
+
 }

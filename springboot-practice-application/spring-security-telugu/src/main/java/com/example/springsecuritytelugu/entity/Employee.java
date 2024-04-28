@@ -1,6 +1,7 @@
 package com.example.springsecuritytelugu.entity;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.beans.factory.annotation.Required;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -8,6 +9,35 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "employee")
+/**
+ * Defines named stored procedure queries for accessing employee data.
+ */
+@NamedStoredProcedureQueries({
+
+  /**
+   * Named Stored Procedure Query: SearchEmployees
+   *
+   * This query is used to search for employees by email using a stored procedure.
+   */
+  @NamedStoredProcedureQuery(
+    name = "SearchEmployees", // Name of the stored procedure query
+    procedureName = "security_telugu.usp_search_employee", // Name of the stored procedure
+    resultClasses = Employee.class, // Result class type
+    parameters = {
+      /**
+       * IN Parameter: emp_email
+       *
+       * Specifies the email address of the employee to search for.
+       */
+      @StoredProcedureParameter(
+        mode = ParameterMode.IN, // Parameter mode (IN, OUT, INOUT)
+        name = "emp_email", // Name of the parameter in the stored procedure
+        type = String.class // Data type of the parameter
+      )
+    }
+  )
+})
+
 public class Employee {
 
   @Id
@@ -16,6 +46,7 @@ public class Employee {
 
   @Column(name = "emp_id")
   private String empId;
+
   @Column(name = "name")
   @Size(min = 4, max = 20, message = "Name must be between 4 and 20 characters")
   private String name;

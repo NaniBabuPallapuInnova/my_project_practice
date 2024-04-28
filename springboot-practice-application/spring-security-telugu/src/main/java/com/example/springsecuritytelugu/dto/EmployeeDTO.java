@@ -2,24 +2,37 @@ package com.example.springsecuritytelugu.dto;
 
 
 import javax.persistence.Column;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD) //To explicitly tell JAXB to ignore properties(setters & getters) and only use fields(variable)
+//@XmlAccessorType(XmlAccessType.PROPERTY) //To explicitly tell JAXB to ignore fields(variable) and only use properties(setters & getters)
 public class EmployeeDTO {
-
+  @XmlElement
   private Long id;
 
+  @XmlElement
   private String empId;
+  @XmlElement
 
   private String name;
+  @XmlElement
 
   private String email;
-
+  @XmlElement
   private String password;
+  @XmlElement
 
   private Boolean activeAccount;
+  @XmlElement
 
   private String phone;
-
+  @XmlElement
   private double salary;
+  @XmlElement
 
   private String dateOfJoining;
 

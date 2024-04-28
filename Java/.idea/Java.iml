@@ -8,6 +8,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="mysql.connector.java" level="project" />
+    <orderEntry type="library" name="junit4jars" level="project" />
   </component>
   <component name="SonarLintModuleSettings">
     <option name="uniqueId" value="4109726e-6952-4d5b-bacc-5fc4e6f09caa" />

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+		"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+		"http://struts.apache.org/dtds/struts-2.5.dtd">
+
+
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<package name="basicstruts2" extends="struts-default">
+
+		<action name="index" class="com.example.controller.UserAction"
+			method="retriveUsers">
+			<result name="success">/index.jsp</result>
+			<result name="failed">/error.jsp</result>
+		</action>
+
+		<action name="enrollForm">
+			<result>/enrollmentForm.jsp</result>
+		</action>
+
+		<action name="saveEnrollment"
+			class="com.example.controller.UserAction" method="newEnrollment">
+			<result name="success">/success.jsp</result>
+			<result name="failed">/error.jsp</result>
+		</action>
+
+		<action name="updateForm"
+			class="com.example.controller.UserAction"
+			method="loadUserByEnrollmentId">
+			<param name="enrollmentId">${enrollmentId}</param>
+			<result name="success">/updateEnrollment.jsp</result>
+			<result name="failed">/error.jsp</result>
+		</action>
+
+
+		<action name="updateUserInfo"
+			class="com.example.controller.UserAction"
+			method="updateUserEnrollement">
+			<result name="success">/success.jsp</result>
+			<result name="failed">/error.jsp</result>
+		</action>
+
+		<action name="deleteForm"
+			class="com.example.controller.UserAction"
+			method="loadUserByEnrollmentId">
+			<param name="enrollmentId">${enrollmentId}</param>
+			<result name="success">/cancelEnrollment.jsp</result>
+			<result name="failed">/error.jsp</result>
+		</action>
+
+		<action name="cancelUserEnrollment"
+			class="com.example.controller.UserAction"
+			method="cancelEnrollementOfUser">
+			<result name="success">/success.jsp</result>
+			<result name="no">/index.jsp</result>
+			<result name="failed">/error.jsp</result>
+		</action>
+
+
+
+		<action name="hello"
+			class="com.example.controller.HelloWorldAction" method="execute">
+			<result name="success">/HelloWorld.jsp</result>
+			<result name="failed">/error.jsp</result>
+
+		</action>
+	</package>
+</struts>
