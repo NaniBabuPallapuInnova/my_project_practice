@@ -27,7 +27,8 @@ Thank you!. I look forward to hearing from you soon.
 Thanks & Regards,
 Nani Babu Pallapu,
 nanipallapu369@mail,
-93925-90089
+93925-90089,
+96765-41438
 
 Candidate Name:
 Mobile Number:
@@ -4392,10 +4393,28 @@ Here's a simplified explanation of what happens when you run a Spring Boot appli
 8. The application is ready to handle incoming requests and perform business logic as defined in the application components.
 
 
+
+Synchronous Communication & ASynchronous Communication
+======================================================
+
+1. **Synchronous Communication**:
+   - In synchronous communication, the sender waits until the receiver processes the message and sends back a response before continuing further execution.
+   - This means that the sender and receiver are synchronized in their communication, and each operation is blocking until completion.
+   - In a Java Spring Boot application, synchronous communication often occurs through traditional HTTP request-response mechanisms, where the client sends a request to the server and waits for the server to process the request and send back a response.
+   - In an Angular application, synchronous communication can involve making HTTP requests using Angular's HttpClient module, where the application waits for the response before proceeding with further actions.
+
+2. **Asynchronous Communication**:
+   - In asynchronous communication, the sender does not wait for the receiver to process the message. Instead, it continues its execution, and the receiver processes the message whenever it's ready.
+   - Asynchronous communication is non-blocking, allowing systems to perform other tasks while waiting for a response.
+   - In a Java Spring Boot application, asynchronous communication can be achieved using asynchronous programming techniques such as CompletableFuture or reactive programming frameworks like Spring WebFlux.
+   - In an Angular application, asynchronous communication is commonly implemented using asynchronous operations like Promises or Observables. This allows the application to continue functioning while waiting for responses from external services or APIs.
+
+In summary, synchronous communication blocks execution until a response is received, while asynchronous communication allows for non-blocking operation, enabling better utilization of resources and potentially improved performance in applications. Both approaches have their use cases, and the choice between them depends on factors such as performance requirements, scalability, and the nature of the application's tasks.
+
+
 Microservices  :
 ======================
 **Microservices** is an architectural approach where a software application is divided into a collection of small, independent, and loosely coupled services, each responsible for specific functionality. Spring Boot, a popular Java framework, is often used to build microservices due to its ease of development and the tools it provides.
-
 
 Importants in Microservices
 ============================
@@ -6070,6 +6089,20 @@ Sure, let's break down each of these concepts:
 - **Usage**: Inner Join when you need only matching records, Outer Join when you need all records from one table regardless of matches in the other.
 
 These explanations provide a concise understanding of each concept along with simple examples and usage scenarios.
+
+1. difference between hashmap and hashtable?
+
+2. difference between Runnable and Collable interfaces in Thread?
+
+3. Operators in java ? mainly Unary, Shift, Bitwise and Assingment?
+
+4. Aggregations in SQL?
+
+5. Stored Procedures in Java and MySQL?
+
+6. Union and Union All in SQL?
+
+7. Self Join in SQL ?
 
 
 
