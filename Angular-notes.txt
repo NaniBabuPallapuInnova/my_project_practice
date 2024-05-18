@@ -86,7 +86,7 @@ well. In short, compon
 
 Services
 ============
-Services are plain Typescript / JavaScript class providing a very specific functionality. 
+Services are plain Typescript / JavaScript class providing a very specific functionality and TypeScript class is annotatated with @Injectable decorator. 
 Services will do a single task and do it best. The main purpose of the service is reusability. 
 Instead of writing a functionality inside a component, separating it into a service will make 
 it useable in other component as well. 
@@ -658,8 +658,512 @@ Observables
 	-------------
 	A subscription is the mechanism used to connect an observer to an observable.
 	It represents the ongoing execution of an observable and can be used to cancel or unsubscribe from the observable when it's no longer needed. This helps prevent memory leaks.
+
+LifeCycle Hooks
+===============
+
+Sure! Let's go through each of the common lifecycle hooks in Angular with examples:
+
+1. **ngOnInit**:
+   - The `ngOnInit` hook is called after Angular has initialized all data-bound properties of a directive/component.
+   - It is a good place to perform initialization logic, such as fetching initial data from a server or initializing component properties.
+   - Example:
+     ```typescript
+     import { Component, OnInit } from '@angular/core';
+
+     @Component({
+       selector: 'app-example',
+       template: '<p>{{ message }}</p>',
+     })
+     export class ExampleComponent implements OnInit {
+       message: string;
+
+       ngOnInit() {
+         this.message = 'Hello, World!';
+       }
+     }
+     ```
+
+2. **ngOnChanges**:
+   - The `ngOnChanges` hook is called whenever one or more input properties of a component change.
+   - It receives a `SimpleChanges` object containing the previous and current values of the input properties.
+   - It is commonly used to react to changes in input properties and perform actions based on those changes.
+   - Example:
+     ```typescript
+     import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+
+     @Component({
+       selector: 'app-child',
+       template: '<p>{{ message }}</p>',
+     })
+     export class ChildComponent implements OnChanges {
+       @Input() name: string;
+       message: string;
+
+       ngOnChanges(changes: SimpleChanges) {
+         if (changes.name) {
+           this.message = `Hello, ${changes.name.currentValue}!`;
+         }
+       }
+     }
+     ```
+
+3. **ngAfterViewInit**:
+   - The `ngAfterViewInit` hook is called after Angular has fully initialized the view of a component.
+   - It is a good place to perform any initialization logic that relies on the view, such as setting up event listeners or accessing child components.
+   - Example:
+     ```typescript
+     import { Component, ViewChild, AfterViewInit } from '@angular/core';
+
+     @Component({
+       selector: 'app-example',
+       template: '<button #buttonElement>Click me</button>',
+     })
+     export class ExampleComponent implements AfterViewInit {
+       @ViewChild('buttonElement') buttonElement: ElementRef;
+
+       ngAfterViewInit() {
+         this.buttonElement.nativeElement.addEventListener('click', () => {
+           console.log('Button clicked!');
+         });
+       }
+     }
+     ```
+
+4. **ngOnDestroy**:
+   - The `ngOnDestroy` hook is called just before Angular destroys the directive/component.
+   - It is a good place to perform cleanup tasks, such as unsubscribing from observables or releasing resources.
+   - Example:
+     ```typescript
+     import { Component, OnDestroy } from '@angular/core';
+     import { Subscription } from 'rxjs';
+
+     @Component({
+       selector: 'app-example',
+       template: '<p>Component content</p>',
+     })
+     export class ExampleComponent implements OnDestroy {
+       private subscription: Subscription;
+
+       constructor(private dataService: DataService) {
+         this.subscription = this.dataService.getData().subscribe(data => {
+           console.log('Received data:', data);
+         });
+       }
+
+       ngOnDestroy() {
+         this.subscription.unsubscribe();
+       }
+     }
+     ```
+
+These examples demonstrate how each lifecycle hook can be used in Angular components to perform various tasks at different stages of the component's lifecycle.
 	
-	
+Sure, let's break down each concept and explain them in simple terms with scenarios:
+
+1. **Lifecycle Hooks**:
+   - Lifecycle hooks are methods provided by Angular that allow you to tap into key moments in the lifecycle of a component or directive.
+   - They enable you to perform actions at specific points during the creation, updating, and destruction of a component.
+   - Common lifecycle hooks include `ngOnInit`, `ngOnChanges`, `ngAfterViewInit`, and `ngOnDestroy`.
+   - **Scenario**: You might use the `ngOnInit` hook to initialize component properties or fetch data from a server when the component is first created.
+
+2. **BehaviorSubject**:
+   - BehaviorSubject is a type of Observable provided by the RxJS library.
+   - It holds the current value and emits it to subscribers when they subscribe.
+   - It also keeps track of the last emitted value, allowing subscribers to receive the most recent value immediately upon subscription.
+   - **Scenario**: You can use a BehaviorSubject in a service to manage shared state or data that needs to be accessed and updated by multiple components.
+
+3. **Subscribe**:
+   - Subscribing to an observable allows you to receive values emitted by the observable over time.
+   - Subscribers define what actions should be taken when new values are emitted, such as updating the UI or performing calculations.
+   - **Scenario**: When you have an observable that represents data fetched from a server, you would subscribe to it in a component to update the UI with the fetched data when it becomes available.
+
+4. **Observables**:
+   - Observables are a powerful way to handle asynchronous data streams in JavaScript.
+   - They represent a sequence of values that arrive over time, including data from events, user input, HTTP requests, and more.
+   - Observables can be manipulated and combined using operators provided by the RxJS library.
+   - **Scenario**: You might use observables to handle user interactions in a web application, such as mouse movements, button clicks, or data fetching from a server.
+
+5. **RxJS Library**:
+   - RxJS (Reactive Extensions for JavaScript) is a library for reactive programming using observables.
+   - It provides a rich set of operators for creating, transforming, combining, and consuming observables.
+   - RxJS enables you to write concise and expressive code for handling asynchronous operations and managing complex data flows.
+   - **Scenario**: You would use the RxJS library when building Angular applications to work with observables and manage asynchronous data streams efficiently.
+
+In summary, lifecycle hooks allow you to perform actions at specific points in a component's lifecycle, BehaviorSubjects are used to manage shared state with the ability to emit the most recent value to subscribers, subscribing allows you to react to changes emitted by observables, observables are used to handle asynchronous data streams, and the RxJS library provides tools and utilities for working with observables and reactive programming in JavaScript.
+
+Sure, let's dive deeper into each concept with examples:
+
+1. **Lifecycle Hooks**:
+   - **Scenario**: Imagine you have a component called `UserProfileComponent` that needs to fetch user data from a server when it's initialized. You can use the `ngOnInit` lifecycle hook to perform this action.
+   ```typescript
+   import { Component, OnInit } from '@angular/core';
+   import { UserService } from './user.service';
+
+   @Component({
+     selector: 'app-user-profile',
+     templateUrl: './user-profile.component.html',
+     styleUrls: ['./user-profile.component.css']
+   })
+   export class UserProfileComponent implements OnInit {
+     userData: any;
+
+     constructor(private userService: UserService) { }
+
+     ngOnInit(): void {
+       // Fetch user data when component is initialized
+       this.userService.getUserData().subscribe(data => {
+         this.userData = data;
+       });
+     }
+   }
+   ```
+
+2. **BehaviorSubject**:
+   - **Scenario**: Suppose you have a `CartService` that manages the items in a shopping cart. You can use a BehaviorSubject to track the items in the cart and notify subscribers whenever the cart is updated.
+   ```typescript
+   import { Injectable } from '@angular/core';
+   import { BehaviorSubject } from 'rxjs';
+
+   @Injectable({
+     providedIn: 'root'
+   })
+   export class CartService {
+     private cartItemsSubject = new BehaviorSubject<any[]>([]);
+     cartItems$ = this.cartItemsSubject.asObservable();
+
+     constructor() { }
+
+     addToCart(item: any): void {
+       // Add item to cart and emit updated cart to subscribers
+       const currentCart = this.cartItemsSubject.value;
+       this.cartItemsSubject.next([...currentCart, item]);
+     }
+   }
+   ```
+
+3. **Subscribe**:
+   - **Scenario**: Let's say you have a component called `CartComponent` that displays the items in the shopping cart. You can subscribe to the `cartItems$` observable provided by the `CartService` to update the UI whenever the cart is updated.
+   ```typescript
+   import { Component, OnInit } from '@angular/core';
+   import { CartService } from './cart.service';
+
+   @Component({
+     selector: 'app-cart',
+     templateUrl: './cart.component.html',
+     styleUrls: ['./cart.component.css']
+   })
+   export class CartComponent implements OnInit {
+     cartItems: any[] = [];
+
+     constructor(private cartService: CartService) { }
+
+     ngOnInit(): void {
+       // Subscribe to cart items
+       this.cartService.cartItems$.subscribe(items => {
+         this.cartItems = items;
+       });
+     }
+   }
+   ```
+
+4. **Observables**:
+   - **Scenario**: Imagine you're building a real-time chat application where messages are received from a WebSocket connection. You can use observables to handle the incoming messages and update the chat UI accordingly.
+   ```typescript
+   import { Injectable } from '@angular/core';
+   import { Observable } from 'rxjs';
+
+   @Injectable({
+     providedIn: 'root'
+   })
+   export class ChatService {
+     private socket: WebSocket;
+     messages$: Observable<string>;
+
+     constructor() {
+       this.socket = new WebSocket('wss://example.com/chat');
+
+       this.messages$ = new Observable(observer => {
+         this.socket.onmessage = event => {
+           observer.next(event.data);
+         };
+       });
+     }
+   }
+   ```
+
+5. **RxJS Library**:
+   - **Scenario**: Suppose you want to fetch data from a server and apply transformations such as filtering and mapping before displaying it in the UI. You can use RxJS operators to achieve this.
+   ```typescript
+   import { HttpClient } from '@angular/common/http';
+   import { map, filter } from 'rxjs/operators';
+
+   @Injectable({
+     providedIn: 'root'
+   })
+   export class DataService {
+     constructor(private http: HttpClient) { }
+
+     fetchData(): Observable<any> {
+       return this.http.get('https://api.example.com/data').pipe(
+         filter((data: any) => data.status === 'success'),
+         map((data: any) => data.result)
+       );
+     }
+   }
+   ```
+
+In each scenario, we use Angular components and services to illustrate how lifecycle hooks, BehaviorSubjects, subscribing to observables, and using RxJS operators enable us to build reactive and efficient Angular applications.
+
+LIFE CYCLE HOOKS AND Events
+============================
+#### OnInit
+- **Purpose**: Similar to `OnInit` in `AddEmployeeComponent`, this hook is used to perform initialization tasks when the component is initialized.
+- **Usage**: In this component, `OnInit` is implemented to fetch the list of employees from the `EmployeeService` and store it in the `employees` property.
+- **Example**: `console.log('EmployeeListComponent initialized');`
+
+#### OnDestroy
+- **Purpose**: This hook is called just before Angular destroys the component.
+- **Usage**: In this component, `OnDestroy` is implemented to log a message indicating that the component is about to be destroyed.
+- **Example**: `console.log('EmployeeListComponent destroyed');`
+
+#### OnChanges
+- **Purpose**: This hook is called when Angular sets or resets data-bound input properties.
+- **Usage**: In this component, `OnChanges` is implemented to log a message indicating that input properties have changed.
+- **Example**: `console.log('EmployeeListComponent input properties changed');`
+
+#### AfterContentInit
+- **Purpose**: This hook is called after Angular projects external content into the component's view.
+- **Usage**: In this component, `AfterContentInit` is implemented to log a message indicating that external content has been initialized.
+- **Example**: `console.log('EmployeeListComponent content initialized');`
+
+#### AfterContentChecked
+- **Purpose**: This hook is called after Angular checks the content projected into the component.
+- **Usage**: In this component, `AfterContentChecked` is implemented to log a message indicating that content projection has been checked.
+- **Example**: `console.log('EmployeeListComponent content checked');`
+
+#### AfterViewInit
+- **Purpose**: This hook is called after Angular initializes the component's view and child views.
+- **Usage**: In this component, `AfterViewInit` is implemented to log a message indicating that the component's view has been initialized.
+- **Example**: `console.log('EmployeeListComponent view initialized');`
+
+#### AfterViewChecked
+- **Purpose**: This hook is called after Angular checks the component's view and child views.
+- **Usage**: In this component, `AfterViewChecked` is implemented to log a message indicating that the component's view has been checked.
+- **Example**: `console.log('EmployeeListComponent view checked');`
+
+These lifecycle hooks and events provide developers with control over the initialization, destruction, and behavior of Angular components, allowing them to execute custom logic at specific stages of the component lifecycle.
+
+		ANGULAR 8 AND 15/16 Differences
+		===============================
+		
+			Sure! Here are the theoretical explanations for the differences between Angular 8 and Angular 15/16 based on the provided code examples, in simple terms and with a few lines each.
+
+			### 1. **Standalone Components**
+
+			**Angular 8:**
+			Components must be declared in NgModules.
+
+			```typescript
+			// app.module.ts
+			import { BrowserModule } from '@angular/platform-browser';
+			import { NgModule } from '@angular/core';
+			import { AppComponent } from './app.component';
+			import { MyComponent } from './my-component/my-component.component';
+
+			@NgModule({
+			  declarations: [AppComponent, MyComponent],
+			  imports: [BrowserModule],
+			  providers: [],
+			  bootstrap: [AppComponent],
+			})
+			export class AppModule {}
+			```
+
+			**Explanation:**
+			In Angular 8, every component must be part of a module. This makes the setup more complex, as you always need to update the module whenever you add or remove components.
+
+			**Angular 15/16:**
+			Components can be standalone, reducing boilerplate code.
+
+			```typescript
+			// my-component.component.ts
+			import { Component } from '@angular/core';
+
+			@Component({
+			  standalone: true,
+			  selector: 'app-my-component',
+			  template: '<h1>Hello from MyComponent</h1>',
+			})
+			export class MyComponent {}
+			```
+
+			**Explanation:**
+			In Angular 15/16, components can exist independently without being part of a module, simplifying the project structure and reducing the need to modify modules.
+
+			### 2. **Dependency Injection**
+
+			**Angular 8:**
+			Services are provided through NgModules.
+
+			```typescript
+			// app.module.ts
+			import { NgModule } from '@angular/core';
+			import { BrowserModule } from '@angular/platform-browser';
+			import { AppComponent } from './app.component';
+			import { MyService } from './my-service.service';
+
+			@NgModule({
+			  declarations: [AppComponent],
+			  imports: [BrowserModule],
+			  providers: [MyService],
+			  bootstrap: [AppComponent],
+			})
+			export class AppModule {}
+			```
+
+			**Explanation:**
+			In Angular 8, services need to be declared in the providers array of a module. This can make dependency management cumbersome, especially for large applications.
+
+			**Angular 15/16:**
+			Services can be provided directly in standalone components.
+
+			```typescript
+			// app.component.ts
+			import { Component } from '@angular/core';
+			import { MyService } from './my-service.service';
+
+			@Component({
+			  standalone: true,
+			  selector: 'app-root',
+			  template: '<h1>{{ value }}</h1>',
+			  providers: [MyService],
+			})
+			export class AppComponent {
+			  value: string;
+			  constructor(private myService: MyService) {
+				this.value = myService.getValue();
+			  }
+			}
+			```
+
+			**Explanation:**
+			In Angular 15/16, services can be provided directly within the component, making it easier to manage dependencies and enhancing modularity.
+
+			### 3. **TypeScript Strict Mode**
+
+			**Angular 8:**
+			Loose type-checking by default.
+
+			```typescript
+			// tsconfig.json
+			{
+			  "compilerOptions": {
+				"strict": false,
+				"noImplicitAny": false,
+				"strictNullChecks": false
+			  }
+			}
+			```
+
+			**Explanation:**
+			Angular 8 does not enforce strict type-checking, which can allow potential type-related errors to go unnoticed until runtime.
+
+			**Angular 15/16:**
+			Strict type-checking is enabled for safer code.
+
+			```typescript
+			// tsconfig.json
+			{
+			  "compilerOptions": {
+				"strict": true,
+				"noImplicitAny": true,
+				"strictNullChecks": true
+			  },
+			  "angularCompilerOptions": {
+				"strictTemplates": true
+			  }
+			}
+			```
+
+			**Explanation:**
+			In Angular 15/16, enabling strict type-checking helps catch errors during development, leading to more robust and error-free code.
+
+			### 4. **Forms with Improved Validators**
+
+			**Angular 8:**
+			Basic form validation with standard validators.
+
+			```typescript
+			// app.component.ts
+			import { Component } from '@angular/core';
+			import { FormGroup, FormControl, Validators } from '@angular/forms';
+
+			@Component({
+			  selector: 'app-root',
+			  template: `
+				<form [formGroup]="form">
+				  <input formControlName="name">
+				  <div *ngIf="form.get('name').hasError('required')">Name is required</div>
+				</form>
+			  `,
+			})
+			export class AppComponent {
+			  form = new FormGroup({
+				name: new FormControl('', Validators.required),
+			  });
+			}
+			```
+
+			**Explanation:**
+			In Angular 8, forms support basic validators like `required`, but the error handling and validation capabilities are more limited.
+
+			**Angular 15/16:**
+			Enhanced form validation with more options.
+
+			```typescript
+			// app.component.ts
+			import { Component } from '@angular/core';
+			import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
+
+			@Component({
+			  standalone: true,
+			  imports: [ReactiveFormsModule],
+			  selector: 'app-root',
+			  template: `
+				<form [formGroup]="form">
+				  <input formControlName="name">
+				  <div *ngIf="form.get('name').hasError('required')">Name is required</div>
+				  <div *ngIf="form.get('name').hasError('minlength')">Name must be at least 3 characters long</div>
+				</form>
+			  `,
+			})
+			export class AppComponent {
+			  form = new FormGroup({
+				name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+			  });
+			}
+
+			// main.ts
+			import { bootstrapApplication } from '@angular/platform-browser';
+			import { AppComponent } from './app.component';
+
+			bootstrapApplication(AppComponent)
+			  .catch(err => console.error(err));
+			```
+
+			**Explanation:**
+			In Angular 15/16, form validation is more powerful with additional validators and improved error messaging, allowing for more robust form handling.
+
+			These simplified explanations and code examples illustrate how Angular has evolved from version 8 to versions 15/16, making development more efficient and the framework more powerful.
+
+
+
+
+
+
+
+
 HTTP , Observables and RxJS
 ---------------------------
 1. HTTP Get request from EmployeeService.
@@ -910,6 +1414,31 @@ fetchData()
 ```
 
 In this example, `fetchData()` returns a Promise that resolves with some data after a 2-second delay. We use `.then()` to handle the resolved data and `.catch()` to handle any errors that may occur during the operation. Promises help us write cleaner and more organized asynchronous code in Angular applications.
+
+
+
+Observable(class) and Promise(interface) Differences
+====================================================
+
+1. **Execution**:
+   - **Promise**: Executes immediately when created.
+   - **Observable**: Executes only when subscribed to.
+
+2. **Values**:
+   - **Promise**: Returns a single value or error.
+   - **Observable**: Can emit multiple values over time.
+
+3. **Cancellation**:
+   - **Promise**: Cannot be cancelled.
+   - **Observable**: Can be cancelled (unsubscribed).
+
+4. **API Complexity**:
+   - **Promise**: Simpler API (`then`, `catch`, `finally`).
+   - **Observable**: Richer API with many operators (`map`, `filter`, `reduce`).
+
+5. **Use Cases**:
+   - **Promise**: Suitable for one-time asynchronous operations.
+   - **Observable**: Suitable for streams of data and multiple asynchronous events.
 
 ANGULAR ROUTING
 ================

@@ -35,6 +35,12 @@ public class CalculateTest {
         assertEquals(9, Calculate.findMaxElementInArray(new int[]{1, 3, 6, 4, 8, 2, 9}));
     }
 
+    @Test(timeout = 2000)
+    public void testFindMaxWithTimeOut() {
+        System.out.println("THIS IS TEST FIND MAX METHOD == 1");
+        assertEquals(9, Calculate.findMaxElementInArray(new int[]{1, 3, 6, 4, 8, 2, 9}));
+    }
+
     @BeforeClass
     public static void beforeClass(){
         System.out.println("CALLING BEFORE CLASS ");

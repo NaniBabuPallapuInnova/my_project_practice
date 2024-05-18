@@ -1,0 +1,85 @@
+Subject: Acknowledgement and Sending Documents for New Job
+
+Hi [Sender's Name],
+
+Thanks a lot for welcoming me to GAVS! I'm really excited about joining the team.
+
+I got your email and I'm on it! Here are the documents you asked for:
+
+1. Aadhar Card -attached
+2. Pan Card - attached
+3. My Highest Degree Certificate - attached (PC & CMM)
+4. Letter from my current job - attached LWD proofs
+5. Letter from my last job - attached relieving letter for contract period of TechEra consultancy
+6. Passport-sized photo taken today with a white background - attached
+7. My last 3 months' payslips - attached (April, March, Feb - 2024)
+8. My last Appraisal/Offer letter - attached Innova Last Appraisal Letter 2023 (Current(2024) Appraisal letter has not been received)
+
+I've attached them to this email. Let me know if there's anything else you need.
+
+Oh, and I'm cool with the job details. Java Fullstack with a fixed week off, right?
+
+Thanks again for having me on board! If I've got any questions before my start date, I'll drop you a line.
+
+Cheers,
+
+Thanks & Regards,
+Nani Babu Pallapu,
+nanipallapu369@mail,
+93925-90089,
+96765-41438(Alternative)
+
+
+Additionally, I've included all the documents in a zip file for your convenience.
+
+
+
+1. **Difference between HashMap and HashTable:**
+   - **HashMap:** Introduced in Java 1.2, it is not synchronized, meaning it is not thread-safe. It allows one null key and multiple null values. It is preferred for non-threaded applications or when synchronization is handled externally.
+   - **HashTable:** Introduced in Java 1.0, it is synchronized, making it thread-safe. Hashtable extends Dictionary and implements Map,Clonable,Serializable interfaces. It does not allow null keys or values. It is generally considered a legacy class and has been largely replaced by ConcurrentHashMap for thread-safe operations.
+
+2. **Difference between Runnable and Callable interfaces in Thread:**
+   - **Runnable:** This interface is used to define a task that can be executed by a thread. It does not return a result or throw checked exceptions.
+   - **Callable:** Introduced in Java 5, Callable is similar to Runnable but can return a result and throw checked exceptions. It is part of the java.util.concurrent package.
+
+3. **Operators in Java:**
+   - **Unary Operators:** Operators that operate on a single operand, like ++, --, !, ~.
+   - **Shift Operators:** Used for shifting the bits of a number left or right, including << (left shift), >> (signed right shift), and >>> (unsigned right shift).
+   - **Bitwise Operators:** Used for performing bitwise operations on integer operands, including &, |, ^, and ~.
+   - **Assignment Operators:** Used for assigning values to variables, such as =, +=, -=, *=, /=, %=, <<=, >>=, &=, |=, ^=.
+
+4. **Aggregations in SQL:**
+   Aggregations in SQL are functions used to perform operations on multiple rows of a table and return a single value. Common SQL aggregation functions include SUM(), AVG(), COUNT(), MIN(), and MAX().
+
+5. **Stored Procedures in Java and MySQL:**
+   Stored procedures are precompiled SQL queries stored in the database and executed by calling them from an application. In Java, you can execute stored procedures using JDBC. In MySQL, you can define stored procedures using the CREATE PROCEDURE statement and call them using CALL.
+
+6. **Union and Union All in SQL:**
+   - **UNION:** Combines the results of two or more SELECT statements and removes duplicates.
+   - **UNION ALL:** Similar to UNION but retains duplicates. It combines the results of two or more SELECT statements without removing duplicate rows.
+
+7. **Self Join in SQL:**
+   A self-join is a SQL query in which a table is joined with itself. This is typically done by using aliases to distinguish between the two instances of the same table within the query.
+
+8. **Composite Key and Unique Key in SQL:**
+   - **Composite Key:** A composite key is a combination of two or more columns that uniquely identify a row in a table.
+   - **Unique Key:** A unique key constraint ensures that all values in a column or a set of columns are distinct from one another (i.e., no duplicate values are allowed).
+
+9. **@Qualifier Annotation in Spring Boot:**
+   @Qualifier is used in Spring Boot to disambiguate beans of the same type. It is applied to the bean declaration and specifies which bean should be injected when there are multiple beans of the same type.
+
+10. **@Required Annotation:**
+    @Required annotation in Spring is used to indicate that the annotated bean property must be populated during bean initialization. It is typically used with setter methods.
+
+11. **SingletonList in Java:**
+    SingletonList is a utility class in Java that is used to create an immutable list containing only one element. Once created, the list cannot be modified.
+		
+	Example :
+	
+	List<String> singletonList = Collections.singletonList("Only Element");
+	System.out.println(singletonList.get(0)); // Output: Only Element
+
+12. **Difference between Inner Join and Outer Join:**
+    - **Inner Join:** Returns only the rows where there is a match in both tables being joined.
+    - **Outer Join:** Returns all rows from both tables being joined, plus the matched rows from the tables. It can be further classified into LEFT OUTER JOIN, RIGHT OUTER JOIN, and FULL OUTER JOIN.
+

@@ -1,5 +1,6 @@
 package com.example.springsecuritytelugu.controller;
 
+import com.example.springsecuritytelugu.asyn.communication.AsyncEmployeeService;
 import com.example.springsecuritytelugu.dto.EmployeeDTO;
 import com.example.springsecuritytelugu.service.EmployeeService;
 import org.slf4j.Logger;
@@ -12,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequestMapping("/api")
@@ -21,6 +23,9 @@ public class EmployeeResource {
 
   @Autowired
   EmployeeService employeeService;
+
+  @Autowired
+  AsyncEmployeeService asyncEmployeeService;
 
   @GetMapping("/employees")
   public ResponseEntity<Page<EmployeeDTO>> getEmployeesList(Pageable pageable) {
@@ -48,10 +53,13 @@ public class EmployeeResource {
 
 
   @GetMapping("get/AllEmployees")
-  public ResponseEntity<List<EmployeeDTO>> getAllEmployees() {
-    List<EmployeeDTO> employeeDTOList = employeeService.findAllEmployees();
-    return new ResponseEntity<>(employeeDTOList, HttpStatus.FOUND);
+  public ResponseEntity<List<EmployeeDTO>> getAllEmployeesSync() {
+    log.info("Synchronous endpoint invoked.");
+    List<EmployeeDTO> employeeDTOList = employeeService.findAllEmployeesSync();
+    return new ResponseEntity<>(employeeDTOList, HttpStatus.OK);
   }
+
+
 
   @DeleteMapping("delete/employee/{id}")
   public ResponseEntity<String> deleteEmployeeById(@PathVariable(name = "id") Long id) {
@@ -66,20 +74,29 @@ public class EmployeeResource {
   }
 
   @GetMapping("/download/json/{id}")
-  public ResponseEntity<String> downloadEmployeeAsJSONFile(@PathVariable(name = "id") Long id) {
-    employeeService.downloadEmployeeAsJSONFile(id);
+  public ResponseEntity<EmployeeDTO> downloadEmployeeAsJSONFile(@PathVariable(name = "id") Long id) {
+   EmployeeDTO employeeDTO =  employeeService.downloadEmployeeAsJSONFile(id);
 
-    return new ResponseEntity<>(HttpStatus.OK);
+    return new ResponseEntity<>(employeeDTO,HttpStatus.OK);
   }
 
   @GetMapping("/download/xml/{id}")
 
-  public ResponseEntity<String> downloadEmployeeAsXMLFile(@PathVariable(name = "id") Long id) {
+  public ResponseEntity<EmployeeDTO> downloadEmployeeAsXMLFile(@PathVariable(name = "id") Long id) {
 
-    employeeService.downloadEmployeeAsXMLFile(id);
+    EmployeeDTO employeeDTO = employeeService.downloadEmployeeAsXMLFile(id);
 
-    return new ResponseEntity<>(HttpStatus.OK);
-
+    return new ResponseEntity<>(employeeDTO, HttpStatus.OK);
 
   }
+
+
+  // Asynchronous endpoint
+  @GetMapping("/async")
+  public CompletableFuture<ResponseEntity<List<EmployeeDTO>>> getAllEmployeesAsync() {
+    log.info("Asynchronous endpoint invoked.");
+    return asyncEmployeeService.findAllEmployeesAsync()
+      .thenApply(employeeDTOList -> ResponseEntity.ok(employeeDTOList));
+  }
+
 }

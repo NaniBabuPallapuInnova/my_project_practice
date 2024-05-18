@@ -563,7 +563,7 @@ Syntax : 	SELECT s1.col_name, s2.col_name...
 example : 	SELECT  s1.student_id, s1.name  
 			FROM student AS s1, student s2  
 			WHERE s1.student_id=s2.student_id  
-			AND s1.course_id<>s2.course_id;  
+			AND s1.course_id<>s2.course_id;  // <> is equal to !=
 			
 
 	i. SELF JOIN using INNER JOIN clause

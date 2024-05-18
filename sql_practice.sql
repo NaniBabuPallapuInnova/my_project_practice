@@ -709,6 +709,117 @@ Overall, MySQL stored procedures are a powerful tool for enhancing database deve
 This tutorial provides a comprehensive introduction to MySQL stored procedures. As you become more proficient, you can explore advanced scenarios involving conditionals, loops, and transactions within your stored procedures.
 
 
+========================================
+Triggers & Functions & Stored Procedures
+========================================
+-----------------------
+### Triggers in MySQL:
+----------------------
+
+Triggers are database objects that are automatically executed or fired when certain events occur in the database. These events can be INSERT, UPDATE, DELETE, or even events like BEFORE INSERT, AFTER UPDATE, etc. Triggers are useful for enforcing complex business rules, maintaining referential integrity, auditing changes, and more.
+
+#### Types of Triggers:
+
+1. **BEFORE Triggers:** These triggers are executed before the operation (INSERT, UPDATE, DELETE) occurs.
+2. **AFTER Triggers:** These triggers are executed after the operation (INSERT, UPDATE, DELETE) occurs.
+
+#### Scenario:
+- Use a BEFORE INSERT trigger to automatically set a default value for a column.
+- Use an AFTER UPDATE trigger to log changes made to a specific table.
+
+#### Example:
+```sql
+-- BEFORE INSERT trigger to set a default value
+CREATE TRIGGER set_default_value BEFORE INSERT ON my_table
+FOR EACH ROW
+SET NEW.column_name = IFNULL(NEW.column_name, 'default_value');
+
+-- AFTER UPDATE trigger to log changes
+CREATE TRIGGER log_changes AFTER UPDATE ON my_table
+FOR EACH ROW
+INSERT INTO change_log (table_name, column_name, old_value, new_value)
+VALUES ('my_table', 'column_name', OLD.column_name, NEW.column_name);
+```
+
+-----------------------
+### Functions in MySQL:
+-----------------------
+
+Functions in MySQL are stored routines that accept parameters, perform an operation, and return a single value. They can be used to encapsulate common logic, perform calculations, or manipulate data before returning a result.
+
+#### Types of Functions:
+
+1. **Scalar Functions:** These functions return a single value.
+2. **Table-Valued Functions:** These functions return a result set.
+
+#### Scenario:
+- Use a scalar function to concatenate first name and last name fields.
+- Use a table-valued function to split a comma-separated string into individual values.
+
+#### Example:
+```sql
+-- Scalar function to concatenate names
+CREATE FUNCTION full_name(first_name VARCHAR(50), last_name VARCHAR(50))
+RETURNS VARCHAR(100)
+BEGIN
+    RETURN CONCAT(first_name, ' ', last_name);
+END;
+
+-- Table-valued function to split a comma-separated string
+CREATE FUNCTION split_string(input_string VARCHAR(255))
+RETURNS TABLE (output_value VARCHAR(100))
+BEGIN
+    DECLARE temp_value VARCHAR(100);
+    WHILE LENGTH(input_string) > 0 DO
+        SET temp_value = SUBSTRING_INDEX(input_string, ',', 1);
+        SET input_string = TRIM(BOTH ',' FROM SUBSTRING(input_string, LENGTH(temp_value) + 2));
+        INSERT INTO output_value VALUES (temp_value);
+    END WHILE;
+    RETURN;
+END;
+```
+-------------------------------
+### Stored Procedures in MySQL:
+-------------------------------
+
+Stored Procedures are precompiled SQL statements that are stored in the database. They can accept input parameters, perform operations, and return multiple result sets. Stored Procedures are used for encapsulating complex business logic, improving performance, and ensuring consistency in data manipulation.
+
+#### Scenario:
+- Use a stored procedure to insert a new employee record and update related tables.
+- Use a stored procedure to calculate monthly sales totals for a specific product.
+
+#### Example:
+```sql
+-- Stored procedure to insert a new employee
+CREATE PROCEDURE add_employee(IN first_name VARCHAR(50), IN last_name VARCHAR(50), IN department_id INT)
+BEGIN
+    DECLARE new_employee_id INT;
+    START TRANSACTION;
+    INSERT INTO employees (first_name, last_name, department_id) VALUES (first_name, last_name, department_id);
+    SET new_employee_id = LAST_INSERT_ID();
+    INSERT INTO employee_history (employee_id, action) VALUES (new_employee_id, 'New employee added');
+    COMMIT;
+END;
+
+-- Stored procedure to calculate monthly sales
+CREATE PROCEDURE calculate_monthly_sales(IN product_id INT, IN month INT, IN year INT)
+BEGIN
+    SELECT SUM(sales_amount) AS total_sales
+    FROM sales
+    WHERE product_id = product_id
+    AND MONTH(sale_date) = month
+    AND YEAR(sale_date) = year;
+END;
+```
+
+### Conclusion:
+
+- **Triggers** are used to automatically execute actions based on predefined events in the database.
+- **Functions** are used to encapsulate logic and calculations to return a single value or a table of values.
+- **Stored Procedures** are used to encapsulate complex business logic and perform multiple database operations in a transactional manner.
+
+These are powerful features of MySQL that can greatly enhance the functionality and maintainability of your database applications.
+
 
 SQL Practice 
 =============
@@ -758,6 +869,8 @@ CREATE TABLE order_items (
     unit_price DECIMAL(10, 2),
     FOREIGN KEY (order_id) REFERENCES orders(order_id)
 );
+
+
 
 
 

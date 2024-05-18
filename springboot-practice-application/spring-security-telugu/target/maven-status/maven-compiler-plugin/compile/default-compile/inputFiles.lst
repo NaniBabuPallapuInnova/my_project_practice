@@ -1,25 +1,29 @@
-C:\Personal Projects\self_learning\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\mapper\EmployeeMapper.java
-C:\Personal Projects\self_learning\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\service\JwtService.java
-C:\Personal Projects\self_learning\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\configuration\JwtRequestFilter.java
-C:\Personal Projects\self_learning\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\repository\RoleRepository.java
-C:\Personal Projects\self_learning\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\entity\Role.java
-C:\Personal Projects\self_learning\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\entity\JwtResponse.java
-C:\Personal Projects\self_learning\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\entity\User.java
-C:\Personal Projects\self_learning\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\repository\EmployeeRepository.java
-C:\Personal Projects\self_learning\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\repository\UserRepository.java
-C:\Personal Projects\self_learning\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\entity\Employee.java
-C:\Personal Projects\self_learning\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\controller\UserResource.java
-C:\Personal Projects\self_learning\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\controller\EmployeeResource.java
-C:\Personal Projects\self_learning\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\SpringSecurityTeluguApplication.java
-C:\Personal Projects\self_learning\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\configuration\WebSecurityConfiguration.java
-C:\Personal Projects\self_learning\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\controller\JwtResource.java
-C:\Personal Projects\self_learning\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\controller\RoleResource.java
-C:\Personal Projects\self_learning\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\util\JwtUtil.java
-C:\Personal Projects\self_learning\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\configuration\CorsConfiguration.java
-C:\Personal Projects\self_learning\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\entity\JwtRequest.java
-C:\Personal Projects\self_learning\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\service\UserService.java
-C:\Personal Projects\self_learning\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\mapper\EmployeeMapperImpl.java
-C:\Personal Projects\self_learning\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\dto\EmployeeDTO.java
-C:\Personal Projects\self_learning\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\service\RoleService.java
-C:\Personal Projects\self_learning\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\configuration\JwtAuthenticationEntryPoint.java
-C:\Personal Projects\self_learning\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\service\EmployeeService.java
+C:\personal_projects_nanibabu\my_project_practice\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\service\RoleService.java
+C:\personal_projects_nanibabu\my_project_practice\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\service\JwtService.java
+C:\personal_projects_nanibabu\my_project_practice\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\configuration\JwtAuthenticationEntryPoint.java
+C:\personal_projects_nanibabu\my_project_practice\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\repository\RoleRepository.java
+C:\personal_projects_nanibabu\my_project_practice\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\configuration\CorsConfiguration.java
+C:\personal_projects_nanibabu\my_project_practice\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\serviceImpl\XmlParseServiceImpl.java
+C:\personal_projects_nanibabu\my_project_practice\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\controller\RoleResource.java
+C:\personal_projects_nanibabu\my_project_practice\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\entity\JwtRequest.java
+C:\personal_projects_nanibabu\my_project_practice\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\mapper\EmployeeMapper.java
+C:\personal_projects_nanibabu\my_project_practice\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\service\UserService.java
+C:\personal_projects_nanibabu\my_project_practice\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\repository\UserRepository.java
+C:\personal_projects_nanibabu\my_project_practice\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\repository\EmployeeRepository.java
+C:\personal_projects_nanibabu\my_project_practice\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\service\JSONParserService.java
+C:\personal_projects_nanibabu\my_project_practice\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\entity\JwtResponse.java
+C:\personal_projects_nanibabu\my_project_practice\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\service\XmlParseService.java
+C:\personal_projects_nanibabu\my_project_practice\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\service\EmployeeService.java
+C:\personal_projects_nanibabu\my_project_practice\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\entity\Role.java
+C:\personal_projects_nanibabu\my_project_practice\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\configuration\JwtRequestFilter.java
+C:\personal_projects_nanibabu\my_project_practice\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\mapper\EmployeeMapperImpl.java
+C:\personal_projects_nanibabu\my_project_practice\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\serviceImpl\JSONParserServiceImpl.java
+C:\personal_projects_nanibabu\my_project_practice\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\controller\EmployeeResource.java
+C:\personal_projects_nanibabu\my_project_practice\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\util\JwtUtil.java
+C:\personal_projects_nanibabu\my_project_practice\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\controller\UserResource.java
+C:\personal_projects_nanibabu\my_project_practice\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\entity\Employee.java
+C:\personal_projects_nanibabu\my_project_practice\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\SpringSecurityTeluguApplication.java
+C:\personal_projects_nanibabu\my_project_practice\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\controller\JwtResource.java
+C:\personal_projects_nanibabu\my_project_practice\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\dto\EmployeeDTO.java
+C:\personal_projects_nanibabu\my_project_practice\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\entity\User.java
+C:\personal_projects_nanibabu\my_project_practice\springboot-practice-application\spring-security-telugu\src\main\java\com\example\springsecuritytelugu\configuration\WebSecurityConfiguration.java

@@ -28,7 +28,7 @@ Thanks & Regards,
 Nani Babu Pallapu,
 nanipallapu369@mail,
 93925-90089,
-96765-41438
+96765-41438 (Alternative)
 
 Candidate Name:
 Mobile Number:
@@ -65,8 +65,9 @@ Within 4 months, I demonstrated hard work and dedication, leading to a transitio
 
 Now I have been working as a Java Full Stack Developer with around 3 years of hands-on experience. 
 My expertise lies in Java, Spring Boot, and Angular frameworks, Hibernate, MySQL, SQL Server, Apache NIFI framework, and microservices.
-
-
+Additionally, I have exposure to BitBucket, Agile methodologies, CI/CD using Jenkins, Docker, as well as development environments like IntelliJ, Eclipse, and Visual Studio Code.
+ 
+ 
 During my tenure, I've had the opportunity to work on two impactful projects:
 
 1. **LYNC-OMS Project**: Developed an Order Management System (OMS) application for internal sales and order processing teams. This system streamlined the process of placing business orders, where Account Executives (AE) could place orders on behalf of customers, which were then reviewed and approved by Order Processing (OP) team members.
@@ -176,7 +177,7 @@ JVM, JDK, and JRE are important components in the Java programming and runtime e
 
 	JVM (Java Virtual Machine) is an abstract machine. It is called a virtual machine because it doesn't physically exist.
 	 
-	It is a specification that provides a runtime environment in which Java bytecode can be executed. 
+	It's a specification that provides a runtime environment in which Java bytecode can be executed. 
 
 	It can also run those programs which are written in other languages and compiled to Java bytecode.
 
@@ -192,13 +193,11 @@ JVM, JDK, and JRE are important components in the Java programming and runtime e
 	iv. 	Provides runtime environment
 
 
-
 2. **JRE (Java Runtime Environment)**:
 
 	JRE is an acronym for Java Runtime Environment. It is also written as Java RTE. The Java Runtime Environment is a set of software tools which are used for developing Java applications. It is used to provide the runtime environment. 
 	
 	It is the implementation of JVM. It physically exists. It contains a set of libraries + other files that JVM uses at runtime.
-
 
 3. **JDK (Java Development Kit)**:
 
@@ -249,7 +248,6 @@ JVM Memory
 5. Native method stacks: For every thread, a separate native stack is created. It stores native method information. 
 
 
-
 Access Modifiers:
 =================
 Private: The access level of a private modifier is only within the class. It cannot be accessed from outside the class.
@@ -292,8 +290,6 @@ Java Variables
 A variable is a container which holds the value while the Java program is executed. A variable is assigned with a data type.
 
 Variable is a name of memory location. There are three types of variables in java: local, instance and static.
-
-There are two types of data types in Java: primitive and non-primitive.
 
 
 
@@ -1104,12 +1100,19 @@ While `String` is the most prominent example of immutability in Java, other fund
 However, it's important to note that not all data types in Java are immutable. For example, arrays, `StringBuilder`, and `ArrayList` are mutable. The choice between mutable and immutable objects depends on the specific requirements and use cases of the data type. Immutability is favored when predictability, thread safety, and ease of reasoning about code are critical. Mutable objects are preferred when dynamic modifications to the object's state are required.
 
 
-
 for more explanation open this video : https://youtu.be/5OXc-TsM3bg?si=LOaFCqlWqaBxyhaE
 
 
-
 Sure, here's a breakdown of immutable objects and immutable classes in Java, along with their uses, presented in a point-wise manner:
+
+StringBuilder and StringBuffer Differences
+===========================================
+
+### Differences:
+1. **Thread Safety**: `StringBuffer` is thread-safe due to synchronization, making it suitable for multi-threaded environments. `StringBuilder` is not thread-safe, making it more efficient in single-threaded scenarios but requiring external synchronization in multi-threaded environments.
+  
+2. **Performance**: `StringBuilder` is generally faster than `StringBuffer` because it lacks synchronization overhead. However, the difference may be negligible in many applications.
+
 
 ### Immutable Objects:
 =======================
@@ -1270,10 +1273,55 @@ EXCEPTION HANDLING
 	In the "throw" example, we manually throw an exception when a specific error condition is encountered. In the "throws" example, we declare in the method signature that the method may throw an exception, allowing the calling code to be aware of the potential exception and handle it.
 
 	It's important to note that "throw" is used within the method where the exception occurs, while "throws" is used in the method signature to declare exceptions that may be thrown by that method. These concepts work together to facilitate proper exception handling in Java.
+		
+		
+	### 3. `try`-`catch` Block:
+	- **Purpose**: Used for exception handling in Java.
+	- **Explanation**: The `try` block contains the code that might throw an exception. If an exception occurs, it is caught by the `catch` block, where you can handle the exception.
+	- **Why we use**: To gracefully handle exceptions and prevent program termination due to errors.
 
+	```java
+	public class TryCatchExample {
+		public static void main(String[] args) {
+			try {
+				int result = divide(10, 0); // This may throw an ArithmeticException
+			} catch (ArithmeticException e) {
+				System.out.println("Error: Division by zero");
+			}
+		}
 
+		public static int divide(int numerator, int denominator) {
+			return numerator / denominator;
+		}
+	}
+	```
 
+	### 4. `try`-with-resources:
+	- **Purpose**: Used to automatically close resources after they are no longer needed.
+	- **Explanation**: Resources that implement the `AutoCloseable` interface (such as I/O streams) are declared within the `try` block. They are automatically closed when the `try` block exits, regardless of whether an exception occurs.
+	- **Why we use**: Ensures proper resource management and prevents resource leaks by automatically closing resources.
 
+	```java
+	import java.io.BufferedReader;
+	import java.io.FileReader;
+	import java.io.IOException;
+
+	public class TryWithResourcesExample {
+		public static void main(String[] args) {
+			try (FileReader reader = new FileReader("file.txt");
+				 BufferedReader bufferedReader = new BufferedReader(reader)) {
+				String line = bufferedReader.readLine(); // Read from the file
+				System.out.println("First line of file: " + line);
+			} catch (IOException e) {
+				System.out.println("Error reading file: " + e.getMessage());
+			}
+		}
+	}
+	```
+
+	### 5. `finally` Block:
+	- **Purpose**: Used to execute cleanup code that should always run, regardless of whether an exception occurs. usuallay we can use it close the resources.
+	- **Explanation**: The `finally` block is executed
 
 	creating a custom exception
 	---------------------------
@@ -1353,32 +1401,46 @@ In a Spring application, global exception handling can be achieved using `@Contr
 
 Let's see an example of global exception handling and discuss bean scopes:
 
-```java
-import org.springframework.web.bind.annotation.*;
-import org.springframework.http.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+    @ExceptionHandler(StudentNotFoundException.class)
+    public ResponseEntity<String> handleStudentNotFoundException(StudentNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
+
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handleException(Exception ex) {
-        // Log the exception
-        System.err.println("An exception occurred: " + ex.getMessage());
-        
-        // Return an HTTP response with an error message
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred. Please try again later.");
+    public ResponseEntity<String> handleGlobalException(Exception ex) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal Server Error");
     }
 }
+
+
 
 @RestController
-public class ExampleController {
+public class StudentController {
 
-    @GetMapping("/example")
-    public String exampleMethod() {
-        // Simulate an exception
-        throw new RuntimeException("Example exception");
+    @GetMapping("student/{id}")
+    public ResponseEntity<Student> getStudentById(@PathVariable int id) {
+        if (id == 0) {
+            throw new StudentNotFoundException("Student with id " + id + " not found");
+        }
+        return ResponseEntity.ok(new Student(id, "John Doe"));
     }
 }
+
+
+public class StudentNotFoundException extends RuntimeException {
+    public StudentNotFoundException(String message) {
+        super(message);
+    }
+}
+
 ```
 
 In this example:
@@ -1388,6 +1450,19 @@ In this example:
 - Inside the `handleException` method, we log the exception and return an HTTP response with an error message.
 - We also have an `ExampleController` class with a method `exampleMethod`, which throws a `RuntimeException`. This simulates an exception occurring in the application.
 - When an exception occurs in the `exampleMethod`, it will be caught by the `handleException` method in `GlobalExceptionHandler`, and an appropriate error response will be returned.
+
+
+HTTP STATUS CODES
+====================================
+- **200 OK**: The request has succeeded.
+- **201 Created**: The request has been fulfilled and resulted in a new resource being created.
+- **400 Bad Request**: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).
+- **401 Unauthorized**: Similar to 403 Forbidden, but specifically for use when authentication is required and has failed or has not yet been provided.
+- **403 Forbidden**: The client does not have access rights to the content, i.e., they are unauthorized, so the server is refusing to give the requested resource.
+- **404 Not Found**: The server can't find the requested resource. In the context of REST APIs, this is often used for a resource that doesn't exist.
+- **405 Method Not Allowed**: The method specified in the request-line is not allowed for the resource identified by the request-target.
+- **500 Internal Server Error**: A generic error message, given when an unexpected condition was encountered and no more specific message is suitable.
+- **503 Service Unavailable**: The server is currently unable to handle the request due to a temporary overload or maintenance of the server.
 
 
 INNER CLASS IN JAVA
@@ -1594,8 +1669,8 @@ Java Streams
 
 	2. **Intermediate and Terminal Operations**:
 	   - Streams consist of two types of operations: intermediate and terminal.
-	   - Intermediate operations transform a Stream into another Stream and Methods are chained together. Examples include `filter`, `map`, and `sorted`.
-	   - Terminal operations produce a result or a side effect. Examples include `forEach`, `collect`, and `reduce`.
+	   - Intermediate operations transform a Stream into another Stream and Methods are chained together. Examples include `filter`, `map`, `sorted`, `peek`, `skip`, and `limit` etc.
+	   - Terminal operations produce a result or a side effect. Examples include `forEach`, `collect`, `reduce`,`count`, `min`, `max`, `anyMatch`, `noneMatch`, `findFirst`, `FindAny` etc.
 
 	3. **Filtering**:
 	   - You can use the `filter` method to selectively include elements in a Stream based on a given condition.
@@ -1725,7 +1800,6 @@ JDBC IN JAVA
 	```
 
 	JDBC provides a powerful and standardized way for Java applications to interact with databases, making it a fundamental technology for database-driven Java applications and enterprise systems.
-
 
 
 
@@ -1970,17 +2044,6 @@ Some Important concepts in Threads in java
 	String result = future.get(); // Blocks until the task is complete
 	```
 
-	### 5. void:
-	- **Purpose**: Indicates that a method does not return any value.
-	- **Why Use**: Used as the return type of a method that performs an action but does not produce a result.
-	- **Example**:
-
-	```java
-	public void performAction() {
-		// Method logic goes here
-		System.out.println("Action performed");
-	}
-	```
 
 	These concepts are fundamental in concurrent programming in Java and are extensively used when working with threads and asynchronous tasks. They provide flexibility, simplicity, and control over concurrent execution in Java applications.
 
@@ -2516,7 +2579,14 @@ public class PracticeTest {
 }
 
 
+Hashing
+=======
 
+Hashing is a technique used to convert input data, such as passwords, into a fixed-size string of characters, called a hash value, using a hashing algorithm. 
+In Spring Boot projects, password hashing is crucial for securely storing passwords in databases.
+
+BCrypt is a widely-used hashing algorithm specifically designed for securely hashing passwords. 
+It incorporates a salt (randomly generated data) and a cost factor (iteration count) to make the hashing process computationally expensive, which increases the difficulty of brute-force attacks.
 
 HASHCODE
 =========
@@ -2636,7 +2706,7 @@ It helps in quickly locating the potential bucket where the object might be stor
 
 Collections in Java:
 ====================
-	The Collection in Java is a framework that provides an architecture to store and manipulate the group of objects.
+	The Collections in Java is a framework that provides an architecture to store and manipulate the group of objects.
 	Java Collections can achieve all the operations that you perform on a data such as searching, sorting, insertion, manipulation, and deletion.
 	Java Collection means a single unit of objects.
 	Java Collection framework provides many interfaces (Set, List, Queue, Deque) and classes (ArrayList, Vector, LinkedList, PriorityQueue, HashSet, LinkedHashSet, TreeSet).
@@ -2667,7 +2737,23 @@ Collections in Java:
 	-> By for loop.
 	-> By forEach() method.
 	-> By forEachRemaining() method.
-
+	
+	Note : if you want to iterate element in a forward direction or backword direction. You can use ListIterator
+			List<String> myList = new ArrayList<>();
+			// Add elements to myList
+			ListIterator<String> listIterator = myList.listIterator(myList.size());
+			while (listIterator.hasPrevious()) {
+				String element = listIterator.previous();
+				// Process element
+			}
+			
+	Note :  using forEachRemaining() method to iterate elements or print elements    
+	
+		Iterator<String> iterator = myList.iterator();
+		iterator.forEachRemaining(element -> {
+            System.out.println(element);
+        });
+		
 	1. List Interface
 	===============
 	List interface is the child interface of Collection interface. It inhibits a list type data structure in which we can store the ordered collection of objects. It can have duplicate values.
@@ -2696,6 +2782,8 @@ Collections in Java:
 
 		ii. LinkedList
 		==============
+		Note : Each element in the list is represented by a Node object. Each Node contains a reference to the previous node (prev) and the next node (next), along with the actual data stored in the middle node.
+		
 		1) LinkedList internally uses a doubly linked list to store the elements.
 		2) If any element is removed from the array, all the other elements are shifted in memory.	Manipulation with LinkedList is faster than ArrayList because it uses a doubly linked list, so no bit shifting is required in memory.
 		3) LinkedList class can act as a list and queue both because it implements List and Deque interfaces.
@@ -2703,7 +2791,7 @@ Collections in Java:
 		5) The location for the elements of a linked list is not contagious.
 		6) There is no case of default capacity in a LinkedList. In LinkedList, an empty list is created when a LinkedList is initialized.
 		7) LinkedList implements the doubly linked list of the list interface.
-
+		
 		iii.Vector
 		==========
 
@@ -2734,7 +2822,7 @@ Collections in Java:
 	====================
 
 	Queue interface maintains the first-in-first-out order. It can be defined as an ordered list that is used to hold the elements which are about to be processed.
-	There are various classes like PriorityQueue, Deque, and ArrayDeque which implements the Queue interface.
+	There are various classes and interfaces like PriorityQueue, Deque, and ArrayDeque which implements the Queue interface.
 	Queue interface can be instantiated.
 
 	Queue<String> q1 = new PriorityQueue();
@@ -2746,8 +2834,6 @@ Collections in Java:
 		2) It is already described that the insertion and deletion of objects follows FIFO pattern in the Java queue.
 		3) However, sometimes the elements of the queue are needed to be processed according to the priority, that's where a PriorityQueue comes into action.
 		4. PriorityQueue uses offer() method to add objects and peek method to return high priority elements (usuallay lowest numbers have highest priority).
-		
-
 
 
 	3. Deque Interface
@@ -2769,6 +2855,22 @@ Collections in Java:
 			c) ArrayDeque is not thread safe, in the absence of external synchronization.
 			d) ArrayDeque has no capacity restrictions.
 			e) ArrayDeque is faster than LinkedList and Stack.
+		Example : 
+		----------
+		ArrayDeque<Integer> deque = new ArrayDeque<>();
+
+        // Adding elements to the deque from both sides
+        deque.addFirst(1); // Adding element at the beginning
+        deque.addLast(2);  // Adding element at the end
+        deque.addFirst(0); // Adding element at the beginning
+        deque.addLast(3);  // Adding element at the end
+
+        System.out.println("Deque after adding elements: " + deque);
+
+        // Removing elements from both sides
+        int firstElement = deque.removeFirst(); // Removing element from the beginning
+        int lastElement = deque.removeLast();   // Removing element from the end
+
 
 
 	4. Set Interface
@@ -2824,10 +2926,19 @@ Collections in Java:
 
 
 
-
-
-
-
+		iv. ConcurrentHashSet
+		=====================
+		
+		1. Java ConcurrentHashSet is not a standard class in the Java Collections Framework. However, it can be implemented using `ConcurrentHashMap`.
+		2. It provides a thread-safe set implementation suitable for concurrent access from multiple threads.
+		3. Key Features:
+		   a. It is based on the ConcurrentHashMap implementation.
+		   b. ConcurrentHashSet can be created by using ConcurrentHashMap's keySet() method.
+		   c. It inherits the concurrency characteristics of ConcurrentHashMap, allowing concurrent read and write access without external synchronization.
+		   d. Like ConcurrentHashMap, it supports high concurrency, scalability, and performance in multi-threaded environments.
+		   e. ConcurrentHashSet does not allow duplicate elements.
+		   f. It supports null elements.
+		   g. The behavior and characteristics of ConcurrentHashSet are similar to ConcurrentHashMap.
 
 	5 Map Interface
 	================
@@ -2862,10 +2973,23 @@ Collections in Java:
 		d) Java HashMap is non synchronized.
 		e) Java HashMap maintains no order.
 		f) The initial default capacity of Java HashMap class is 16 with a load factor of 0.75.
+		
+		
+		
+	ii. Hashtable
+	===============
+	
+	1. Java Hashtable class implements a hashtable, which maps keys to values. 
+	2. It extends Dictionary class and implements the Map interface and Cloneable, Serializable interfaces.
 
+		a. A Hashtable is an array of a list. Each list is known as a bucket. The position of the bucket is identified by calling the hashcode() method. A Hashtable contains values based on the key.
+		b. Java Hashtable class contains unique elements.
+		c. Java Hashtable class doesn't allow null key or value.
+		d. Java Hashtable class is synchronized.
+		e. The initial default capacity of Hashtable class is 11 whereas loadFactor is 0.75.
+		
 
-
-	ii. LinkedHashMap class
+	iii. LinkedHashMap class
 	========================
 
 	1) Java LinkedHashMap class hierarchy
@@ -2881,7 +3005,7 @@ Collections in Java:
 		public class LinkedHashMap<K,V> extends HashMap<K,V> implements Map<K,V>
 
 
-	6) TreeMap class
+	iv) TreeMap class
 	=================
 	Java TreeMap class hierarchy: TreeMap class implements SortedMap interface and SortedMap interface extends Map interface.
 	Java TreeMap class is a red-black tree based implementation.
@@ -2894,6 +3018,21 @@ Collections in Java:
 	Java TreeMap maintains ascending order.
 
 
+	iv. ConcurrentHashMap
+	=====================
+	1. Java ConcurrentHashMap class implements a concurrent hash table, which maps keys to values.
+	2. It is part of the `java.util.concurrent` package.
+	3. ConcurrentHashMap is designed for concurrent access from multiple threads without external synchronization.
+	4. It extends the AbstractMap class and implements the ConcurrentMap interface, which extends the Map interface.
+	5. Key Features:
+	   a. Internally, ConcurrentHashMap is divided into segments or buckets, each of which can be locked independently for updates.
+	   b. It provides high concurrency for read and write operations.
+	   c. Unlike Hashtable, it allows concurrent updates without blocking the entire map.
+	   d. It supports high scalability by allowing concurrent updates to different segments.
+	   e. It provides better performance compared to Hashtable in multi-threaded scenarios.
+	   f. ConcurrentHashMap supports null keys and null values.
+	   g. The default initial capacity of ConcurrentHashMap is 16, and the default concurrency level is 16.
+	   
 
 ### Singleton Class:
 ======================
@@ -3261,6 +3400,8 @@ Programming to interfaces allows for more maintainable, modular, and testable co
 Certainly! Let's dive into explanations of Spring Boot Security and OAuth, along with their uses, advantages, disadvantages, and some examples.
 
 
+
+
 HIBERNATE
 ====================
 
@@ -3374,6 +3515,519 @@ public class HibernateDemo {
 ```
 
 In the Hibernate example, you define an `Employee` entity, and Hibernate takes care of the database interaction for you. This code is more abstract and portable compared to the low-level JDBC code.
+
+=======
+Caching
+=======
+
+Caching in Hibernate is a powerful feature that can significantly improve the performance of your application by reducing the number of database queries. 
+It helps in avoiding repetitive database access for frequently accessed data by storing the data in memory. Hibernate supports different levels of caching, which can be categorized as first-level and second-level caches.
+
+### 1. First-Level Cache
+
+The first-level cache is associated with the session (or entity manager) in Hibernate. It is enabled by default and cannot be disabled. Here's how it works:
+
+- **Scope**: The first-level cache is session-scoped, meaning it is valid only within a single session.
+- **Operation**: When you perform operations such as `find`, `get`, or `load`, Hibernate first checks the session cache to see if the entity is already loaded. If it is, it returns the entity from the cache instead of querying the database.
+- **Lifecycle**: The cache is cleared when the session is closed or when explicitly cleared using methods like `session.clear()` or `session.evict()`.
+
+#### Example
+
+```java
+Session session = sessionFactory.openSession();
+
+// The first query will hit the database
+Employee employee1 = session.get(Employee.class, 1L);
+
+// The second query will fetch the entity from the first-level cache
+Employee employee2 = session.get(Employee.class, 1L);
+
+session.close();
+```
+
+### 2. Second-Level Cache
+
+The second-level cache is session-factory-scoped and can be shared across sessions. It is optional and needs to be explicitly configured. Hibernate integrates with several caching providers such as EHCache, Infinispan, and others.
+
+- **Scope**: The second-level cache is shared across sessions and is associated with the session factory.
+- **Configuration**: It must be enabled and configured in the Hibernate configuration files (e.g., `hibernate.cfg.xml` or `application.properties`).
+
+#### Configuration Example
+
+**hibernate.cfg.xml**:
+
+```xml
+<property name="hibernate.cache.use_second_level_cache">true</property>
+<property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+<property name="hibernate.cache.provider_configuration_file_resource_path">/ehcache.xml</property>
+```
+
+**ehcache.xml**:
+
+```xml
+<ehcache>
+    <cache name="com.example.Employee"
+           maxEntriesLocalHeap="1000" // number of entities it can store.
+           timeToLiveSeconds="3600"/> // expire time for each cache entity. (3600-1 hour)
+</ehcache>
+```
+
+#### Example Usage
+
+```java
+Session session1 = sessionFactory.openSession();
+Employee employee1 = session1.get(Employee.class, 1L);
+session1.close(); // Employee data is cached in the second-level cache
+
+Session session2 = sessionFactory.openSession();
+Employee employee2 = session2.get(Employee.class, 1L); // This will hit the second-level cache
+session2.close();
+```
+
+### 3. Query Cache
+
+Hibernate also provides a query cache, which caches the results of queries. This cache works in conjunction with the second-level cache. To use the query cache, it must be explicitly enabled.
+
+#### Configuration Example
+
+**hibernate.cfg.xml**:
+
+```xml
+<property name="hibernate.cache.use_query_cache">true</property>
+```
+
+#### Example Usage
+
+```java
+Session session = sessionFactory.openSession();
+
+// Enable query caching for this query
+List<Employee> employees = session.createQuery("FROM Employee")
+                                  .setCacheable(true)
+                                  .list();
+
+session.close();
+```
+
+### Benefits of Caching
+
+- **Performance Improvement**: By reducing the number of database queries, caching can significantly improve the performance and scalability of the application.
+- **Reduced Latency**: Fetching data from the cache is much faster than retrieving it from the database, reducing the latency for data access.
+- **Scalability**: Offloading read operations from the database can help the system handle a larger number of requests and users.
+
+Example with Simple Scenario use of Caching
+-------------------------------------------
+1. **When you hit the URL with the same product ID multiple times within an hour**:
+   - The first time you access the product details, it may hit the database to fetch the data.
+   - Subsequent requests with the same product ID will retrieve the product details from the cache instead of hitting the database. This is because the data is stored in the cache after the first retrieval.
+  
+2. **After 1 hour**:
+   - If you hit the URL with the same product ID after the cache expiry time (1 hour), the cache for that specific product ID will expire.
+   - When the cache expires, subsequent requests with the same product ID will not find the data in the cache, so they will hit the database again to fetch the fresh data.
+ 
+ 
+ASSOCIATE MAPPING :
+===================
+
+	Certainly! Let's explain each type of association mapping using `Employee` and `Address` entities.
+
+	1. **One-to-One Relationship**:
+
+	In a one-to-one relationship, each entity instance is associated with exactly one instance of another entity. In our example, each `Employee` instance will have exactly one associated `Address` instance, and vice versa.
+
+	```java
+	@Entity
+	public class Employee {
+		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
+		private Long id;
+
+		private String name;
+
+		@OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
+		private Address address;
+
+		// Getters and setters
+	}
+
+	@Entity
+	public class Address {
+		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
+		private Long id;
+
+		private String street;
+		private String city;
+		private String country;
+
+		@OneToOne
+		@JoinColumn(name = "employee_id")
+		private Employee employee;
+
+		// Getters and setters
+	}
+	```
+
+	2. **One-to-Many Relationship**:
+
+	In a one-to-many relationship, each instance of the owning entity (source) is associated with multiple instances of the target entity (destination). In our example, each `Employee` instance can have multiple associated `Address` instances.
+
+	```java
+	@Entity
+	public class Employee {
+		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
+		private Long id;
+
+		private String name;
+
+		@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+		private List<Address> addresses = new ArrayList<>();
+
+		// Getters and setters
+	}
+
+	@Entity
+	public class Address {
+		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
+		private Long id;
+
+		private String street;
+		private String city;
+		private String country;
+
+		@ManyToOne
+		@JoinColumn(name = "employee_id")
+		private Employee employee;
+
+		// Getters and setters
+	}
+	```
+
+	3. **Many-to-One Relationship**:
+
+	In a many-to-one relationship, multiple instances of the owning entity (source) are associated with exactly one instance of the target entity (destination). In our example, multiple `Employee` instances can be associated with exactly one `Address` instance.
+
+	```java
+	@Entity
+	public class Employee {
+		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
+		private Long id;
+
+		private String name;
+
+		@ManyToOne
+		@JoinColumn(name = "address_id")
+		private Address address;
+
+		// Getters and setters
+	}
+
+	@Entity
+	public class Address {
+		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
+		private Long id;
+
+		private String street;
+		private String city;
+		private String country;
+
+		// Getters and setters
+	}
+	```
+
+	4. **Many-to-Many Relationship**:
+
+	In a many-to-many relationship, multiple instances of each entity can be associated with multiple instances of the other entity. In our example, multiple `Employee` instances can be associated with multiple `Address` instances, and vice versa.
+
+	```java
+	@Entity
+	public class Employee {
+		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
+		private Long id;
+
+		private String name;
+
+		@ManyToMany
+		@JoinTable(name = "employee_address",
+				   joinColumns = @JoinColumn(name = "employee_id"),
+				   inverseJoinColumns = @JoinColumn(name = "address_id"))
+		private List<Address> addresses = new ArrayList<>();
+
+		// Getters and setters
+	}
+
+	@Entity
+	public class Address {
+		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
+		private Long id;
+
+		private String street;
+		private String city;
+		private String country;
+
+		@ManyToMany(mappedBy = "addresses")
+		private List<Employee> employees = new ArrayList<>();
+
+		// Getters and setters
+	}
+	```
+
+These examples demonstrate how different types of association mappings can be implemented using Hibernate annotations in Spring Boot applications.
+
+=============
+CASCADE TYPES
+==============
+The `cascade` attribute in JPA (Java Persistence API) specifies the set of operations that should be propagated from a parent entity to its associated entities. When `cascade = CascadeType.ALL` is used, it means that all the operations performed on the parent entity (such as persist, merge, remove, refresh, detach) will also be performed on the associated entities.
+
+JPA defines several types of cascade operations:
+
+1. **`CascadeType.PERSIST`**: When the parent entity is persisted (saved), the associated entity is also persisted.
+2. **`CascadeType.MERGE`**: When the parent entity is merged, the associated entity is also merged. This operation synchronizes the state of the detached entity with the current state in the database.
+3. **`CascadeType.REMOVE`**: When the parent entity is removed (deleted), the associated entity is also removed.
+4. **`CascadeType.REFRESH`**: When the parent entity is refreshed, the state of the associated entity is also refreshed from the database.
+5. **`CascadeType.DETACH`**: When the parent entity is detached from the persistence context, the associated entity is also detached.
+6. **`CascadeType.ALL`**: This is a shorthand for specifying all of the above cascade types. It means that persist, merge, remove, refresh, and detach operations will all be cascaded to the associated entity.
+
+### Usage
+
+When you use `cascade = CascadeType.ALL`, it means that any operation you perform on the parent entity will also be automatically applied to the associated entities. For example:
+
+```java
+@OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
+private Address address;
+```
+
+This configuration implies that:
+
+- **Persist**: If you save an `Employee`, the `Address` will be saved as well.
+- **Merge**: If you update an `Employee`, the changes will also be applied to the `Address`.
+- **Remove**: If you delete an `Employee`, the `Address` will be deleted as well.
+- **Refresh**: If you refresh an `Employee`, the `Address` will also be refreshed.
+- **Detach**: If you detach an `Employee`, the `Address` will also be detached from the persistence context.
+
+### Example Without Cascade
+
+If you don't use cascade, each entity must be managed (persisted, merged, removed, etc.) individually. For example:
+
+```java
+@OneToOne(mappedBy = "employee")
+private Address address;
+```
+
+With this configuration:
+
+- If you persist an `Employee`, the associated `Address` will not be automatically persisted. You must explicitly persist the `Address`.
+- If you remove an `Employee`, the associated `Address` will not be automatically removed. You must explicitly remove the `Address`.
+
+### Example with Cascade
+
+Consider the following example:
+
+```java
+Employee employee = new Employee();
+employee.setName("John Doe");
+
+Address address = new Address();
+address.setStreet("123 Main St");
+address.setCity("Anytown");
+address.setCountry("Country");
+employee.setAddress(address);
+address.setEmployee(employee);
+
+// Persisting the employee will also persist the address
+entityManager.persist(employee);
+
+// Removing the employee will also remove the address
+entityManager.remove(employee);
+```
+
+In this example, because `cascade = CascadeType.ALL` is used, when you persist the `Employee`, the `Address` is also persisted automatically. Similarly, when you remove the `Employee`, the `Address` is also removed automatically.
+
+### Summary
+
+- **Using `cascade = CascadeType.ALL`**: Ensures that all operations (persist, merge, remove, refresh, detach) on the parent entity are propagated to the associated entities. This can simplify code by eliminating the need to manually manage associated entities.
+- **Not Using Cascade**: Requires explicit management of each entity. You need to persist, merge, remove, etc., each entity individually, providing more control but requiring more code and careful handling to maintain consistency.
+
+Choosing whether to use cascade operations depends on the specific requirements of your application and how you want to manage the lifecycle of your entities.
+
+
+
+LAZY LOADING IN HIBERNATE : 
+===========================
+Lazy loading in Hibernate is a technique used to defer the loading of associated entities or collections until they are explicitly accessed. This helps in reducing unnecessary database queries and improves performance by loading only the required data when needed.
+
+There are two main types of lazy loading in Hibernate:
+
+1. **Lazy Loading for Associations**: This is when Hibernate delays the loading of associated entities until they are accessed for the first time.
+
+2. **Lazy Loading for Collections**: This is when Hibernate delays the loading of collections of associated entities until they are accessed for the first time.
+
+Let's differentiate between the two types with examples:
+
+### 1. Lazy Loading for Associations
+
+Consider a scenario where you have two entities: `Employee` and `Department`, with a many-to-one association from `Employee` to `Department`.
+
+#### Employee Entity:
+
+```java
+@Entity
+public class Employee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+
+    @ManyToOne(fetch = FetchType.LAZY) // Lazy loading for association
+    private Department department;
+
+    // Getters and setters
+}
+```
+
+#### Department Entity:
+
+```java
+@Entity
+public class Department {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+
+    // Getters and setters
+}
+```
+
+In this example, the `department` association in the `Employee` entity is configured for lazy loading (`FetchType.LAZY`). This means that when you fetch an `Employee`, the associated `Department` will not be loaded from the database until you explicitly access it.
+
+### 2. Lazy Loading for Collections
+
+Consider a scenario where you have an entity `Order` that has a one-to-many association with `OrderItem`. The `Order` entity contains a collection of `OrderItem` objects.
+
+#### Order Entity:
+
+```java
+@Entity
+public class Order {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String orderNumber;
+
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY) // Lazy loading for collection
+    private List<OrderItem> orderItems = new ArrayList<>();
+
+    // Getters and setters
+}
+```
+
+#### OrderItem Entity:
+
+```java
+@Entity
+public class OrderItem {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String product;
+    private int quantity;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
+
+    // Getters and setters
+}
+```
+
+In this example, the `orderItems` collection in the `Order` entity is configured for lazy loading (`FetchType.LAZY`). This means that when you fetch an `Order`, the associated `OrderItem` objects will not be loaded from the database until you explicitly access them.
+
+### Summary
+
+- **Lazy Loading for Associations**: Delays the loading of associated entities until they are accessed for the first time.
+- **Lazy Loading for Collections**: Delays the loading of collections of associated entities until they are accessed for the first time.
+
+These lazy loading configurations help optimize database access and improve performance by loading only the necessary data when needed.
+
+
+I see you've provided two identical `EmployeeController` classes. Let's assume you meant to provide two different scenarios: one where the `department` field is not explicitly accessed, and one where it is explicitly accessed.
+
+### Scenario 1: Department Not Explicitly Accessed
+
+```java
+@RestController
+@RequestMapping("/employees")
+public class EmployeeController {
+
+    @Autowired
+    private EmployeeService employeeService;
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Employee> getEmployee(@PathVariable Long id) {
+        Employee employee = employeeService.findEmployeeById(id);
+        // At this point, the department associated with the employee is not loaded
+        // It will only be loaded from the database when explicitly accessed
+        return ResponseEntity.ok(employee);
+    }
+}
+```
+
+Output:
+```json
+{
+  "id": 1,
+  "name": "John Doe",
+  "department": null
+}
+```
+
+### Scenario 2: Department Explicitly Accessed
+
+```java
+@RestController
+@RequestMapping("/employees")
+public class EmployeeController {
+
+    @Autowired
+    private EmployeeService employeeService;
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Employee> getEmployee(@PathVariable Long id) {
+        Employee employee = employeeService.findEmployeeById(id);
+        
+        // Explicitly accessing the department field
+        Department department = employee.getDepartment();
+        
+        // At this point, Hibernate will execute another SQL query to fetch the associated Department from the database
+        
+        return ResponseEntity.ok(employee);
+    }
+}
+```
+
+Output:
+```json
+{
+  "id": 1,
+  "name": "John Doe",
+  "department": {
+    "id": 1,
+    "name": "Engineering"
+  }
+}
+```
+
+In scenario 1, since the department field is not explicitly accessed, the department associated with the employee is `null`.
+
+In scenario 2, the department field is explicitly accessed using `employee.getDepartment()`, triggering Hibernate to execute another SQL query to fetch the associated department from the database. Therefore, the department details are included in the output JSON response.
+
 
 
 
@@ -3839,9 +4493,40 @@ Spring framework provides three ways to inject dependency
 2. By Setter method Injection
 3. By Field Injection
 
+1. **Constructor Injection**: Dependencies are provided via the class constructor, often resulting in immutable objects and ensuring that all required dependencies are available when the object is created.
+
+   ```java
+    private final MyDependency dependency;
+
+   @Autowired
+   public MyClass(MyDependency dependency) {
+       this.dependency = dependency;
+   }
+   ```
+
+2. **Setter Method Injection**: Dependencies are injected via setter methods, allowing for flexibility in setting dependencies after object creation.
+
+   ```java
+   private MyDependency dependency;
+   
+   @Autowired
+   public void setDependency(MyDependency dependency) {
+       this.dependency = dependency;
+   }
+   ```
+
+3. **Field Injection**: Dependencies are directly injected into fields, potentially leading to less readable code and making it harder to mock dependencies for testing.
+
+   ```java
+   @Autowired
+   private MyDependency dependency;
+   ```
+
+The main difference lies in how dependencies are provided to the class: constructor injection ensures that dependencies are available upon object creation, setter injection allows for more flexible injection after object creation, and field injection directly injects dependencies into class fields, potentially leading to readability and testability issues.
 
 
 Without Dependency Injection:
+-----------------------------
 
 In this example, the Car class creates its own Engine:
 
@@ -4033,7 +4718,7 @@ Secondly, annotations enable Spring Boot to automatically configure and manage v
 3. @Qualifier : 
 	- @Qualifier annotation is used in conjection with @Autowired to avoid confusion when we have two or more beans configured for same type.
 	Example : 
-			public interface MessageService {
+		public interface MessageService {
 			void sendMessage(String message);
 		}
 
@@ -4200,19 +4885,35 @@ Secondly, annotations enable Spring Boot to automatically configure and manage v
 	
 
 12. **@Modifying**:
-   - `@Modifying` is used in conjunction with JPQL (Java Persistence Query Language) queries to indicate that the query will modify the database state.
+   - `@Modifying` is used in conjunction with @Query JPQL (Java Persistence Query Language) queries to indicate that the query will modify the database state.
    - It's used when executing UPDATE, DELETE, or INSERT queries using JPQL.
    - This annotation is required to instruct JPA that the query being executed will perform database modifications, enabling it to properly manage transactional behavior.
+    Example : 
+	
+	@Modifying
+    @Query("UPDATE Customer C SET C.currentStatus = :status WHERE C.customerId = :customerId")
+    void updateCurrentStatus(@Param("customerId") Integer customerId, @Param("status") String status);
+
 
 13. **@Query**:
    - `@Query` is used to declare JPQL queries directly within repository methods.
    - It allows developers to define custom queries using JPQL syntax directly within the repository interface or class.
    - It provides more flexibility compared to query methods derived from method names.
 
-14. **@NativeQuery**:
-   - `@NativeQuery` is used to execute native SQL queries directly within repository methods.
+14. **nativeQuery**:
+   - `nativeQuery` is used to execute native SQL queries directly within repository methods.
    - It allows developers to execute native SQL queries (SQL written in the database-specific dialect) within the repository interface or class.
    - It's useful when JPQL is not sufficient or when you need to execute database-specific queries.
+  
+	Example : 
+	
+    @Query(value = "SELECT distinct U.user_id, U.sales_person_code, U.first_name, U.last_name" +
+        " FROM [User] U " +
+        " JOIN viewable_team VT ON VT.sales_person_code = U.sales_person_code AND VT.team_code in (select value from string_split(:teamCodes, ','))" +
+        " AND VT.is_primary_ae = 'true'" +
+        " GROUP BY U.user_id, U.sales_person_code, U.first_name, U.last_name", nativeQuery = true)
+    List<Object[]> findAEUsers(@Param("teamCodes") String teamCodes);
+
 
 15. **@EnableWebSecurity**:
    - is an annotation in Spring Security that activates web security features in a Spring Boot application. 
@@ -4356,8 +5057,30 @@ Secondly, annotations enable Spring Boot to automatically configure and manage v
 
 				With this setup, you can call `asyncMethod()` from any other component or service in your application, and it will be executed asynchronously, allowing the calling thread to continue without waiting for the method to complete.
 
-		 
-
+			
+			Note : One Important Class 
+			
+			What is CompletableFuture?
+			==========================
+			
+			A CompltableFuture is used for asynchronous programming. Asynchronous programming means writing non-blocking code. 
+			It runs a task on a separate thread than the main application thread and notifies the main thread about its progress, completion or failure.
+			In this way, the main thread does not block or wait for the completion of the task. Other tasks execute in parallel. Parallelism improves the performance of the program.
+			A CompletableFuture is a class in Java. It belongs to java.util.cocurrent package. It implements CompletionStage and Future interface.
+			To create an instance of CompletableFuture, we can use the static method supplyAsync provided by CompletableFuture class which takes Supplier as an argument. Supplier is a Functional Interface that takes no value and returns a result.
+			
+			supplyAsync(): It complete its job asynchronously. The result of supplier is run by a task from ForkJoinPool.commonPool() as default. The supplyAsync() method returns CompletableFuture on which we can apply other methods.
+			thenApply(): The method accepts function as an arguments. It returns a new CompletableStage when this stage completes normally. The new stage use as the argument to the supplied function.
+			join(): the method returns the result value when complete. It also throws a CompletionException (unchecked exception) if completed exceptionally.
+			
+			
+			list.stream()
+                .map(num -> CompletableFuture.supplyAsync( () -> num * num ))
+                .map(CompletableFuture -> CompletableFuture.thenApply(num -> num * num))
+                .map(value -> value.join())
+                .forEach(someData -> System.out.println(someData));
+				
+				
 Scope OF Beans In Spring
 ==================================================
 
@@ -4376,6 +5099,80 @@ The latest version of the Spring framework defines 6 types of scopes:
 6. websocket : A single instance of the bean is created for each WebSocket connection. This scope is only available in applications that use WebSocket communication. Beans with websocket scope persist for the duration of the WebSocket connection.@Scope(value = "websocket", proxyMode = ScopedProxyMode.TARGET_CLASS)
 
 The last four scopes mentioned, request, session, application and websocket, are only available in a web-aware application.
+
+
+DIFFERENT TYPES OF QUERIES :
+============================
+
+In Spring Boot, you can write various types of queries to interact with your database. Here are some common types of queries along with examples:
+
+1. **JPQL Queries:**
+   - JPQL (Java Persistence Query Language) queries are object-oriented queries defined in terms of entity objects.
+   ```java
+   @Query("SELECT e FROM Employee e WHERE e.department = ?1")
+   List<Employee> findByDepartment(Department department);
+   ```
+
+2. **Native SQL Queries:**
+   - Native SQL queries are SQL queries written in the native database dialect.
+   ```java
+   @Query(value = "SELECT * FROM employees WHERE department_id = ?1", nativeQuery = true)
+   List<Employee> findByDepartmentIdNative(Long departmentId);
+   ```
+
+3. **Named Queries:**
+   - Named queries are predefined queries with a name specified in the entity class.
+   ```java
+   @NamedQuery(name = "Employee.findByLastName", query = "SELECT e FROM Employee e WHERE e.lastName = :lastName")
+   List<Employee> findByLastName(@Param("lastName") String lastName);
+   ```
+
+4. **Criteria Queries:**
+   - Criteria API provides a type-safe way to define queries programmatically without using any query strings.
+   ```java
+   CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+   CriteriaQuery<Employee> criteria = builder.createQuery(Employee.class);
+   Root<Employee> root = criteria.from(Employee.class);
+   criteria.select(root).where(builder.equal(root.get("department"), department));
+   List<Employee> employees = entityManager.createQuery(criteria).getResultList();
+   ```
+
+5. **Query by Example (QBE):**
+   - Query by Example allows creating queries based on the example entity provided.
+   ```java
+   Employee exampleEmployee = new Employee();
+   exampleEmployee.setLastName("Doe");
+   Example<Employee> example = Example.of(exampleEmployee);
+   List<Employee> employees = employeeRepository.findAll(example);
+   ```
+
+6. **Derived Query Methods:**
+   - Spring Data JPA provides the ability to derive query methods from the method name.
+   ```java
+   List<Employee> findByLastName(String lastName);
+   ```
+   
+SQL : 
+-----
+Example SQL query to retrieve all employees from an "Employees" table
+SELECT * FROM Employees;
+
+HQL :
+-----
+// Example HQL query to retrieve all employees using Hibernate
+Query query = session.createQuery("FROM Employee");
+List<Employee> employees = query.list();
+
+JPQL : 
+------
+public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+    @Query("SELECT e FROM Employee e WHERE e.name LIKE %:name%")
+    List<Employee> findByNameContaining(@Param("name") String name);
+}
+
+
+
+These are some common types of queries you can write in Spring Boot applications to interact with your database. The choice of query type depends on factors like complexity, performance, and maintainability of the application.
 
 
 SpringBOot Application Flow :
@@ -4414,7 +5211,8 @@ In summary, synchronous communication blocks execution until a response is recei
 
 Microservices  :
 ======================
-**Microservices** is an architectural approach where a software application is divided into a collection of small, independent, and loosely coupled services, each responsible for specific functionality. Spring Boot, a popular Java framework, is often used to build microservices due to its ease of development and the tools it provides.
+**Microservices** is an architectural approach where a software application is divided into a collection of small, independent, and loosely coupled services, each responsible for specific functionality. 
+Spring Boot, a popular Java framework, is often used to build microservices due to its ease of development and the tools it provides.
 
 Importants in Microservices
 ============================
@@ -4455,6 +5253,40 @@ Server-side Load Balancer:
 - They are responsible for routing client requests to appropriate backend servers based on predefined algorithms.
 - Spring Cloud and Eureka Discovery Service falls under the category of Server-side Load Balancer
 
+Example : 
+
+import org.springframework.cloud.gateway.route.RouteLocator;
+import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+		@Configuration
+		public class GatewayConfig {
+
+			@Bean
+			public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
+				return builder.routes()
+						.route("service1", r -> r.path("/service1/**")
+								.uri("lb://SERVICE-NAME"))  // Replace SERVICE-NAME with the name of your service
+						.route("service2", r -> r.path("/service2/**")
+								.uri("lb://SERVICE-NAME"))  // Replace SERVICE-NAME with the name of your service
+						.build();
+			}
+		}
+
+
+		import org.springframework.boot.SpringApplication;
+		import org.springframework.boot.autoconfigure.SpringBootApplication;
+		import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+
+		@SpringBootApplication
+		@EnableDiscoveryClient
+		public class GatewayApplication {
+			public static void main(String[] args) {
+				SpringApplication.run(GatewayApplication.class, args);
+			}
+		}
+
 
 
 ### Client-side Load Balancing:
@@ -4464,46 +5296,32 @@ Server-side Load Balancer:
 - The client retrieves the list of available servers from a service registry (such as Eureka) and applies a load balancing algorithm locally.
 - This approach reduces the load on server-side load balancers and enables more flexible load balancing strategies.
 
-	#### Example Code:
-	```java
-	import org.springframework.boot.SpringApplication;
-	import org.springframework.boot.autoconfigure.SpringBootApplication;
-	import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-	import org.springframework.cloud.client.loadbalancer.LoadBalanced;
-	import org.springframework.context.annotation.Bean;
-	import org.springframework.web.client.RestTemplate;
+	When you annotate a WebClient.Builder or RestTemplate bean with @LoadBalanced, it enables client-side load balancing using Ribbon, which is part of Spring Cloud Netflix.
+	Spring Cloud Netflix Ribbon performs client-side load balancing by choosing an instance of the target service from the available instances registered with the Eureka server.
 
+	Therefore, by using @LoadBalanced with WebClient.Builder or RestTemplate, you are enabling client-side load balancing, where the client makes decisions about which service instance to call.
+
+	@Bean
+	@LoadBalanced
+	public WebClient.Builder webClientBuilder(){
+		return WebClient.builder();
+	}
+
+	@Bean
+	@LoadBalanced
+	public RestTemplate restTemplate(){
+		return new RestTemplate();
+	}
+	
 	@SpringBootApplication
-	@EnableDiscoveryClient
-	public class ClientApplication {
-
+	@EnableEurekaClient
+	public class ApiGatewayApplication {
 		public static void main(String[] args) {
-			SpringApplication.run(ClientApplication.class, args);
-		}
-
-		@Bean
-		@LoadBalanced
-		public RestTemplate restTemplate() {
-			return new RestTemplate();
-		}
-
-		@RestController
-		public class ClientController {
-
-			@Autowired
-			private RestTemplate restTemplate;
-
-			@Value("${backend.service.url}")
-			private String backendServiceUrl;
-
-			@GetMapping("/invokeBackendService")
-			public String invokeBackendService() {
-				ResponseEntity<String> responseEntity = restTemplate.getForEntity(backendServiceUrl, String.class);
-				return responseEntity.getBody();
-			}
+			SpringApplication.run(ApiGatewayApplication.class, args);
 		}
 	}
-	```
+
+
 
 ### RestTemplate vs WebClient:
 ==============================
@@ -5254,6 +6072,117 @@ Sure, here's an explanation of the JWT (JSON Web Token) authentication process i
 In summary, the JWT authentication process involves generating a token upon successful user authentication, issuing the token to the client, validating the token on subsequent requests, and granting access to protected resources if the token is valid and the user is authenticated.
 
 
+DATA STRUCTURES
+================
+
+==> O(1) -> Order One or Constant Time.
+==> O(n) -> Order n or Linear Time.
+
+O notation, also known as Big O notation, is a mathematical notation used in computer science to describe the behavior of algorithms and functions in terms of their time complexity or space complexity as the input size grows. It provides an upper bound on the time or space required by an algorithm or function.
+
+The notation is expressed using the letter "O" followed by a function. This function represents the upper bound of the algorithm's time complexity or space complexity, typically in terms of the input size, denoted as "n."
+
+Here are a few common examples of O notation:
+
+- O(1) - Constant time complexity: The time or space required by the algorithm remains constant regardless of the input size.
+- O(log n) - Logarithmic time complexity: The time or space required by the algorithm grows logarithmically as the input size grows.
+- O(n) - Linear time complexity: The time or space required by the algorithm grows linearly with the input size.
+- O(n^2) - Quadratic time complexity: The time or space required by the algorithm grows quadratically with the input size.
+- O(2^n) - Exponential time complexity: The time or space required by the algorithm grows exponentially with the input size.
+
+These notations help in analyzing and comparing the efficiency of algorithms and understanding how they scale with different input sizes. By knowing the time or space complexity of an algorithm, developers can make informed decisions about algorithm selection and optimization.
+
+
+Time complexity and space complexity are measures used to analyze algorithms based on their performance characteristics.
+
+1. **Time Complexity**: It is a measure of the amount of time an algorithm takes to run as a function of the length of the input. It gives an upper bound on the running time in terms of the input size.
+
+2. **Space Complexity**: It measures the amount of memory space an algorithm consumes as a function of the input size. It includes both the space used by the algorithm itself and any auxiliary data structures it uses.
+
+
+Certainly! O(1) and O(1) refer to constant time complexity, but they apply to different operations.
+
+1. **O(1) Time Complexity**:
+   - O(1) stands for "order one" or "constant time."
+   - It means that the time taken by an algorithm or operation remains constant, regardless of the size of the input data.
+   - Regardless of the size of the data structure, the operation completes in the same amount of time.
+   - Examples:
+     - Accessing an element in an array by index (assuming random access): Regardless of the size of the array, accessing any element takes the same amount of time because arrays provide constant-time access based on the index.
+     - Adding or removing an element at the beginning or end of a LinkedList or ArrayList when there's no resizing or shifting involved: In LinkedLists, adding or removing elements at the beginning or end typically involves updating references, which takes constant time. In ArrayLists, adding elements at the end when there's available capacity can also be a constant-time operation.
+
+2. **O(1) Space Complexity**:
+   - O(1) space complexity means that the amount of additional memory required by an algorithm or operation remains constant, regardless of the size of the input data.
+   - It implies that the algorithm or operation uses a constant amount of memory that doesn't grow with the size of the input.
+   - Examples:
+     - Storing a fixed number of variables: Regardless of the size of the input data, if the algorithm only requires a fixed number of variables or a fixed-size data structure, its space complexity is O(1).
+     - Storing a single pointer or reference: If an algorithm only needs to store a single pointer or reference, the space complexity is O(1) because the memory required for the pointer remains constant, regardless of the size of the input.
+
+In summary, O(1) time complexity means that an operation executes in constant time, while O(1) space complexity means that the amount of additional memory used remains constant. These complexities are desirable because they indicate that an algorithm or operation is efficient and does not degrade in performance as the input size grows.
+
+Certainly! O(n) refers to linear time complexity. Let's delve into it:
+
+**O(n) Time Complexity**:
+- O(n) stands for "order n" or "linear time."
+- It means that the time taken by an algorithm or operation grows linearly with the size of the input data.
+- As the size of the input increases, the time taken to complete the operation increases proportionally.
+- Examples:
+  - Linear search: When searching for an element in an unsorted array sequentially, the time taken is O(n), as the algorithm may need to traverse the entire array to find the element.
+  - Traversing a LinkedList: If you need to iterate over all elements in a LinkedList, the time taken would be O(n) because you need to visit each node in the list once.
+  - Summing the elements of an array: If you sum all elements in an array sequentially, the time taken would be O(n) because you need to visit each element once to calculate the sum.
+
+**O(n) Space Complexity**:
+- O(n) space complexity means that the amount of additional memory required by an algorithm or operation grows linearly with the size of the input data.
+- As the size of the input increases, the amount of memory used also increases proportionally.
+- Examples:
+  - Creating a new array to store the result of an operation that depends on the size of the input array: If you need to create a new array to store the result of doubling each element in the input array, the space complexity would be O(n), as the size of the new array depends on the size of the input array.
+  - Storing the elements of a LinkedList: If you store n elements in a LinkedList, the space complexity would be O(n) because you need to allocate memory for each node in the list.
+
+In summary, O(n) time complexity indicates that the time taken by an algorithm grows linearly with the size of the input, while O(n) space complexity indicates that the amount of additional memory used also grows linearly with the size of the input.
+
+
+Let's demonstrate these concepts with a simple example of finding the maximum element in an array:
+
+```java
+public class MaxElement {
+
+    // Function to find the maximum element in an array
+    public static int findMax(int[] arr) {
+        int max = arr[0];  // Initialize max with the first element
+
+        // Traverse the array to find the maximum element
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] > max) {
+                max = arr[i];
+            }
+        }
+
+        return max;
+    }
+
+    public static void main(String[] args) {
+        int[] array = {3, 7, 2, 8, 5};  // Sample input array
+        int maxElement = findMax(array);
+        System.out.println("Maximum element: " + maxElement);
+    }
+}
+```
+
+In this program, the `findMax` function traverses the input array once to find the maximum element. Let's analyze its time and space complexity:
+
+- **Time Complexity**: The function has a time complexity of O(n), where n is the size of the input array. This is because it needs to traverse the entire array once, regardless of the input values.
+
+- **Space Complexity**: The function has a space complexity of O(1), which means it uses a constant amount of memory regardless of the size of the input array. This is because it only needs a few variables (`max`, `i`) to perform the operation, and the amount of memory they occupy does not depend on the size of the input array.
+
+Understanding time and space complexity helps in evaluating the efficiency of algorithms and choosing the most appropriate one for a given problem.
+
+IN SIMPLE TERMS
+===============
+
+**Time Complexity**: Think of it as how long an algorithm takes to run as the size of the input grows. It tells you how many operations an algorithm needs relative to the size of its input. For example, if you have a list of numbers, how many comparisons or steps does it take to find the biggest number?
+
+**Space Complexity**: This measures how much memory an algorithm needs as the size of the input grows. It includes both the memory used by the algorithm itself and any additional data structures it requires. For instance, if you're sorting a list of numbers, how much additional memory do you need to store intermediate values or pointers?
+
+In simpler terms, time complexity is about speed - how fast does the algorithm run as the input gets bigger, while space complexity is about memory - how much extra memory does the algorithm use as the input gets bigger.
 
 
 
@@ -6246,7 +7175,7 @@ Certainly! Below are some common Docker commands and instructions you can use fo
    This command displays the logs of a specific container.
 
 ### Dockerfile Instructions for Spring Boot Application:
-
+--------------------------------------------------------
 ```Dockerfile
 # Use a base image with Java installed
 FROM openjdk:11-jdk-slim

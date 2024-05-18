@@ -4,6 +4,7 @@ com\example\springsecuritytelugu\configuration\WebSecurityConfiguration.class
 com\example\springsecuritytelugu\service\JwtService.class
 com\example\springsecuritytelugu\controller\UserResource.class
 com\example\springsecuritytelugu\entity\Role.class
+com\example\springsecuritytelugu\service\XmlParseService.class
 com\example\springsecuritytelugu\mapper\EmployeeMapper.class
 com\example\springsecuritytelugu\configuration\JwtRequestFilter.class
 com\example\springsecuritytelugu\configuration\CorsConfiguration.class
@@ -13,14 +14,17 @@ com\example\springsecuritytelugu\SpringSecurityTeluguApplication.class
 com\example\springsecuritytelugu\controller\RoleResource.class
 com\example\springsecuritytelugu\controller\JwtResource.class
 com\example\springsecuritytelugu\repository\UserRepository.class
+com\example\springsecuritytelugu\service\JSONParserService.class
 com\example\springsecuritytelugu\service\RoleService.class
 com\example\springsecuritytelugu\service\EmployeeService.class
 com\example\springsecuritytelugu\entity\User.class
 com\example\springsecuritytelugu\entity\Employee.class
 com\example\springsecuritytelugu\entity\JwtResponse.class
 com\example\springsecuritytelugu\controller\EmployeeResource.class
+com\example\springsecuritytelugu\serviceImpl\JSONParserServiceImpl.class
 com\example\springsecuritytelugu\configuration\JwtAuthenticationEntryPoint.class
 com\example\springsecuritytelugu\mapper\EmployeeMapperImpl.class
 com\example\springsecuritytelugu\service\UserService.class
 com\example\springsecuritytelugu\configuration\CorsConfiguration$1.class
 com\example\springsecuritytelugu\util\JwtUtil.class
+com\example\springsecuritytelugu\serviceImpl\XmlParseServiceImpl.class

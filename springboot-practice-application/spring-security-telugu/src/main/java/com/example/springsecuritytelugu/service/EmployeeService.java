@@ -82,10 +82,32 @@ public class EmployeeService {
     return employeeDTO;
   }
 
-  public List<EmployeeDTO> findAllEmployees() {
+//  public List<EmployeeDTO> findAllEmployeesSync() {
+//    List<Employee> employeeList = employeeRepository.findAll();
+//    log.info("Employee List : {}",employeeList);
+//    List<EmployeeDTO> employeeDTOList = new ArrayList<>();
+//    employeeList.forEach(employee -> employeeDTOList.add(employeeMapper.toDTO(employee)));
+//    return employeeDTOList;
+//  }
+
+
+  public List<EmployeeDTO> findAllEmployeesSync() {
     List<Employee> employeeList = employeeRepository.findAll();
+    log.info("Employee List: {}", employeeList);
     List<EmployeeDTO> employeeDTOList = new ArrayList<>();
-    employeeList.forEach(employee -> employeeDTOList.add(employeeMapper.toDTO(employee)));
+    for (Employee employee : employeeList) {
+      // Convert Employee to EmployeeDTO
+      EmployeeDTO employeeDTO = employeeMapper.toDTO(employee);
+      // Add delay using Thread.sleep()
+      try {
+        Thread.sleep(1000); // Sleep for 1 second (adjust duration as needed)
+      } catch (InterruptedException e) {
+        Thread.currentThread().interrupt();
+        log.error("Thread interrupted while sleeping", e);
+      }
+      // Add EmployeeDTO to the list
+      employeeDTOList.add(employeeDTO);
+    }
     return employeeDTOList;
   }
 
@@ -127,7 +149,7 @@ public class EmployeeService {
     String jsonString = jsonParserService.objectToJson(employeeDTO);
 
     //converting JSON string into Java Object
-    jsonParserService.jsonToObject(jsonString);
+    employeeDTO = jsonParserService.jsonToObject(jsonString);
     return employeeDTO;
   }
 
