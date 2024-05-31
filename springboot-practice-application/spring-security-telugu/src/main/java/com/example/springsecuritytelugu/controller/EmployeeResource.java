@@ -2,6 +2,7 @@ package com.example.springsecuritytelugu.controller;
 
 import com.example.springsecuritytelugu.asyn.communication.AsyncEmployeeService;
 import com.example.springsecuritytelugu.dto.EmployeeDTO;
+import com.example.springsecuritytelugu.entity.Employee;
 import com.example.springsecuritytelugu.service.EmployeeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,7 +53,7 @@ public class EmployeeResource {
   }
 
 
-  @GetMapping("get/AllEmployees")
+  @GetMapping(value = "get/AllEmployees")
   public ResponseEntity<List<EmployeeDTO>> getAllEmployeesSync() {
     log.info("Synchronous endpoint invoked.");
     List<EmployeeDTO> employeeDTOList = employeeService.findAllEmployeesSync();

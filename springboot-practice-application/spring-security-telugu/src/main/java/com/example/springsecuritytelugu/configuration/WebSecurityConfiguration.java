@@ -61,7 +61,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     // Disable Cross-Site Request Forgery (CSRF) protection
     http.csrf().disable()
       // Allow access to certain endpoints without authentication
-      .authorizeRequests().antMatchers("/dummyData","/registerNewUser","/authenticate").permitAll()
+      .authorizeRequests().antMatchers("/dummyData","/registerNewUser","/actuator/**","/api/**","/authenticate").permitAll()
+//      .authorizeRequests().antMatchers("/dummyData","/registerNewUser","/authenticate").permitAll()
       // Allow all methods specified in HttpHeaders
       .antMatchers(HttpHeaders.ALLOW).permitAll()
       // Authenticate all other requests

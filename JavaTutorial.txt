@@ -242,7 +242,8 @@ JVM Memory
 
 3. Stack area: For every thread, JVM creates one run-time stack which is stored here. Every block of this stack is called activation record/stack frame which stores methods calls. 
    All local variables of that method are stored in their corresponding frame. After a thread terminates, its run-time stack will be destroyed by JVM. It is not a shared resource.
-
+   (The stack area simply stores method calls and local variables per stack frame.)
+   
 4. PC Registers: Store address of current execution instruction of a thread. Obviously, each thread has separate PC Registers.
 
 5. Native method stacks: For every thread, a separate native stack is created. It stores native method information. 
@@ -861,6 +862,113 @@ Wrapper classes in Java
 	   ```
 
 	Using wrapper classes, autoboxing, unboxing, and parsing methods, you can work with both primitive data types and objects more flexibly and conveniently in Java.
+
+Reading Inputs From USER or Sources
+===================================
+
+The `Scanner` class in Java is a part of the `java.util` package and is used for parsing primitive types and strings using regular expressions. 
+It is commonly used for reading input from various sources, such as keyboard input, files, or strings.
+
+### Scanner Class
+
+#### Common Methods of Scanner
+Here are some of the most commonly used methods of the `Scanner` class:
+
+1. **nextInt()**: Reads an `int` value.
+2. **nextLine()**: Reads the entire line as a `String`.
+3. **next()**: Reads the next complete token as a `String`.
+4. **nextDouble()**: Reads a `double` value.
+5. **nextBoolean()**: Reads a `boolean` value.
+6. **nextLong()**: Reads a `long` value.
+7. **nextFloat()**: Reads a `float` value.
+8. **close()**: Closes the scanner.
+
+#### Example of Using Scanner
+Here’s a simple example demonstrating how to use the `Scanner` class to read input from the keyboard:
+
+```java
+import java.util.Scanner;
+
+public class ScannerExample {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("Enter your name: ");
+        String name = scanner.nextLine();
+        
+        System.out.println("Enter your age: ");
+        int age = scanner.nextInt();
+        
+        System.out.println("Enter your height: ");
+        double height = scanner.nextDouble();
+        
+        System.out.printf("Name: %s, Age: %d, Height: %.2f\n", name, age, height);
+        
+        scanner.close();
+    }
+}
+```
+
+### Alternative: BufferedReader and InputStreamReader
+
+An alternative to `Scanner` for reading input is using `BufferedReader` in combination with `InputStreamReader`. This combination can be more efficient for reading large amounts of text.
+
+#### Common Methods of BufferedReader
+1. **readLine()**: Reads a line of text.
+2. **close()**: Closes the stream and releases any system resources associated with it.
+
+#### Example of Using BufferedReader
+Here’s how you can use `BufferedReader` and `InputStreamReader` to read input from the keyboard:
+
+```java
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class BufferedReaderExample {
+    public static void main(String[] args) {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        
+        try {
+            System.out.println("Enter your name: ");
+            String name = reader.readLine();
+            
+            System.out.println("Enter your age: ");
+            int age = Integer.parseInt(reader.readLine());
+            
+            System.out.println("Enter your height: ");
+            double height = Double.parseDouble(reader.readLine());
+            
+            System.out.printf("Name: %s, Age: %d, Height: %.2f\n", name, age, height);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                reader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+```
+
+### Comparison: Scanner vs BufferedReader
+
+1. **Ease of Use**: 
+   - `Scanner` is more user-friendly and provides methods for parsing primitive types directly.
+   - `BufferedReader` requires more code for parsing different types of inputs since you need to manually parse the input string.
+
+2. **Performance**:
+   - `BufferedReader` is generally faster than `Scanner` because it does not perform parsing and has a larger buffer size.
+   - `Scanner` can be slower, especially when performing a lot of input operations, due to its parsing overhead.
+
+3. **Flexibility**:
+   - `Scanner` provides a wider range of input methods and is more flexible when dealing with different types of input formats.
+   - `BufferedReader` is more suited for reading large blocks of text efficiently.
+
+Choosing between `Scanner` and `BufferedReader` depends on the specific needs of your application, such as ease of use versus performance requirements.
+
 
 
 Java Arrays
@@ -4237,8 +4345,6 @@ In summary, Spring is a comprehensive framework that offers fine-grained control
 SPRING-BOOT
 =================
 
-
-
 		application.properties file
 		=============================
 		#changing port number
@@ -4816,7 +4922,7 @@ Secondly, annotations enable Spring Boot to automatically configure and manage v
 		}
 		
 6. @Lazy :
- 
+
 	- By defult , Spring creates all singleton bean eagerly at the startup/boostraping of the application context. However, sometimes you might want to defer the initialization of a bean until it's actually needed, which can help improve startup time and reduce memory usage.
 	- You can load the Spring beans lazily(on-demand) using @Lazy annotatation. 
 	- that mean, at application startup , spring container will not create a bean for the particulr class which was annotated with @Component and @Lazy. Spring Container will create bean only on-demand.
@@ -5100,6 +5206,62 @@ The latest version of the Spring framework defines 6 types of scopes:
 
 The last four scopes mentioned, request, session, application and websocket, are only available in a web-aware application.
 
+
+
+Spring-Boot Actuator
+====================
+
+Developing and Managing an application are the two most important aspects of the application’s life cycle. It is very crucial to know what’s going on beneath the application. Also when we push the application into production, managing it gradually becomes critically important. Therefore, it is always recommended to monitor the application both while at the development phase and at the production phase. 
+
+For the same use case, Spring Boot provides an actuator dependency that can be used to monitor and manage your Spring Boot application, By /actuator and /actuator/health endpoints you can achieve the purpose of monitoring.
+
+With the help of Spring Boot, we can achieve the above objectives.
+Spring Boot’s ‘Actuator’ dependency is used to monitor and manage the Spring web application.
+We can use it to monitor and manage the application with the help of HTTP endpoints or with the JMX.
+
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+</dependencies>	
+
+management.endpoints.web.exposure.include=*
+
+IDs : beans, caches , details, health, mappings etc.
+
+example : http://localhost:9999/actuator or http://localhost:9999/actuator/mappings
+
+
+
+Spring-Boot DevTools Dependencies
+==================================
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-devtools</artifactId>
+    <scope>runtime</scope>
+    <optional>true</optional>
+</dependency>
+
+
+Advantages:
+- Automatic restart for faster development iterations.
+- LiveReload support for automatic browser refresh on static resource changes.
+- Enhanced error handling with detailed messages and stack traces.
+- Remote development support for debugging and code swapping.
+- Additional utilities like property defaults and template caching.
+
+Disadvantages:
+- Potential performance overhead, especially in larger projects.
+- Increased complexity in the development environment.
+- Possible compatibility issues with third-party libraries.
+- Not suitable for production use due to overhead and risks.
+- Adds to project dependency footprint, potentially complicating dependency management.
+
+Note :  **Changes May Not Always be Detected**: DevTools primarily monitors changes in the classpath, such as modifications to Java classes and resources. 
+		However, changes outside of the classpath, like alterations to configuration files or dependencies, may not trigger an automatic restart. 
+		This limitation exists because DevTools focuses on the classpath for efficiency and may not have visibility into changes beyond it.
+		
 
 DIFFERENT TYPES OF QUERIES :
 ============================
