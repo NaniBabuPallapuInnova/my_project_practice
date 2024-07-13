@@ -1,6 +1,7 @@
 com\example\springsecuritytelugu\entity\JwtRequest.class
 com\example\springsecuritytelugu\repository\RoleRepository.class
 com\example\springsecuritytelugu\configuration\WebSecurityConfiguration.class
+com\example\springsecuritytelugu\classes\XmlGenerationTask.class
 com\example\springsecuritytelugu\service\JwtService.class
 com\example\springsecuritytelugu\controller\UserResource.class
 com\example\springsecuritytelugu\entity\Role.class
@@ -18,6 +19,7 @@ com\example\springsecuritytelugu\service\JSONParserService.class
 com\example\springsecuritytelugu\service\RoleService.class
 com\example\springsecuritytelugu\service\EmployeeService.class
 com\example\springsecuritytelugu\entity\User.class
+com\example\springsecuritytelugu\asyn\communication\AsyncEmployeeService.class
 com\example\springsecuritytelugu\entity\Employee.class
 com\example\springsecuritytelugu\entity\JwtResponse.class
 com\example\springsecuritytelugu\controller\EmployeeResource.class

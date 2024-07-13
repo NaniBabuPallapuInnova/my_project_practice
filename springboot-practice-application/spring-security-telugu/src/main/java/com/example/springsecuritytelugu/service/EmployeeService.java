@@ -25,7 +25,7 @@ import java.util.NoSuchElementException;
 public class EmployeeService {
 
   public static final Logger log = LoggerFactory.getLogger(EmployeeService.class);
-  public static final String EMAIL_REGEX = "\\b[A-Za-z0-9._%+-]+@gmail\\.com\\b";
+  public static final String EMAIL_REGEX = "\\b[A-Za-z0-9._%+-]+@example\\.com\\b";
 
   @Autowired
   EmployeeRepository employeeRepository;
