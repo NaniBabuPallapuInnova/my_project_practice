@@ -1,85 +1,136 @@
 package com.example.insurance_project.service;
 
+
+import com.example.insurance_project.dao.ClaimDao;
+import com.example.insurance_project.dao.InsurancePolicyDao;
 import com.example.insurance_project.entity.Claim;
 import com.example.insurance_project.entity.InsurancePolicy;
-import com.example.insurance_project.repository.ClaimRepository;
-import com.example.insurance_project.repository.InsurancePolicyRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.example.insurance_project.exception.IdNotFoundException;
+import com.example.insurance_project.response.ResponseStructure;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
-import javax.swing.text.DateFormatter;
-import java.text.DateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ClaimService {
 
-    public static final Logger log = LoggerFactory.getLogger(ClaimService.class);
+    @Autowired
+    private ClaimDao claimDao;
 
     @Autowired
-    ClaimRepository claimRepository;
+    private InsurancePolicyDao insurancePolicyDao;
 
     @Autowired
-    InsurancePolicyRepository insurancePolicyRepository;
+    private ResponseStructure<Claim> responseStructure;
 
-    public Claim saveNewClaim(Claim claim){
-        LocalDate today = LocalDate.now();
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        claim.setClaimDate(today.format(dateTimeFormatter));
-         claimRepository.save(claim);
-         log.info("new claim saved : {}   ",claim);
-         String claimNumber = "CLM"+(1000+claim.getClaimId());
-         claim.setClaimNumber(claimNumber);
-        claimRepository.save(claim);
-        return claim;
-    }
+    @Autowired
+    private ResponseStructure<List<Claim>> responseStructure2;
 
-    public Claim getClaimByClaimId(Long claimId){
-        Claim claim = claimRepository.findById(claimId).orElseThrow(() -> new EntityNotFoundException("Claim Not Found : "+claimId));
+    //insert Claim---------------------------------------------------------------------
+    public ResponseStructure<Claim> insertClaim(Claim claim, int policyId) {
+        InsurancePolicy insurancePolicy = insurancePolicyDao.getByInsurancePolicyId(policyId);
 
-        log.info("claim found by claimId  : {} ", claim);
-        return claim;
-    }
+        if(insurancePolicy != null) {
+            claim.setInsurancePolicy(insurancePolicy);
+            claimDao.insertClaim(claim);
 
-    public Claim deleteClaimByClaimId(Long claimId){
-        Optional<Claim> optionalClaim = claimRepository.findById(claimId);
-        if(optionalClaim.isPresent()){
-            claimRepository.deleteById(claimId);
-            log.info("claim deleted by claim id : {} ", claimId);
-            return optionalClaim.get();
+            responseStructure.setStatusCode(HttpStatus.ACCEPTED.value());
+            responseStructure.setMsg("Claimed successfully");
+            responseStructure.setData(claim);
+            return responseStructure;
+        }else {
+            responseStructure.setStatusCode(HttpStatus.NOT_ACCEPTABLE.value());
+            responseStructure.setMsg("Not Cliamed yet please check again ");
+            responseStructure.setData(null);
+            return responseStructure;
         }
-        return null;
     }
 
-    public Claim updateExistingClaim(Long claimId, Claim updatedClaim){
-        Claim exisitingClaim = claimRepository.findById(claimId).orElseThrow(() -> new EntityNotFoundException("Claim Not Found : "+claimId));
+    // getByClaimId-----------------------------------------------------------------------------
+    public ResponseStructure<Claim> getByClaimId(int claimId) {
+        Claim claim = claimDao.getByClaimId(claimId);
 
-        exisitingClaim.setClaimAmount(updatedClaim.getClaimAmount());
-        exisitingClaim.setClaimDate(updatedClaim.getClaimDate());
-        exisitingClaim.setClaimDescription(updatedClaim.getClaimDescription());
-        exisitingClaim.setClaimStatus(updatedClaim.getClaimStatus());
-        exisitingClaim.setClient(updatedClaim.getClient());
-        claimRepository.save(exisitingClaim);
-        log.info("claim updated : {} ", exisitingClaim);
-        return exisitingClaim;
-    }
+        if(claim != null) {
+            responseStructure.setStatusCode(HttpStatus.ACCEPTED.value());
+            responseStructure.setMsg("this calim id is present");
+            responseStructure.setData(claim);
 
+        }else {
+//			responseStructure.setStatusCode(HttpStatus.ACCEPTED.value());
+//			responseStructure.setMsg("please check claim id it is not present in our database");
+//			responseStructure.setData(null);
+//			return responseStructure;
 
-
-    public List<Claim> displayAllClaims(){
-
-        List<Claim> allClaims = claimRepository.findAll();
-
-        log.info("all claims from db : {} ", allClaims);
-
-        return allClaims;
+            throw new IdNotFoundException("Given id is not present in database");
+        }
+        return responseStructure;
     }
 
 
+    // delete Claim-----------------------------------------------------------------------------
+    public ResponseStructure<Claim> deleteClaim(Claim claim, int claimId) {
+        Claim claim2 = claimDao.deleteClaim(claim, claimId);
+
+        if(claim2 != null) {
+            responseStructure.setStatusCode(HttpStatus.FOUND.value());
+            responseStructure.setMsg("Claim deleted successfully");
+            responseStructure.setData(claim2);
+
+        }else {
+//			responseStructure.setStatusCode(HttpStatus.NOT_FOUND.value());
+//			responseStructure.setMsg("Claim is not deleted ");
+//			responseStructure.setData(null);
+//			return responseStructure;
+
+            throw new IdNotFoundException("Given id is not present in database");
+        }
+        return responseStructure;
+    }
+
+
+    // update Claim------------------------------------------------------------------------------
+    public ResponseStructure<Claim> updateClaim(Claim claim, int claimId) {
+        Claim claim2 = claimDao.getByClaimId(claimId);
+
+        if(claim2 != null) {
+            claim2.setClaimNumber(claim.getClaimNumber());
+            claim2.setClaimDate(claim.getClaimDate());
+            claim2.setClaimDescription(claim.getClaimDescription());
+            claim2.setClaimStatus(claim.getClaimStatus());
+
+            claimDao.updateClaim(claim2);
+            responseStructure.setStatusCode(HttpStatus.ACCEPTED.value());
+            responseStructure.setMsg("Claim updated Successfully");
+            responseStructure.setData(claim2);
+
+        }else {
+//			responseStructure.setStatusCode(HttpStatus.NOT_ACCEPTABLE.value());
+//			responseStructure.setMsg("Given id is not present in database");
+//			responseStructure.setData(null);
+//			return responseStructure;
+
+            throw new IdNotFoundException("Given id is not present in database");
+        }
+        return responseStructure;
+    }
+
+
+    //displayAllClaim----------------------------------------------------------------------------
+    public ResponseStructure<List<Claim>> displayAllClaim(){
+        List<Claim> claims = claimDao.displayAllClaim();
+
+        if(claims != null) {
+            responseStructure2.setStatusCode(HttpStatus.FOUND.value());
+            responseStructure2.setMsg("Claims- Details");
+            responseStructure2.setData(claims);
+            return responseStructure2;
+        }else {
+            responseStructure2.setStatusCode(HttpStatus.NOT_FOUND.value());
+            responseStructure2.setMsg("Claims Details are not available");
+            responseStructure2.setData(null);
+            return responseStructure2;
+        }
+    }
 }

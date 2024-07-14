@@ -1,101 +1,55 @@
 package com.example.insurance_project.controller;
 
+import java.util.List;
+
 import com.example.insurance_project.entity.Claim;
-import com.example.insurance_project.response.ApiResponse;
+import com.example.insurance_project.response.ResponseStructure;
 import com.example.insurance_project.service.ClaimService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.persistence.EntityNotFoundException;
-import java.util.List;
-import java.util.Objects;
 
 @RestController
-@RequestMapping("/api/claim")
+@RequestMapping("/api")
 public class ClaimController {
 
     @Autowired
-    ClaimService claimService;
+    private ClaimService claimService;
 
-    @Autowired
-    ApiResponse<Claim> claimApiResponse;
-
-    @GetMapping("/getClaimById/{claimId}")
-    public ApiResponse<Claim> getClaimById(@PathVariable Long claimId) {
-        Claim claim = claimService.getClaimByClaimId(claimId);
-
-        if (Objects.isNull(claim)) {
-            claimApiResponse.setStatusCode(HttpStatus.NOT_FOUND.value());
-            claimApiResponse.setMessage("Claim Not Found With ClaimId : {} " + claimId);
-            claimApiResponse.setData(null);
-        } else {
-            claimApiResponse.setStatusCode(HttpStatus.FOUND.value());
-            claimApiResponse.setMessage("Claim Found Successfully With ClaimId : {}" + claimId);
-            claimApiResponse.setData(claim);
-        }
-        return claimApiResponse;
+    //insert Claim---------------------------------------------------------------------
+    @PostMapping("/saveClaim/{policyId}")
+    public ResponseStructure<Claim> insertClaim(@RequestBody Claim claim, @PathVariable int policyId) {
+        return claimService.insertClaim(claim, policyId);
     }
 
-    @PostMapping("/saveNewClaim")
-    public ApiResponse<Claim> saveNewClaim(@RequestBody Claim claim) {
-        Claim savedClaim = claimService.saveNewClaim(claim);
-
-        if (Objects.isNull(savedClaim)) {
-            claimApiResponse.setStatusCode(HttpStatus.NOT_ACCEPTABLE.value());
-            claimApiResponse.setMessage("Failed To Save New Claim  : {} " + savedClaim);
-            claimApiResponse.setData(null);
-        } else {
-            claimApiResponse.setStatusCode(HttpStatus.FOUND.value());
-            claimApiResponse.setMessage("New Claim Saved Successfully : {}" + savedClaim);
-            claimApiResponse.setData(savedClaim);
-        }
-        return claimApiResponse;
+    // getByClaimId-----------------------------------------------------------------------------
+    @GetMapping("/getByClaimId/{claimId}")
+    public ResponseStructure<Claim> getByClaimId(@PathVariable int claimId) {
+        return claimService.getByClaimId(claimId);
     }
 
+    // delete Claim-----------------------------------------------------------------------------
+    @DeleteMapping("/deleteClaim/{claimId}")
+    public ResponseStructure<Claim> deleteClaim(Claim claim, @PathVariable int claimId) {
+        return claimService.deleteClaim(claim, claimId);
+    }
+
+    // update Claim------------------------------------------------------------------------------
     @PutMapping("/updateClaim/{claimId}")
-    public ApiResponse<Claim> updateClaim(@PathVariable Long claimId, @RequestBody Claim claim) {
-        Claim updatedClaimDetails = claimService.updateExistingClaim(claimId, claim);
-
-        if (Objects.isNull(updatedClaimDetails)) {
-            claimApiResponse.setStatusCode(HttpStatus.NOT_FOUND.value());
-            claimApiResponse.setMessage("Failed To Update Claim  : {} " + claimId);
-            claimApiResponse.setData(null);
-        } else {
-            claimApiResponse.setStatusCode(HttpStatus.CREATED.value());
-            claimApiResponse.setMessage("Updated Successfully : {}" + claimId);
-            claimApiResponse.setData(updatedClaimDetails);
-        }
-        return claimApiResponse;
+    public ResponseStructure<Claim> updateClaim(@RequestBody Claim claim,@PathVariable int claimId) {
+        return claimService.updateClaim(claim, claimId);
     }
 
-    @DeleteMapping("/deleteClaimId/{claimId}")
-    public ApiResponse<Claim> deleteClaimByClaimId(@PathVariable Long claimId) {
-        try {
-            Claim claim = claimService.deleteClaimByClaimId(claimId);
-            claimApiResponse.setStatusCode(HttpStatus.OK.value());
-            claimApiResponse.setMessage("Claim Deleted Successfully With ClaimId: {}" + claimId);
-            claimApiResponse.setData(claim);
-        } catch (Exception e) {
-            claimApiResponse.setStatusCode(HttpStatus.NOT_FOUND.value());
-            claimApiResponse.setMessage("Failed Delete With ClaimId: {}" + claimId);
-            claimApiResponse.setData(null);
-        }
-
-        return claimApiResponse;
+    //displayAllClaim----------------------------------------------------------------------------
+    @GetMapping("/displayAllClaim")
+    public ResponseStructure<List<Claim>> displayAllClaim(){
+        return claimService.displayAllClaim();
     }
-
-    @GetMapping("/getAllClaims")
-    public ResponseEntity<List<Claim>> getAllClaims() {
-        try {
-            List<Claim> claimList = claimService.displayAllClaims();
-            return new ResponseEntity<>(claimList, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
-
-    }
-
 }

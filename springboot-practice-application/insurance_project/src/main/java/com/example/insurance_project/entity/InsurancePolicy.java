@@ -3,54 +3,46 @@ package com.example.insurance_project.entity;
 import javax.persistence.*;
 import java.util.List;
 
+
+
 @Entity
-@Table(name = "insurance_policy")
+@Table(name ="insurancePolicy")
 public class InsurancePolicy {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "policy_id")
-    private Long insurancePolicyId;
+    @Column(name ="policyId")
+    private int insurancePolicyId;
 
-    @Column(name = "policy_number")
+    @Column(name ="policyNumber")
     private String insurancePolicyNumber;
 
-    @Column(name = "policy_type")
+    @Column(name ="policyType")
     private String insurancePolicyType;
 
-    @Column(name = "policy_coverage_amount")
-    private Long insurancePolicyCoverageAmount;
+    @Column(name="policyCoverageAmount")
+    private long insurancePolicyCoverageAmount;
 
-    @Column(name = "policy_premium")
+    @Column(name ="policyPremium")
     private String insurancePolicyPremium;
 
-    @Column(name = "policy_start_date")
+    @Column(name ="policyStartDate")
     private String insurancePolicyStartDate;
 
-    @Column(name = "policy_end_date")
+    @Column(name ="policyEndDate")
     private String insurancePolicyEndDate;
 
+    @OneToMany(mappedBy = "insurancePolicy", cascade = CascadeType.ALL)
+    private List<Client> clients;
 
+    @OneToOne(mappedBy = "insurancePolicy")
+    private Claim claim;
 
-    public InsurancePolicy() {
-
-    }
-
-    public InsurancePolicy(Long insurancePolicyId, String insurancePolicyNumber, String insurancePolicyType, Long insurancePolicyCoverageAmount, String insurancePolicyPremium, String insurancePolicyStartDate, String insurancePolicyEndDate) {
-        this.insurancePolicyId = insurancePolicyId;
-        this.insurancePolicyNumber = insurancePolicyNumber;
-        this.insurancePolicyType = insurancePolicyType;
-        this.insurancePolicyCoverageAmount = insurancePolicyCoverageAmount;
-        this.insurancePolicyPremium = insurancePolicyPremium;
-        this.insurancePolicyStartDate = insurancePolicyStartDate;
-        this.insurancePolicyEndDate = insurancePolicyEndDate;
-    }
-
-    public Long getInsurancePolicyId() {
+    public int getInsurancePolicyId() {
         return insurancePolicyId;
     }
 
-    public void setInsurancePolicyId(Long insurancePolicyId) {
+    public void setInsurancePolicyId(int insurancePolicyId) {
         this.insurancePolicyId = insurancePolicyId;
     }
 
@@ -70,11 +62,11 @@ public class InsurancePolicy {
         this.insurancePolicyType = insurancePolicyType;
     }
 
-    public Long getInsurancePolicyCoverageAmount() {
+    public long getInsurancePolicyCoverageAmount() {
         return insurancePolicyCoverageAmount;
     }
 
-    public void setInsurancePolicyCoverageAmount(Long insurancePolicyCoverageAmount) {
+    public void setInsurancePolicyCoverageAmount(long insurancePolicyCoverageAmount) {
         this.insurancePolicyCoverageAmount = insurancePolicyCoverageAmount;
     }
 
@@ -102,17 +94,21 @@ public class InsurancePolicy {
         this.insurancePolicyEndDate = insurancePolicyEndDate;
     }
 
+//	public List<Client> getClients() {
+//		return clients;
+//	}
+//
+//	public void setClients(List<Client> clients) {
+//		this.clients = clients;
+//	}
+//
+//	public Claim getClaim() {
+//		return claim;
+//	}
+//
+//	public void setClaim(Claim claim) {
+//		this.claim = claim;
+//	}
 
-    @Override
-    public String toString() {
-        return "InsurancePolicy{" +
-                "insurancePolicyId=" + insurancePolicyId +
-                ", insurancePolicyNumber='" + insurancePolicyNumber + '\'' +
-                ", insurancePolicyType='" + insurancePolicyType + '\'' +
-                ", insurancePolicyCoverageAmount=" + insurancePolicyCoverageAmount +
-                ", insurancePolicyPremium='" + insurancePolicyPremium + '\'' +
-                ", insurancePolicyStartDate='" + insurancePolicyStartDate + '\'' +
-                ", insurancePolicyEndDate='" + insurancePolicyEndDate + '\'' +
-                '}';
-    }
+
 }

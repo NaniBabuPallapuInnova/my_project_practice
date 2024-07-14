@@ -1,53 +1,38 @@
 package com.example.insurance_project.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "claim")
+@Table
 public class Claim {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long claimId;
+    @Column(name="claimId")
+    private int claimId;
 
+    @Column(name="claimNumber")
     private String claimNumber;
 
+    @Column(name="claimDescription")
     private String claimDescription;
 
+    @Column(name="claimDate")
     private String claimDate;
 
+    @Column(name="claimStatus")
     private String claimStatus;
 
-    private String claimAmount;
+    @OneToOne
+    @JoinColumn(name="policyId")
+    private InsurancePolicy insurancePolicy;
 
-
-    @ManyToOne
-    @JoinColumn(name = "client_id")
-    @JsonBackReference
-    private Client client;
-
-
-
-    public Claim() {
-    }
-
-    public Claim(Long claimId, String claimNumber, String claimDescription, String claimDate, String claimStatus, String claimAmount, Client client) {
-        this.claimId = claimId;
-        this.claimNumber = claimNumber;
-        this.claimDescription = claimDescription;
-        this.claimDate = claimDate;
-        this.claimStatus = claimStatus;
-        this.claimAmount = claimAmount;
-        this.client = client;
-    }
-
-    public Long getClaimId() {
+    public int getClaimId() {
         return claimId;
     }
 
-    public void setClaimId(Long claimId) {
+    public void setClaimId(int claimId) {
         this.claimId = claimId;
     }
 
@@ -83,32 +68,13 @@ public class Claim {
         this.claimStatus = claimStatus;
     }
 
-    public String getClaimAmount() {
-        return claimAmount;
+    public InsurancePolicy getInsurancePolicy() {
+        return insurancePolicy;
     }
 
-    public void setClaimAmount(String claimAmount) {
-        this.claimAmount = claimAmount;
+    public void setInsurancePolicy(InsurancePolicy insurancePolicy) {
+        this.insurancePolicy = insurancePolicy;
     }
 
-    public Client getClient() {
-        return client;
-    }
 
-    public void setClient(Client client) {
-        this.client = client;
-    }
-
-    @Override
-    public String toString() {
-        return "Claim{" +
-                "claimId=" + claimId +
-                ", claimNumber='" + claimNumber + '\'' +
-                ", claimDescription='" + claimDescription + '\'' +
-                ", claimDate='" + claimDate + '\'' +
-                ", claimStatus='" + claimStatus + '\'' +
-                ", claimAmount='" + claimAmount + '\'' +
-                ", client=" + client +
-                '}';
-    }
 }

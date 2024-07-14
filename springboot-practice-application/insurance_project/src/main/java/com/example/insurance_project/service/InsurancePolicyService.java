@@ -1,67 +1,111 @@
 package com.example.insurance_project.service;
 
+
+import com.example.insurance_project.dao.InsurancePolicyDao;
 import com.example.insurance_project.entity.InsurancePolicy;
-import com.example.insurance_project.repository.InsurancePolicyRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.example.insurance_project.response.ResponseStructure;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class InsurancePolicyService {
 
-    public static final Logger log = LoggerFactory.getLogger(InsurancePolicyService.class);
-
+    @Autowired
+    private InsurancePolicyDao insurancePolicyDao;
 
     @Autowired
-    InsurancePolicyRepository insurancePolicyRepository;
+    private ResponseStructure<InsurancePolicy> responseStructure;
 
-    public InsurancePolicy saveInsurancePolicy(InsurancePolicy insurancePolicy){
+    @Autowired
+    private ResponseStructure<List<InsurancePolicy>> responseStructure2;
 
-        insurancePolicyRepository.save(insurancePolicy);
-        log.info("New InsurancePolicy Saved : {}   ",insurancePolicy);
+    // insert insurancePolicy-----------------------------------------------------------
+    public ResponseStructure<InsurancePolicy> insertInsurancePolicy(InsurancePolicy insurancePolicy) {
+        InsurancePolicy insurancePolicy2 = insurancePolicyDao.insertInsurancePolicy(insurancePolicy);
 
-        String insurancePolicyNumber = "POL"+(1000+insurancePolicy.getInsurancePolicyId());
-        insurancePolicy.setInsurancePolicyNumber(insurancePolicyNumber);
-        return insurancePolicy;
-    }
-
-    public InsurancePolicy getInsurancePolicyByInsurancePolicyId(Long insurancePolicyId){
-        InsurancePolicy insurancePolicy =  insurancePolicyRepository.findById(insurancePolicyId).orElseThrow(() -> new EntityNotFoundException("InsurancePolicy Not Found "+insurancePolicyId));
-        log.info("InsurancePolicy Found : {} ",insurancePolicy);
-        return insurancePolicy;
-    }
-
-    public InsurancePolicy deleteInsurancePolicyById(Long insurancePolicyId){
-        Optional<InsurancePolicy> insurancePolicy =  insurancePolicyRepository.findById(insurancePolicyId);
-        if(insurancePolicy.isPresent()){
-            insurancePolicyRepository.deleteById(insurancePolicyId);
-            log.info("InsurancePolicy Deleted : {} ",insurancePolicy);
-            return insurancePolicy.get();
+        if(insurancePolicy2 != null) {
+            responseStructure.setStatusCode(HttpStatus.ACCEPTED.value());
+            responseStructure.setMsg("data inserted successfully");
+            responseStructure.setData(insurancePolicy2);
+            return responseStructure;
+        }else {
+            responseStructure.setStatusCode(HttpStatus.ACCEPTED.value());
+            responseStructure.setMsg("data not inserted please check again your code");
+            responseStructure.setData(null);
+            return responseStructure;
         }
-        return null;
     }
 
-    public InsurancePolicy updateInsurancePolicy(Long insurancePolicyId, InsurancePolicy updatedInsurancePolicy){
-        InsurancePolicy existingInsurancePolicy =  insurancePolicyRepository.findById(insurancePolicyId).orElseThrow(() -> new EntityNotFoundException("InsurancePolicy Not Found "+insurancePolicyId));
+    // getByInsurancePolicyId------------------------------------------------------------
+    public ResponseStructure<InsurancePolicy> getByInsurancePolicyId(int insurancePolicyId) {
+        InsurancePolicy insurancePolicy = insurancePolicyDao.getByInsurancePolicyId(insurancePolicyId);
 
-        existingInsurancePolicy.setInsurancePolicyType(updatedInsurancePolicy.getInsurancePolicyType());
-        existingInsurancePolicy.setInsurancePolicyStartDate(updatedInsurancePolicy.getInsurancePolicyStartDate());
-        existingInsurancePolicy.setInsurancePolicyPremium(updatedInsurancePolicy.getInsurancePolicyPremium());
-        existingInsurancePolicy.setInsurancePolicyEndDate(updatedInsurancePolicy.getInsurancePolicyEndDate());
-        existingInsurancePolicy.setInsurancePolicyCoverageAmount(updatedInsurancePolicy.getInsurancePolicyCoverageAmount());
+        if(insurancePolicy != null) {
+            responseStructure.setStatusCode(HttpStatus.FOUND.value());
+            responseStructure.setMsg("data fetch successfull, data is available");
+            responseStructure.setData(insurancePolicy);
+            return responseStructure;
+        }else {
+            responseStructure.setStatusCode(HttpStatus.NOT_FOUND.value());
+            responseStructure.setMsg("please check your id which you are given");
+            responseStructure.setData(null);
+            return responseStructure;
+        }
+    }
 
-        insurancePolicyRepository.save(existingInsurancePolicy);
+    // update Insurance Policy------------------------------------------------------------
+    public ResponseStructure<InsurancePolicy> updateInsurancePolicy(InsurancePolicy insurancePolicy, int insurancePolicyId) {
+        InsurancePolicy insurancePolicy2 = insurancePolicyDao.updateInsurancePolicy(insurancePolicy, insurancePolicyId);
 
-        return existingInsurancePolicy;
+        if(insurancePolicy2 != null) {
+            responseStructure.setStatusCode(HttpStatus.ACCEPTED.value());
+            responseStructure.setMsg("Data is updated suceesfully because id is present");
+            responseStructure.setData(insurancePolicy2);
+            return responseStructure;
+        }else {
+            responseStructure.setStatusCode(HttpStatus.NOT_ACCEPTABLE.value());
+            responseStructure.setMsg("given id is not present in database");
+            responseStructure.setData(null);
+            return responseStructure;
+        }
+    }
+
+    // delete Insurance Policy---------------------------------------------------------------
+    public ResponseStructure<InsurancePolicy> deleteInsurancePolicy(InsurancePolicy insurancePolicy,int policyId){
+        InsurancePolicy insurancePolicy2 = insurancePolicyDao.deleteInsurancePolicy(insurancePolicy, policyId);
+
+        if(insurancePolicy !=null) {
+            responseStructure.setStatusCode(HttpStatus.FOUND.value());
+            responseStructure.setMsg("Data Deleted Successfully");
+            responseStructure.setData(insurancePolicy2);
+            return responseStructure;
+        }else {
+            responseStructure.setStatusCode(HttpStatus.NOT_FOUND.value());
+            responseStructure.setMsg("data is not deleted because Id is not present in database");
+            responseStructure.setData(null);
+            return responseStructure;
+        }
 
     }
-    public List<InsurancePolicy> displayInsurancePolicies(){
-        return insurancePolicyRepository.findAll();
-    }
 
+    //display InsuarncePolicy-------------------------------------------------------------------
+    public ResponseStructure<List<InsurancePolicy>> displayAllPolicy(){
+        List<InsurancePolicy> insurancePolicies = insurancePolicyDao.displayAllPolicy();
+
+        if(insurancePolicies != null) {
+            responseStructure2.setStatusCode(HttpStatus.ACCEPTED.value());
+            responseStructure2.setMsg("Policy-details");
+            responseStructure2.setData(insurancePolicies);
+            return responseStructure2;
+        }else {
+            responseStructure2.setStatusCode(HttpStatus.NOT_ACCEPTABLE.value());
+            responseStructure2.setMsg("Policy-details not found");
+            responseStructure2.setData(null);
+            return responseStructure2;
+        }
+
+    }
 }

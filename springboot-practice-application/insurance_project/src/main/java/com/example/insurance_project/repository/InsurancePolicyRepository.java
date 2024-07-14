@@ -2,8 +2,10 @@ package com.example.insurance_project.repository;
 
 import com.example.insurance_project.entity.InsurancePolicy;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
-@Repository
-public interface InsurancePolicyRepository extends JpaRepository<InsurancePolicy, Long> {
+
+@Component
+public interface InsurancePolicyRepository extends JpaRepository<InsurancePolicy, Integer>{
+
 }
