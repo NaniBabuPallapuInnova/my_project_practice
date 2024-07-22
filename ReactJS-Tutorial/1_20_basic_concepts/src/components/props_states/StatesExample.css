@@ -1,0 +1,12 @@
+.sameline{
+    display:inline-flex;
+}
+
+.settingLine{
+    display:inline-flex;
+}
+
+button {
+    margin-left: 5%;
+    margin-right: 5%;
+}

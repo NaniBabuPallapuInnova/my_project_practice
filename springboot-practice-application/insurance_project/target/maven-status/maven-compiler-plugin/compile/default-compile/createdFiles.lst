@@ -1,0 +1,11 @@
+com\example\insurance_project\repository\InsurancePolicyRepository.class
+com\example\insurance_project\repository\ClaimRepository.class
+com\example\insurance_project\service\InsurancePolicyService.class
+com\example\insurance_project\service\ClientService.class
+com\example\insurance_project\repository\ClientRepository.class
+com\example\insurance_project\response\ResponseStructure.class
+com\example\insurance_project\service\ClaimService.class
+com\example\insurance_project\exception\SpringBootExceptionHandler.class
+com\example\insurance_project\entity\Client.class
+com\example\insurance_project\entity\InsurancePolicy.class
+com\example\insurance_project\exception\IdNotFoundException.class

@@ -1,3 +1,10 @@
+
+Client has client details and policy number of insurance policy.
+Policy has only policy details.
+
+Claim has policy clientid and policy number.
+
+
 Sure, let's break down the concepts of `Insurance`, `Claim`, and `Client`, and then explain how they work together in the context of the provided Spring Boot application.
 
 ### Insurance Concept
@@ -284,5 +291,414 @@ Props and State
 	
 	
 
+Hooks
+=====
+Built-in React Hooks
+Hooks let you use different React features from your components. 
+You can either use the built-in Hooks or combine them to build your own. This page lists all built-in Hooks in React.
+
+State Hooks 
+-----------
+State lets a component “remember” information like user input. 
+For example, a form component can use state to store the input value, while an image gallery component can use state to store the selected image index.
+
+To add state to a component, use one of these Hooks:
+
+useState declares a state variable that you can update directly.
+useReducer declares a state variable with the update logic inside a reducer function.
+
+function ImageGallery() {
+  const [index, setIndex] = useState(0);
+
+Context Hooks 
+--------------
+Context lets a component receive information from distant parents without passing it as props. For example, your app’s top-level component can pass the current UI theme to all components below, no matter how deep.
+
+useContext reads and subscribes to a context.
+
+function Button() {
+  const theme = useContext(ThemeContext);
 
 
+
+Ref Hooks 
+----------
+Refs let a component hold some information that isn’t used for rendering, like a DOM node or a timeout ID. 
+Unlike with state, updating a ref does not re-render your component. Refs are an “escape hatch” from the React paradigm. 
+They are useful when you need to work with non-React systems, such as the built-in browser APIs.
+
+useRef declares a ref. You can hold any value in it, but most often it’s used to hold a DOM node.
+useImperativeHandle lets you customize the ref exposed by your component. This is rarely used.
+function Form() {
+  const inputRef = useRef(null);
+
+Effect Hooks 
+------------
+Effects let a component connect to and synchronize with external systems. 
+This includes dealing with network, browser DOM, animations, widgets written using a different UI library, and other non-React code.
+
+useEffect connects a component to an external system.
+function ChatRoom({ roomId }) {
+  useEffect(() => {
+    const connection = createConnection(roomId);
+    connection.connect();
+    return () => connection.disconnect();
+  }, [roomId]);
+  
+Effects are an “escape hatch” from the React paradigm. Don’t use Effects to orchestrate the data flow of your application. 
+If you’re not interacting with an external system, you might not need an Effect.
+
+There are two rarely used variations of useEffect with differences in timing:
+
+useLayoutEffect fires before the browser repaints the screen. You can measure layout here.
+useInsertionEffect fires before React makes changes to the DOM. Libraries can insert dynamic CSS here.
+
+
+Performance Hooks 
+-----------------
+A common way to optimize re-rendering performance is to skip unnecessary work. 
+For example, you can tell React to reuse a cached calculation or to skip a re-render if the data has not changed since the previous render.
+
+To skip calculations and unnecessary re-rendering, use one of these Hooks:
+
+useMemo lets you cache the result of an expensive calculation.
+useCallback lets you cache a function definition before passing it down to an optimized component.
+function TodoList({ todos, tab, theme }) {
+  const visibleTodos = useMemo(() => filterTodos(todos, tab), [todos, tab]);
+  
+
+
+
+
+// Insurance Project Front-End Code Using React.js
+
+Got it. Let's organize the project so that the React frontend resides within the `src/main/webapp` directory of the Spring Boot backend. Here’s the structure and the code for the CRUD components:
+
+### Project Structure
+
+```
+insurance-project/
+│
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/example/insurance
+│   │   │       ├── Application.java
+│   │   │       ├── controller/
+│   │   │       │   ├── ClientController.java
+│   │   │       │   ├── PolicyController.java
+│   │   │       │   └── ClaimController.java
+│   │   │       ├── model/
+│   │   │       │   ├── Client.java
+│   │   │       │   ├── Policy.java
+│   │   │       │   └── Claim.java
+│   │   │       ├── repository/
+│   │   │       │   ├── ClientRepository.java
+│   │   │       │   ├── PolicyRepository.java
+│   │   │       │   └── ClaimRepository.java
+│   │   │       └── resources/
+│   │   │           └── application.properties
+│   │   └── webapp/
+│       ├── index.js
+│       ├── index.css
+│       ├── App.js
+│       ├── App.css
+│       ├── components/
+│       │   ├── clients/
+│       │   │   ├── AddClient.js
+│       │   │   ├── UpdateClient.js
+│       │   │   ├── DeleteClient.js
+│       │   │   ├── ClientList.js
+│       │   │   ├── ClientDetails.js
+│       │   ├── policies/
+│       │   │   ├── AddPolicy.js
+│       │   │   ├── UpdatePolicy.js
+│       │   │   ├── DeletePolicy.js
+│       │   │   ├── PolicyList.js
+│       │   │   ├── PolicyDetails.js
+│       │   ├── claims/
+│       │       ├── AddClaim.js
+│       │       ├── UpdateClaim.js
+│       │       ├── DeleteClaim.js
+│       │       ├── ClaimList.js
+│       │       ├── ClaimDetails.js
+│       ├── validators/
+│       └── directives/
+│
+├── pom.xml (or build.gradle)
+└── package.json
+```
+
+### Setting Up the Frontend
+
+1. **Initialize the React App inside `src/main/webapp`**
+
+   ```sh
+   cd src/main/webapp
+   npx create-react-app .
+   npm install axios react-router-dom
+   ```
+
+2. **Create Components**
+
+   Below are the React components for handling CRUD operations for `Client`. Follow the same pattern to create components for `InsurancePolicy` and `Claim`.
+
+#### `src/main/webapp/components/clients/AddClient.js`
+
+```jsx
+import React, { useState } from 'react';
+import axios from 'axios';
+
+const AddClient = () => {
+  const [client, setClient] = useState({
+    clientName: '',
+    clientDateOfBirth: '',
+    clientAddress: '',
+    clientContactInformation: '',
+    policyId: ''
+  });
+
+  const handleChange = (e) => {
+    setClient({ ...client, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(`/api/saveClient/${client.policyId}`, client);
+      console.log(response.data);
+    } catch (error) {
+      console.error("There was an error adding the client!", error);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input type="text" name="clientName" placeholder="Name" onChange={handleChange} />
+      <input type="date" name="clientDateOfBirth" placeholder="Date of Birth" onChange={handleChange} />
+      <input type="text" name="clientAddress" placeholder="Address" onChange={handleChange} />
+      <input type="text" name="clientContactInformation" placeholder="Contact Information" onChange={handleChange} />
+      <input type="text" name="policyId" placeholder="Policy ID" onChange={handleChange} />
+      <button type="submit">Add Client</button>
+    </form>
+  );
+};
+
+export default AddClient;
+```
+
+#### `src/main/webapp/components/clients/ClientList.js`
+
+```jsx
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+const ClientList = () => {
+  const [clients, setClients] = useState([]);
+
+  useEffect(() => {
+    const fetchClients = async () => {
+      try {
+        const response = await axios.get('/api/displayAllClient');
+        setClients(response.data.data);
+      } catch (error) {
+        console.error("There was an error fetching the clients!", error);
+      }
+    };
+    fetchClients();
+  }, []);
+
+  return (
+    <div>
+      <h2>Client List</h2>
+      <ul>
+        {clients.map((client) => (
+          <li key={client.clientId}>{client.clientName}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default ClientList;
+```
+
+#### `src/main/webapp/components/clients/ClientDetails.js`
+
+```jsx
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+
+const ClientDetails = () => {
+  const { clientId } = useParams();
+  const [client, setClient] = useState(null);
+
+  useEffect(() => {
+    const fetchClient = async () => {
+      try {
+        const response = await axios.get(`/api/getClientById/${clientId}`);
+        setClient(response.data.data);
+      } catch (error) {
+        console.error("There was an error fetching the client details!", error);
+      }
+    };
+    fetchClient();
+  }, [clientId]);
+
+  return (
+    <div>
+      {client && (
+        <div>
+          <h2>Client Details</h2>
+          <p>Name: {client.clientName}</p>
+          <p>Date of Birth: {client.clientDateOfBirth}</p>
+          <p>Address: {client.clientAddress}</p>
+          <p>Contact Information: {client.clientContactInformation}</p>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default ClientDetails;
+```
+
+#### `src/main/webapp/components/clients/UpdateClient.js`
+
+```jsx
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+
+const UpdateClient = () => {
+  const { clientId } = useParams();
+  const [client, setClient] = useState({
+    clientName: '',
+    clientDateOfBirth: '',
+    clientAddress: '',
+    clientContactInformation: ''
+  });
+
+  useEffect(() => {
+    const fetchClient = async () => {
+      try {
+        const response = await axios.get(`/api/getClientById/${clientId}`);
+        setClient(response.data.data);
+      } catch (error) {
+        console.error("There was an error fetching the client data!", error);
+      }
+    };
+    fetchClient();
+  }, [clientId]);
+
+  const handleChange = (e) => {
+    setClient({ ...client, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.put(`/api/updateClient/${clientId}`, client);
+      console.log(response.data);
+    } catch (error) {
+      console.error("There was an error updating the client!", error);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input type="text" name="clientName" placeholder="Name" value={client.clientName} onChange={handleChange} />
+      <input type="date" name="clientDateOfBirth" placeholder="Date of Birth" value={client.clientDateOfBirth} onChange={handleChange} />
+      <input type="text" name="clientAddress" placeholder="Address" value={client.clientAddress} onChange={handleChange} />
+      <input type="text" name="clientContactInformation" placeholder="Contact Information" value={client.clientContactInformation} onChange={handleChange} />
+      <button type="submit">Update Client</button>
+    </form>
+  );
+};
+
+export default UpdateClient;
+```
+
+#### `src/main/webapp/components/clients/DeleteClient.js`
+
+```jsx
+import React from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+
+const DeleteClient = () => {
+  const { clientId } = useParams();
+
+  const handleDelete = async () => {
+    try {
+      const response = await axios.delete(`/api/deleteClient/${clientId}`);
+      console.log(response.data);
+    } catch (error) {
+      console.error("There was an error deleting the client!", error);
+    }
+  };
+
+  return (
+    <div>
+      <button onClick={handleDelete}>Delete Client</button>
+    </div>
+  );
+};
+
+export default DeleteClient;
+```
+
+### Setting Up Routing
+
+
+
+#### `src/main/webapp/App.js`
+
+```jsx
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import AddClient from './components/clients/AddClient';
+import ClientList from './components/clients/ClientList';
+import ClientDetails from './components/clients/ClientDetails';
+import UpdateClient from './components/clients/UpdateClient';
+import DeleteClient from './components/clients/DeleteClient';
+// Import other components similarly...
+
+function App() {
+  return (
+    <Router>
+      <div className="App">
+        <Switch>
+          <Route path="/addClient" component={AddClient} />
+          <Route path="/clients" component={ClientList} />
+          <Route path="/client/:clientId" component={ClientDetails} />
+          <Route path="/updateClient/:clientId" component={UpdateClient} />
+          <Route path="/deleteClient/:clientId" component={DeleteClient} />
+          {/* Add other routes similarly */}
+        </Switch>
+      </div>
+    </Router>
+  );
+}
+
+export default App;
+```
+
+#### `src/main/webapp/index.js`
+
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+```
+
+With this setup, you have a React frontend integrated within your Spring Boot project directory, following the structure you specified. You can create similar components for `InsurancePolicy` and `Claim` by following the pattern used for `Client` components.

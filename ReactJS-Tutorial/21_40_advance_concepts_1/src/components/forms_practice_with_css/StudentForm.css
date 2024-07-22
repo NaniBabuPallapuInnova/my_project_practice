@@ -1,0 +1,49 @@
+
+form{
+    width: 50%;
+    align-items: center;
+    text-align: center;
+    margin-left: 25%;
+    margin-bottom: 5%;
+    margin-top: 5%;
+    
+}
+
+.form-container {
+    max-width: 60px;
+    margin: 0 auto;
+    /* border: 1px solid black; */
+
+}
+
+.form-container .form-label {
+    font-weight: bold;
+}
+
+.form-container .form-control {
+    width: 100%;
+    max-width: 300px;
+}
+
+.form-container .form-check {
+    display: flex;
+    align-items: center;
+
+}
+
+.form-container .btn-primary,
+.form-container .btn-secondary {
+    width: 100px;
+}
+
+.form-container .btn-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.form-container .form-check-input{
+
+    border: 1px solid black;
+}
+
+
