@@ -42,6 +42,12 @@
 			<version>1.5.3.Final</version>
 		</dependency>
 
+		<!-- SMTP (Simple Mail Transfer Protocol) Mail Dependency-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+
 
 		<!-- Testing Dependencies For Test and Junit and Mockito -->
 		<dependency>

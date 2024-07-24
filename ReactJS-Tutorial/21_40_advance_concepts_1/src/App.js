@@ -2,6 +2,8 @@ import './App.css';
 import EventsExample from './components/events/EventsExample';
 import EventsExample2 from './components/events/EventsExample2';
 import EventsExample3 from './components/events/EventsExample3';
+import FormClassComponent from './components/forms_concept/FormClassComponent';
+import FormFunctionComponent from './components/forms_concept/FormFunctionComponent';
 import StudentForm from './components/forms_practice_with_css/StudentForm';
 
 function App() {
@@ -11,6 +13,10 @@ function App() {
       <EventsExample2 employeeList = {data} />
       <EventsExample3 />
       <StudentForm />
+      {/* Forms Concepts  */}
+      <FormFunctionComponent></FormFunctionComponent>
+      <FormClassComponent></FormClassComponent>
+      
     </div>
   );
 }
